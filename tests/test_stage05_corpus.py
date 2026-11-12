@@ -67,10 +67,11 @@ class Stage05CorpusTests(unittest.TestCase):
                 "canonical_bin_vector": None,
                 "sample_count": 2,
                 "samples": [
-                    {"covergroup": "timer_cfg_cg"},
-                    {"covergroup": "timer_cfg_cg"},
+                    {"covergroup": "timer_cfg_cg", "resolved_canonical_bin_identity_hits": []},
+                    {"covergroup": "timer_cfg_cg", "resolved_canonical_bin_identity_hits": []},
                 ],
                 "sample_counts_by_covergroup": {"timer_cfg_cg": 2},
+                "resolved_canonical_bin_identity_hit_counts": {},
             }
             trace_path = trace_dir / "case_a.json"
             trace_path.write_text(json.dumps(trace) + "\n", encoding="utf-8")

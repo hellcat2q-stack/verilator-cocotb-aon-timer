@@ -1,0 +1,63 @@
+{
+  "bin_hit_occurrence_counts": {
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_0||0": 69,
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_max||0": 5,
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_0||0": 71,
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_max||0": 5,
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_0||0": 77,
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0": 78,
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_0||0": 55
+  },
+  "bins": {
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_0||0": 1,
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_max||0": 1,
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_0||0": 1,
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_max||0": 1,
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_0||0": 1,
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0": 1,
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_0||0": 1
+  },
+  "canonical_bin_count": 4507,
+  "canonical_bin_ids_sha256": "dbcf02f06c121675401c8983dde65a9275239cefd3aff842712bdeef5da11355",
+  "coverage_schema_id": "aon_timer_uvm_source_trace_v1",
+  "evidence": {
+    "coverage_vector_complete": false,
+    "method": "source-confirmed named explicit-bin memberships in validated raw samples",
+    "raw_sample_count": 112,
+    "raw_trace_files": {
+      "stage05-functional-pool-seed1-v1-seed1__aon_timer_intr_test_sequence__seed1.json": {
+        "resolved_explicit_identity_count": 5,
+        "sample_count": 23,
+        "sha256": "984fbb69ba5e54ab3909c3cc447c063fa330cce9a5c00d3f89c0236c9c85fe96",
+        "testcase": "aon_timer_intr_test_sequence"
+      },
+      "stage05-functional-pool-seed1-v1-seed1__aon_timer_jump_sequence__seed1.json": {
+        "resolved_explicit_identity_count": 7,
+        "sample_count": 27,
+        "sha256": "e1aa16bdb460d8757c3c88ba0ecd45886a4735bcf91f503317a70223732dca62",
+        "testcase": "aon_timer_jump_sequence"
+      },
+      "stage05-functional-pool-seed1-v1-seed1__aon_timer_prescaler_sequence__seed1.json": {
+        "resolved_explicit_identity_count": 5,
+        "sample_count": 40,
+        "sha256": "c11ce916d34694ac80a18c2897282066912e6ee2a97495b585a4f5220d4ef539",
+        "testcase": "aon_timer_prescaler_sequence"
+      },
+      "stage05-functional-pool-seed1-v1-seed1__aon_timer_smoke_sequence__seed1.json": {
+        "resolved_explicit_identity_count": 5,
+        "sample_count": 22,
+        "sha256": "e6fbdefcd1563509d9f43417eedbb80549923af496c20bb32fb0c86cdaebbb68",
+        "testcase": "aon_timer_smoke_sequence"
+      }
+    },
+    "unknown_policy": "all omitted identities remain unknown; no misses are inferred"
+  },
+  "mapping_status": "PARTIAL_VALIDATED",
+  "pool_id": "aon-timer-functional-pool-v1",
+  "pool_sha256": "b142a0c46c8f87b4b9fbf6117231df34a958953b2310fc368850cfb637ea27a3",
+  "run_id": "stage05-functional-pool-seed1-v1-seed1",
+  "schema": "aon-timer-stage06-run-vector-v1",
+  "seed": 1,
+  "source_revision": "9f20940d494a223cc950a5b98f748fb28109d458",
+  "vector_status": "PARTIAL"
+}

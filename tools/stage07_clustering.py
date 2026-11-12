@@ -357,7 +357,7 @@ def write_outputs(
     stats = cluster_stats(clusters, max_cluster_size)
     scheduler_input = {
         "schema": "aon-timer-stage07-scheduler-input-v1",
-        "status": "BLOCKED_WAITING_VALIDATED_VECTORS",
+        "status": "BLOCKED_WAITING_EXACT_VECTORS",
         "allowed_to_schedule": False,
         "cluster_mapping": "bin_to_cluster.csv",
         "cluster_count": len(clusters),
@@ -367,8 +367,8 @@ def write_outputs(
         "information_scores": None,
         "cluster_priors": None,
         "blockers": [
-            "No validated run-level coverage vectors are available.",
-            "The current stage06 matrix has no known hit or miss cells.",
+            "No exact validated run-level coverage vectors are available; partial vectors leave omitted bins unknown.",
+            "Known hits alone do not establish misses or the residual uncovered-bin set needed for coverage-based scoring.",
         ],
     }
     (output_dir / "scheduler_input.json").write_text(
@@ -392,7 +392,7 @@ def write_outputs(
         "hierarchical_eps_schedule": list(EPS_SCHEDULE),
         "pythonhashseed": seed,
         "coverage_scores_generated": False,
-        "coverage_score_blocker": "No validated run-level coverage vectors are available; stage06 cells are unknown.",
+        "coverage_score_blocker": "Exact validated run-level coverage vectors are unavailable; sparse partial vectors leave omitted stage06 cells unknown.",
     }
     (output_dir / "parameters.json").write_text(
         json.dumps(parameters, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
@@ -440,7 +440,7 @@ def write_outputs(
         "outputs_sha256": {name: sha256_file(output_dir / name) for name in output_names},
         "limitations": [
             "This artifact groups canonical bin identities only; it is not a coverage result.",
-            "Information scores and scheduler priors are withheld until validated run vectors are available.",
+            "Information scores and scheduler priors are withheld until exact validated run vectors and coverage scoring are available.",
         ],
     }
     (output_dir / "audit.json").write_text(

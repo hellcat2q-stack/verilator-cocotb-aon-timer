@@ -8,6 +8,6 @@
 
 阶段 06 使用 `stage06_matrix.py --corpus-manifest ... --vector-dir ... --out-dir ...` 输出 bin-by-run CSV 和 audit JSON。矩阵保持 4,507 canonical identities，cells 为 `1`/`0`/`?`；failed run 全部 mask 成 unknown，不获得覆盖奖励。
 
-阶段 07 使用 `PYTHONHASHSEED=0 python3 tools/stage07_clustering.py --bin-ids references/canonical_bin_ids.txt --output-dir evidence/stage07_initial --max-cluster-size 256 --seed 0` 生成稳定 bin-to-cluster mapping 与回放审计。工具不把 unknown coverage 转换为 0，缺少 validated vectors 时 scheduler input 明确 blocked。
+阶段 07 使用 `PYTHONHASHSEED=0 python3 tools/stage07_clustering.py --bin-ids references/canonical_bin_ids.txt --output-dir evidence/stage07_partial --max-cluster-size 256 --seed 0` 生成稳定 bin-to-cluster mapping 与回放审计。partial hits 不能确定 misses 或剩余未覆盖集合，coverage scores/UCB inputs 继续 blocked。
 
-阶段 04 runner 通过 `tools/cocotb_coverage_adapter.py` 在可观测的 TL CSR write/read 与 AON pin 事件上追加 source-aligned raw trace JSON；文件由 testcase `finally` 路径保存并在 run manifest 中记录哈希。阶段 05 runner 复核每个 trace 文件的 hash、样本总数、covergroup 分布和 testcase/source/schema 元数据，并把摘要写入 attempt/corpus manifest。timer count-event samples、conditional reset group 和共享 228 identities 未接入，trace 不生成 4,507-bin vector。
+阶段 04 runner 通过 `tools/cocotb_coverage_adapter.py` 在可观测的 TL CSR write/read 与 AON pin 事件上追加 source-aligned raw trace JSON；文件由 testcase `finally` 路径保存并在 run manifest 中记录哈希。阶段 05 runner 复核每个 trace 文件的 hash、样本总数、covergroup 分布和 testcase/source/schema 元数据，并把摘要写入 attempt/corpus manifest。`tools/raw_trace_to_vectors.py` 只把 source-confirmed named explicit-bin hits 转成 `PARTIAL_VALIDATED` sparse vectors，不推断 miss；count-event samples、conditional reset group 和共享 228 identities 未接入。

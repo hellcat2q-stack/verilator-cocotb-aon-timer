@@ -72,10 +72,15 @@ async def transfer(dut, opcode: int, address: int, data: int = 0) -> int:
     dut.a_valid_i.value = 1
 
     for _ in range(200):
-        await Timer(1, units="ns")
+        await RisingEdge(dut.clk_i)
+        # Read ready at the edge before simulator read-only settling; this is
+        # the value sampled by the synchronous TL endpoint.
         if int(dut.a_ready_o.value):
-            if opcode != GET and _ACTIVE_COVERAGE is not None:
-                _ACTIVE_COVERAGE.on_write_address(address, data)
+            if _ACTIVE_COVERAGE is not None:
+                if opcode == GET:
+                    _ACTIVE_COVERAGE.on_read_address(address, data)
+                else:
+                    _ACTIVE_COVERAGE.on_write_address(address, data)
             break
         await FallingEdge(dut.clk_i)
     else:
@@ -84,17 +89,16 @@ async def transfer(dut, opcode: int, address: int, data: int = 0) -> int:
     await FallingEdge(dut.clk_i)
     dut.a_valid_i.value = 0
     for _ in range(200):
-        await Timer(1, units="ns")
+        await RisingEdge(dut.clk_i)
         if int(dut.d_valid_o.value):
-            assert int(dut.d_error_o.value) == 0, f"TL-UL error at 0x{address:02x}"
+            response_error = int(dut.d_error_o.value)
             response = int(dut.d_data_o.value)
+            assert response_error == 0, f"TL-UL error at 0x{address:02x}"
             if opcode == GET and _ACTIVE_COVERAGE is not None:
-                _ACTIVE_COVERAGE.on_read_data(address, response)
+                _ACTIVE_COVERAGE.on_read_data(address, response, request_data=data)
             elif opcode != GET and _ACTIVE_COVERAGE is not None:
                 _ACTIVE_COVERAGE.on_write_data(address, data)
-            await RisingEdge(dut.clk_i)
             return response
-        await FallingEdge(dut.clk_i)
     raise AssertionError(f"TL-UL response timed out at 0x{address:02x}")
 
 

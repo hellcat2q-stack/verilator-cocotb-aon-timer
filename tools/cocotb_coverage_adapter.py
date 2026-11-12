@@ -100,6 +100,8 @@ class CocotbCoverageAdapter:
         # invokes intr_test_cg.sample() at the address phase.
         if address == INTR_TEST:
             self._sample_intr_test(value, "tl_addr_phase_intr_test")
+        elif address == WKUP_CAUSE:
+            self._mirror_wkup_interrupt_status(value)
 
         self._update_address_phase_mirror(address, value)
 
@@ -119,7 +121,9 @@ class CocotbCoverageAdapter:
         elif address == WDOG_BITE_THOLD:
             self.config["bite_thold"] = value & 0xFFFFFFFF
         elif address == WDOG_REGWEN:
-            self.config["wdog_regwen"] = value & 1
+            # WDOG_REGWEN is W0C: writing zero locks it until reset; writing
+            # one never unlocks a previously locked register.
+            self.config["wdog_regwen"] &= value & 1
         elif address == WKUP_CAUSE and (value & 1) == 0:
             self.config["wkup_cause"] = 0
 
@@ -129,6 +133,13 @@ class CocotbCoverageAdapter:
             self.expected_intr_state &= ~(value & 0b11)
         elif address == INTR_TEST:
             self._sample_intr_test(value, "tl_data_phase_intr_test")
+        elif address == WKUP_CAUSE:
+            self._mirror_wkup_interrupt_status(value)
+
+    def on_read_address(self, address: int, request_data: int = 0) -> None:
+        """Mirror local side effects before RAL predicts returned read data."""
+        if address == WKUP_CAUSE:
+            self._mirror_wkup_interrupt_status(request_data)
 
     def _sample_intr_test(self, value: int, event: str) -> None:
         for interrupt in range(2):
@@ -144,7 +155,7 @@ class CocotbCoverageAdapter:
             )
             self._annotate(record, event)
 
-    def on_read_data(self, address: int, value: int) -> None:
+    def on_read_data(self, address: int, value: int, request_data: int = 0) -> None:
         """Record the paired interrupt samples on an INTR_STATE data read."""
         if address == INTR_STATE:
             for interrupt in range(2):
@@ -155,24 +166,15 @@ class CocotbCoverageAdapter:
                     intr_state=(value >> interrupt) & 1,
                 )
                 self._annotate(record, "tl_data_phase_intr_state_read")
-        elif address == WKUP_CTRL:
-            self.config["prescale"] = (value >> 1) & 0xFFF
-            self.wkup_enabled = value & 1
-        elif address == WDOG_CTRL:
-            self.wdog_enabled = value & 1
-            self.config["pause_in_sleep"] = (value >> 1) & 1
-        elif address == WKUP_THOLD_LO:
-            self.config["wkup_thold"] = (self.config["wkup_thold"] & 0xFFFFFFFF00000000) | value
-        elif address == WKUP_THOLD_HI:
-            self.config["wkup_thold"] = (self.config["wkup_thold"] & 0xFFFFFFFF) | (value << 32)
-        elif address == WDOG_BARK_THOLD:
-            self.config["bark_thold"] = value & 0xFFFFFFFF
-        elif address == WDOG_BITE_THOLD:
-            self.config["bite_thold"] = value & 0xFFFFFFFF
-        elif address == WDOG_REGWEN:
-            self.config["wdog_regwen"] = value & 1
         elif address == WKUP_CAUSE:
-            self.config["wkup_cause"] = value & 1
+            self._mirror_wkup_interrupt_status(request_data)
+        # The pinned scoreboard reads local RAL mirrors before calling
+        # predict(UVM_PREDICT_READ), so a read response does not update its
+        # local coverage fields until a later qualifying CSR write.
+
+    def _mirror_wkup_interrupt_status(self, request_data: int) -> None:
+        """Match the pinned scoreboard's WKUP_CAUSE case assignment."""
+        self.expected_intr_state = (self.expected_intr_state & ~1) | (request_data & 1)
 
     def start_pin_monitor(self, dut) -> None:
         import cocotb

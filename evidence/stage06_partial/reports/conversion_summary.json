@@ -1,0 +1,24 @@
+{
+  "canonical_bin_count": 4507,
+  "canonical_bin_ids_sha256": "dbcf02f06c121675401c8983dde65a9275239cefd3aff842712bdeef5da11355",
+  "corpus_manifest_sha256": "4f6043d1f27e74dc22cc23ab1b88a8aa7bf1969cb4e2ec7fa2d75912600b8d73",
+  "coverage_vector_complete": false,
+  "limitations": [
+    "Only source-confirmed named explicit-bin hits are converted.",
+    "Array/auto-bin partitions and unobserved sample sites are not attributed.",
+    "All omitted identities remain unknown; this output is not a complete coverage vector."
+  ],
+  "schema": "aon-timer-stage06-raw-trace-conversion-v1",
+  "vector_count": 1,
+  "vectors": {
+    "stage05-functional-pool-seed1-v1-seed1": {
+      "known_hit_count": 7,
+      "known_hit_occurrences": 360,
+      "mapping_status": "PARTIAL_VALIDATED",
+      "path": "stage05-functional-pool-seed1-v1-seed1.json",
+      "sha256": "66af8750f10b8747b9682dc65d769855ea2b7bd192a52e246d6fc17f9c8b37f2",
+      "unknown_count": 4500
+    }
+  },
+  "zero_misses_inferred": false
+}

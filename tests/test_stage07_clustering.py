@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import csv
+import json
 import tempfile
 import unittest
 from pathlib import Path
@@ -79,6 +80,11 @@ class Stage07ClusteringTests(unittest.TestCase):
             self.assertTrue((output_dir / "bin_to_cluster.csv").is_file())
             self.assertTrue((output_dir / "clusters.json").is_file())
             self.assertTrue((output_dir / "scheduler_input.json").is_file())
+            scheduler = json.loads((output_dir / "scheduler_input.json").read_text(encoding="utf-8"))
+            self.assertFalse(scheduler["allowed_to_schedule"])
+            self.assertEqual(scheduler["status"], "BLOCKED_WAITING_EXACT_VECTORS")
+            self.assertIn("partial vectors leave omitted bins unknown", scheduler["blockers"][0])
+            self.assertIn("Known hits alone do not establish misses", scheduler["blockers"][1])
             with (output_dir / "bin_to_cluster.csv").open(encoding="utf-8", newline="") as stream:
                 rows = list(csv.DictReader(stream))
             self.assertEqual([row["feature_name"] for row in rows], identities)

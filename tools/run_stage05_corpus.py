@@ -52,6 +52,7 @@ def summarize_coverage_trace(run_root: Path, runner_manifest: dict[str, Any]) ->
         "file_count": 0,
         "total_sample_count": 0,
         "sample_counts_by_covergroup": {},
+        "resolved_canonical_bin_identity_hit_counts": {},
         "files": {},
     }
     if not isinstance(trace_manifest, dict):
@@ -69,11 +70,18 @@ def summarize_coverage_trace(run_root: Path, runner_manifest: dict[str, Any]) ->
         and runner_manifest.get("coverage_vector") is None
     )
     totals: dict[str, int] = {}
+    identity_hit_totals: dict[str, int] = {}
     trace_testcases: list[str] = []
     summarized_files: dict[str, Any] = {}
 
     for filename, declared in sorted(declared_files.items()):
-        file_valid = isinstance(filename, str) and Path(filename).name == filename and isinstance(declared, dict)
+        file_valid = (
+            isinstance(filename, str)
+            and Path(filename).name == filename
+            and "/" not in filename
+            and "\\" not in filename
+            and isinstance(declared, dict)
+        )
         trace_path = run_root / "coverage-traces" / filename if file_valid else None
         if trace_path is None or not trace_path.is_file():
             summarized_files[str(filename)] = {"validation": "FAIL", "reason": "missing_or_invalid_path"}
@@ -90,9 +98,12 @@ def summarize_coverage_trace(run_root: Path, runner_manifest: dict[str, Any]) ->
             continue
 
         samples = trace.get("samples")
-        samples = samples if isinstance(samples, list) else []
+        if not isinstance(samples, list):
+            samples = []
+            file_valid = False
         sample_count = len(samples)
         counts: dict[str, int] = {}
+        identity_hits: dict[str, int] = {}
         for sample in samples:
             if not isinstance(sample, dict) or not isinstance(sample.get("covergroup"), str):
                 valid = False
@@ -100,11 +111,20 @@ def summarize_coverage_trace(run_root: Path, runner_manifest: dict[str, Any]) ->
                 continue
             group = sample["covergroup"]
             counts[group] = counts.get(group, 0) + 1
+            sample_hits = sample.get("resolved_canonical_bin_identity_hits", [])
+            if not isinstance(sample_hits, list) or any(not isinstance(hit, str) for hit in sample_hits):
+                valid = False
+                file_valid = False
+                continue
+            for hit in sample_hits:
+                identity_hits[hit] = identity_hits.get(hit, 0) + 1
         declared_count = trace.get("sample_counts_by_covergroup", {})
+        declared_identity_hits = trace.get("resolved_canonical_bin_identity_hit_counts", {})
         file_checks = {
             "sha256": digest == declared.get("sha256"),
             "sample_count": sample_count == declared.get("sample_count") == trace.get("sample_count"),
             "sample_counts_by_covergroup": counts == declared_count,
+            "resolved_identity_hit_counts": identity_hits == declared_identity_hits,
             "coverage_status": trace.get("coverage_status") == declared.get("coverage_status"),
             "run_id": trace.get("run_id") == runner_manifest.get("run_id"),
             "seed": trace.get("seed") == runner_manifest.get("seed"),
@@ -119,6 +139,8 @@ def summarize_coverage_trace(run_root: Path, runner_manifest: dict[str, Any]) ->
             trace_testcases.append(testcase)
         for group, count in counts.items():
             totals[group] = totals.get(group, 0) + count
+        for identity, count in identity_hits.items():
+            identity_hit_totals[identity] = identity_hit_totals.get(identity, 0) + count
         result["total_sample_count"] += sample_count
         summarized_files[filename] = {
             "testcase": testcase,
@@ -131,16 +153,23 @@ def summarize_coverage_trace(run_root: Path, runner_manifest: dict[str, Any]) ->
         }
 
     expected_testcases = runner_manifest.get("testcases", [])
+    actual_trace_names = {path.name for path in (run_root / "coverage-traces").glob("*.json")}
+    valid = valid and actual_trace_names == set(declared_files)
     valid = (
         valid
         and len(trace_testcases) == len(set(trace_testcases))
         and set(trace_testcases) == set(expected_testcases)
+        and len(summarized_files) == len(declared_files)
+        and result["total_sample_count"] == sum(
+            item.get("sample_count", 0) for item in summarized_files.values()
+        )
     )
     result.update({
         "validated": valid,
         "file_count": len(summarized_files),
         "total_sample_count": result["total_sample_count"],
         "sample_counts_by_covergroup": totals,
+        "resolved_canonical_bin_identity_hit_counts": dict(sorted(identity_hit_totals.items())),
         "files": summarized_files,
     })
     return result

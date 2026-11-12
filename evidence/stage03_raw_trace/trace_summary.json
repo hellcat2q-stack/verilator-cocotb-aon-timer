@@ -1,6 +1,6 @@
 {
   "schema": "aon-timer-stage03-raw-trace-evidence-v1",
-  "created_utc": "2026-11-12T08:51:14.933773+00:00",
+  "created_utc": "2026-11-12T09:28:30.588238+00:00",
   "run_id": "stage05-functional-pool-seed1-v1-seed1",
   "seed": 1,
   "source_revision": "9f20940d494a223cc950a5b98f748fb28109d458",
@@ -18,7 +18,6 @@
   "tests_passed": 4,
   "tests_failed": 0,
   "simulation_time_ns": 13341.004,
-  "coverage_trace_status": "PARTIAL_SOURCE_SAMPLE_TRACE",
   "trace_validation": "PASS",
   "trace_file_count": 4,
   "total_sample_count": 112,
@@ -28,6 +27,17 @@
     "intr_test_cg": 4,
     "intr_cg": 10
   },
+  "known_explicit_identity_count": 7,
+  "known_explicit_hit_occurrences": 360,
+  "known_explicit_identity_hit_counts": {
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_0||0": 69,
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_max||0": 5,
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_0||0": 71,
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_max||0": 5,
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_0||0": 77,
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0": 78,
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_0||0": 55
+  },
   "testcases": {
     "aon_timer_intr_test_sequence": {
       "sample_count": 23,
@@ -36,14 +46,16 @@
         "timer_cfg_cg": 13,
         "intr_test_cg": 4,
         "intr_cg": 4
-      }
+      },
+      "known_explicit_identity_count": 5
     },
     "aon_timer_jump_sequence": {
       "sample_count": 27,
       "sample_counts_by_covergroup": {
         "intr_pins_cg": 6,
         "timer_cfg_cg": 21
-      }
+      },
+      "known_explicit_identity_count": 7
     },
     "aon_timer_prescaler_sequence": {
       "sample_count": 40,
@@ -51,7 +63,8 @@
         "intr_pins_cg": 8,
         "timer_cfg_cg": 28,
         "intr_cg": 4
-      }
+      },
+      "known_explicit_identity_count": 5
     },
     "aon_timer_smoke_sequence": {
       "sample_count": 22,
@@ -59,12 +72,13 @@
         "timer_cfg_cg": 16,
         "intr_pins_cg": 4,
         "intr_cg": 2
-      }
+      },
+      "known_explicit_identity_count": 5
     }
   },
   "files": {
     "stage05-functional-pool-seed1-v1-seed1__aon_timer_intr_test_sequence__seed1.json": {
-      "sha256": "b294d7e7141d5dbeecaa58671a95348ba9eee465c4c0cf0e90046d30a38ee254",
+      "sha256": "984fbb69ba5e54ab3909c3cc447c063fa330cce9a5c00d3f89c0236c9c85fe96",
       "size_bytes": 26534,
       "sample_count": 23,
       "sample_counts_by_covergroup": {
@@ -73,20 +87,36 @@
         "intr_test_cg": 4,
         "intr_cg": 4
       },
+      "known_explicit_identities": {
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_0||0": 13,
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_0||0": 13,
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_0||0": 13,
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0": 13,
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_0||0": 13
+      },
       "testcase": "aon_timer_intr_test_sequence"
     },
     "stage05-functional-pool-seed1-v1-seed1__aon_timer_jump_sequence__seed1.json": {
-      "sha256": "c80f8da020b0467fcc395c747d2e12444b21b68e19450baac505fa4a32f2be84",
+      "sha256": "e1aa16bdb460d8757c3c88ba0ecd45886a4735bcf91f503317a70223732dca62",
       "size_bytes": 34763,
       "sample_count": 27,
       "sample_counts_by_covergroup": {
         "intr_pins_cg": 6,
         "timer_cfg_cg": 21
       },
+      "known_explicit_identities": {
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_0||0": 15,
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_max||0": 5,
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_0||0": 16,
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_max||0": 5,
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_0||0": 21,
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0": 21,
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_0||0": 14
+      },
       "testcase": "aon_timer_jump_sequence"
     },
     "stage05-functional-pool-seed1-v1-seed1__aon_timer_prescaler_sequence__seed1.json": {
-      "sha256": "32a161c4d552345e97bcb1e2f87127d3a53272522c1e79072c84ff8818a72c46",
+      "sha256": "c11ce916d34694ac80a18c2897282066912e6ee2a97495b585a4f5220d4ef539",
       "size_bytes": 46624,
       "sample_count": 40,
       "sample_counts_by_covergroup": {
@@ -94,10 +124,17 @@
         "timer_cfg_cg": 28,
         "intr_cg": 4
       },
+      "known_explicit_identities": {
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_0||0": 28,
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_0||0": 28,
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_0||0": 27,
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0": 28,
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_0||0": 16
+      },
       "testcase": "aon_timer_prescaler_sequence"
     },
     "stage05-functional-pool-seed1-v1-seed1__aon_timer_smoke_sequence__seed1.json": {
-      "sha256": "cc116aaac7f39d831fbdaf46b83c46e949af8e9692e984db02bbe24b5a744a54",
+      "sha256": "e6fbdefcd1563509d9f43417eedbb80549923af496c20bb32fb0c86cdaebbb68",
       "size_bytes": 26816,
       "sample_count": 22,
       "sample_counts_by_covergroup": {
@@ -105,15 +142,20 @@
         "intr_pins_cg": 4,
         "intr_cg": 2
       },
+      "known_explicit_identities": {
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_0||0": 13,
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_0||0": 14,
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_0||0": 16,
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0": 16,
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_0||0": 12
+      },
       "testcase": "aon_timer_smoke_sequence"
     }
   },
   "coverage_vector_generated": false,
-  "run_manifest_sha256": "688a45a53dcccc31422a96d760dd38a2374398fc5a65d1d7297a8666114001c9",
-  "results_xml_sha256": "ec6ea359af1d8ee96dc64d642a5ea56498744a786302ff619a7bc3fc9f5ab5de",
   "limitations": [
-    "Only observable CSR and AON interrupt-pin sample sites are connected.",
-    "Timer count-event samples, conditional reset group, shared identities, and exact value partitions remain incomplete.",
-    "The trace is not a canonical 4,507-bin coverage vector."
+    "Only source-confirmed named explicit-bin hits are converted.",
+    "Timer count-event samples, conditional reset, shared identities, and exact array/auto-bin value partitions remain incomplete.",
+    "A sparse partial vector is available, but omitted identities remain unknown."
   ]
 }

@@ -6,6 +6,8 @@ from tools.cocotb_coverage_adapter import (
     INTR_STATE,
     INTR_TEST,
     WDOG_CTRL,
+    WDOG_REGWEN,
+    WKUP_CAUSE,
     WKUP_CTRL,
     WKUP_THOLD_LO,
     CocotbCoverageAdapter,
@@ -55,6 +57,45 @@ class CocotbCoverageAdapterTests(unittest.TestCase):
         self.assertEqual(len(samples), 2)
         self.assertEqual(samples[0]["fields"], {"intr": 0, "intr_en": 1, "intr_state": 0})
         self.assertEqual(samples[1]["fields"], {"intr": 1, "intr_en": 0, "intr_state": 1})
+
+    def test_wdog_regwen_write_one_does_not_unlock_after_write_zero(self):
+        adapter = self.make_adapter()
+        adapter.on_write_address(WDOG_REGWEN, 0)
+        adapter.on_write_data(WDOG_REGWEN, 0)
+        adapter.on_write_address(WDOG_REGWEN, 1)
+
+        self.assertEqual(adapter.config["wdog_regwen"], 0)
+        self.assertEqual(adapter.trace.samples[-1]["fields"]["wdog_regwen"], 0)
+
+    def test_wkup_cause_updates_expected_interrupt_state_on_both_channels(self):
+        adapter = self.make_adapter()
+        adapter.on_write_address(INTR_TEST, 0b11)
+        self.assertEqual(adapter.expected_intr_state, 0b11)
+
+        adapter.on_write_address(WKUP_CAUSE, 0)
+        self.assertEqual(adapter.expected_intr_state, 0b10)
+        adapter.on_write_data(WKUP_CAUSE, 0)
+        self.assertEqual(adapter.expected_intr_state, 0b10)
+        adapter.on_write_address(WKUP_CAUSE, 1)
+        self.assertEqual(adapter.expected_intr_state, 0b11)
+
+        adapter.on_read_address(WKUP_CAUSE, 0)
+        self.assertEqual(adapter.expected_intr_state, 0b10)
+        adapter.on_read_data(WKUP_CAUSE, 1, request_data=0)
+        self.assertEqual(adapter.expected_intr_state, 0b10)
+        self.assertEqual(adapter.config["wkup_cause"], 0)
+
+    def test_reads_do_not_predict_into_scoreboard_local_configuration_mirror(self):
+        adapter = self.make_adapter()
+        adapter.on_write_address(WDOG_REGWEN, 0)
+        adapter.on_write_data(WDOG_REGWEN, 0)
+        adapter.on_read_data(WDOG_REGWEN, 1)
+        adapter.on_read_data(WKUP_CTRL, 0x123)
+        adapter.on_read_data(WKUP_CAUSE, 1)
+
+        self.assertEqual(adapter.config["wdog_regwen"], 0)
+        self.assertEqual(adapter.config["prescale"], 0)
+        self.assertEqual(adapter.config["wkup_cause"], 0)
 
 
 if __name__ == "__main__":

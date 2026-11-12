@@ -1,0 +1,24 @@
+{
+  "schema": "aon-timer-stage07-validation-v1",
+  "input_sha256": "dbcf02f06c121675401c8983dde65a9275239cefd3aff842712bdeef5da11355",
+  "input_bin_count": 4507,
+  "mapped_bin_count": 4507,
+  "unique_bin_count": 4507,
+  "cluster_count": 78,
+  "assignment_complete": true,
+  "assignment_unique": true,
+  "selected_algorithm": "dbscan_clustering_new2_port_v1",
+  "cluster_stats": {
+    "cluster_count": 78,
+    "item_count": 4507,
+    "min_size": 2,
+    "max_size": 218,
+    "mean_size": 57.782051282051285,
+    "median_size": 33.0,
+    "singleton_count": 0,
+    "clusters_over_max_cluster_size": 0
+  },
+  "coverage_scores_generated": false,
+  "host_platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+  "python": "3.12.3"
+}

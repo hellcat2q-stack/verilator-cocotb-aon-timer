@@ -1,0 +1,59 @@
+{
+  "canonical_bin_count_expected": 4507,
+  "canonical_bin_count_observed": 4507,
+  "canonical_bin_ids_sha256": "dbcf02f06c121675401c8983dde65a9275239cefd3aff842712bdeef5da11355",
+  "cell_domain_valid": true,
+  "corpus_manifest_sha256": "4f6043d1f27e74dc22cc23ab1b88a8aa7bf1969cb4e2ec7fa2d75912600b8d73",
+  "failed_run_count": 0,
+  "failed_run_coverage_credit": 0,
+  "limitations": [
+    "Unknown cells are not treated as uncovered.",
+    "Failed runs remain in the matrix but receive no coverage credit.",
+    "A full matrix requires a validated vector for every successful run and exact mapping_status."
+  ],
+  "matrix_csv_sha256": "7eedbfd9936ea63df967224322e19da6a6af052162e4becf4632510e312736b0",
+  "matrix_generator_sha256": "feb5cdbabfa5be30e26163df246b25fd65feb531cf9ae1c947d0d08bdbf85881",
+  "matrix_header_column_count": 4519,
+  "matrix_identity_column_count": 4507,
+  "matrix_status": "PARTIAL_OR_UNAVAILABLE",
+  "pass_run_count": 1,
+  "pool_id": "aon-timer-functional-pool-v1",
+  "pool_sha256": "b142a0c46c8f87b4b9fbf6117231df34a958953b2310fc368850cfb637ea27a3",
+  "rows": [
+    {
+      "exit_code": 0,
+      "known_hit_count": 7,
+      "known_miss_count": 0,
+      "mapping_status": "PARTIAL_VALIDATED",
+      "pool_id": "aon-timer-functional-pool-v1",
+      "pool_sha256": "b142a0c46c8f87b4b9fbf6117231df34a958953b2310fc368850cfb637ea27a3",
+      "result": "PASS",
+      "run_id": "stage05-functional-pool-seed1-v1-seed1",
+      "seed": 1,
+      "simulation_time_ns": 13341.004,
+      "source_revision": "9f20940d494a223cc950a5b98f748fb28109d458",
+      "unknown_count": 4500,
+      "vector_sha256": "66af8750f10b8747b9682dc65d769855ea2b7bd192a52e246d6fc17f9c8b37f2",
+      "vector_status": "PARTIAL"
+    }
+  ],
+  "rows_have_4507_cells": true,
+  "run_count": 1,
+  "run_ids_unique": true,
+  "schema": "aon-timer-stage06-matrix-audit-v1",
+  "source_revision": "9f20940d494a223cc950a5b98f748fb28109d458",
+  "union": {
+    "covered_bin_count": 7,
+    "covered_bin_ids": [
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_0||0",
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_max||0",
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_0||0",
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_max||0",
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_0||0",
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0",
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_0||0"
+    ],
+    "known_uncovered_bin_count": 0,
+    "unknown_bin_count": 4500
+  }
+}

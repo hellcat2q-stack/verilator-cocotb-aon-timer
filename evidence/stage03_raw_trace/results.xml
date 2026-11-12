@@ -1,9 +1,9 @@
 <testsuites name="results">
   <testsuite name="all" package="all">
     <property name="random_seed" value="1" />
-    <testcase name="aon_timer_smoke_sequence" classname="test_sequences" file="/mnt/c/Users/Admin/Documents/ChatGPT/论文复现/verilator-cocotb-aon-timer/tools/test_sequences.py" lineno="163" time="0.02103710174560547" sim_time_ns="2040.001" ratio_time="96971.5802428034" />
-    <testcase name="aon_timer_jump_sequence" classname="test_sequences" file="/mnt/c/Users/Admin/Documents/ChatGPT/论文复现/verilator-cocotb-aon-timer/tools/test_sequences.py" lineno="195" time="0.02639293670654297" sim_time_ns="3601.001" ratio_time="136438.05689524842" />
-    <testcase name="aon_timer_prescaler_sequence" classname="test_sequences" file="/mnt/c/Users/Admin/Documents/ChatGPT/论文复现/verilator-cocotb-aon-timer/tools/test_sequences.py" lineno="249" time="0.03549623489379883" sim_time_ns="6180.001" ratio_time="174103.00045877945" />
-    <testcase name="aon_timer_intr_test_sequence" classname="test_sequences" file="/mnt/c/Users/Admin/Documents/ChatGPT/论文复现/verilator-cocotb-aon-timer/tools/test_sequences.py" lineno="289" time="0.016814470291137695" sim_time_ns="1520.0010000000002" ratio_time="90398.3874413896" />
+    <testcase name="aon_timer_smoke_sequence" classname="test_sequences" file="/mnt/c/Users/Admin/Documents/ChatGPT/论文复现/verilator-cocotb-aon-timer/tools/test_sequences.py" lineno="167" time="0.0217130184173584" sim_time_ns="2040.001" ratio_time="93952.89778638644" />
+    <testcase name="aon_timer_jump_sequence" classname="test_sequences" file="/mnt/c/Users/Admin/Documents/ChatGPT/论文复现/verilator-cocotb-aon-timer/tools/test_sequences.py" lineno="199" time="0.02503204345703125" sim_time_ns="3601.001" ratio_time="143855.65470039623" />
+    <testcase name="aon_timer_prescaler_sequence" classname="test_sequences" file="/mnt/c/Users/Admin/Documents/ChatGPT/论文复现/verilator-cocotb-aon-timer/tools/test_sequences.py" lineno="253" time="0.03462576866149902" sim_time_ns="6180.001" ratio_time="178479.82121106377" />
+    <testcase name="aon_timer_intr_test_sequence" classname="test_sequences" file="/mnt/c/Users/Admin/Documents/ChatGPT/论文复现/verilator-cocotb-aon-timer/tools/test_sequences.py" lineno="293" time="0.01579880714416504" sim_time_ns="1520.0010000000002" ratio_time="96209.8585120954" />
   </testsuite>
 </testsuites>

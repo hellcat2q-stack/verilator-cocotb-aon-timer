@@ -1,0 +1,33 @@
+{
+  "schema": "aon-timer-stage07-audit-v1",
+  "input_sha256": "dbcf02f06c121675401c8983dde65a9275239cefd3aff842712bdeef5da11355",
+  "canonical_bin_count": 4507,
+  "cluster_count": 78,
+  "assignment_complete": true,
+  "assignment_unique": true,
+  "deterministic_replay": true,
+  "mapping_sha256": "2856835a3118d2101c775b7c189734362b37627ceab17d38040a2f6e21a3bf33",
+  "cluster_stats": {
+    "cluster_count": 78,
+    "item_count": 4507,
+    "min_size": 2,
+    "max_size": 218,
+    "mean_size": 57.782051282051285,
+    "median_size": 33.0,
+    "singleton_count": 0,
+    "clusters_over_max_cluster_size": 0
+  },
+  "coverage_scores_generated": false,
+  "outputs_sha256": {
+    "bin_to_cluster.csv": "b575c0345c1472c4e1397054274e98c8dd193f6ef3251408f188ac816b45f34c",
+    "clusters.json": "f05cab159edddada9ee52420ecaed29b757420ce18d74c17c76fa9370e2e1257",
+    "partition_summary.json": "7238cf1a34af3d58420590630488f978b68513966409904e02cb2831910ab564",
+    "parameters.json": "2d3168c332cf2f7fcfa0c7313d704a94bf5f0e581029448a8ec8078ac2d7ca06",
+    "validation.json": "c1248bd2051f2a04ea616d9978b84a0b9e466c2712a73092bd021ef52ea5d0d4",
+    "scheduler_input.json": "6984754f8d8e89161493d74ea976eece2bce85979de30d5cb1d300f2e6cc7677"
+  },
+  "limitations": [
+    "This artifact groups canonical bin identities only; it is not a coverage result.",
+    "Information scores and scheduler priors are withheld until exact validated run vectors and coverage scoring are available."
+  ]
+}

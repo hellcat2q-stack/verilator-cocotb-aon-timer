@@ -1,6 +1,6 @@
 # 阶段 06：覆盖矩阵与审计
 
-状态：矩阵格式、审计工具与初始 scaffold 已完成；实际 bin hits/misses 未采集，阶段门未通过。
+状态：矩阵格式、审计工具及 sparse partial vector 已实测；完整 bin hits/misses 未采集，阶段门未通过。
 
 ## 矩阵契约
 
@@ -19,10 +19,10 @@ python3 tools/stage06_matrix.py \
   --out-dir evidence/stage06
 ```
 
-vector 文件可选；放在 `vector-dir/<run_id>.json`。当前阶段 05 尚未导出 coverage vectors，因此可省略 `--vector-dir`，工具会生成带未知单元的矩阵并明确报告 incomplete。
+vector 文件可选；放在 `vector-dir/<run_id>.json`。当前冻结 run 的 partial vector 见 [`evidence/stage06_partial/vectors/`](../evidence/stage06_partial/vectors/)，矩阵将已确认命中记为 `1`，未确证项仍记为 `?`。
 
 ## 当前结果
 
-初始审计见 [`evidence/stage06_initial/coverage_matrix_audit.json`](../evidence/stage06_initial/coverage_matrix_audit.json)，矩阵见 [`coverage_bin_by_run.csv`](../evidence/stage06_initial/coverage_bin_by_run.csv)。CSV 包含 12 个 run metadata 字段和 4,507 个 bin identity 字段；当前唯一 run 的 4,507 个值全为 `?`。因此 union 为 0 个已知 hit、0 个已知 miss、4,507 个 unknown。该结果只验证矩阵结构和审计逻辑，不是覆盖采集成功。
+初始无 vector 的 scaffold 仍保留在 [`evidence/stage06_initial/`](../evidence/stage06_initial/)。最新 partial 审计见 [`evidence/stage06_partial/coverage_matrix_audit.json`](../evidence/stage06_partial/coverage_matrix_audit.json)，矩阵见 [`coverage_bin_by_run.csv`](../evidence/stage06_partial/coverage_bin_by_run.csv)。CSV 包含 12 个 run metadata 字段和 4,507 个 bin identity 字段；当前 run 有 7 个 known hit、0 个 inferred miss、4,500 个 unknown。该结果表明稀疏命中已从有效 raw trace 导出，但不是完整覆盖率报告。
 
-精确 coverage mapping 仍需补全阶段 03 中的 array/auto-bin 取值分区和共享 coverage sample API，并把 `CoverageTrace` 接入实际 Cocotb sample 时序。完成前不得将本 scaffold 用于 coverage-driven 调度或覆盖率对比。
+精确 coverage mapping 仍需补全阶段 03 中的 array/auto-bin 取值分区和共享 coverage sample API，并将未接入的 sample sites 接入实际 Cocotb 时序。完成前不得把未知单元当作 miss，不得用于 coverage-driven 调度或覆盖率对比。

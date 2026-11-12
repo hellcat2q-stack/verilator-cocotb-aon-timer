@@ -15,6 +15,8 @@
 
 ## 未完成项
 
+最新冻结 run 的 112 条 raw samples 中，7 个 source-confirmed named-bin identities 已解析为 known hits；这是 sparse evidence，不证明完整采样或命中集合。
+
 原项目的 manifest 与 coverage 矩阵表头现已用于恢复 4,507 个 canonical identity；但 manifest 不含 `bins name[N]` 和 `auto_bin_max` 的实际值区间。当前模型仍只输出 raw sample trace 与可确认的 explicit-bin membership，不声明已生成 4,507 维 vector。
 
 要完成 exact mapping，需要原始 URG detailed bin value information（或等价的可追溯区间清单），并补齐 228 个共享 DV/TL covergroups 的采样来源，再验证边界、mapping 和 vector 对账。当前单元测试验证模型结构，不代表 RTL 仿真或 VCS/URG 等价。

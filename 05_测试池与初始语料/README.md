@@ -28,4 +28,4 @@ python3 tools/run_stage05_corpus.py \
 
 runner 会先校验 frozen pool hash、seed、测试顺序、预算和源码 revision；正式运行后为每个 seed 生成 attempt manifest 与汇总 `corpus_manifest.json`，并逐项校验 trace 文件 hash、sample 总数、covergroup 计数和 run/source/schema 元数据。成功运行摘要见 [`evidence/stage05_initial_corpus.json`](../evidence/stage05_initial_corpus.json)，partial raw trace 与审计摘要见 [`evidence/stage03_raw_trace/`](../evidence/stage03_raw_trace/)，执行记录见 [`实施记录.md`](实施记录.md)。
 
-本语料是功能场景与检查结果，不是 4,507-bin coverage vector。精确 bin 分区和共享 covergroup sampling 尚未完成，不能将这些结果用于 coverage-based 调度或与 VCS 覆盖分数等同。
+本语料是功能场景与检查结果，不是完整 4,507-bin coverage vector。112 条 raw samples 中有 7 个 source-confirmed named-bin identity hits；Stage 06 以 `PARTIAL_VALIDATED` sparse vector 保存这些 hit，其余 4,500 个 identity 保持 unknown。精确 bin 分区和共享 covergroup sampling 尚未完成，不能将这些结果用于 coverage-based 调度或与 VCS 覆盖分数等同。
