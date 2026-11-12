@@ -1,0 +1,59 @@
+{
+  "schema": "aon-timer-stage05-test-pool-v1",
+  "pool_id": "aon-timer-functional-pool-v1",
+  "source_revision": "9f20940d494a223cc950a5b98f748fb28109d458",
+  "deterministic": true,
+  "seed_list": [1],
+  "budget": {
+    "suite_runs": 1,
+    "workers": 1,
+    "wall_clock_timeout_seconds_per_run": 300,
+    "simulation_time_limit_ns_per_suite": 25000
+  },
+  "failure_policy": "retain_each_attempt_manifest_and_results_xml; continue_remaining_frozen_seeds",
+  "testcases": [
+    {
+      "name": "aon_timer_smoke_sequence",
+      "official_mapping": "aon_timer_smoke_vseq",
+      "stimulus": {
+        "wkup_threshold": 3,
+        "wdog_bark_threshold": 2,
+        "wdog_bite_threshold": 5,
+        "wdog_pause_in_sleep": 0
+      }
+    },
+    {
+      "name": "aon_timer_jump_sequence",
+      "official_mapping": "aon_timer_jump_vseq",
+      "stimulus": {
+        "initial_count": 20,
+        "initial_threshold": 4294967295,
+        "counter_run_aon_cycles": 10,
+        "threshold_below_live_count_by": 1
+      }
+    },
+    {
+      "name": "aon_timer_prescaler_sequence",
+      "official_mapping": "aon_timer_prescaler_vseq",
+      "stimulus": {
+        "prescaler_values": [0, 3],
+        "wkup_threshold": 2,
+        "count_readback_settle_aon_cycles": 4,
+        "max_expiry_aon_cycles": 80
+      }
+    },
+    {
+      "name": "aon_timer_intr_test_sequence",
+      "official_mapping": "inherited common intr_test",
+      "stimulus": {
+        "intr_test_mask": 3,
+        "intr_propagation_aon_cycles": 4
+      }
+    }
+  ],
+  "coverage_policy": {
+    "expected_canonical_bin_count": 4507,
+    "generate_coverage_vector": false,
+    "reason": "The imported identity catalog lacks value partitions and shared-group sampling semantics."
+  }
+}

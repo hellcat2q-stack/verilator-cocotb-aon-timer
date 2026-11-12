@@ -1,0 +1,8 @@
+{
+  "schema": "aon-timer-stage05-freeze-v1",
+  "freeze_id": "stage05-functional-pool-seed1-v1",
+  "pool_path": "configs/stage05-test-pool.json",
+  "pool_sha256": "b142a0c46c8f87b4b9fbf6117231df34a958953b2310fc368850cfb637ea27a3",
+  "source_revision": "9f20940d494a223cc950a5b98f748fb28109d458",
+  "status": "FROZEN_BEFORE_FORMAL_RUN"
+}

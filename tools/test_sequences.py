@@ -2,6 +2,10 @@
 
 from __future__ import annotations
 
+import json
+import os
+from pathlib import Path
+
 import cocotb
 from cocotb.clock import Clock
 from cocotb.triggers import FallingEdge, RisingEdge, Timer
@@ -23,6 +27,20 @@ WDOG_COUNT = 0x28
 INTR_STATE = 0x2C
 INTR_TEST = 0x30
 WKUP_CAUSE = 0x34
+
+DEFAULT_POOL_PATH = Path(__file__).resolve().parents[1] / "configs" / "stage05-test-pool.json"
+
+
+def load_stimulus_pool() -> dict[str, dict]:
+    pool_path = Path(os.environ.get("AON_TIMER_TEST_POOL", DEFAULT_POOL_PATH))
+    with pool_path.open(encoding="utf-8") as stream:
+        pool = json.load(stream)
+    if pool.get("schema") != "aon-timer-stage05-test-pool-v1":
+        raise ValueError(f"unsupported AON Timer test pool schema in {pool_path}")
+    return {case["name"]: case["stimulus"] for case in pool["testcases"]}
+
+
+STIMULUS_POOL = load_stimulus_pool()
 
 
 async def transfer(dut, opcode: int, address: int, data: int = 0) -> int:
@@ -121,13 +139,14 @@ async def aon_timer_smoke_sequence(dut):
     await start_clocks_and_reset(dut)
     await initialize_disabled(dut)
 
-    # The official sequence randomizes these in [1:10]; fixed values make this
-    # first Cocotb version deterministic while retaining its timer-expiry checks.
-    await write_reg(dut, WKUP_THOLD_LO, 3)
-    await write_reg(dut, WDOG_BARK_THOLD, 2)
-    await write_reg(dut, WDOG_BITE_THOLD, 5)
+    stimulus = STIMULUS_POOL["aon_timer_smoke_sequence"]
+    # The official sequence randomizes these in [1:10]; the frozen pool uses
+    # explicit values so the initial corpus is deterministic and replayable.
+    await write_reg(dut, WKUP_THOLD_LO, stimulus["wkup_threshold"])
+    await write_reg(dut, WDOG_BARK_THOLD, stimulus["wdog_bark_threshold"])
+    await write_reg(dut, WDOG_BITE_THOLD, stimulus["wdog_bite_threshold"])
     await write_reg(dut, WKUP_CTRL, 1)  # enable, prescaler=0
-    await write_reg(dut, WDOG_CTRL, 1)  # enable, pause_in_sleep=0
+    await write_reg(dut, WDOG_CTRL, 1 | (stimulus["wdog_pause_in_sleep"] << 1))
 
     wkup_cycles = await wait_for_high(dut, dut.intr_wkup_o, "WKUP interrupt")
     bark_cycles = await wait_for_high(dut, dut.intr_wdog_o, "WDOG bark interrupt")
@@ -151,16 +170,20 @@ async def aon_timer_jump_sequence(dut):
     """Check threshold changes while both counters run, including below-count updates."""
     await start_clocks_and_reset(dut)
     await initialize_disabled(dut)
-    await write_reg(dut, WKUP_COUNT_LO, 20)
-    await write_reg(dut, WDOG_COUNT, 20)
-    await write_reg(dut, WKUP_THOLD_LO, 0xFFFFFFFF)
-    await write_reg(dut, WDOG_BARK_THOLD, 0xFFFFFFFF)
-    await write_reg(dut, WDOG_BITE_THOLD, 0xFFFFFFFF)
+    stimulus = STIMULUS_POOL["aon_timer_jump_sequence"]
+    initial_count = stimulus["initial_count"]
+    initial_threshold = stimulus["initial_threshold"]
+    threshold_offset = stimulus["threshold_below_live_count_by"]
+    await write_reg(dut, WKUP_COUNT_LO, initial_count)
+    await write_reg(dut, WDOG_COUNT, initial_count)
+    await write_reg(dut, WKUP_THOLD_LO, initial_threshold)
+    await write_reg(dut, WDOG_BARK_THOLD, initial_threshold)
+    await write_reg(dut, WDOG_BITE_THOLD, initial_threshold)
     await write_reg(dut, WKUP_CTRL, 1)
     await write_reg(dut, WDOG_CTRL, 1)
 
     # Let the counters advance, then lower each threshold below its live count.
-    for _ in range(10):
+    for _ in range(stimulus["counter_run_aon_cycles"]):
         await RisingEdge(dut.clk_aon_i)
         await Timer(1, units="ns")
 
@@ -177,19 +200,20 @@ async def aon_timer_jump_sequence(dut):
         await read_reg(dut, WDOG_BITE_THOLD),
         wdog_count,
     )
-    assert wkup_count > 20, f"WKUP_COUNT failed to advance from 20: {wkup_count}"
-    assert wdog_count > 20, f"WDOG_COUNT failed to advance from 20: {wdog_count}"
+    assert wkup_count > initial_count, f"WKUP_COUNT failed to advance from {initial_count}: {wkup_count}"
+    assert wdog_count > initial_count, f"WDOG_COUNT failed to advance from {initial_count}: {wdog_count}"
 
-    await write_reg(dut, WKUP_THOLD_LO, wkup_count - 1)
+    await write_reg(dut, WKUP_THOLD_LO, wkup_count - threshold_offset)
     await wait_for_high(dut, dut.intr_wkup_o, "WKUP interrupt after lowering threshold")
-    await write_reg(dut, WDOG_BARK_THOLD, wdog_count - 1)
+    await write_reg(dut, WDOG_BARK_THOLD, wdog_count - threshold_offset)
     await wait_for_high(dut, dut.intr_wdog_o, "WDOG bark after lowering threshold")
     assert int(dut.rst_req_o.value) == 0, "bite reset asserted before bite threshold was lowered"
 
-    await write_reg(dut, WDOG_BITE_THOLD, wdog_count - 1)
+    await write_reg(dut, WDOG_BITE_THOLD, wdog_count - threshold_offset)
     await wait_for_high(dut, dut.rst_req_o, "WDOG reset request after lowering bite threshold")
     dut._log.info(
-        "STAGE04_JUMP_PASS initial_counts=20 wkup_count=%d wdog_count=%d",
+        "STAGE04_JUMP_PASS initial_counts=%d wkup_count=%d wdog_count=%d",
+        initial_count,
         wkup_count,
         wdog_count,
     )
@@ -201,19 +225,20 @@ async def aon_timer_prescaler_sequence(dut):
     await start_clocks_and_reset(dut)
     measured_cycles = {}
 
-    for prescaler in (0, 3):
+    stimulus = STIMULUS_POOL["aon_timer_prescaler_sequence"]
+    for prescaler in stimulus["prescaler_values"]:
         await reset_again(dut)
         await initialize_disabled(dut)
-        await write_reg(dut, WKUP_THOLD_LO, 2)
+        await write_reg(dut, WKUP_THOLD_LO, stimulus["wkup_threshold"])
         await write_reg(dut, WKUP_CTRL, prescaler << 1)
         await write_reg(dut, WKUP_CTRL, (prescaler << 1) | 1)
         measured_cycles[prescaler] = await wait_for_high(
             dut,
             dut.intr_wkup_o,
             f"WKUP interrupt at prescaler={prescaler}",
-            max_aon_cycles=80,
+            max_aon_cycles=stimulus["max_expiry_aon_cycles"],
         )
-        for _ in range(4):
+        for _ in range(stimulus["count_readback_settle_aon_cycles"]):
             await RisingEdge(dut.clk_aon_i)
             await Timer(1, units="ns")
         count = await read_reg(dut, WKUP_COUNT_LO)
@@ -239,19 +264,21 @@ async def aon_timer_intr_test_sequence(dut):
     """Translate the inherited CIP interrupt-test scenario for both AON IRQs."""
     await start_clocks_and_reset(dut)
     await initialize_disabled(dut)
-    await write_reg(dut, INTR_TEST, 0b11)
+    stimulus = STIMULUS_POOL["aon_timer_intr_test_sequence"]
+    intr_test_mask = stimulus["intr_test_mask"]
+    await write_reg(dut, INTR_TEST, intr_test_mask)
 
-    for _ in range(4):
+    for _ in range(stimulus["intr_propagation_aon_cycles"]):
         await RisingEdge(dut.clk_aon_i)
         await Timer(1, units="ns")
 
     intr_state = await read_reg(dut, INTR_STATE)
-    assert intr_state & 0b11 == 0b11, f"INTR_TEST did not set both state bits: 0x{intr_state:x}"
+    assert intr_state & intr_test_mask == intr_test_mask, f"INTR_TEST did not set both state bits: 0x{intr_state:x}"
     assert int(dut.intr_wkup_o.value) == 1, "WKUP interrupt output did not assert"
     assert int(dut.intr_wdog_o.value) == 1, "WDOG interrupt output did not assert"
 
-    await write_reg(dut, INTR_STATE, 0b11)
-    for _ in range(4):
+    await write_reg(dut, INTR_STATE, intr_test_mask)
+    for _ in range(stimulus["intr_propagation_aon_cycles"]):
         await RisingEdge(dut.clk_aon_i)
         await Timer(1, units="ns")
     cleared = await read_reg(dut, INTR_STATE)

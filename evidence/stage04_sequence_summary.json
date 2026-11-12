@@ -59,7 +59,7 @@
     "note": "Functional checks only; this run does not claim canonical coverage equivalence."
   },
   "committed_sources": {
-    "tools/test_sequences.py": "da8e40489e39eb5a9e1dc15ecf4827db55b56ff98b64f37441f624a6a4e2e24a",
+    "tools/test_sequences.py": "bfea966f7f4016bddc4f74206003a2709045feb0396e30288c5ede103eac08ac",
     "tools/run_stage04_tests.sh": "ea7ff915e355545a1239802c25b90b4eb51443a7c0b3e3ae7acc25d19742e540",
     "tools/aon_timer_tb.sv": "990db76688ea83e714cf4f27dcc5a6e364a1d8b5b09e0221fe8ef142e194f22e",
     "tools/AonMakefile": "f17d518d2ac290a9e43a363b98bc5d99dbcf7156ffe08cbfb31337cbfa571f5a"

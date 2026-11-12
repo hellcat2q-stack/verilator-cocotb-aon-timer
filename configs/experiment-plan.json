@@ -1,19 +1,30 @@
 {
   "schema": "verilator-cocotb-aon-timer-plan-v1",
-  "status": "planning",
+  "status": "stage05_initial_corpus_generated",
   "source_revision": "9f20940d494a223cc950a5b98f748fb28109d458",
   "coverage": {
     "canonical_bins": 4507,
     "urg_dashboard_reference": 4525,
-    "schema": null,
-    "python_sampling_model": "pending"
+    "schema": "aon_timer_uvm_source_trace_v1",
+    "python_sampling_model": "raw_trace_only_no_canonical_vector"
   },
   "simulator": "Verilator",
   "test_framework": "Cocotb",
-  "test_pool": null,
-  "seed_policy": null,
-  "budget": null,
-  "workers": null,
-  "failure_policy": null,
+  "test_pool": {
+    "pool_id": "aon-timer-functional-pool-v1",
+    "config": "configs/stage05-test-pool.json",
+    "freeze": "configs/stage05-freeze.json",
+    "seed_list": [1],
+    "deterministic_stimulus": true
+  },
+  "seed_policy": "One recorded seed (1); stimuli are config-driven and deterministic, so a seed sweep is not treated as additional diversity.",
+  "budget": {
+    "suite_runs": 1,
+    "workers": 1,
+    "wall_clock_timeout_seconds_per_run": 300,
+    "simulation_time_limit_ns_per_suite": 25000
+  },
+  "workers": 1,
+  "failure_policy": "retain attempt manifest and results.xml; continue remaining frozen seeds",
   "freeze_before_formal_runs": true
 }

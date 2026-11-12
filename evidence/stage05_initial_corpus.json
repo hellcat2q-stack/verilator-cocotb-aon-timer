@@ -1,0 +1,74 @@
+{
+  "schema": "aon-timer-stage05-corpus-manifest-v1",
+  "freeze_id": "stage05-functional-pool-seed1-v1",
+  "pool_id": "aon-timer-functional-pool-v1",
+  "pool_path": "configs/stage05-test-pool.json",
+  "pool_sha256": "b142a0c46c8f87b4b9fbf6117231df34a958953b2310fc368850cfb637ea27a3",
+  "freeze_sha256": "effa7d1bb1f77019d85362f9437ed7e705876d0fc38b289d8ac4c66e4914f586",
+  "source_revision": "9f20940d494a223cc950a5b98f748fb28109d458",
+  "coverage_schema_id": "aon_timer_uvm_source_trace_v1",
+  "created_utc": "2026-11-12T05:34:14.962320+00:00",
+  "status": "PASS",
+  "budget": {
+    "suite_runs": 1,
+    "workers": 1,
+    "wall_clock_timeout_seconds_per_run": 300,
+    "simulation_time_limit_ns_per_suite": 25000
+  },
+  "workers_used": 1,
+  "attempt_count": 1,
+  "attempts": [
+    {
+      "run_id": "stage05-functional-pool-seed1-v1-seed1",
+      "seed": 1,
+      "result": "PASS",
+      "shell_exit_code": 0,
+      "tests_run": 4,
+      "tests_passed": 4,
+      "tests_failed": 0,
+      "testcases": [
+        {
+          "name": "aon_timer_smoke_sequence",
+          "result": "PASS",
+          "simulation_time_ns": 2040.001
+        },
+        {
+          "name": "aon_timer_jump_sequence",
+          "result": "PASS",
+          "simulation_time_ns": 3601.001
+        },
+        {
+          "name": "aon_timer_prescaler_sequence",
+          "result": "PASS",
+          "simulation_time_ns": 6180.001
+        },
+        {
+          "name": "aon_timer_intr_test_sequence",
+          "result": "PASS",
+          "simulation_time_ns": 1520.0010000000002
+        }
+      ],
+      "simulation_time_ns": 13341.004,
+      "randomized_stimulus": false,
+      "coverage_schema_id": "aon_timer_uvm_source_trace_v1",
+      "toolchain": {
+        "python": "3.12.3",
+        "cocotb": "1.9.2",
+        "verilator": "5.020",
+        "fusesoc": "0.5.dev0",
+        "edalize": "0.4.0"
+      },
+      "run_manifest_sha256": "de4ae772443453b5f50491226bfeb8575bb8ee239dd607a1a73410a92658d68f",
+      "results_xml_sha256": "84da23e3acf3062b331d982a990907c5bcb81913d48e3c589617e48275f95827",
+      "stage04_log_sha256": "4c9445436b5cdabb9e4d36923a8be857ea7024f2b0ed00e3727121cce3f6b842"
+    }
+  ],
+  "source_file_sha256": {
+    "tools/test_sequences.py": "bfea966f7f4016bddc4f74206003a2709045feb0396e30288c5ede103eac08ac",
+    "tools/run_stage04_tests.sh": "ea7ff915e355545a1239802c25b90b4eb51443a7c0b3e3ae7acc25d19742e540",
+    "tools/stage05_corpus.py": "493975e0ced2745df0c32856db46bce2611332a92450e6e37e9cbf3ceba09a95",
+    "tools/run_stage05_corpus.py": "e90f016222cd4324de35ec601b23b7dde5771d007d9a0729a0056a206c1a221b"
+  },
+  "coverage_vector_generated": false,
+  "note": "This is a functional testcase corpus; it is not a canonical coverage vector."
+}
