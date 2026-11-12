@@ -19,3 +19,5 @@
 `stage07_initial/` 保存原始静态 cluster mapping；`stage07_partial/` 更新 blocker，说明 partial hits 无法推断未覆盖项。聚类不计算 coverage scores，UCB priors 保持为空。
 
 `stage03_raw_trace/` 保存冻结 Stage 05 pool 重新运行生成的 partial source-sample traces 与汇总审计。trace 只证明已接入的 API 运行过，不提供未接入 sample sites、完整 bin mapping 或 vector。
+
+`references/bin_definitions.v1.json` 保存 4,507 个 revision-matched 类型级 bin 定义，不包含 run hit data；自动分区和 cross product audits 见该文件。`stage08_preflight/2026-11-12-final/` 记录本轮 readiness 门禁与输入哈希；数组边界、legacy identity bridge、完整 sample APIs 和 exact Stage 06 vectors 尚未完成，因此 scheduler 保持 disabled，且本轮未启动在线 coverage 仿真。

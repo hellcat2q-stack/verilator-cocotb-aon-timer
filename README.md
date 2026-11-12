@@ -25,12 +25,12 @@
 | --- | --- | --- |
 | 01 | 固定源码、bin 参考口径、工具版本 | 完成 |
 | 02 | Verilator 构建与 Cocotb RTL smoke | smoke 通过；Lint/coverage 迁移待后续阶段 |
-| 03 | 移植覆盖模型并核验 bin/sample 语义 | 固定源码 A/D sample multiplicity 已复核；4 个 RTL 用例采集到 112 条 raw samples，7 个 named-bin identity 可确认命中；array/auto partitions 和共享 sample mapping 待补 |
+| 03 | 移植覆盖模型并核验 bin/sample 语义 | 4,507 个定义已导入；6 个 auto 分区和 3 个 cross 组合通过审计；160 个数组边界、legacy identity 和完整采样仍待补 |
 | 04 | 移植测试序列和关键 scoreboard 检查 | 固定 4/4 功能序列接入 partial raw sample trace；完整 vector 与 stress-all 待后续 |
 | 05 | 冻结测试池、seed 并生成初始语料 | frozen pool 校验 trace hashes/sample counts；1 suite、4/4 PASS；导出稀疏部分命中记录 |
 | 06 | 生成 bin-by-run 矩阵并审计 | 4,507 列三态矩阵：7 known hits、0 推断 miss、4,500 unknown；完整 coverage 阶段门未通过 |
 | 07 | 接入聚类、信息评分与 UCB 调度 | canonical identity clustering 与可重放映射已实现；partial hits 不足以确认 misses，coverage scores/UCB 仍 blocked |
-| 08 | 在线仿真和 coverage feedback 闭环 | 待开始 |
+| 08 | 在线仿真和 coverage feedback 闭环 | readiness preflight 已审计并记录 blocker；Stage 06 exact vector、Stage 07 scheduler、数组边界与完整采样映射未通过，在线调度未启动 |
 | 09 | Random、Full 和消融对照 | 待开始 |
 | 10 | 独立复核与最终报告 | 待开始 |
 

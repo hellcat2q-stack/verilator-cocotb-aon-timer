@@ -1,6 +1,6 @@
 # 阶段 03：官方覆盖模型迁移
 
-状态：部分完成。已建立固定 revision 的 AON Timer/CIP covergroup 源码清单、原始 sample trace API 和 4,507 项 canonical identity 清单，并从 Cocotb RTL 测试记录了可观测 CSR/pin sample；取值分区及完整逐样本命中映射尚未完成。
+状态：部分完成。现已导入固定 revision 对应的 4,507 个类型级 bin 定义，核验 6 组 auto-bin 区间和 3 个 cross 组合；160 个数组 bin 的单 bin 边界、旧 canonical 列一对一映射及完整逐样本采集仍待完成。
 
 ## 已完成
 
@@ -17,8 +17,8 @@
 
 最新冻结 run 的 112 条 raw samples 中，7 个 source-confirmed named-bin identities 已解析为 known hits；这是 sparse evidence，不证明完整采样或命中集合。
 
-原项目的 manifest 与 coverage 矩阵表头现已用于恢复 4,507 个 canonical identity；但 manifest 不含 `bins name[N]` 和 `auto_bin_max` 的实际值区间。当前模型仍只输出 raw sample trace 与可确认的 explicit-bin membership，不声明已生成 4,507 维 vector。
+匹配固定源码 revision 的详细 URG 定义 manifest 现已恢复 4,507 个类型级 bin 定义，并提供 `auto_bin_max` 的实际区间及完整 cross 组合。`bins name[N]` 的数组索引和声明取值域已记录，但 manifest 没有各索引的精确边界。旧 canonical label 目前只有 341 项可直接匹配，不能据此重建完整 vector。
 
-要完成 exact mapping，需要原始 URG detailed bin value information（或等价的可追溯区间清单），并补齐 228 个共享 DV/TL covergroups 的采样来源，再验证边界、mapping 和 vector 对账。当前单元测试验证模型结构，不代表 RTL 仿真或 VCS/URG 等价。
+要完成 exact mapping，需要确定数组 bin 精确边界和 legacy identity 一对一对应，并补齐 228 个共享 DV/TL covergroups 的采样来源；之后再验证 sample timing 与完整 vector 对账。当前单元测试和定义清单审计不代表 RTL 仿真或 VCS/URG 等价。
 
 测试命令与结果见本目录的 `实施记录.md`，摘要见 [`evidence/stage03_model_unit_summary.json`](../evidence/stage03_model_unit_summary.json)。

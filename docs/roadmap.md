@@ -9,7 +9,7 @@
 | 05 | 初始语料 | frozen deterministic pool 已实跑，4/4 PASS；attempt manifest 记录并校验 trace hashes/sample counts；112 条 raw samples 产生 7 个可确认 identity hits |
 | 06 | Bin-by-run matrix | 4,507 列三态矩阵、identity/hash 审计已实测；1 个 partial vector 含 7 hits、4,500 unknown、0 推断 miss；完整矩阵阶段门未通过 |
 | 07 | 聚类与调度 | canonical identity clustering 和固定输入回放已实现；已知 sparse hits 仍不能确认 misses/remaining bins，coverage score/UCB 保持 blocked |
-| 08 | 在线闭环 | 新仿真产生反馈，事件日志可审计 |
+| 08 | 在线闭环 | Readiness preflight 已生成并复核；精确 vector、scheduler gate、bin identity 和完整 sample mapping 全部通过后，才能启动在线 feedback |
 | 09 | 基线/消融 | 方法使用统一输入、seed、预算、worker 数 |
 | 10 | 最终报告 | 独立复核并完整披露限制 |
 

@@ -1,6 +1,6 @@
 {
   "schema": "verilator-cocotb-aon-timer-plan-v1",
-  "status": "stage05_initial_corpus_generated",
+  "status": "stage08_preflight_blocked_prerequisites_incomplete",
   "source_revision": "9f20940d494a223cc950a5b98f748fb28109d458",
   "coverage": {
     "canonical_bins": 4507,

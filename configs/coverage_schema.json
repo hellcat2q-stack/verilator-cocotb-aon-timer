@@ -9,8 +9,58 @@
     "identity_catalog": "references/canonical_bin_catalog.json",
     "identity_list": "references/canonical_bin_ids.txt",
     "identity_list_sha256": "dbcf02f06c121675401c8983dde65a9275239cefd3aff842712bdeef5da11355",
-    "identity_note": "All 4,507 frozen canonical labels are enumerated. Exact value partitions and full per-sample attribution are not yet mapped.",
+    "identity_note": "All 4,507 frozen canonical labels are enumerated. A separate revision-matched reference catalog now contains 4,507 type-level bin definitions, but only 341 old columns match its labels directly; no complete canonical vector is generated.",
     "note": "4,507 detailed canonical bins and 4,525 URG dashboard groups are separate reference metrics."
+  },
+  "bin_definition_reference": {
+    "catalog": "references/bin_definitions.v1.json",
+    "catalog_sha256": "3aa1bed296f7fa6ec7afeaa749cd95e1b4efd38509d6fdc00ad32516dc10ffd8",
+    "source_manifest_sha256": "f38e257ed763cb3f009233560f57d04f05d46735c95a2862ee072b4068aa2683",
+    "definition_count": 4507,
+    "aon_timer_definition_count": 4279,
+    "shared_or_other_definition_count": 228,
+    "auto_bin_partitions_validated": 6,
+    "cross_products_validated": 3,
+    "array_bin_count": 160,
+    "array_bin_individual_boundaries_status": "UNRESOLVED",
+    "historical_hit_counts_imported": false,
+    "identity_mapping_status": "PARTIAL_LEGACY_LABEL_BRIDGE"
+  },
+  "sample_site_mapping": {
+    "status": "PARTIAL_CAPTURE_ONLY",
+    "complete": false,
+    "source_revision": "9f20940d494a223cc950a5b98f748fb28109d458",
+    "capture_sites": [
+      {
+        "covergroup": "timer_cfg_cg",
+        "status": "RAW_TRACE_CAPTURED",
+        "event": "valid CSR write address phase; pre-update scoreboard mirror values"
+      },
+      {
+        "covergroup": "intr_test_cg",
+        "status": "RAW_TRACE_CAPTURED",
+        "event": "INTR_TEST address and data phase; both interrupt indices per invocation"
+      },
+      {
+        "covergroup": "intr_cg",
+        "status": "RAW_TRACE_CAPTURED",
+        "event": "INTR_STATE data-phase read; both interrupt indices"
+      },
+      {
+        "covergroup": "intr_pins_cg",
+        "status": "RAW_TRACE_CAPTURED",
+        "event": "AON reset-request or wakeup-request pin change; sample both pins"
+      }
+    ],
+    "unmapped": [
+      "wake_up_timer_thold_hit_cg count-event and expiry sample calls",
+      "watchdog_timer_bark_thold_hit_cg count-event and expiry sample calls",
+      "watchdog_timer_bite_thold_hit_cg count-event and expiry sample calls",
+      "conditional resets_cg sample_resets history",
+      "one-to-one sample and canonical identity mapping for shared/non-AON definitions",
+      "complete mapping from observed samples to all 4,507 canonical identities"
+    ],
+    "note": "RAW_TRACE_CAPTURED records observable arguments only. It does not assert complete identity/bin mapping or equivalent UVM/VCS coverage semantics."
   },
   "environment_parameters": {
     "num_interrupts": 2,
@@ -150,7 +200,7 @@
     }
   ],
   "unmapped_scope": [
-    "Value partitions for bins name[N] and auto_bin_max coverpoints are not present in the identity catalog; sample-to-bin attribution remains unresolved.",
+    "The matched reference manifest provides all six event auto-bin partitions and three same-sample cross products. The 160 bins[] array entries have known indices and declared domains but not per-bin boundaries; the detailed reference identities do not map one-to-one onto all 4,507 frozen legacy columns.",
     "The 228 shared or non-AON Timer identities are catalogued but their source sample APIs are not included in this AON Timer model.",
     "TL agent and other shared DV-framework covergroups are not included in this AON Timer source inventory."
   ]

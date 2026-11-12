@@ -10,4 +10,6 @@
 
 阶段 07 使用 `PYTHONHASHSEED=0 python3 tools/stage07_clustering.py --bin-ids references/canonical_bin_ids.txt --output-dir evidence/stage07_partial --max-cluster-size 256 --seed 0` 生成稳定 bin-to-cluster mapping 与回放审计。partial hits 不能确定 misses 或剩余未覆盖集合，coverage scores/UCB inputs 继续 blocked。
 
+`tools/import_bin_definitions.py --manifest <coverage_manifest.v1.json>` 校验并导出 revision-matched bin definitions，不复制历史命中数。`tools/stage08_preflight.py` 汇总定义目录、Stage 06 矩阵、Stage 07 scheduler gate 与 `configs/coverage_schema.json` 中的 sample-site mapping 到 `evidence/stage08_preflight/`；它只做 readiness audit，不执行调度或仿真。
+
 阶段 04 runner 通过 `tools/cocotb_coverage_adapter.py` 在可观测的 TL CSR write/read 与 AON pin 事件上追加 source-aligned raw trace JSON；文件由 testcase `finally` 路径保存并在 run manifest 中记录哈希。阶段 05 runner 复核每个 trace 文件的 hash、样本总数、covergroup 分布和 testcase/source/schema 元数据，并把摘要写入 attempt/corpus manifest。`tools/raw_trace_to_vectors.py` 只把 source-confirmed named explicit-bin hits 转成 `PARTIAL_VALIDATED` sparse vectors，不推断 miss；count-event samples、conditional reset group 和共享 228 identities 未接入。
