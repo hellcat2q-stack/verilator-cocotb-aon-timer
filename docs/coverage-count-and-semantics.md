@@ -1,7 +1,18 @@
 # 覆盖数与采样语义
 
-原仓库 stage06 manifest 记录 4,507 个详细 canonical bin columns；URG dashboard 记录 4,525 expected groups。两者相差 18，是不同报告口径。本项目以 4,507 个逐项列作为 mapping 目标，4,525 作为原 URG 汇总参考。
+原工程记录 4,507 个 canonical bin columns 和 4,525 个 URG dashboard groups，属于不同报告口径。当前仓库已从原 stage06 `coverage_bin_by_run.csv` 的表头提取并核验 4,507 个唯一 identity，清单见 `references/canonical_bin_ids.txt`，来源校验信息见 `references/canonical_bin_catalog.json`。仅提取表头；没有复制历史 run coverage 值。4,279 个 identity 属于 AON Timer covergroups，另 228 个属于共享 DV/TL 等 covergroups。
 
-每个 Python bin 应保留稳定 identity、covergroup/instance scope、coverpoint/cross、取值边界、权重/排除和 sample 时间。Cross 的成员必须在同一次 sample 时满足，不能将不同时间的命中拼起来。
+## 当前源码映射
 
-验证顺序：静态定义映射、边界值、cross 同拍/异拍对照、采样来源追踪和小型真实仿真。若无法逐项映射，更新 schema 并披露差异，不强行补齐 bin 总数。
+`aon_timer_env_cov.sv` 定义 4 个 AON Timer covergroups；`aon_timer_env_cov` 同时继承 CIP base covergroups。完整字段、cross 和采样点见 `configs/coverage_schema.json`。关键时序是：
+
+- 配置组在有效 CSR 写地址阶段采样，而且 scoreboard 本地字段更新发生在该 sample 之后。
+- wakeup/bark/bite 组在对应 AON 计数事件中采样，计数值通过 backdoor 从 RTL 读取。
+- interrupt 状态在 CSR 数据阶段读取时采样；interrupt test 在 CSR 写入时采样；pin 组按异步 pin 变化采样。
+- 交叉覆盖的所有成员保存在同一条 sample record 中。不能跨记录合并 coverpoint 值。
+
+## Bin identity 状态
+
+identity 清单冻结了每个 canonical 列的完整 label。模型会将源码中可直接确认的 named explicit bins 对应到 canonical identity；原 stage06 manifest 不包含 `bins name[N]` 和 `auto_bin_max` 的实际取值区间。Python trace 会保留原始整数和 exact sample tuple；其它 bin 的取值分区及 228 个共享 covergroup 的采样模型尚未完成，所以当前仍不生成完整 4,507 维 sample vector。
+
+完成 exact sample mapping 后，需逐项验证 identity、covergroup/instance scope、coverpoint/cross、边界值、illegal/ignore/weight 规则和采样时机，再与 4,507 canonical 列一一对账。4,525 URG 汇总继续独立记录；计数相同也不作为语义等价的证据。

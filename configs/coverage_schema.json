@@ -1,0 +1,157 @@
+{
+  "schema_id": "aon_timer_uvm_source_trace_v1",
+  "status": "SOURCE_TRACE_IMPLEMENTED; CANONICAL_IDENTITIES_ENUMERATED; SEMANTIC_MAPPING_INCOMPLETE",
+  "source_revision": "9f20940d494a223cc950a5b98f748fb28109d458",
+  "reference_counts": {
+    "canonical_bins": 4507,
+    "urg_dashboard_expected_groups": 4525,
+    "identity_catalog_available": true,
+    "identity_catalog": "references/canonical_bin_catalog.json",
+    "identity_list": "references/canonical_bin_ids.txt",
+    "identity_list_sha256": "dbcf02f06c121675401c8983dde65a9275239cefd3aff842712bdeef5da11355",
+    "identity_note": "All 4,507 frozen canonical labels are enumerated. Exact value partitions and full per-sample attribution are not yet mapped.",
+    "note": "4,507 detailed canonical bins and 4,525 URG dashboard groups are separate reference metrics."
+  },
+  "environment_parameters": {
+    "num_interrupts": 2,
+    "basis": "The pinned AON Timer config declares a 2-pin aon_intr_vif and sets num_interrupts from ral.intr_state.get_n_used_bits().",
+    "source_file": "hw/ip/aon_timer/dv/env/aon_timer_env_cfg.sv"
+  },
+  "source_files": [
+    {
+      "path": "hw/ip/aon_timer/dv/env/aon_timer_env_cov.sv",
+      "sha256": "c0ec937d68c335e2d05760268ce161eca1a40e7f8e50546156c0589882ed9b45"
+    },
+    {
+      "path": "hw/ip/aon_timer/dv/env/aon_timer_scoreboard.sv",
+      "sha256": "b6534a47a116206144cdb332fcff9a58e49ef64eea965d9ddd8497f0b4d26d65"
+    },
+    {
+      "path": "hw/ip/aon_timer/dv/env/aon_timer_env_cfg.sv",
+      "sha256": "8820a5f9ce33b77a9c5285de5b7e7c74058ba7a66777e1251bd288a2bf12035f"
+    },
+    {
+      "path": "hw/dv/sv/cip_lib/cip_base_env_cov.sv",
+      "sha256": "e542fde933e1c99e9ccb3a91484ab347b43e407a7058166cffb48a5f2c4c9f48"
+    },
+    {
+      "path": "hw/dv/sv/cip_lib/cip_base_scoreboard.sv",
+      "sha256": "e9b9e6736cb3f367bb1a411a848effba2106da22fa1838a7f966641484631939"
+    }
+  ],
+  "groups": [
+    {
+      "name": "timer_cfg_cg",
+      "declared_in": "hw/ip/aon_timer/dv/env/aon_timer_env_cov.sv",
+      "sample_site": "aon_timer_scoreboard.process_tl_access",
+      "sample_condition": "cfg.en_cov && addr_phase_write",
+      "sample_order_note": "The call occurs before the CSR case updates the scoreboard's local mirror variables; preserve the pre-case values supplied by the scoreboard.",
+      "fields": {
+        "prescale": {"width": 12},
+        "bark_thold": {"width": 32},
+        "bite_thold": {"width": 32},
+        "wkup_thold": {"width": 64},
+        "wdog_regwen": {"width": 1},
+        "pause_in_sleep": {"width": 1},
+        "wkup_cause": {"width": 1}
+      },
+      "coverpoints": [
+        {"name": "prescale_cp", "field": "prescale", "explicit_bins": [{"name": "prescale_0", "values": [0]}, {"name": "prescale_max", "values": [4095]}], "array_bins": {"name": "prescale", "count": 32, "range": [1, 4095], "partition_mapping": "UNRESOLVED"}},
+        {"name": "bark_thold_cp", "field": "bark_thold", "explicit_bins": [{"name": "bark_0", "values": [0]}, {"name": "bark_max", "values": [4294967295]}], "array_bins": {"name": "bark", "count": 32, "range": [1, 4294967295], "partition_mapping": "UNRESOLVED"}},
+        {"name": "bite_thold_cp", "field": "bite_thold", "explicit_bins": [{"name": "bite_0", "values": [0]}, {"name": "bite_max", "values": [4294967295]}], "array_bins": {"name": "bite", "count": 32, "range": [1, 4294967295], "partition_mapping": "UNRESOLVED"}},
+        {"name": "wkup_thold_cp", "field": "wkup_thold", "explicit_bins": [{"name": "wkup_0", "values": [0]}, {"name": "wkup_max", "values": [18446744073709551615]}], "array_bins": {"name": "wkup", "count": 64, "range": [1, 18446744073709551615], "partition_mapping": "UNRESOLVED"}},
+        {"name": "wkup_cause_cp", "field": "wkup_cause", "explicit_bins": [{"name": "wkup_cause_cleared", "values": [0]}]},
+        {"name": "wdog_regwen_cp", "field": "wdog_regwen", "default_integral_bins": [0, 1]},
+        {"name": "pause_in_sleep_cp", "field": "pause_in_sleep", "default_integral_bins": [0, 1]}
+      ],
+      "crosses": []
+    },
+    {
+      "name": "wake_up_timer_thold_hit_cg",
+      "declared_in": "hw/ip/aon_timer/dv/env/aon_timer_env_cov.sv",
+      "sample_site": "aon_timer_scoreboard.run_wkup_timer.sample_coverage",
+      "sample_condition": "cfg.en_cov && sample_coverage event",
+      "fields": {"wkup_int": {"width": 1}, "wkup_thold": {"width": 64}, "wkup_count": {"width": 64}},
+      "coverpoints": [
+        {"name": "wkup_count_cp", "field": "wkup_count", "auto_bin_max": 512, "partition_mapping": "UNRESOLVED"},
+        {"name": "wkup_thold_cp", "field": "wkup_thold", "auto_bin_max": 512, "partition_mapping": "UNRESOLVED"},
+        {"name": "wkup_int_cp", "field": "wkup_int", "explicit_bins": [{"name": "unset", "values": [0]}, {"name": "set", "values": [1]}]}
+      ],
+      "crosses": [{"name": "wkup_thold_cpXwkup_int_cp", "members": ["wkup_thold_cp", "wkup_int_cp"], "same_sample_required": true}],
+      "sampling_note": "Samples each AON timer count event and once after expected expiry; count is read from RTL via backdoor."
+    },
+    {
+      "name": "watchdog_timer_bite_thold_hit_cg",
+      "declared_in": "hw/ip/aon_timer/dv/env/aon_timer_env_cov.sv",
+      "sample_site": "aon_timer_scoreboard.run_wdog_bite_timer.sample_coverage",
+      "sample_condition": "cfg.en_cov && sample_coverage event",
+      "fields": {"wdog_bite_rst": {"width": 1}, "wdog_thold": {"width": 32}, "wdog_count": {"width": 32}},
+      "coverpoints": [
+        {"name": "wdog_count_cp", "field": "wdog_count", "auto_bin_max": 256, "partition_mapping": "UNRESOLVED"},
+        {"name": "wdog_thold_cp", "field": "wdog_thold", "auto_bin_max": 256, "partition_mapping": "UNRESOLVED"},
+        {"name": "wdog_bite_rst_cp", "field": "wdog_bite_rst", "explicit_bins": [{"name": "unset", "values": [0]}, {"name": "set", "values": [1]}]}
+      ],
+      "crosses": [{"name": "wdog_thold_cpXwdog_bite_rst", "members": ["wdog_thold_cp", "wdog_bite_rst_cp"], "same_sample_required": true}],
+      "sampling_note": "Samples each AON watchdog count event and once after expected bite expiry."
+    },
+    {
+      "name": "watchdog_timer_bark_thold_hit_cg",
+      "declared_in": "hw/ip/aon_timer/dv/env/aon_timer_env_cov.sv",
+      "sample_site": "aon_timer_scoreboard.run_wdog_bark_timer.sample_coverage",
+      "sample_condition": "cfg.en_cov && sample_coverage event",
+      "fields": {"wdog_bark_int": {"width": 1}, "wdog_thold": {"width": 32}, "wdog_count": {"width": 32}},
+      "coverpoints": [
+        {"name": "wdog_count_cp", "field": "wdog_count", "auto_bin_max": 256, "partition_mapping": "UNRESOLVED"},
+        {"name": "wdog_thold_cp", "field": "wdog_thold", "auto_bin_max": 256, "partition_mapping": "UNRESOLVED"},
+        {"name": "wdog_bark_int_cp", "field": "wdog_bark_int", "explicit_bins": [{"name": "unset", "values": [0]}, {"name": "set", "values": [1]}]}
+      ],
+      "crosses": [{"name": "wdog_thold_cpXwdog_bark_rst", "members": ["wdog_thold_cp", "wdog_bark_int_cp"], "same_sample_required": true}],
+      "sampling_note": "Samples each AON watchdog count event and once after expected bark expiry."
+    },
+    {
+      "name": "intr_cg",
+      "declared_in": "hw/dv/sv/cip_lib/cip_base_env_cov.sv",
+      "sample_site": "aon_timer_scoreboard.process_tl_access on intr_state data-phase reads",
+      "sample_condition": "cfg.en_cov && data_phase_read && csr_name == intr_state",
+      "fields": {"intr": {"width": "log2(cfg.num_interrupts)"}, "intr_en": {"width": 1}, "intr_state": {"width": 1}},
+      "coverpoints": [{"name": "cp_intr", "field": "intr", "domain": "[0, cfg.num_interrupts-1]"}, {"name": "cp_intr_en", "field": "intr_en", "domain": [0, 1]}, {"name": "cp_intr_state", "field": "intr_state", "domain": [0, 1]}],
+      "crosses": [{"name": "cross_cp_intr_cp_intr_en_cp_intr_state", "members": ["cp_intr", "cp_intr_en", "cp_intr_state"], "same_sample_required": true}],
+      "sampling_note": "The scoreboard calls sample twice for each qualifying read, once for WKUP and once for WDOG."
+    },
+    {
+      "name": "intr_test_cg",
+      "declared_in": "hw/dv/sv/cip_lib/cip_base_env_cov.sv",
+      "sample_site": "aon_timer_scoreboard.process_tl_access on intr_test writes",
+      "sample_condition": "cfg.en_cov && csr_name == intr_test",
+      "fields": {"intr": {"width": "log2(cfg.num_interrupts)"}, "intr_test": {"width": 1}, "intr_en": {"width": 1}, "intr_state": {"width": 1}},
+      "coverpoints": [{"name": "cp_intr", "field": "intr", "domain": "[0, cfg.num_interrupts-1]"}, {"name": "cp_intr_test", "field": "intr_test", "domain": [0, 1]}, {"name": "cp_intr_en", "field": "intr_en", "domain": [0, 1]}, {"name": "cp_intr_state", "field": "intr_state", "domain": [0, 1]}],
+      "crosses": [{"name": "cross_cp_intr_cp_intr_test_cp_intr_en_cp_intr_state", "members": ["cp_intr", "cp_intr_test", "cp_intr_en", "cp_intr_state"], "same_sample_required": true, "illegal_condition": "intr_test == 1 && intr_state == 0"}],
+      "sampling_note": "The scoreboard calls sample twice per qualifying write, once for WKUP and once for WDOG."
+    },
+    {
+      "name": "intr_pins_cg",
+      "declared_in": "hw/dv/sv/cip_lib/cip_base_env_cov.sv",
+      "sample_site": "aon_timer_scoreboard.monitor_interrupts on aon_intr_vif.pins change",
+      "sample_condition": "cfg.en_cov && @(cfg.aon_intr_vif.pins)",
+      "fields": {"intr_pin": {"domain": "[0, cfg.num_interrupts-1]"}, "intr_pin_value": {"width": 1}},
+      "coverpoints": [{"name": "cp_intr_pin", "field": "intr_pin", "domain": "[0, cfg.num_interrupts-1]"}, {"name": "cp_intr_pin_value", "field": "intr_pin_value", "value_bins": [0, 1], "transition_bins": [[0, 1], [1, 0]]}],
+      "crosses": [{"name": "cp_intr_pins_all_values", "members": ["cp_intr_pin", "cp_intr_pin_value"], "same_sample_required": true}],
+      "sampling_note": "The AON interrupt virtual interface has two pins; the scoreboard samples both on each pin-change event."
+    },
+    {
+      "name": "resets_cg",
+      "declared_in": "hw/dv/sv/cip_lib/cip_base_env_cov.sv",
+      "sample_site": "cip_base_scoreboard.sample_resets",
+      "sample_condition": "cfg.num_edn && cfg.en_cov",
+      "fields": {"resets": {"width": 2}},
+      "coverpoints": [{"name": "resets_trans", "sequence_bins": ["01=>00=>10=>11", "10=>00=>01=>11", "01=>00=>01=>11", "10=>00=>10=>11"]}],
+      "crosses": [],
+      "sampling_note": "Keep this group conditional; do not assume it is instantiated for every AON Timer environment configuration."
+    }
+  ],
+  "unmapped_scope": [
+    "Value partitions for bins name[N] and auto_bin_max coverpoints are not present in the identity catalog; sample-to-bin attribution remains unresolved.",
+    "The 228 shared or non-AON Timer identities are catalogued but their source sample APIs are not included in this AON Timer model.",
+    "TL agent and other shared DV-framework covergroups are not included in this AON Timer source inventory."
+  ]
+}

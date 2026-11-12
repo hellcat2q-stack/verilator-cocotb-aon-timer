@@ -1,0 +1,54 @@
+{
+  "schema": "aon-timer-stage03-source-trace-unit-v1",
+  "run_id": "stage03-model-unit-20261112",
+  "source_revision": "9f20940d494a223cc950a5b98f748fb28109d458",
+  "verification": {
+    "kind": "python_unittest",
+    "command": "wsl python3 -m unittest discover -s tests -v",
+    "python": "3.12.3",
+    "exit_code": 0,
+    "tests_run": 13,
+    "tests_passed": 13,
+    "tests_failed": 0,
+    "rtl_simulation_executed": false,
+    "coverage_report_generated": false
+  },
+  "model": {
+    "schema_id": "aon_timer_uvm_source_trace_v1",
+    "raw_sample_api_implemented": true,
+    "same_sample_cross_values_preserved": true,
+    "interrupt_pin_transition_history_preserved": true,
+    "reset_sequence_history_preserved": true,
+    "canonical_reference_bins": 4507,
+    "canonical_identities_catalogued": 4507,
+    "aon_timer_scope_identities": 4279,
+    "shared_or_other_scope_identities": 228,
+    "named_explicit_bins_linked_to_canonical_ids": true,
+    "canonical_bin_count_mapped": null,
+    "canonical_bin_vector_generated": false,
+    "unmapped_reason": "Identity labels are available, but the source catalog lacks exact bins[]/auto_bin_max value partitions and 228 shared-scope sample mappings."
+  },
+  "canonical_bin_catalog": {
+    "catalog_path": "references/canonical_bin_catalog.json",
+    "identity_list_path": "references/canonical_bin_ids.txt",
+    "identity_list_sha256": "dbcf02f06c121675401c8983dde65a9275239cefd3aff842712bdeef5da11355",
+    "source_manifest_sha256": "cbc7e64a0004f0387f16f36e24edc2442a8225b3179fae6c673fe3ac84c28e3e",
+    "source_matrix_csv_sha256": "71c02be6b80cb63973eeb96b26340f7e1d1ae2246674d148774c39c616ff1e94",
+    "historical_run_vectors_copied": false
+  },
+  "source_hashes": {
+    "aon_timer_env_cov.sv": "c0ec937d68c335e2d05760268ce161eca1a40e7f8e50546156c0589882ed9b45",
+    "aon_timer_scoreboard.sv": "b6534a47a116206144cdb332fcff9a58e49ef64eea965d9ddd8497f0b4d26d65",
+    "aon_timer_env_cfg.sv": "8820a5f9ce33b77a9c5285de5b7e7c74058ba7a66777e1251bd288a2bf12035f",
+    "cip_base_env_cov.sv": "e542fde933e1c99e9ccb3a91484ab347b43e407a7058166cffb48a5f2c4c9f48",
+    "cip_base_scoreboard.sv": "e9b9e6736cb3f367bb1a411a848effba2106da22fa1838a7f966641484631939"
+  },
+  "committed_sources": {
+    "configs/coverage_schema.json": "a2695a3a9fdc5f201df3489abeadad5e0b969572deb8cf2a98b54298d6bc54b5",
+    "tools/coverage_model.py": "3ac856fe9435a08b8e7bab1f3a83a3899acb70e30497fc011b4a0de40c962695",
+    "tools/import_bin_catalog.py": "6ba1e771735abc31c23053b61acea6ca4f8dc25fdba2f6ba0d69006ca88bfb74",
+    "tests/test_coverage_model.py": "90ac27374f7affd5f17743548d94169496970667db9018ddb6fd81ac66ddef5b",
+    "references/canonical_bin_catalog.json": "c7ca813f1d0bfecad4c16e3924826c70b642cea2c7b812dfcf38933ee31b3223",
+    "references/canonical_bin_ids.txt": "dbcf02f06c121675401c8983dde65a9275239cefd3aff842712bdeef5da11355"
+  }
+}

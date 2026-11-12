@@ -1,0 +1,31 @@
+{
+  "aon_timer_scope_bin_count": 4279,
+  "canonical_bin_count": 4507,
+  "canonical_bin_ids_file": "canonical_bin_ids.txt",
+  "canonical_bin_ids_sha256": "dbcf02f06c121675401c8983dde65a9275239cefd3aff842712bdeef5da11355",
+  "identity_format": "<scope>||<variable_or_cross>||<item>||<bin_name>||<instance_index>",
+  "identity_order": "original coverage_bin_by_run.csv header order",
+  "manifest_bin_key_format": "group::variable_or_cross::item::bin_name",
+  "schema": "aon-timer-canonical-bin-catalog-v1",
+  "scope_counts": {
+    "alert_esc_agent_pkg": 3,
+    "aon_timer_env_pkg": 4279,
+    "cip_base_pkg": 77,
+    "dv_base_reg_pkg": 2,
+    "dv_lib_pkg": 4,
+    "tb.dut.u_reg.u_prim_reg_we_check.u_prim_onehot_check.u_prim_onehot_check_if": 2,
+    "tl_agent_pkg": 140
+  },
+  "shared_or_other_scope_bin_count": 228,
+  "source": {
+    "manifest_path": "06_\u8986\u76d6\u6570\u636e\u8f6c\u6362/evidence/bin_manifest.json",
+    "manifest_sha256": "cbc7e64a0004f0387f16f36e24edc2442a8225b3179fae6c673fe3ac84c28e3e",
+    "matrix_csv_sha256": "71c02be6b80cb63973eeb96b26340f7e1d1ae2246674d148774c39c616ff1e94",
+    "matrix_header_path": "06_\u8986\u76d6\u6570\u636e\u8f6c\u6362/evidence/coverage_bin_by_run.csv",
+    "note": "Only the canonical identity header was imported; historical run data was not copied.",
+    "repository": "https://github.com/hellcat2q-stack/opentitan-aon-timer-paper-method-repro"
+  },
+  "status": "IDENTITIES_ENUMERATED_VALUE_PARTITIONS_UNMAPPED",
+  "value_partition_boundaries_available": false,
+  "value_partition_note": "The source catalog freezes bin labels/identities but does not include the value ranges for bins[] or auto_bin_max partitions."
+}
