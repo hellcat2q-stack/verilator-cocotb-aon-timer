@@ -26,7 +26,7 @@
 | 01 | 固定源码、bin 参考口径、工具版本 | 完成 |
 | 02 | Verilator 构建与 Cocotb RTL smoke | smoke 通过；Lint/coverage 迁移待后续阶段 |
 | 03 | 移植覆盖模型并核验 bin/sample 语义 | 4,507 个 canonical identity 已归档；取值分区和完整 sample mapping 待补 |
-| 04 | 移植测试序列和关键 scoreboard 检查 | 待开始 |
+| 04 | 移植测试序列和关键 scoreboard 检查 | 固定 smoke/jump/prescaler/intr_test 4/4 通过；stress-all 待后续 |
 | 05 | 冻结测试池、seed 并生成初始语料 | 待开始 |
 | 06 | 生成 bin-by-run 矩阵并审计 | 待开始 |
 | 07 | 接入聚类、信息评分与 UCB 调度 | 待开始 |

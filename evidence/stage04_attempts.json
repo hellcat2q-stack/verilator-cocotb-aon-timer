@@ -1,0 +1,65 @@
+{
+  "schema": "aon-timer-stage04-attempt-history-v1",
+  "source_revision": "9f20940d494a223cc950a5b98f748fb28109d458",
+  "attempts": [
+    {
+      "attempt_id": "setup-scan-01",
+      "runner_run_id": "stage04-dvseq-20261112-seed1",
+      "phase": "FuseSoC source scan",
+      "result": "SETUP_FAILED",
+      "shell_exit_code": 1,
+      "tests_run": 0,
+      "tests_passed": 0,
+      "tests_failed": 0,
+      "cause": "Windows-mounted worktree materialized a tracked top_pkg.core symbolic link as a plain text file."
+    },
+    {
+      "attempt_id": "functional-01",
+      "runner_run_id": "stage04-dvseq-20261112-seed1",
+      "phase": "Cocotb RTL simulation",
+      "result": "TEST_FAILED",
+      "make_exit_code": 0,
+      "tests_run": 4,
+      "tests_passed": 2,
+      "tests_failed": 2,
+      "failed_testcases": ["aon_timer_jump_sequence", "aon_timer_prescaler_sequence"],
+      "cause": "The jump test needed more AON cycles, and the prescaler count readback was sampled before the cross-domain update became visible."
+    },
+    {
+      "attempt_id": "functional-02",
+      "runner_run_id": "stage04-dvseq-20261112-seed1-r2",
+      "phase": "Cocotb RTL simulation",
+      "result": "TEST_FAILED",
+      "make_exit_code": 0,
+      "tests_run": 4,
+      "tests_passed": 3,
+      "tests_failed": 1,
+      "failed_testcases": ["aon_timer_prescaler_sequence"],
+      "cause": "AON count readback was sampled before the cross-domain update became visible; results.xml showed failure although make returned zero."
+    },
+    {
+      "attempt_id": "functional-03",
+      "runner_run_id": "stage04-dvseq-20261112-seed1-r3",
+      "phase": "Cocotb RTL simulation",
+      "result": "PASS",
+      "shell_exit_code": 0,
+      "tests_run": 4,
+      "tests_passed": 4,
+      "tests_failed": 0,
+      "simulation_time_ns": 13341.004,
+      "note": "Functional tests passed before results.xml validation was added to the runner."
+    },
+    {
+      "attempt_id": "functional-final",
+      "runner_run_id": "stage04-dvseq-20261112-seed1-final",
+      "phase": "Cocotb RTL simulation",
+      "result": "PASS",
+      "shell_exit_code": 0,
+      "tests_run": 4,
+      "tests_passed": 4,
+      "tests_failed": 0,
+      "simulation_time_ns": 13341.004,
+      "results_xml_sha256": "82283aba2b22e89048f680c2189741c1688182c66f04cfbf6cce94aa07675fc0"
+    }
+  ]
+}

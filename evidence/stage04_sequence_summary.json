@@ -1,0 +1,74 @@
+{
+  "schema": "aon-timer-stage04-sequence-summary-v1",
+  "run_id": "stage04-dvseq-20261112-seed1-final",
+  "source": {
+    "repository": "https://github.com/lowRISC/opentitan.git",
+    "revision": "9f20940d494a223cc950a5b98f748fb28109d458",
+    "worktree_mode": "detached_linux_worktree",
+    "original_checkout_modified": false
+  },
+  "toolchain": {
+    "distro": "Ubuntu 24.04",
+    "python": "3.12.3",
+    "verilator": "5.020",
+    "cocotb": "1.9.2",
+    "fusesoc": "0.5.dev0",
+    "edalize": "0.4.0"
+  },
+  "runner": {
+    "script": "tools/run_stage04_tests.sh",
+    "seed": 1,
+    "randomized_stimulus": false,
+    "results_xml_sha256": "82283aba2b22e89048f680c2189741c1688182c66f04cfbf6cce94aa07675fc0",
+    "simulation_time_ns": 13341.004,
+    "exit_code": 0,
+    "tests_run": 4,
+    "tests_passed": 4,
+    "tests_failed": 0
+  },
+  "testcases": [
+    {
+      "name": "aon_timer_smoke_sequence",
+      "official_mapping": "aon_timer_smoke_vseq",
+      "result": "PASS",
+      "checks": ["WKUP interrupt", "WDOG bark interrupt", "WDOG bite reset request", "INTR_STATE=0b11", "WKUP_CAUSE.cause=1"]
+    },
+    {
+      "name": "aon_timer_jump_sequence",
+      "official_mapping": "aon_timer_jump_vseq",
+      "result": "PASS",
+      "checks": ["both counters advance", "WKUP threshold below live count raises interrupt", "WDOG bark threshold below live count raises interrupt", "WDOG bite threshold below live count raises reset request"]
+    },
+    {
+      "name": "aon_timer_prescaler_sequence",
+      "official_mapping": "aon_timer_prescaler_vseq",
+      "result": "PASS",
+      "checks": ["prescaler=0 expiry", "prescaler=3 expiry", "larger prescaler takes more AON cycles"],
+      "observed_aon_cycles": {"0": 7, "3": 16}
+    },
+    {
+      "name": "aon_timer_intr_test_sequence",
+      "official_mapping": "inherited common intr_test",
+      "result": "PASS",
+      "checks": ["both INTR_TEST bits set state", "both interrupt outputs assert", "INTR_STATE W1C clears state and outputs"]
+    }
+  ],
+  "coverage": {
+    "coverage_vector_generated": false,
+    "canonical_bin_count": 4507,
+    "note": "Functional checks only; this run does not claim canonical coverage equivalence."
+  },
+  "committed_sources": {
+    "tools/test_sequences.py": "da8e40489e39eb5a9e1dc15ecf4827db55b56ff98b64f37441f624a6a4e2e24a",
+    "tools/run_stage04_tests.sh": "ea7ff915e355545a1239802c25b90b4eb51443a7c0b3e3ae7acc25d19742e540",
+    "tools/aon_timer_tb.sv": "990db76688ea83e714cf4f27dcc5a6e364a1d8b5b09e0221fe8ef142e194f22e",
+    "tools/AonMakefile": "f17d518d2ac290a9e43a363b98bc5d99dbcf7156ffe08cbfb31337cbfa571f5a"
+  },
+  "limitations": [
+    "The initial fixed-value port is deterministic rather than a randomized UVM constraint solver.",
+    "aon_timer_stress_all_vseq, reset injection and imported generic CSR/memory/error tests are not yet ported.",
+    "Verilator emitted existing SPLITVAR and UNOPTFLAT warnings under --Wno-fatal.",
+    "No CoverageTrace samples or 4,507-dimensional coverage vector were generated."
+  ],
+  "attempt_history": "evidence/stage04_attempts.json"
+}

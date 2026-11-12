@@ -5,7 +5,7 @@
 | 01 | 源码与环境锁定 | revision、coverage reference、工具版本可追溯 |
 | 02 | Verilator build/Cocotb smoke | 固定 RTL 构建、寄存器/复位/时钟 smoke 通过 |
 | 03 | Python coverage dictionary | source/sample API 与 4,507 identities 已归档；需 URG bin value detail 才能核验逐项 sample mapping |
-| 04 | Cocotb 测试集 | sequence 映射、seed 和 checks 可审计 |
+| 04 | Cocotb 测试集 | 固定 smoke/jump/prescaler/intr_test 已映射实跑；stress-all/generic tests 待补 |
 | 05 | 初始语料 | 计划冻结，所有 attempts 有 manifest |
 | 06 | Bin-by-run matrix | 列数、union、schema 和 hashes 检查通过 |
 | 07 | 聚类与调度 | 固定输入回放可重复，算法与后端分离 |
