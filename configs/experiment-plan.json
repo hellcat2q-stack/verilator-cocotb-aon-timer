@@ -1,0 +1,19 @@
+{
+  "schema": "verilator-cocotb-aon-timer-plan-v1",
+  "status": "planning",
+  "source_revision": "9f20940d494a223cc950a5b98f748fb28109d458",
+  "coverage": {
+    "canonical_bins": 4507,
+    "urg_dashboard_reference": 4525,
+    "schema": null,
+    "python_sampling_model": "pending"
+  },
+  "simulator": "Verilator",
+  "test_framework": "Cocotb",
+  "test_pool": null,
+  "seed_policy": null,
+  "budget": null,
+  "workers": null,
+  "failure_policy": null,
+  "freeze_before_formal_runs": true
+}

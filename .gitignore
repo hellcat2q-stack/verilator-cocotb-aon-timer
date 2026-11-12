@@ -1,0 +1,12 @@
+# Generated project-local simulation artifacts
+.venv/
+venv/
+build/
+results/
+runs/
+raw_runs/
+coverage_db/
+*.vcd
+*.fst
+*.vdb/
+*.log

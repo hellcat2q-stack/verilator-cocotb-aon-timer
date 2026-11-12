@@ -1,0 +1,29 @@
+{
+  "schema": "verilator-cocotb-aon-timer-source-lock-v1",
+  "project_title": "verilator+cocotb复现aon timer",
+  "status": "REFERENCE_PINNED_COCOTB_BUILD_PENDING",
+  "source": {
+    "repository": "https://github.com/lowRISC/opentitan.git",
+    "revision": "9f20940d494a223cc950a5b98f748fb28109d458",
+    "subject": "[bazel] patch rules_fuzzing to work in airgapped mode",
+    "archive_sha256": "9f96395245d9a73de7608a06c47a9b0212b08cf151475dbc5f50c79ea8aaf280",
+    "basis": "Original project stage03 source manifest"
+  },
+  "coverage_reference": {
+    "canonical_bins": 4507,
+    "urg_dashboard_expected_groups": 4525,
+    "difference": 18,
+    "basis": "Original project stage06 bin_manifest.json",
+    "note": "Distinct reference metrics. Python bin identities and sampling equivalence require validation."
+  },
+  "toolchain_observed": {
+    "distro": "Ubuntu 24.04",
+    "verilator": "5.020",
+    "cocotb": "1.9.2",
+    "python": "3.12.3",
+    "fusesoc": "2.4.5",
+    "edalize": "0.6.3",
+    "note": "Cocotb and FuseSoC are in the existing user virtual environment, not system Python."
+  },
+  "simulation_results_created": false
+}

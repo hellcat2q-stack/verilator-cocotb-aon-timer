@@ -1,0 +1,15 @@
+{
+  "schema": "verilator-cocotb-environment-observation-v1",
+  "distro": "Ubuntu 24.04",
+  "verilator": "5.020",
+  "cocotb": "1.9.2",
+  "python": "3.12.3",
+  "fusesoc": "2.4.5",
+  "edalize": "0.6.3",
+  "status": "versions observed; project-specific pinned-source smoke pending",
+  "notes": [
+    "Cocotb/FuseSoC are installed in the existing Linux virtual environment.",
+    "System Python does not expose cocotb/cocotb-config.",
+    "Verilator 5.020 rejects the official covergroup syntax; Python coverage model and sampling behavior need migration validation."
+  ]
+}
