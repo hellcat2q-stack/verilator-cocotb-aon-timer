@@ -15,3 +15,5 @@
 `stage05_initial_corpus.json` 记录冻结 pool 的 SHA-256、seed、源码 revision、工具链、逐 testcase 功能结果与 XML/run manifest hashes；它不是 bin-by-run coverage 数据。
 
 `stage06_initial/` 保存从阶段 05 功能语料构建的 4,507 列 tri-state scaffold 和审计。当前所有 bin 值均为 unknown，表示尚无 coverage vector。
+
+`stage07_initial/` 保存基于 4,507 canonical identities 的静态 cluster mapping、分区摘要、scheduler input blocker 和文件哈希。聚类不表示任何 bin 已命中；评分和 UCB priors 在真实 vectors 到位前为空。

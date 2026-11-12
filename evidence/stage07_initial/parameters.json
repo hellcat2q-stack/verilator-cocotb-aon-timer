@@ -1,0 +1,25 @@
+{
+  "schema": "aon-timer-stage07-parameters-v1",
+  "algorithm_id": "dbscan_clustering_new2_port_v1",
+  "algorithm_origin": {
+    "repository": "https://github.com/hellcat2q-stack/opentitan-aon-timer-paper-method-repro",
+    "commit": "ab158f7a600aee4d5eccd009c7292224a26f346b",
+    "path": "07_聚类与信息评分/algorithm_source/dbscan_clustering_new2.py",
+    "port_note": "Feature extraction, weights, hierarchical eps schedule, max size and min_samples follow the selected upstream variant; StandardScaler and DBSCAN are implemented with Python standard library only."
+  },
+  "input": "canonical_bin_ids.txt",
+  "input_sha256": "dbcf02f06c121675401c8983dde65a9275239cefd3aff842712bdeef5da11355",
+  "canonical_bin_count": 4507,
+  "cluster_source_sha256": "5dada526669039838e59c4ab02a0c3d7204c260c62f524ebba5f02118ecbe29f",
+  "max_cluster_size": 256,
+  "min_samples": 2,
+  "hierarchical_eps_schedule": [
+    0.3,
+    0.2,
+    0.15,
+    0.1
+  ],
+  "pythonhashseed": 0,
+  "coverage_scores_generated": false,
+  "coverage_score_blocker": "No validated run-level coverage vectors are available; stage06 cells are unknown."
+}

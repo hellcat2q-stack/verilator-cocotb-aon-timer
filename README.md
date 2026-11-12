@@ -29,7 +29,7 @@
 | 04 | 移植测试序列和关键 scoreboard 检查 | 固定 smoke/jump/prescaler/intr_test 4/4 通过；stress-all 待后续 |
 | 05 | 冻结测试池、seed 并生成初始语料 | frozen pool 已执行；1 suite、4/4 PASS；功能语料不含 coverage vector |
 | 06 | 生成 bin-by-run 矩阵并审计 | 4,507 列三态 scaffold 与审计工具完成；真实 vectors 待 coverage mapping |
-| 07 | 接入聚类、信息评分与 UCB 调度 | 待开始 |
+| 07 | 接入聚类、信息评分与 UCB 调度 | canonical identity clustering 与可重放映射已实现；真实 coverage scores/UCB inputs 待 vectors |
 | 08 | 在线仿真和 coverage feedback 闭环 | 待开始 |
 | 09 | Random、Full 和消融对照 | 待开始 |
 | 10 | 独立复核与最终报告 | 待开始 |

@@ -1,0 +1,16 @@
+{
+  "schema": "aon-timer-stage07-scheduler-input-v1",
+  "status": "BLOCKED_WAITING_VALIDATED_VECTORS",
+  "allowed_to_schedule": false,
+  "cluster_mapping": "bin_to_cluster.csv",
+  "cluster_count": 78,
+  "canonical_bin_count": 4507,
+  "mapping_sha256": "2856835a3118d2101c775b7c189734362b37627ceab17d38040a2f6e21a3bf33",
+  "coverage_state": null,
+  "information_scores": null,
+  "cluster_priors": null,
+  "blockers": [
+    "No validated run-level coverage vectors are available.",
+    "The current stage06 matrix has no known hit or miss cells."
+  ]
+}

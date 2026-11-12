@@ -1,15 +1,25 @@
-# 阶段 07：聚类与UCB调度
+# 阶段 07：聚类与信息评分
 
-状态：待开始。
+状态：canonical-bin 聚类和确定性回放已实现；coverage 信息评分、UCB 先验及调度仍等待真实 coverage vectors。
 
-## 目标
-将算法接入通用 coverage vector API。
+## 本阶段已做
 
-## 输入与产物
-输入：冻结矩阵、算法来源。
-产物：clusters、scores、scheduler input、回放审计。
+- 从 `references/canonical_bin_ids.txt` 读取固定的 canonical identities；算法只使用 bin 名称的语义字段，不把阶段 06 的 `?` 当作 0。
+- 移植原仓库选定的 `dbscan_clustering_new2` 特征提取、权重、分层 DBSCAN 参数和最大 cluster 大小 256。实现使用 Python 标准库，不需在 Cocotb 环境安装 NumPy、pandas 或 scikit-learn。
+- 连续运行两次聚类并比较结果，输出 `clusters.json`、`bin_to_cluster.csv`、分区统计、参数、调度输入占位文件和 SHA-256 审计。
+- 调度输入明确为 `BLOCKED_WAITING_VALIDATED_VECTORS`；coverage state、information scores 与 cluster priors 均保持 null。
 
-## 验收
-固定输入回放可重复，算法与后端解耦。
+## 运行
 
-实际命令、版本、seed、运行 ID、失败处理和局限写入本目录的 `实施记录.md`。没有仿真与复核证据时不标记完成。
+```bash
+PYTHONHASHSEED=0 python3 tools/stage07_clustering.py \
+  --bin-ids references/canonical_bin_ids.txt \
+  --output-dir evidence/stage07_initial \
+  --max-cluster-size 256 --seed 0
+```
+
+## 验收边界
+
+聚类 mapping 可作为后续通用 API 的静态输入；当前矩阵没有已知 hit/miss，因此不生成自信息分数、动态 residual prior 或 UCB scheduler state，也不启动阶段 08。此阶段不表示生成了 coverage vector 或复现了论文覆盖率结果。
+
+算法来源和版本记录见 `实施记录.md`；每次运行的形状、映射完整性、重放一致性、工具版本及哈希见 `evidence/stage07_initial/`。

@@ -7,3 +7,5 @@
 阶段 05 使用 `stage05_corpus.py` 校验 pool/freeze、`run_stage05_corpus.py` 顺序执行冻结 seed 并保留每个 attempt。Cocotb testcase 从 `AON_TIMER_TEST_POOL` 读取冻结参数；默认读取 `configs/stage05-test-pool.json`。默认正式结果写入所给 `WORK_ROOT`，不覆盖已有 run 目录。
 
 阶段 06 使用 `stage06_matrix.py --corpus-manifest ... --vector-dir ... --out-dir ...` 输出 bin-by-run CSV 和 audit JSON。矩阵保持 4,507 canonical identities，cells 为 `1`/`0`/`?`；failed run 全部 mask 成 unknown，不获得覆盖奖励。
+
+阶段 07 使用 `PYTHONHASHSEED=0 python3 tools/stage07_clustering.py --bin-ids references/canonical_bin_ids.txt --output-dir evidence/stage07_initial --max-cluster-size 256 --seed 0` 生成稳定 bin-to-cluster mapping 与回放审计。工具不把 unknown coverage 转换为 0，缺少 validated vectors 时 scheduler input 明确 blocked。
