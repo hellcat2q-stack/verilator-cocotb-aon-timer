@@ -1,0 +1,59 @@
+{
+  "schema": "verilator-cocotb-aon-timer-stage02-smoke-v1",
+  "run_id": "stage02-smoke-20261112-seed1",
+  "source": {
+    "repository": "https://github.com/lowRISC/opentitan.git",
+    "revision": "9f20940d494a223cc950a5b98f748fb28109d458",
+    "tree_sha1": "4229b5d334cf7c02996856ddbdf625989b5a6b58",
+    "aon_timer_sv_sha256": "46cd4ab123862c2c296a5ba7ea6216db1285a4fcdc5ce917b2c7fab2ac8c4fce"
+  },
+  "toolchain": {
+    "distro": "Ubuntu 24.04.5",
+    "python": "3.12.3",
+    "verilator": "5.020",
+    "cocotb": "1.9.2",
+    "fusesoc": "lowRISC ot-0.5.dev0",
+    "edalize": "lowRISC 0.4.0",
+    "mako": "1.1.6",
+    "markupsafe": "2.1.5",
+    "anytree": "2.8.0"
+  },
+  "test": {
+    "module": "test_smoke",
+    "testcase": "reset_dual_clock_and_register_read_write",
+    "seed": 1,
+    "exit_code": 0,
+    "result": "PASS",
+    "tests_passed": 1,
+    "tests_failed": 0,
+    "simulation_time_ns": 841.0,
+    "checks": [
+      "main and always-on clock domains reset",
+      "WKUP_THOLD_LO reset value reads as zero",
+      "TL-UL PUT_FULL_DATA writes 0x12345678",
+      "TL-UL GET reads back 0x12345678 without d_error"
+    ]
+  },
+  "coverage": {
+    "verilator_coverage_enabled": false,
+    "uvm_sampling_equivalence_checked": false,
+    "note": "This smoke is functional bring-up evidence only; no coverage result is produced."
+  },
+  "warnings": [
+    "SPLITVAR",
+    "UNOPTFLAT"
+  ],
+  "committed_sources": {
+    "tools/aon_timer_tb.sv": "990db76688ea83e714cf4f27dcc5a6e364a1d8b5b09e0221fe8ef142e194f22e",
+    "tools/test_smoke.py": "e532cbd9c4842c647809ba14002b0e95eafb7ea6087b1a6dd88faaf2a4d70184",
+    "tools/AonMakefile": "f17d518d2ac290a9e43a363b98bc5d99dbcf7156ffe08cbfb31337cbfa571f5a",
+    "tools/run_stage02_smoke.sh": "0fdfafdadcd66b1a25b701ab300376cc8cc3683037bdd4d61da3b81579db8bd8",
+    "tools/setup_stage02_env.sh": "8a6441e748c59908ebebd1c84e32c7be3972f1ea70cea2a0440cbbabf06016e8",
+    "configs/stage02-requirements.txt": "590ee9021efea0208ffbc2c52e78a314c9e12bea94e127f7613af623b0a5b33c"
+  },
+  "generated_artifacts_not_committed": {
+    "build/stage02/fusesoc_setup.log": "658a2d2f8d3072d187166df6b7d60c31e797cc36bf0b209870638eb99a136f17",
+    "build/stage02/smoke.log": "d8fa64f9c4fb20c1d3c119786d7ea6f2fa3bd811e1efa576d77660a5bc17ece8",
+    "build/stage02/fusesoc-ot/default-verilator/aon_timer_sources.vc": "d6b08a16b1f14f9825aa78d90dda48e854aeb29f0e4449fedae8b6c72c906bf7"
+  }
+}

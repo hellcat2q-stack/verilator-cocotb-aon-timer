@@ -1,0 +1,9 @@
+SIM ?= verilator
+TOPLEVEL_LANG = verilog
+TOOLS_DIR := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
+export PYTHONPATH := $(TOOLS_DIR):$(PYTHONPATH)
+VERILOG_SOURCES = $(TOOLS_DIR)/aon_timer_tb.sv
+TOPLEVEL = aon_timer_tb
+MODULE = test_smoke
+COMPILE_ARGS += -f aon_timer_sources.vc --Wno-fatal -DDISABLE_PRIM_CDC_RAND_DELAY
+include $(shell cocotb-config --makefiles)/Makefile.sim

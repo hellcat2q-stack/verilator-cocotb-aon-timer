@@ -6,10 +6,18 @@
   "python": "3.12.3",
   "fusesoc": "2.4.5",
   "edalize": "0.6.3",
-  "status": "versions observed; project-specific pinned-source smoke pending",
+  "status": "stage 02 smoke passed with project-local OpenTitan-compatible FuseSoC/Edalize",
+  "stage02_toolchain": {
+    "fusesoc": "lowRISC ot-0.5.dev0",
+    "edalize": "lowRISC 0.4.0",
+    "mako": "1.1.6",
+    "markupsafe": "2.1.5",
+    "anytree": "2.8.0"
+  },
   "notes": [
     "Cocotb/FuseSoC are installed in the existing Linux virtual environment.",
     "System Python does not expose cocotb/cocotb-config.",
-    "Verilator 5.020 rejects the official covergroup syntax; Python coverage model and sampling behavior need migration validation."
+    "The project-local environment pins the FuseSoC/Edalize versions expected by the fixed OpenTitan generator API.",
+    "This smoke does not demonstrate coverage-model or sampling equivalence with VCS/UVM."
   ]
 }

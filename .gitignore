@@ -10,3 +10,4 @@ coverage_db/
 *.fst
 *.vdb/
 *.log
+__pycache__/

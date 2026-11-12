@@ -1,13 +1,15 @@
 {
   "schema": "verilator-cocotb-aon-timer-source-lock-v1",
   "project_title": "verilator+cocotb复现aon timer",
-  "status": "REFERENCE_PINNED_COCOTB_BUILD_PENDING",
+  "status": "STAGE02_SMOKE_PASS_COVERAGE_MIGRATION_PENDING",
   "source": {
     "repository": "https://github.com/lowRISC/opentitan.git",
     "revision": "9f20940d494a223cc950a5b98f748fb28109d458",
+    "tree_sha1": "4229b5d334cf7c02996856ddbdf625989b5a6b58",
     "subject": "[bazel] patch rules_fuzzing to work in airgapped mode",
-    "archive_sha256": "9f96395245d9a73de7608a06c47a9b0212b08cf151475dbc5f50c79ea8aaf280",
-    "basis": "Original project stage03 source manifest"
+    "original_manifest_archive_sha256": "9f96395245d9a73de7608a06c47a9b0212b08cf151475dbc5f50c79ea8aaf280",
+    "wsl_extracted_archive_sha256": "3378fe535b6e0ff7676b706bee85113185f5691d0f345e975a021857562f8fdc",
+    "basis": "Revision/tree and file hashes compared with original project stage03 source manifest"
   },
   "coverage_reference": {
     "canonical_bins": 4507,
@@ -25,5 +27,24 @@
     "edalize": "0.6.3",
     "note": "Cocotb and FuseSoC are in the existing user virtual environment, not system Python."
   },
-  "simulation_results_created": false
+  "stage02_toolchain_used": {
+    "verilator": "5.020",
+    "cocotb": "1.9.2",
+    "python": "3.12.3",
+    "fusesoc": "lowRISC ot-0.5.dev0",
+    "edalize": "lowRISC 0.4.0",
+    "mako": "1.1.6",
+    "markupsafe": "2.1.5",
+    "anytree": "2.8.0",
+    "requirements": "configs/stage02-requirements.txt",
+    "note": "Project-local environment; the preinstalled FuseSoC 2.4.5 / Edalize 0.6.3 generator API was incompatible with this source revision."
+  },
+  "simulation_results_created": true,
+  "stage02_smoke": {
+    "test": "reset_dual_clock_and_register_read_write",
+    "seed": 1,
+    "result": "PASS",
+    "simulation_time_ns": 841.0,
+    "evidence": "evidence/stage02_smoke_summary.json"
+  }
 }
