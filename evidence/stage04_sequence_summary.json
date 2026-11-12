@@ -68,7 +68,7 @@
     "The initial fixed-value port is deterministic rather than a randomized UVM constraint solver.",
     "aon_timer_stress_all_vseq, reset injection and imported generic CSR/memory/error tests are not yet ported.",
     "Verilator emitted existing SPLITVAR and UNOPTFLAT warnings under --Wno-fatal.",
-    "No CoverageTrace samples or 4,507-dimensional coverage vector were generated."
+    "This initial stage04 run predates CoverageTrace integration; the later trace-enabled frozen-pool run is documented in evidence/stage03_raw_trace/. No 4,507-dimensional coverage vector was generated."
   ],
   "attempt_history": "evidence/stage04_attempts.json"
 }

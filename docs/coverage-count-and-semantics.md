@@ -9,6 +9,7 @@
 - 配置组在有效 CSR 写地址阶段采样，而且 scoreboard 本地字段更新发生在该 sample 之后。
 - wakeup/bark/bite 组在对应 AON 计数事件中采样，计数值通过 backdoor 从 RTL 读取。
 - interrupt 状态在 CSR 数据阶段读取时采样；interrupt test 在 CSR 写入时采样；pin 组按异步 pin 变化采样。
+- 固定 revision 的 base scoreboard 对同一 TL 事务分别调用 `process_tl_access` 的地址与数据阶段；AON Timer 覆写里的 `intr_test` case 没有限制 channel，因此一次 `INTR_TEST` 写会在两个阶段各采 WKUP/WDOG 一次。Cocotb raw trace 保留这四次调用，不能按一次软件写合并。
 - 交叉覆盖的所有成员保存在同一条 sample record 中。不能跨记录合并 coverpoint 值。
 
 ## Bin identity 状态

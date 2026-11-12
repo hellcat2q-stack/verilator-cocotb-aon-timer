@@ -25,9 +25,9 @@
 | --- | --- | --- |
 | 01 | 固定源码、bin 参考口径、工具版本 | 完成 |
 | 02 | Verilator 构建与 Cocotb RTL smoke | smoke 通过；Lint/coverage 迁移待后续阶段 |
-| 03 | 移植覆盖模型并核验 bin/sample 语义 | 4,507 个 canonical identity 已归档；取值分区和完整 sample mapping 待补 |
-| 04 | 移植测试序列和关键 scoreboard 检查 | 固定 smoke/jump/prescaler/intr_test 4/4 通过；stress-all 待后续 |
-| 05 | 冻结测试池、seed 并生成初始语料 | frozen pool 已执行；1 suite、4/4 PASS；功能语料不含 coverage vector |
+| 03 | 移植覆盖模型并核验 bin/sample 语义 | 固定源码 A/D sample multiplicity 已复核；可观测调用已生成 raw trace；array/auto partitions 和共享 sample mapping 待补 |
+| 04 | 移植测试序列和关键 scoreboard 检查 | 固定 4/4 功能序列接入 partial raw sample trace；完整 vector 与 stress-all 待后续 |
+| 05 | 冻结测试池、seed 并生成初始语料 | frozen pool 会校验 trace hash/sample counts；1 suite、4/4 PASS；不含 coverage vector |
 | 06 | 生成 bin-by-run 矩阵并审计 | 4,507 列三态 scaffold 与审计工具完成；真实 vectors 待 coverage mapping |
 | 07 | 接入聚类、信息评分与 UCB 调度 | canonical identity clustering 与可重放映射已实现；真实 coverage scores/UCB inputs 待 vectors |
 | 08 | 在线仿真和 coverage feedback 闭环 | 待开始 |

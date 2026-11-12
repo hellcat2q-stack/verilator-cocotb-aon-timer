@@ -1,6 +1,6 @@
 # 阶段 03：官方覆盖模型迁移
 
-状态：部分完成。已建立固定 revision 的 AON Timer/CIP covergroup 源码清单、原始 sample trace API 和 4,507 项 canonical identity 清单；取值分区及完整逐样本命中映射尚未完成。
+状态：部分完成。已建立固定 revision 的 AON Timer/CIP covergroup 源码清单、原始 sample trace API 和 4,507 项 canonical identity 清单，并从 Cocotb RTL 测试记录了可观测 CSR/pin sample；取值分区及完整逐样本命中映射尚未完成。
 
 ## 已完成
 
@@ -10,6 +10,8 @@
 - 新增 `tools/coverage_model.py` 保存完整 raw sample tuple，不把跨时间的样本拼成 cross。
 - 将可确认的 named explicit-bin hits 直接关联到 canonical identity；未解析分区仍只留 raw 值。
 - 新增边界、位宽、cross 隔离、pin transition、reset sequence 单元测试。
+- 复核固定 revision 的 TL A/D channel 调用路径，修正 `intr_test_cg` 的 multiplicity 记录：每笔写在地址/数据两次 scoreboard invocation 中分别采 WKUP/WDOG。
+- 从固定 RTL 的确定性 Cocotb 测试保存了 CSR 与 AON pin partial raw traces；冻结语料 run 会在 manifest 中登记并验证 trace hashes 和 sample counts。
 
 ## 未完成项
 

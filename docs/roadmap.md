@@ -4,9 +4,9 @@
 | --- | --- | --- |
 | 01 | 源码与环境锁定 | revision、coverage reference、工具版本可追溯 |
 | 02 | Verilator build/Cocotb smoke | 固定 RTL 构建、寄存器/复位/时钟 smoke 通过 |
-| 03 | Python coverage dictionary | source/sample API 与 4,507 identities 已归档；需 URG bin value detail 才能核验逐项 sample mapping |
-| 04 | Cocotb 测试集 | 固定 smoke/jump/prescaler/intr_test 已映射实跑；stress-all/generic tests 待补 |
-| 05 | 初始语料 | frozen deterministic pool 已实跑，attempt manifest 与 testcase outcomes 可追溯；无 coverage vector |
+| 03 | Python coverage dictionary | source/sample API、identity catalog 和 intr_test A/D multiplicity 已核对；可观测 CSR/pin 调用已生成 raw traces；完整 value partition/shared sample mapping 待补 |
+| 04 | Cocotb 测试集 | 固定 smoke/jump/prescaler/intr_test 已映射实跑并接入 partial raw trace；stress-all/generic tests 待补 |
+| 05 | 初始语料 | frozen deterministic pool 已实跑，attempt manifest 记录并校验 trace hashes/sample counts；无 coverage vector |
 | 06 | Bin-by-run matrix | 三态矩阵/identity/hash 审计已验证；真实 run vectors 待阶段 03 mapping 与 Cocotb sample 接入 |
 | 07 | 聚类与调度 | canonical identity clustering 和固定输入回放已实现；coverage score/UCB 输入等待真实 vectors |
 | 08 | 在线闭环 | 新仿真产生反馈，事件日志可审计 |

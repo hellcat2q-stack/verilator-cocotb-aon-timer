@@ -17,8 +17,12 @@ tests_failed=0
 simulation_time_ns=0.0
 failed_testcases="[]"
 results_xml=""
+coverage_trace_dir="${COVERAGE_TRACE_DIR:-$work_root/coverage-traces}"
 
 mkdir -p "$work_root"
+mkdir -p "$coverage_trace_dir"
+export COVERAGE_TRACE_DIR="$coverage_trace_dir"
+export RUN_ID="$run_id"
 
 write_manifest() {
   local shell_status="$1"
@@ -27,15 +31,16 @@ write_manifest() {
     result="FAILED"
   fi
   python3 - "$work_root/run_manifest.json" "$run_id" "$seed" "$exit_code" "$result" \
-    "$source_root" "$results_xml" <<'PY'
+    "$source_root" "$results_xml" "$coverage_trace_dir" <<'PY'
 import json
+import hashlib
 import pathlib
 import subprocess
 import sys
 from importlib.metadata import PackageNotFoundError, version
 import xml.etree.ElementTree as ET
 
-target, run_id, seed, exit_code, result, source_root, report_path = sys.argv[1:]
+target, run_id, seed, exit_code, result, source_root, report_path, trace_dir = sys.argv[1:]
 tests = []
 simulation_time_ns = 0.0
 if report_path and pathlib.Path(report_path).is_file():
@@ -46,6 +51,16 @@ failed_tests = [test.get("name", "unknown") for test in tests if test.find("fail
 tests_run = len(tests)
 tests_failed = len(failed_tests)
 tests_passed = tests_run - tests_failed
+trace_files = {}
+for trace_path in sorted(pathlib.Path(trace_dir).glob("*.json")):
+    trace_bytes = trace_path.read_bytes()
+    trace = json.loads(trace_bytes.decode("utf-8"))
+    trace_files[trace_path.name] = {
+        "sha256": hashlib.sha256(trace_bytes).hexdigest(),
+        "sample_count": trace.get("sample_count"),
+        "sample_counts_by_covergroup": trace.get("sample_counts_by_covergroup", {}),
+        "coverage_status": trace.get("coverage_status"),
+    }
 try:
     actual_revision = subprocess.check_output(
         ["git", "-C", source_root, "rev-parse", "HEAD"], text=True, stderr=subprocess.DEVNULL
@@ -94,7 +109,12 @@ manifest = {
         "edalize": package_version("edalize"),
     },
     "coverage_vector": None,
-    "note": "This run validates functional checks only; no 4,507-bin vector is produced.",
+    "coverage_trace": {
+        "status": "PARTIAL_SOURCE_SAMPLE_TRACE" if trace_files else "UNAVAILABLE",
+        "canonical_vector_generated": False,
+        "files": trace_files,
+    },
+    "note": "This run validates functional checks and captures a partial raw sample trace; no 4,507-bin vector is produced.",
 }
 pathlib.Path(target).write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
 PY

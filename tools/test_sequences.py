@@ -4,11 +4,14 @@ from __future__ import annotations
 
 import json
 import os
+from functools import wraps
 from pathlib import Path
 
 import cocotb
 from cocotb.clock import Clock
 from cocotb.triggers import FallingEdge, RisingEdge, Timer
+
+from cocotb_coverage_adapter import CocotbCoverageAdapter
 
 
 PUT_FULL_DATA = 0
@@ -29,6 +32,24 @@ INTR_TEST = 0x30
 WKUP_CAUSE = 0x34
 
 DEFAULT_POOL_PATH = Path(__file__).resolve().parents[1] / "configs" / "stage05-test-pool.json"
+_ACTIVE_COVERAGE: CocotbCoverageAdapter | None = None
+
+
+def coverage_test(test_function):
+    """Attach a bounded raw trace to one functional testcase."""
+    @wraps(test_function)
+    async def wrapped(dut):
+        global _ACTIVE_COVERAGE
+        recorder = CocotbCoverageAdapter(test_function.__name__)
+        _ACTIVE_COVERAGE = recorder
+        recorder.start_pin_monitor(dut)
+        try:
+            return await test_function(dut)
+        finally:
+            recorder.close()
+            _ACTIVE_COVERAGE = None
+
+    return cocotb.test()(wrapped)
 
 
 def load_stimulus_pool() -> dict[str, dict]:
@@ -53,6 +74,8 @@ async def transfer(dut, opcode: int, address: int, data: int = 0) -> int:
     for _ in range(200):
         await Timer(1, units="ns")
         if int(dut.a_ready_o.value):
+            if opcode != GET and _ACTIVE_COVERAGE is not None:
+                _ACTIVE_COVERAGE.on_write_address(address, data)
             break
         await FallingEdge(dut.clk_i)
     else:
@@ -65,6 +88,10 @@ async def transfer(dut, opcode: int, address: int, data: int = 0) -> int:
         if int(dut.d_valid_o.value):
             assert int(dut.d_error_o.value) == 0, f"TL-UL error at 0x{address:02x}"
             response = int(dut.d_data_o.value)
+            if opcode == GET and _ACTIVE_COVERAGE is not None:
+                _ACTIVE_COVERAGE.on_read_data(address, response)
+            elif opcode != GET and _ACTIVE_COVERAGE is not None:
+                _ACTIVE_COVERAGE.on_write_data(address, data)
             await RisingEdge(dut.clk_i)
             return response
         await FallingEdge(dut.clk_i)
@@ -133,7 +160,7 @@ async def wait_for_high(dut, signal, label: str, max_aon_cycles: int = 100) -> i
     raise AssertionError(f"{label} did not assert within {max_aon_cycles} AON cycles")
 
 
-@cocotb.test()
+@coverage_test
 async def aon_timer_smoke_sequence(dut):
     """Translate the official smoke flow with fixed thresholds and explicit checks."""
     await start_clocks_and_reset(dut)
@@ -165,7 +192,7 @@ async def aon_timer_smoke_sequence(dut):
     )
 
 
-@cocotb.test()
+@coverage_test
 async def aon_timer_jump_sequence(dut):
     """Check threshold changes while both counters run, including below-count updates."""
     await start_clocks_and_reset(dut)
@@ -219,7 +246,7 @@ async def aon_timer_jump_sequence(dut):
     )
 
 
-@cocotb.test()
+@coverage_test
 async def aon_timer_prescaler_sequence(dut):
     """Compare deterministic low/high prescaler settings and require slower counting."""
     await start_clocks_and_reset(dut)
@@ -259,7 +286,7 @@ async def aon_timer_prescaler_sequence(dut):
     dut._log.info("STAGE04_PRESCALER_PASS cycles=%s", measured_cycles)
 
 
-@cocotb.test()
+@coverage_test
 async def aon_timer_intr_test_sequence(dut):
     """Translate the inherited CIP interrupt-test scenario for both AON IRQs."""
     await start_clocks_and_reset(dut)

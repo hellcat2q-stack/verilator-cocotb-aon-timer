@@ -12,8 +12,10 @@
 
 `stage04_attempts.json` 记录阶段 04 的 source-scan 失败、Cocotb 检查失败以及后续成功 run，避免丢弃失败迭代。
 
-`stage05_initial_corpus.json` 记录冻结 pool 的 SHA-256、seed、源码 revision、工具链、逐 testcase 功能结果与 XML/run manifest hashes；它不是 bin-by-run coverage 数据。
+`stage05_initial_corpus.json` 记录冻结 pool 的 SHA-256、seed、源码 revision、工具链、逐 testcase 功能结果、XML/run manifest hashes，以及每个 raw trace 的 SHA-256 和 sample counts；它不是 bin-by-run coverage 数据。
 
 `stage06_initial/` 保存从阶段 05 功能语料构建的 4,507 列 tri-state scaffold 和审计。当前所有 bin 值均为 unknown，表示尚无 coverage vector。
 
 `stage07_initial/` 保存基于 4,507 canonical identities 的静态 cluster mapping、分区摘要、scheduler input blocker 和文件哈希。聚类不表示任何 bin 已命中；评分和 UCB priors 在真实 vectors 到位前为空。
+
+`stage03_raw_trace/` 保存冻结 Stage 05 pool 重新运行生成的 partial source-sample traces 与汇总审计。trace 只证明已接入的 API 运行过，不提供未接入 sample sites、完整 bin mapping 或 vector。

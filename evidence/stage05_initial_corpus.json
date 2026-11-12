@@ -7,7 +7,7 @@
   "freeze_sha256": "effa7d1bb1f77019d85362f9437ed7e705876d0fc38b289d8ac4c66e4914f586",
   "source_revision": "9f20940d494a223cc950a5b98f748fb28109d458",
   "coverage_schema_id": "aon_timer_uvm_source_trace_v1",
-  "created_utc": "2026-11-12T05:34:14.962320+00:00",
+  "created_utc": "2026-11-12T08:49:04.486036+00:00",
   "status": "PASS",
   "budget": {
     "suite_runs": 1,
@@ -51,6 +51,113 @@
       "simulation_time_ns": 13341.004,
       "randomized_stimulus": false,
       "coverage_schema_id": "aon_timer_uvm_source_trace_v1",
+      "coverage_trace": {
+        "status": "PARTIAL_SOURCE_SAMPLE_TRACE",
+        "canonical_vector_generated": false,
+        "validated": true,
+        "file_count": 4,
+        "total_sample_count": 112,
+        "sample_counts_by_covergroup": {
+          "intr_pins_cg": 20,
+          "timer_cfg_cg": 78,
+          "intr_test_cg": 4,
+          "intr_cg": 10
+        },
+        "files": {
+          "stage05-functional-pool-seed1-v1-seed1__aon_timer_intr_test_sequence__seed1.json": {
+            "testcase": "aon_timer_intr_test_sequence",
+            "sha256": "b294d7e7141d5dbeecaa58671a95348ba9eee465c4c0cf0e90046d30a38ee254",
+            "sample_count": 23,
+            "sample_counts_by_covergroup": {
+              "intr_pins_cg": 2,
+              "timer_cfg_cg": 13,
+              "intr_test_cg": 4,
+              "intr_cg": 4
+            },
+            "coverage_status": "SAMPLE_TRACE_ONLY_CANONICAL_IDENTITIES_AVAILABLE_VALUE_PARTITIONS_UNMAPPED",
+            "validation": "PASS",
+            "checks": {
+              "sha256": true,
+              "sample_count": true,
+              "sample_counts_by_covergroup": true,
+              "coverage_status": true,
+              "run_id": true,
+              "seed": true,
+              "source_revision": true,
+              "coverage_schema_id": true,
+              "no_canonical_vector": true
+            }
+          },
+          "stage05-functional-pool-seed1-v1-seed1__aon_timer_jump_sequence__seed1.json": {
+            "testcase": "aon_timer_jump_sequence",
+            "sha256": "c80f8da020b0467fcc395c747d2e12444b21b68e19450baac505fa4a32f2be84",
+            "sample_count": 27,
+            "sample_counts_by_covergroup": {
+              "intr_pins_cg": 6,
+              "timer_cfg_cg": 21
+            },
+            "coverage_status": "SAMPLE_TRACE_ONLY_CANONICAL_IDENTITIES_AVAILABLE_VALUE_PARTITIONS_UNMAPPED",
+            "validation": "PASS",
+            "checks": {
+              "sha256": true,
+              "sample_count": true,
+              "sample_counts_by_covergroup": true,
+              "coverage_status": true,
+              "run_id": true,
+              "seed": true,
+              "source_revision": true,
+              "coverage_schema_id": true,
+              "no_canonical_vector": true
+            }
+          },
+          "stage05-functional-pool-seed1-v1-seed1__aon_timer_prescaler_sequence__seed1.json": {
+            "testcase": "aon_timer_prescaler_sequence",
+            "sha256": "32a161c4d552345e97bcb1e2f87127d3a53272522c1e79072c84ff8818a72c46",
+            "sample_count": 40,
+            "sample_counts_by_covergroup": {
+              "intr_pins_cg": 8,
+              "timer_cfg_cg": 28,
+              "intr_cg": 4
+            },
+            "coverage_status": "SAMPLE_TRACE_ONLY_CANONICAL_IDENTITIES_AVAILABLE_VALUE_PARTITIONS_UNMAPPED",
+            "validation": "PASS",
+            "checks": {
+              "sha256": true,
+              "sample_count": true,
+              "sample_counts_by_covergroup": true,
+              "coverage_status": true,
+              "run_id": true,
+              "seed": true,
+              "source_revision": true,
+              "coverage_schema_id": true,
+              "no_canonical_vector": true
+            }
+          },
+          "stage05-functional-pool-seed1-v1-seed1__aon_timer_smoke_sequence__seed1.json": {
+            "testcase": "aon_timer_smoke_sequence",
+            "sha256": "cc116aaac7f39d831fbdaf46b83c46e949af8e9692e984db02bbe24b5a744a54",
+            "sample_count": 22,
+            "sample_counts_by_covergroup": {
+              "timer_cfg_cg": 16,
+              "intr_pins_cg": 4,
+              "intr_cg": 2
+            },
+            "coverage_status": "SAMPLE_TRACE_ONLY_CANONICAL_IDENTITIES_AVAILABLE_VALUE_PARTITIONS_UNMAPPED",
+            "validation": "PASS",
+            "checks": {
+              "sha256": true,
+              "sample_count": true,
+              "sample_counts_by_covergroup": true,
+              "coverage_status": true,
+              "run_id": true,
+              "seed": true,
+              "source_revision": true,
+              "coverage_schema_id": true,
+              "no_canonical_vector": true
+            }
+          }
+        }
+      },
       "toolchain": {
         "python": "3.12.3",
         "cocotb": "1.9.2",
@@ -58,16 +165,17 @@
         "fusesoc": "0.5.dev0",
         "edalize": "0.4.0"
       },
-      "run_manifest_sha256": "de4ae772443453b5f50491226bfeb8575bb8ee239dd607a1a73410a92658d68f",
-      "results_xml_sha256": "84da23e3acf3062b331d982a990907c5bcb81913d48e3c589617e48275f95827",
-      "stage04_log_sha256": "4c9445436b5cdabb9e4d36923a8be857ea7024f2b0ed00e3727121cce3f6b842"
+      "run_manifest_sha256": "688a45a53dcccc31422a96d760dd38a2374398fc5a65d1d7297a8666114001c9",
+      "results_xml_sha256": "ec6ea359af1d8ee96dc64d642a5ea56498744a786302ff619a7bc3fc9f5ab5de",
+      "stage04_log_sha256": "07e6e6472d2ac41012bb489ecc4156434c65f655a7303831e27f18cc15ea29a8"
     }
   ],
   "source_file_sha256": {
-    "tools/test_sequences.py": "bfea966f7f4016bddc4f74206003a2709045feb0396e30288c5ede103eac08ac",
-    "tools/run_stage04_tests.sh": "ea7ff915e355545a1239802c25b90b4eb51443a7c0b3e3ae7acc25d19742e540",
+    "tools/test_sequences.py": "28268515daf222316c43fd1060deff5a1cfd250c0bc42b68c431e61ac47d54a2",
+    "tools/cocotb_coverage_adapter.py": "ff753727808c6343574a461612f549945cf29a2ee9929dd09462347343c0f5d6",
+    "tools/run_stage04_tests.sh": "077039e49551c82515d43b2a0f7cafb5ea61c72c3a445e2b50ddc37ce69345e2",
     "tools/stage05_corpus.py": "493975e0ced2745df0c32856db46bce2611332a92450e6e37e9cbf3ceba09a95",
-    "tools/run_stage05_corpus.py": "e90f016222cd4324de35ec601b23b7dde5771d007d9a0729a0056a206c1a221b"
+    "tools/run_stage05_corpus.py": "e744829717570c9e6eba76d5d243612549647e80fd59c42e19b2ec2a4ad81ca6"
   },
   "coverage_vector_generated": false,
   "note": "This is a functional testcase corpus; it is not a canonical coverage vector."

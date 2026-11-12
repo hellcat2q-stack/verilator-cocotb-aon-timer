@@ -1,6 +1,6 @@
 # 阶段 05：测试池与初始语料
 
-状态：初始功能语料已按冻结协议实跑；不含随机 stress-all 或覆盖率向量。
+状态：初始功能语料已按冻结协议实跑并校验 partial raw trace；不含随机 stress-all 或覆盖率向量。
 
 ## 冻结协议
 
@@ -26,6 +26,6 @@ python3 tools/run_stage05_corpus.py \
   --work-root /path/to/stage05-runs
 ```
 
-runner 会先校验 frozen pool hash、seed、测试顺序、预算和源码 revision；正式运行后为每个 seed 生成 attempt manifest 与汇总 `corpus_manifest.json`。成功运行摘要见 [`evidence/stage05_initial_corpus.json`](../evidence/stage05_initial_corpus.json)，执行记录见 [`实施记录.md`](实施记录.md)。
+runner 会先校验 frozen pool hash、seed、测试顺序、预算和源码 revision；正式运行后为每个 seed 生成 attempt manifest 与汇总 `corpus_manifest.json`，并逐项校验 trace 文件 hash、sample 总数、covergroup 计数和 run/source/schema 元数据。成功运行摘要见 [`evidence/stage05_initial_corpus.json`](../evidence/stage05_initial_corpus.json)，partial raw trace 与审计摘要见 [`evidence/stage03_raw_trace/`](../evidence/stage03_raw_trace/)，执行记录见 [`实施记录.md`](实施记录.md)。
 
 本语料是功能场景与检查结果，不是 4,507-bin coverage vector。精确 bin 分区和共享 covergroup sampling 尚未完成，不能将这些结果用于 coverage-based 调度或与 VCS 覆盖分数等同。

@@ -1,6 +1,6 @@
 # 阶段 04：Cocotb测试序列移植
 
-状态：已完成确定性功能序列初版；随机 stress-all、通用 CSR/memory/error 测试和 coverage trace 接入尚未完成。
+状态：确定性功能序列初版已通过，并接入可观测 CSR/pin partial raw trace；随机 stress-all 与通用 CSR/memory/error 测试待后续阶段。
 
 ## 官方场景映射
 
@@ -14,6 +14,6 @@
 
 运行入口：`tools/run_stage04_tests.sh`。runner 核验固定源码 revision、工具版本并解析 Cocotb `results.xml`；即使 make 返回 0，只要测试失败也会记录失败。运行 manifest 保存 seed、test counts、状态和仿真时长。
 
-本阶段是功能序列迁移，不生成 canonical coverage vector。4,507 个 bin 的 sample attribution 与 coverage API/RTL test 接入仍受阶段 03 的 value partition 和共享组差异限制。
+runner 已将 `CoverageTrace` 接入可观测的 CSR 与 AON pin 事件，保存每个 testcase 的 partial raw sample trace。Stage 05 manifest 会校验并汇总 trace hashes 和 sample counts。由于 count-event backdoor samples、reset group、共享组和 bin value partition 尚未完成，本阶段仍不生成 canonical coverage vector，也不声称与 VCS/URG 等价。
 
 实跑记录和失败迭代摘要见 [`实施记录.md`](实施记录.md)，最终摘要见 [`evidence/stage04_sequence_summary.json`](../evidence/stage04_sequence_summary.json)。

@@ -122,11 +122,11 @@
       "name": "intr_test_cg",
       "declared_in": "hw/dv/sv/cip_lib/cip_base_env_cov.sv",
       "sample_site": "aon_timer_scoreboard.process_tl_access on intr_test writes",
-      "sample_condition": "cfg.en_cov && csr_name == intr_test",
+      "sample_condition": "cfg.en_cov && csr_name == intr_test; process_tl_access is invoked for both AddrChannel and DataChannel",
       "fields": {"intr": {"width": "log2(cfg.num_interrupts)"}, "intr_test": {"width": 1}, "intr_en": {"width": 1}, "intr_state": {"width": 1}},
       "coverpoints": [{"name": "cp_intr", "field": "intr", "domain": "[0, cfg.num_interrupts-1]"}, {"name": "cp_intr_test", "field": "intr_test", "domain": [0, 1]}, {"name": "cp_intr_en", "field": "intr_en", "domain": [0, 1]}, {"name": "cp_intr_state", "field": "intr_state", "domain": [0, 1]}],
       "crosses": [{"name": "cross_cp_intr_cp_intr_test_cp_intr_en_cp_intr_state", "members": ["cp_intr", "cp_intr_test", "cp_intr_en", "cp_intr_state"], "same_sample_required": true, "illegal_condition": "intr_test == 1 && intr_state == 0"}],
-      "sampling_note": "The scoreboard calls sample twice per qualifying write, once for WKUP and once for WDOG."
+      "sampling_note": "process_tl_access calls sample on both address and data channel invocations; each invocation samples twice, once for WKUP and once for WDOG."
     },
     {
       "name": "intr_pins_cg",

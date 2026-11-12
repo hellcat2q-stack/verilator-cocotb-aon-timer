@@ -42,6 +42,110 @@ def parse_results_xml(path: Path) -> tuple[list[dict[str, Any]], float]:
     return cases, total_ns
 
 
+def summarize_coverage_trace(run_root: Path, runner_manifest: dict[str, Any]) -> dict[str, Any]:
+    """Verify and summarize partial raw traces without embedding sample data."""
+    trace_manifest = runner_manifest.get("coverage_trace")
+    result: dict[str, Any] = {
+        "status": "UNAVAILABLE",
+        "canonical_vector_generated": False,
+        "validated": False,
+        "file_count": 0,
+        "total_sample_count": 0,
+        "sample_counts_by_covergroup": {},
+        "files": {},
+    }
+    if not isinstance(trace_manifest, dict):
+        return result
+
+    result["status"] = trace_manifest.get("status", "UNAVAILABLE")
+    result["canonical_vector_generated"] = trace_manifest.get("canonical_vector_generated")
+    declared_files = trace_manifest.get("files")
+    if not isinstance(declared_files, dict) or not declared_files:
+        return result
+
+    valid = (
+        result["status"] == "PARTIAL_SOURCE_SAMPLE_TRACE"
+        and result["canonical_vector_generated"] is False
+        and runner_manifest.get("coverage_vector") is None
+    )
+    totals: dict[str, int] = {}
+    trace_testcases: list[str] = []
+    summarized_files: dict[str, Any] = {}
+
+    for filename, declared in sorted(declared_files.items()):
+        file_valid = isinstance(filename, str) and Path(filename).name == filename and isinstance(declared, dict)
+        trace_path = run_root / "coverage-traces" / filename if file_valid else None
+        if trace_path is None or not trace_path.is_file():
+            summarized_files[str(filename)] = {"validation": "FAIL", "reason": "missing_or_invalid_path"}
+            valid = False
+            continue
+
+        trace_bytes = trace_path.read_bytes()
+        digest = hashlib.sha256(trace_bytes).hexdigest()
+        try:
+            trace = json.loads(trace_bytes.decode("utf-8"))
+        except (UnicodeDecodeError, json.JSONDecodeError):
+            summarized_files[filename] = {"sha256": digest, "validation": "FAIL", "reason": "invalid_json"}
+            valid = False
+            continue
+
+        samples = trace.get("samples")
+        samples = samples if isinstance(samples, list) else []
+        sample_count = len(samples)
+        counts: dict[str, int] = {}
+        for sample in samples:
+            if not isinstance(sample, dict) or not isinstance(sample.get("covergroup"), str):
+                valid = False
+                file_valid = False
+                continue
+            group = sample["covergroup"]
+            counts[group] = counts.get(group, 0) + 1
+        declared_count = trace.get("sample_counts_by_covergroup", {})
+        file_checks = {
+            "sha256": digest == declared.get("sha256"),
+            "sample_count": sample_count == declared.get("sample_count") == trace.get("sample_count"),
+            "sample_counts_by_covergroup": counts == declared_count,
+            "coverage_status": trace.get("coverage_status") == declared.get("coverage_status"),
+            "run_id": trace.get("run_id") == runner_manifest.get("run_id"),
+            "seed": trace.get("seed") == runner_manifest.get("seed"),
+            "source_revision": trace.get("source_revision") == runner_manifest.get("source_revision"),
+            "coverage_schema_id": trace.get("schema_id") == runner_manifest.get("coverage_schema_id"),
+            "no_canonical_vector": trace.get("canonical_bin_vector") is None,
+        }
+        file_passed = file_valid and all(file_checks.values())
+        valid = valid and file_passed
+        testcase = trace.get("testcase")
+        if isinstance(testcase, str):
+            trace_testcases.append(testcase)
+        for group, count in counts.items():
+            totals[group] = totals.get(group, 0) + count
+        result["total_sample_count"] += sample_count
+        summarized_files[filename] = {
+            "testcase": testcase,
+            "sha256": digest,
+            "sample_count": sample_count,
+            "sample_counts_by_covergroup": counts,
+            "coverage_status": trace.get("coverage_status"),
+            "validation": "PASS" if file_passed else "FAIL",
+            "checks": file_checks,
+        }
+
+    expected_testcases = runner_manifest.get("testcases", [])
+    valid = (
+        valid
+        and len(trace_testcases) == len(set(trace_testcases))
+        and set(trace_testcases) == set(expected_testcases)
+    )
+    result.update({
+        "validated": valid,
+        "file_count": len(summarized_files),
+        "total_sample_count": result["total_sample_count"],
+        "sample_counts_by_covergroup": totals,
+        "files": summarized_files,
+    })
+    return result
+
+
 def current_source_revision(source_root: Path) -> str:
     return subprocess.check_output(
         ["git", "-C", str(source_root), "rev-parse", "HEAD"], text=True
@@ -108,6 +212,7 @@ def run(args: argparse.Namespace) -> int:
         runner_manifest = {}
         if runner_manifest_path.is_file():
             runner_manifest = json.loads(runner_manifest_path.read_text(encoding="utf-8"))
+        coverage_trace = summarize_coverage_trace(run_root, runner_manifest)
         results_path = run_root / "results.xml"
         testcase_results, total_sim_ns = parse_results_xml(results_path)
         passed = (
@@ -118,6 +223,7 @@ def run(args: argparse.Namespace) -> int:
             and all(test["result"] == "PASS" for test in testcase_results)
             and runner_manifest.get("source_revision") == PINNED_REVISION
             and total_sim_ns <= pool["budget"]["simulation_time_limit_ns_per_suite"]
+            and coverage_trace["validated"]
         )
         attempt = {
             "run_id": run_id,
@@ -131,6 +237,7 @@ def run(args: argparse.Namespace) -> int:
             "simulation_time_ns": round(total_sim_ns, 3),
             "randomized_stimulus": runner_manifest.get("randomized_stimulus"),
             "coverage_schema_id": runner_manifest.get("coverage_schema_id"),
+            "coverage_trace": coverage_trace,
             "toolchain": runner_manifest.get("toolchain"),
             "run_manifest_sha256": sha256_file(runner_manifest_path) if runner_manifest_path.is_file() else None,
             "results_xml_sha256": sha256_file(results_path) if results_path.is_file() else None,
@@ -160,6 +267,7 @@ def run(args: argparse.Namespace) -> int:
         "attempts": attempts,
         "source_file_sha256": {
             "tools/test_sequences.py": sha256_file(ROOT / "tools" / "test_sequences.py"),
+            "tools/cocotb_coverage_adapter.py": sha256_file(ROOT / "tools" / "cocotb_coverage_adapter.py"),
             "tools/run_stage04_tests.sh": sha256_file(ROOT / "tools" / "run_stage04_tests.sh"),
             "tools/stage05_corpus.py": sha256_file(ROOT / "tools" / "stage05_corpus.py"),
             "tools/run_stage05_corpus.py": sha256_file(ROOT / "tools" / "run_stage05_corpus.py"),
