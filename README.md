@@ -30,7 +30,7 @@
 | 05 | 冻结测试池、seed 并生成初始语料 | frozen pool 校验 trace hashes/sample counts；1 suite、4/4 PASS；导出稀疏部分命中记录 |
 | 06 | 生成 bin-by-run 矩阵并审计 | 4,507 列三态矩阵：7 known hits、0 推断 miss、4,500 unknown；完整 coverage 阶段门未通过 |
 | 07 | 接入聚类、信息评分与 UCB 调度 | canonical identity clustering 与可重放映射已实现；partial hits 不足以确认 misses，coverage scores/UCB 仍 blocked |
-| 08 | 在线仿真和 coverage feedback 闭环 | VCS 参考数组边界及哈希已审计；Verilator 等价性、Stage 06 exact vector、Stage 07 scheduler 和完整采样映射未通过，在线调度未启动 |
+| 08 | 在线仿真和 coverage feedback 闭环 | `resets_cg` 已确认在 `num_edn=0` 配置中不适用；Verilator 等价性、Stage 06 exact vector、Stage 07 scheduler、count-event parity 和完整 identity 映射未通过，在线调度未启动 |
 | 09 | Random、Full 和消融对照 | 待开始 |
 | 10 | 独立复核与最终报告 | 待开始 |
 

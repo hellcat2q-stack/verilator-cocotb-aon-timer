@@ -70,9 +70,14 @@
         "event": "four-cycle startup, source-derived countdown samples and expiry sample; actual RTL count via read-only simulation probe"
       }
     ],
+    "conditional_reset": {
+      "covergroup": "resets_cg",
+      "status": "NOT_APPLICABLE_NUM_EDN_ZERO",
+      "audit": "configs/conditional-reset-audit.json",
+      "reason": "The pinned AON Timer DV config leaves num_edn at its default zero and no assignment was found in the AON Timer or CIP DV source trees; both construction and sampling are guarded by cfg.num_edn."
+    },
     "unmapped": [
       "count-event scheduler timing parity against a VCS/UVM execution has not been measured",
-      "conditional resets_cg behavior under the original test configuration is unresolved; the pinned AON config leaves num_edn at its default zero",
       "one-to-one sample and canonical identity mapping for shared/non-AON definitions",
       "complete mapping from observed samples to all 4,507 canonical identities"
     ],

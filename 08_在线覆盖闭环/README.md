@@ -4,9 +4,9 @@
 
 ## 已完成：readiness preflight
 
-此前预检汇总了 4,507 个 bin 定义、Stage 06 矩阵、Stage 07 调度许可和旧版采样点映射。新的 trace v2 已加入三个计数事件 covergroup；当前按 pinned scoreboard 的启动延迟和倒计时调度取样，并直接观察 RTL 计数值。计数事件时序仍未与 UVM/VCS 实测逐项比对，自动 bin/cross 分区、条件 reset 适用性和 shared identity mapping 仍未解决。Stage 06 与 Stage 07 的旧门禁结果不会由本次 trace 自动升级。
+此前预检汇总了 4,507 个 bin 定义、Stage 06 矩阵、Stage 07 调度许可和旧版采样点映射。新的 trace v2 已加入三个计数事件 covergroup；当前按 pinned scoreboard 的启动延迟和倒计时调度取样，并直接观察 RTL 计数值。计数事件时序仍未与 UVM/VCS 实测逐项比对，自动 bin/cross 分区和 shared identity mapping 仍未解决。`resets_cg` 已由 [`configs/conditional-reset-audit.json`](../configs/conditional-reset-audit.json) 确认在 `num_edn=0` 的 AON Timer 配置中不适用。Stage 06 与 Stage 07 的旧门禁结果不会由本次 trace 自动升级。
 
-因此本轮交付是 count-event trace v2 的固定 RTL 集成、Stage 06 partial 矩阵重建和更新后的 preflight；这不是 online coverage feedback 的实测。最新门禁结果见 [`evidence/stage08_preflight/2026-11-13-count-event-v2-verified/readiness.json`](../evidence/stage08_preflight/2026-11-13-count-event-v2-verified/readiness.json)。
+因此本轮交付是 count-event trace v2 的固定 RTL 集成、`resets_cg` 适用性审计、Stage 06 partial 矩阵重建和更新后的 preflight；这不是 online coverage feedback 的实测。最新门禁结果见 [`evidence/stage08_preflight/2026-11-13-conditional-reset-audited/readiness.json`](../evidence/stage08_preflight/2026-11-13-conditional-reset-audited/readiness.json)。
 
 命令、版本、门禁结果和继续实施条件记录于 [`实施记录.md`](实施记录.md)。
 

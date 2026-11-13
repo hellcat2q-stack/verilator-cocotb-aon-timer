@@ -12,6 +12,8 @@
 
 `tools/import_bin_definitions.py --manifest <coverage_manifest.v1.json>` 校验并导出 revision-matched bin definitions，不复制历史命中数。`tools/import_array_bin_ranges.py --vectors <vectors.csv> --protocol <protocol.json> --mapping-validation <mapping_validation.json>` 只读取 VCS vectors CSV 的首行表头，导出 160 个 timer_cfg 数组 bin 的参考区间与 SHA-256 sidecar；不会读取运行数据行或导入 hit counts。`tools/stage08_preflight.py` 汇总定义目录、数组边界参考、Stage 06 矩阵、Stage 07 scheduler gate 与 `configs/coverage_schema.json` 中的 sample-site mapping 到 `evidence/stage08_preflight/`；其 readiness 输出使用 v2 schema，只做门禁审计，不执行调度或仿真，并明确将 Verilator 区间等价性保留为 blocker。
 
+`tools/audit_conditional_reset.py --source-root <pinned-opentitan>/src --source-revision <revision> --output configs/conditional-reset-audit.json` 检查 AON Timer/CIP DV 源码中的 `num_edn` 声明、覆盖赋值和 `resets_cg` 条件保护。只有确认没有配置覆盖时才输出 `NOT_APPLICABLE_NUM_EDN_ZERO`；该工具不把静态审计当成运行时 VCS/UVM 证据。
+
 `tools/audit_array_bin_observations.py --output <audit.json>` 校验 Stage 05 raw trace hashes 与样本元数据，再将 `timer_cfg_cg` 原始数值按 VCS 参考区间分类。它只导出正向观察 audit，不生成 coverage vector，不对未观察 bins 推断 miss，也不宣称 Verilator coverage parity。
 
 count-event trace v2 为固定 wrapper 增加只读 counter 观察口；`TimerSampleScheduler` 模拟 scoreboard 的 4 个 AON startup clocks、countdown 更新与 expiry sampling，runner 复核每条 count group 的 event shape 和 RTL counter 值。连续 expiry 后还会重入 startup 等待。该模型尚未与独立 VCS/UVM trace 比对，因此其时序属于实现验证状态，不代表 coverage parity；Stage 06 继续只转换 source-confirmed explicit named bins。
