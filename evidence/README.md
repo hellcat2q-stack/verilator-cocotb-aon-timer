@@ -26,8 +26,10 @@
 
 `configs/conditional-reset-audit.json` 是对 pinned AON Timer/CIP DV 源码的静态审计：`resets_cg` 的实例化和采样均受 `cfg.num_edn` 保护，源码树没有对 `num_edn` 的赋值，因此参考配置将该组标记为 `NOT_APPLICABLE_NUM_EDN_ZERO`。它不提供 VCS/UVM 运行时 trace，也不改变其它 coverage blocker。
 
+`stage03_array_bin_partition_audit.json` 核对 160 个数组 bin 的固定源码声明、VCS 参考区间和 Python/Cocotb 端点分类器；四组数组共 640 个端点探针通过。该证据不代表 Verilator 原生覆盖组执行或 VCS/UVM 时序等价。
+
 `stage08_preflight/2026-11-13-conditional-reset-audited/` 是使用该审计更新 sample-site schema 后的最新门禁输出；它仍明确禁止在线调度。
 
 修复 cadence 过程中的临时 build 和 exploratory run 已清理，没有进入最终 evidence。Stage 06/07/preflight 的最终输入全部来自上述 `stage05_count_event_v2_verified/` run。
 
-`references/bin_definitions.v1.json` 保存 4,507 个 revision-matched 类型级 bin 定义，不包含 run hit data；自动分区和 cross product audits 见该文件。`references/array_bin_ranges.v1.json` 保存由 VCS vectors 表头导入的 160 个数组 bin 参考区间，不含历史 hit counts；Verilator 等价性仍未验证。`stage08_preflight/2026-11-13-final-v5/` 记录更新后的 readiness v2 门禁与输入哈希；legacy identity bridge、Verilator 区间等价性、完整 sample APIs 和 exact Stage 06 vectors 尚未完成，因此 scheduler 保持 disabled，且本轮未启动在线 coverage 仿真。
+`references/bin_definitions.v1.json` 保存 4,507 个 revision-matched 类型级 bin 定义，不包含 run hit data；自动分区和 cross product audits 见该文件。`references/array_bin_ranges.v1.json` 保存由 VCS vectors 表头导入的 160 个数组 bin 参考区间，不含历史 hit counts；Python/Cocotb 分区审计已完成，但 native Verilator/SystemVerilog covergroup 等价性仍未验证。`stage08_preflight/2026-11-13-final-v5/` 记录历史 readiness v2 门禁；当前门禁见 `stage08_preflight/2026-11-13-conditional-reset-audited/`，legacy identity bridge、native covergroup parity、完整 sample APIs 和 exact Stage 06 vectors 尚未完成，因此 scheduler 保持 disabled，且本轮未启动在线 coverage 仿真。

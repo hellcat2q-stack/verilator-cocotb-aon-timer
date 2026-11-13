@@ -6,6 +6,6 @@
 
 `coverage_schema.json` 中的 `sample_site_mapping` 登记已接入 raw trace 的采样调用点与未接入项目；只有 `status: COMPLETE`、`complete: true` 且 `unmapped` 为空时，Stage 08 preflight 才会通过采样完整性门。
 
-数组 bin 区间另由 `references/array_bin_ranges.v1.json` 提供 VCS 参考；它是独立的定义证据，不改变当前 raw sample schema 或 Stage 05 冻结 trace。Preflight 会验证完整分区、源码索引和 canonical identity；当前 Verilator/Python 语义等价性必须另行验证，不能仅凭这些参考区间开启 coverage 调度。
+数组 bin 区间另由 `references/array_bin_ranges.v1.json` 提供 VCS 参考；它是独立的定义证据，不改变当前 raw sample schema 或 Stage 05 冻结 trace。`evidence/stage03_array_bin_partition_audit.json` 已验证源码声明的分区和 Python/Cocotb 端点分类；native Verilator/SystemVerilog covergroup 等价性仍未验证，不能仅凭参考区间开启 coverage 调度。
 
 `conditional-reset-audit.json` 记录固定源码对 `resets_cg` 的条件审计。AON Timer 的 `num_edn` 没有覆盖且保持默认零，因此该 covergroup 在参考配置中标记为 `NOT_APPLICABLE_NUM_EDN_ZERO`；这项结论不替代其余 sample-site 和 identity 映射审计。

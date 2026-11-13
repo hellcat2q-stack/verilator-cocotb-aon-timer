@@ -44,13 +44,13 @@
   ],
   "blockers": [
     "Legacy identity bridge resolves only 341 of 4507 canonical columns by exact label.",
-    "VCS reference array-bin partitions have not been verified against the current Verilator coverage semantics.",
+    "Native Verilator/SystemVerilog covergroup equivalence has not been verified; the Python/Cocotb array partition audit does not replace native coverage evidence.",
     "Stage 06 does not contain a complete exact run matrix.",
     "Stage 07 has not enabled coverage-based scheduling.",
     "Sample-site mapping is incomplete; 3 sample or identity mapping item(s) remain unresolved."
   ],
   "next_actions": [
-    "Validate VCS-reference array-bin partition behavior against the current Verilator coverage implementation.",
+    "If native covergroups are required, verify VCS reference array partitions against a native Verilator/SystemVerilog coverage run; the Python/Cocotb partition audit is already complete.",
     "Compare the new count-event trace timing and RTL values against an independent UVM/VCS event trace before claiming sampling parity.",
     "Build a one-to-one mapping from the detailed source definitions to all frozen legacy identities, including auto-bin and cross labels and shared groups.",
     "Rebuild and independently audit exact Stage 06 vectors before enabling Stage 07 scores/UCB and launching Stage 08."

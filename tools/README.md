@@ -14,6 +14,8 @@
 
 `tools/audit_conditional_reset.py --source-root <pinned-opentitan>/src --source-revision <revision> --output configs/conditional-reset-audit.json` 检查 AON Timer/CIP DV 源码中的 `num_edn` 声明、覆盖赋值和 `resets_cg` 条件保护。只有确认没有配置覆盖时才输出 `NOT_APPLICABLE_NUM_EDN_ZERO`；该工具不把静态审计当成运行时 VCS/UVM 证据。
 
+`tools/audit_array_bin_partition.py --source-file <aon_timer_env_cov.sv> --range-catalog references/array_bin_ranges.v1.json --output evidence/stage03_array_bin_partition_audit.json` 重新计算源码声明的均匀数组分区，并对 Python/Cocotb 分类器逐 bin 做上下界探针；它明确保留 native Verilator/SystemVerilog coverage 未验证限制。
+
 `tools/audit_array_bin_observations.py --output <audit.json>` 校验 Stage 05 raw trace hashes 与样本元数据，再将 `timer_cfg_cg` 原始数值按 VCS 参考区间分类。它只导出正向观察 audit，不生成 coverage vector，不对未观察 bins 推断 miss，也不宣称 Verilator coverage parity。
 
 count-event trace v2 为固定 wrapper 增加只读 counter 观察口；`TimerSampleScheduler` 模拟 scoreboard 的 4 个 AON startup clocks、countdown 更新与 expiry sampling，runner 复核每条 count group 的 event shape 和 RTL counter 值。连续 expiry 后还会重入 startup 等待。该模型尚未与独立 VCS/UVM trace 比对，因此其时序属于实现验证状态，不代表 coverage parity；Stage 06 继续只转换 source-confirmed explicit named bins。

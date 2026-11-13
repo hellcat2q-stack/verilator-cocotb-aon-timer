@@ -245,7 +245,10 @@ def audit_preconditions(
             f"{unresolved_array_boundaries} declared array bins have no validated reference value boundaries."
         )
     if array_entries and not array_verilator_equivalence_verified:
-        blockers.append("VCS reference array-bin partitions have not been verified against the current Verilator coverage semantics.")
+        blockers.append(
+            "Native Verilator/SystemVerilog covergroup equivalence has not been verified; "
+            "the Python/Cocotb array partition audit does not replace native coverage evidence."
+        )
     if not auto_partitions_valid:
         blockers.append("The six AON Timer automatic-bin partitions are not fully audited.")
     if not cross_products_valid:
@@ -261,7 +264,7 @@ def audit_preconditions(
         )
 
     next_actions = [
-        "Validate VCS-reference array-bin partition behavior against the current Verilator coverage implementation.",
+        "If native covergroups are required, verify VCS reference array partitions against a native Verilator/SystemVerilog coverage run; the Python/Cocotb partition audit is already complete.",
         "Compare the new count-event trace timing and RTL values against an independent UVM/VCS event trace before claiming sampling parity.",
         "Build a one-to-one mapping from the detailed source definitions to all frozen legacy identities, including auto-bin and cross labels and shared groups.",
         "Rebuild and independently audit exact Stage 06 vectors before enabling Stage 07 scores/UCB and launching Stage 08.",

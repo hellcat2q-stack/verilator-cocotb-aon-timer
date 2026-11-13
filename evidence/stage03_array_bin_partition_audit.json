@@ -1,0 +1,60 @@
+{
+  "schema": "aon-timer-array-bin-partition-audit-v1",
+  "status": "SOURCE_PARTITION_AND_PYTHON_CLASSIFIER_VERIFIED",
+  "source_revision": "9f20940d494a223cc950a5b98f748fb28109d458",
+  "source_file": "hw/ip/aon_timer/dv/env/aon_timer_env_cov.sv",
+  "source_file_sha256": "c0ec937d68c335e2d05760268ce161eca1a40e7f8e50546156c0589882ed9b45",
+  "array_range_catalog_sha256": "1290482072987ba948264e11c962f793186a896f42c5c5ca48baf2bc2de924e5",
+  "arrays": {
+    "prescale": {
+      "source_bin_count": 32,
+      "domain": [
+        1,
+        4095
+      ],
+      "partition_rule": "equal contiguous bins; remainder is assigned to the final bin",
+      "partition_matches_reference": true,
+      "endpoint_probe_count": 128,
+      "endpoint_probes_passed": 128
+    },
+    "bark": {
+      "source_bin_count": 32,
+      "domain": [
+        1,
+        4294967295
+      ],
+      "partition_rule": "equal contiguous bins; remainder is assigned to the final bin",
+      "partition_matches_reference": true,
+      "endpoint_probe_count": 128,
+      "endpoint_probes_passed": 128
+    },
+    "bite": {
+      "source_bin_count": 32,
+      "domain": [
+        1,
+        4294967295
+      ],
+      "partition_rule": "equal contiguous bins; remainder is assigned to the final bin",
+      "partition_matches_reference": true,
+      "endpoint_probe_count": 128,
+      "endpoint_probes_passed": 128
+    },
+    "wkup": {
+      "source_bin_count": 64,
+      "domain": [
+        1,
+        18446744073709551615
+      ],
+      "partition_rule": "equal contiguous bins; remainder is assigned to the final bin",
+      "partition_matches_reference": true,
+      "endpoint_probe_count": 256,
+      "endpoint_probes_passed": 256
+    }
+  },
+  "python_classifier_partition_verified": true,
+  "native_verilator_systemverilog_coverage_verified": false,
+  "limitations": [
+    "The audit verifies source-declared equal partitions and the Python/Cocotb endpoint classifier.",
+    "Verilator does not execute the original SystemVerilog covergroups here; native VCS/Verilator coverage equivalence is not claimed."
+  ]
+}

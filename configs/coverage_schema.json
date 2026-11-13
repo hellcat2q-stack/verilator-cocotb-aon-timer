@@ -25,7 +25,7 @@
     "array_bin_individual_boundaries_status": "VCS_REFERENCE_PARTITIONS_IMPORTED_VERILATOR_EQUIVALENCE_UNVERIFIED",
     "array_bin_range_catalog": "references/array_bin_ranges.v1.json",
     "array_bin_range_catalog_sha256": "aa7acb62bfe5e49777250aa72695d29a92493a57fe1ec76b6f18f2dc051bba27",
-    "array_bin_partition_note": "160 interval labels imported from a compatibility-project VCS vector CSV header only; no run rows or hit counts. Current Verilator/Python coverage equivalence is unverified.",
+    "array_bin_partition_note": "160 interval labels imported from a compatibility-project VCS vector CSV header only; no run rows or hit counts. Source-declared partitions and Python/Cocotb endpoint classification are audited; native Verilator/SystemVerilog covergroup equivalence remains unverified.",
     "historical_hit_counts_imported": false,
     "identity_mapping_status": "PARTIAL_LEGACY_LABEL_BRIDGE"
   },
