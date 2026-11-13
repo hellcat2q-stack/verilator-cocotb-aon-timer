@@ -23,6 +23,6 @@ vector 文件可选；放在 `vector-dir/<run_id>.json`。当前冻结 run 的 p
 
 ## 当前结果
 
-初始无 vector 的 scaffold 仍保留在 [`evidence/stage06_initial/`](../evidence/stage06_initial/)。最新 partial 审计见 [`evidence/stage06_partial/coverage_matrix_audit.json`](../evidence/stage06_partial/coverage_matrix_audit.json)，矩阵见 [`coverage_bin_by_run.csv`](../evidence/stage06_partial/coverage_bin_by_run.csv)。CSV 包含 12 个 run metadata 字段和 4,507 个 bin identity 字段；当前 run 有 7 个 known hit、0 个 inferred miss、4,500 个 unknown。该结果表明稀疏命中已从有效 raw trace 导出，但不是完整覆盖率报告。
+初始无 vector 的 scaffold 仍保留在 [`evidence/stage06_initial/`](../evidence/stage06_initial/)。初始 partial 审计见 [`evidence/stage06_partial/coverage_matrix_audit.json`](../evidence/stage06_partial/coverage_matrix_audit.json)；最终 count-event v2 矩阵见 [`evidence/stage06_count_event_v2_verified/matrix/coverage_matrix_audit.json`](../evidence/stage06_count_event_v2_verified/matrix/coverage_matrix_audit.json)。新 vector 记录 13 个明确命名 bins 为 known hit，0 个 inferred miss，4,494 个 unknown；CSV 仍包含 12 个 run metadata 字段和 4,507 个 bin identity 字段。count-event trace 的 auto-bin/cross mapping 尚未解决，所以新增加的 count samples 不会被错误地解释为完整 coverage 向量。
 
 精确 coverage mapping 仍需补全阶段 03 中的 array/auto-bin 取值分区和共享 coverage sample API，并将未接入的 sample sites 接入实际 Cocotb 时序。完成前不得把未知单元当作 miss，不得用于 coverage-driven 调度或覆盖率对比。

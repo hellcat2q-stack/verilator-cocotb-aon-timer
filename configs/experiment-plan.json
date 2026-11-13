@@ -5,7 +5,7 @@
   "coverage": {
     "canonical_bins": 4507,
     "urg_dashboard_reference": 4525,
-    "schema": "aon_timer_uvm_source_trace_v1",
+    "schema": "aon_timer_uvm_source_trace_v2",
     "python_sampling_model": "raw_trace_only_no_canonical_vector"
   },
   "simulator": "Verilator",

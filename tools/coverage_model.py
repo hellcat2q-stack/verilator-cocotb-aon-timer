@@ -15,6 +15,10 @@ from typing import Any
 
 
 SOURCE_REVISION = "9f20940d494a223cc950a5b98f748fb28109d458"
+SUPPORTED_COVERAGE_SCHEMA_IDS = {
+    "aon_timer_uvm_source_trace_v1",
+    "aon_timer_uvm_source_trace_v2",
+}
 SCHEMA_PATH = Path(__file__).resolve().parents[1] / "configs" / "coverage_schema.json"
 BIN_CATALOG_PATH = Path(__file__).resolve().parents[1] / "references" / "canonical_bin_catalog.json"
 BIN_IDS_PATH = Path(__file__).resolve().parents[1] / "references" / "canonical_bin_ids.txt"
@@ -25,7 +29,91 @@ def load_schema(path: Path = SCHEMA_PATH) -> dict[str, Any]:
         schema = json.load(stream)
     if schema.get("source_revision") != SOURCE_REVISION:
         raise ValueError("coverage schema source revision does not match this model")
+    if schema.get("schema_id") not in SUPPORTED_COVERAGE_SCHEMA_IDS:
+        raise ValueError("unsupported coverage trace schema")
     return schema
+
+
+class TimerSampleScheduler:
+    """Model the pinned scoreboard's startup and countdown sample cadence."""
+
+    def __init__(self, startup_cycles: int = 4):
+        if startup_cycles < 0:
+            raise ValueError("startup_cycles must be non-negative")
+        self.startup_cycles = startup_cycles
+        self.waiting_for_enable = True
+        self.startup_remaining = startup_cycles
+        self.countdown_cycles = 0
+        self.post_expiry_remaining = 0
+
+    def enable(self) -> None:
+        if self.waiting_for_enable:
+            self.waiting_for_enable = False
+            self.startup_remaining = self.startup_cycles
+            self.countdown_cycles = 0
+
+    def disable(self) -> None:
+        self.waiting_for_enable = True
+        self.startup_remaining = self.startup_cycles
+        self.countdown_cycles = 0
+        self.post_expiry_remaining = 0
+
+    def restart_after_expiry(self) -> None:
+        self.disable()
+
+    def tick(
+        self,
+        *,
+        enabled: bool,
+        target_cycles: int,
+        update_due: bool = False,
+        post_expiry_cycles: int = 0,
+    ) -> list[str]:
+        """Return sample events emitted on this AON clock edge."""
+        if target_cycles < 0:
+            raise ValueError("target_cycles must be non-negative")
+        if post_expiry_cycles < 0:
+            raise ValueError("post_expiry_cycles must be non-negative")
+        if not enabled:
+            self.disable()
+            return []
+        if self.post_expiry_remaining:
+            self.post_expiry_remaining -= 1
+            return []
+        self.enable()
+        if self.startup_remaining:
+            self.startup_remaining -= 1
+            if self.startup_remaining or target_cycles:
+                return []
+            self.waiting_for_enable = True
+            self.startup_remaining = self.startup_cycles
+            self.post_expiry_remaining = post_expiry_cycles
+            return ["expiry"]
+        if update_due:
+            self.countdown_cycles = 0
+            if target_cycles == 0:
+                self.waiting_for_enable = True
+                self.startup_remaining = self.startup_cycles
+                self.post_expiry_remaining = post_expiry_cycles
+                return ["expiry"]
+            self.countdown_cycles = 1
+            if self.countdown_cycles == target_cycles:
+                self.waiting_for_enable = True
+                self.startup_remaining = self.startup_cycles
+                self.post_expiry_remaining = post_expiry_cycles
+                return ["count", "expiry"]
+            return ["count"]
+        if self.countdown_cycles < target_cycles:
+            self.countdown_cycles += 1
+            if self.countdown_cycles == target_cycles:
+                self.waiting_for_enable = True
+                self.post_expiry_remaining = post_expiry_cycles
+                return ["count", "expiry"]
+            return ["count"]
+        self.waiting_for_enable = True
+        self.startup_remaining = self.startup_cycles
+        self.post_expiry_remaining = post_expiry_cycles
+        return ["expiry"]
 
 
 def load_bin_catalog() -> tuple[dict[str, Any], list[str]]:
@@ -275,13 +363,18 @@ class CoverageTrace:
         return record
 
     def to_dict(self) -> dict[str, Any]:
+        coverage_status = (
+            "SAMPLE_TRACE_WITH_COUNT_EVENTS_CANONICAL_IDENTITIES_AVAILABLE_VALUE_PARTITIONS_UNMAPPED"
+            if self.schema["schema_id"] == "aon_timer_uvm_source_trace_v2"
+            else "SAMPLE_TRACE_ONLY_CANONICAL_IDENTITIES_AVAILABLE_VALUE_PARTITIONS_UNMAPPED"
+        )
         return {
             "schema_id": self.schema["schema_id"],
             "source_revision": SOURCE_REVISION,
             "run_id": self.run_id,
             "testcase": self.testcase,
             "seed": self.seed,
-            "coverage_status": "SAMPLE_TRACE_ONLY_CANONICAL_IDENTITIES_AVAILABLE_VALUE_PARTITIONS_UNMAPPED",
+            "coverage_status": coverage_status,
             "canonical_bin_count": None,
             "canonical_bin_vector": None,
             "canonical_bin_identity_count": self.bin_catalog["canonical_bin_count"],

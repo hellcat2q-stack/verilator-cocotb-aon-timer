@@ -20,6 +20,6 @@ PYTHONHASHSEED=0 python3 tools/stage07_clustering.py \
 
 ## 验收边界
 
-聚类 mapping 可作为后续通用 API 的静态输入；当前矩阵仅有 sparse known hits，没有可确认的 misses 或完整 residual set，因此不生成自信息分数、动态 residual prior 或 UCB scheduler state，也不启动阶段 08。最新 blocker 记录见 [`evidence/stage07_partial/scheduler_input.json`](../evidence/stage07_partial/scheduler_input.json)。此阶段不表示生成了完整 coverage vector 或复现了论文覆盖率结果。
+聚类 mapping 可作为后续通用 API 的静态输入；当前矩阵仅有 sparse known hits，没有可确认的 misses 或完整 residual set，因此不生成自信息分数、动态 residual prior 或 UCB scheduler state，也不启动阶段 08。最新 count-event v2 blocker 记录见 [`evidence/stage07_count_event_v2_verified/scheduler_input.json`](../evidence/stage07_count_event_v2_verified/scheduler_input.json)。此阶段不表示生成了完整 coverage vector 或复现了论文覆盖率结果。
 
 算法来源和版本记录见 `实施记录.md`；静态聚类 mapping 见 `evidence/stage07_initial/`，最新 exact-vector blocker 见 `evidence/stage07_partial/`。

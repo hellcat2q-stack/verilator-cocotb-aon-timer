@@ -20,6 +20,11 @@ try:
 except ModuleNotFoundError:  # Support importing as tools.audit_array_bin_observations.
     from tools.stage08_preflight import validate_array_range_catalog
 
+try:
+    from coverage_model import SUPPORTED_COVERAGE_SCHEMA_IDS
+except ModuleNotFoundError:  # Support importing as tools.audit_array_bin_observations.
+    from tools.coverage_model import SUPPORTED_COVERAGE_SCHEMA_IDS
+
 
 ROOT = Path(__file__).resolve().parents[1]
 PINNED_REVISION = "9f20940d494a223cc950a5b98f748fb28109d458"
@@ -112,7 +117,7 @@ def audit_observations(
         raise ValueError("unsupported Stage 05 corpus manifest schema")
     if corpus.get("source_revision") != PINNED_REVISION:
         raise ValueError("corpus source revision does not match pinned RTL")
-    if corpus.get("coverage_schema_id") != coverage_schema.get("schema_id"):
+    if corpus.get("coverage_schema_id") not in SUPPORTED_COVERAGE_SCHEMA_IDS:
         raise ValueError("corpus and coverage schema IDs disagree")
     timer_cfg_group = next(
         (group for group in coverage_schema.get("groups", []) if group.get("name") == "timer_cfg_cg"),

@@ -4,7 +4,11 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from tools.run_stage05_corpus import parse_results_xml, summarize_coverage_trace
+from tools.run_stage05_corpus import (
+    parse_results_xml,
+    summarize_coverage_trace,
+    validate_count_event_sample,
+)
 from tools.stage05_corpus import (
     DEFAULT_FREEZE_PATH,
     DEFAULT_POOL_PATH,
@@ -14,7 +18,26 @@ from tools.stage05_corpus import (
 )
 
 
+COUNT_EVENT_FREEZE_PATH = DEFAULT_POOL_PATH.with_name("stage05-count-event-trace-freeze.json")
+
+
 class Stage05CorpusTests(unittest.TestCase):
+    def test_count_event_trace_requires_matching_rtl_probe_and_valid_event_shape(self):
+        sample = {
+            "covergroup": "watchdog_timer_bark_thold_hit_cg",
+            "fields": {"wdog_count": 7},
+            "capture_event": "aon_countdown_bark_expiry",
+            "scoreboard_countdown_cycles": 2,
+            "scoreboard_target_cycles": 2,
+            "rtl_count": 7,
+        }
+        self.assertTrue(validate_count_event_sample(sample))
+        sample["rtl_count"] = 8
+        self.assertFalse(validate_count_event_sample(sample))
+        sample["rtl_count"] = 7
+        sample["scoreboard_countdown_cycles"] = 1
+        self.assertFalse(validate_count_event_sample(sample))
+
     def test_frozen_pool_has_unique_seed_and_supported_testcase_order(self):
         pool, freeze, pool_hash = load_frozen_pool()
         self.assertEqual(pool["source_revision"], "9f20940d494a223cc950a5b98f748fb28109d458")
@@ -24,6 +47,12 @@ class Stage05CorpusTests(unittest.TestCase):
         self.assertEqual(pool["budget"]["suite_runs"], 1)
         self.assertEqual(len(pool_hash), 64)
         self.assertFalse(pool["coverage_policy"]["generate_coverage_vector"])
+
+    def test_count_event_trace_has_its_own_valid_freeze_record(self):
+        pool, freeze, pool_hash = load_frozen_pool(DEFAULT_POOL_PATH, COUNT_EVENT_FREEZE_PATH)
+        self.assertEqual(freeze["freeze_id"], "stage05-count-event-trace-v2-seed1-v1")
+        self.assertEqual(pool_hash, freeze["pool_sha256"])
+        self.assertEqual(pool["seed_list"], [1])
 
     def test_freeze_rejects_modified_pool_hash(self):
         freeze = json.loads(DEFAULT_FREEZE_PATH.read_text(encoding="utf-8"))
@@ -58,7 +87,7 @@ class Stage05CorpusTests(unittest.TestCase):
             trace_dir = run_root / "coverage-traces"
             trace_dir.mkdir()
             trace = {
-                "schema_id": "aon_timer_uvm_source_trace_v1",
+                "schema_id": "aon_timer_uvm_source_trace_v2",
                 "run_id": "run-1",
                 "seed": 1,
                 "source_revision": "9f20940d494a223cc950a5b98f748fb28109d458",
@@ -80,7 +109,7 @@ class Stage05CorpusTests(unittest.TestCase):
                 "run_id": "run-1",
                 "seed": 1,
                 "source_revision": "9f20940d494a223cc950a5b98f748fb28109d458",
-                "coverage_schema_id": "aon_timer_uvm_source_trace_v1",
+                "coverage_schema_id": "aon_timer_uvm_source_trace_v2",
                 "testcases": ["case_a"],
                 "coverage_vector": None,
                 "coverage_trace": {

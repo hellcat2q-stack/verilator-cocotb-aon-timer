@@ -1,0 +1,48 @@
+{
+  "schema": "aon-timer-count-event-iteration-audit-v1",
+  "final_run": "stage05-count-event-trace-v2-seed1-v1-seed1",
+  "superseded_iterations": [
+    {
+      "directory": "stage04_count_event_v2",
+      "result": "FUNCTIONAL_PASS_TRACE_MODEL_PRELIMINARY",
+      "finding": "The initial monitor modeled only the first timer startup and omitted the scoreboard re-entry delay after expiry."
+    },
+    {
+      "directory": "stage05_count_event_v2",
+      "result": "FROZEN_SUITE_PASS_TRACE_CADENCE_SUPERSEDED",
+      "finding": "The first frozen count-event run inherited the preliminary expiry restart model."
+    },
+    {
+      "directory": "stage05_count_event_v2_final",
+      "result": "FROZEN_SUITE_PASS_TRACE_CADENCE_SUPERSEDED",
+      "finding": "The restart delay was adjusted, then source review found update_due first-sample handling still needed correction."
+    },
+    {
+      "directory": "stage05_count_event_v2_superseded_update_timing",
+      "result": "FROZEN_SUITE_PASS_TRACE_UPDATE_EDGE_SUPERSEDED",
+      "finding": "Expiry restart cadence was modeled, then dynamic update_due semantics were corrected in the final run."
+    },
+    {
+      "directory": "stage06_count_event_v2",
+      "result": "PARTIAL_VECTOR_SUPERSEDED",
+      "finding": "Derived from an earlier exploratory trace; use the _verified matrix and vector."
+    },
+    {
+      "directory": "stage07_count_event_v2",
+      "result": "SCHEDULER_BLOCKER_SUPERSEDED",
+      "finding": "Refreshed from an earlier exploratory matrix; use the _verified scheduler input."
+    },
+    {
+      "directory": "stage08_preflight/2026-11-13-count-event-v2",
+      "result": "READINESS_SUPERSEDED",
+      "finding": "Generated from earlier exploratory Stage 06 and Stage 07 evidence."
+    }
+  ],
+  "final_evidence": {
+    "stage05": "stage05_count_event_v2_verified/corpus_manifest.json",
+    "stage06": "stage06_count_event_v2_verified/matrix/coverage_matrix_audit.json",
+    "stage07": "stage07_count_event_v2_verified/scheduler_input.json",
+    "stage08": "stage08_preflight/2026-11-13-count-event-v2-verified/readiness.json"
+  },
+  "policy": "Superseded generated builds and raw traces were not used in the final matrix; their dispositions and corrective findings are retained here."
+}

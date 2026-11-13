@@ -15,7 +15,9 @@ module aon_timer_tb (
   output logic        wkup_req_o,
   output logic        rst_req_o,
   output logic        intr_wkup_o,
-  output logic        intr_wdog_o
+  output logic        intr_wdog_o,
+  output logic [63:0] dbg_wkup_count_o,
+  output logic [31:0] dbg_wdog_count_o
 );
   tlul_pkg::tl_h2d_t tl_i;
   tlul_pkg::tl_d2h_t tl_o;
@@ -59,4 +61,9 @@ module aon_timer_tb (
     .aon_timer_rst_req_o(rst_req_o),
     .sleep_mode_i(1'b0)
   );
+
+  // Read-only simulation probes used to mirror scoreboard count-event samples.
+  // Keep these outside the pinned OpenTitan RTL so synthesis behavior is unchanged.
+  assign dbg_wkup_count_o = dut.u_core.wkup_count;
+  assign dbg_wdog_count_o = dut.u_core.reg2hw_i.wdog_count.q;
 endmodule

@@ -14,4 +14,6 @@
 
 `tools/audit_array_bin_observations.py --output <audit.json>` 校验 Stage 05 raw trace hashes 与样本元数据，再将 `timer_cfg_cg` 原始数值按 VCS 参考区间分类。它只导出正向观察 audit，不生成 coverage vector，不对未观察 bins 推断 miss，也不宣称 Verilator coverage parity。
 
-阶段 04 runner 通过 `tools/cocotb_coverage_adapter.py` 在可观测的 TL CSR write/read 与 AON pin 事件上追加 source-aligned raw trace JSON；文件由 testcase `finally` 路径保存并在 run manifest 中记录哈希。阶段 05 runner 复核每个 trace 文件的 hash、样本总数、covergroup 分布和 testcase/source/schema 元数据，并把摘要写入 attempt/corpus manifest。`tools/raw_trace_to_vectors.py` 只把 source-confirmed named explicit-bin hits 转成 `PARTIAL_VALIDATED` sparse vectors，不推断 miss；count-event samples、conditional reset group 和共享 228 identities 未接入。
+count-event trace v2 为固定 wrapper 增加只读 counter 观察口；`TimerSampleScheduler` 模拟 scoreboard 的 4 个 AON startup clocks、countdown 更新与 expiry sampling，runner 复核每条 count group 的 event shape 和 RTL counter 值。连续 expiry 后还会重入 startup 等待。该模型尚未与独立 VCS/UVM trace 比对，因此其时序属于实现验证状态，不代表 coverage parity；Stage 06 继续只转换 source-confirmed explicit named bins。
+
+阶段 04 runner 通过 `tools/cocotb_coverage_adapter.py` 在可观测的 TL CSR write/read、AON pin 变化及三个计数器 covergroup 上追加 raw trace JSON。计数器事件按 pinned scoreboard 的 4 周期启动延迟、倒计时长度和到期额外采样建模，计数值由仿真顶层只读输出观察；尚未与 UVM/VCS 仿真逐事件比对，所以不宣称时序等价。文件由 testcase `finally` 路径保存并在 run manifest 中记录哈希。trace schema v2 与旧版 v1 并存，阶段 05 runner 复核每个 trace 的 hash、样本总数、covergroup 分布和元数据。`tools/raw_trace_to_vectors.py` 只把 source-confirmed named explicit-bin hits 转成 `PARTIAL_VALIDATED` sparse vectors，不推断 miss；auto-bin/cross partition、条件 reset 适用性和共享 228 identities 仍未解决。

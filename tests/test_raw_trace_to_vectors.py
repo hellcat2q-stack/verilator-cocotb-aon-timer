@@ -11,7 +11,7 @@ from tools.stage06_matrix import load_canonical_ids, load_run_vector
 
 
 SOURCE_REVISION = "9f20940d494a223cc950a5b98f748fb28109d458"
-COVERAGE_SCHEMA = "aon_timer_uvm_source_trace_v1"
+COVERAGE_SCHEMA = "aon_timer_uvm_source_trace_v2"
 BIN_ID = "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_0||0"
 
 

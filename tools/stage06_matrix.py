@@ -15,6 +15,11 @@ from collections import Counter
 from pathlib import Path
 from typing import Any
 
+try:
+    from coverage_model import SUPPORTED_COVERAGE_SCHEMA_IDS
+except ModuleNotFoundError:  # Support importing as tools.stage06_matrix.
+    from tools.coverage_model import SUPPORTED_COVERAGE_SCHEMA_IDS
+
 
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG_PATH = ROOT / "references" / "canonical_bin_catalog.json"
@@ -136,7 +141,7 @@ def build_matrix(
         raise ValueError("unsupported corpus manifest schema")
     if corpus.get("source_revision") != PINNED_REVISION:
         raise ValueError("corpus manifest source revision does not match pinned RTL")
-    if corpus.get("coverage_schema_id") != "aon_timer_uvm_source_trace_v1":
+    if corpus.get("coverage_schema_id") not in SUPPORTED_COVERAGE_SCHEMA_IDS:
         raise ValueError("corpus manifest references an unsupported coverage schema")
     if not corpus.get("pool_id") or not corpus.get("pool_sha256"):
         raise ValueError("corpus manifest is missing frozen pool identity")

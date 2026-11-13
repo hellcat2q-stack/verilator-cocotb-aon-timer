@@ -28,6 +28,11 @@ except ModuleNotFoundError:  # Support importing this file as tools.raw_trace_to
         sha256_file,
     )
 
+try:
+    from coverage_model import SUPPORTED_COVERAGE_SCHEMA_IDS
+except ModuleNotFoundError:  # Support importing as tools.raw_trace_to_vectors.
+    from tools.coverage_model import SUPPORTED_COVERAGE_SCHEMA_IDS
+
 
 def convert_corpus(
     corpus_path: Path,
@@ -48,7 +53,7 @@ def convert_corpus(
         raise ValueError("unsupported Stage 05 corpus manifest schema")
     if corpus.get("source_revision") != PINNED_REVISION:
         raise ValueError("corpus source revision does not match pinned RTL")
-    if corpus.get("coverage_schema_id") != "aon_timer_uvm_source_trace_v1":
+    if corpus.get("coverage_schema_id") not in SUPPORTED_COVERAGE_SCHEMA_IDS:
         raise ValueError("unsupported coverage schema")
     if not corpus.get("pool_id") or not corpus.get("pool_sha256"):
         raise ValueError("corpus manifest is missing frozen pool identity")

@@ -1,0 +1,222 @@
+{
+  "schema": "aon-timer-stage05-corpus-manifest-v1",
+  "freeze_id": "stage05-count-event-trace-v2-seed1-v1",
+  "pool_id": "aon-timer-functional-pool-v1",
+  "pool_path": "configs/stage05-test-pool.json",
+  "pool_sha256": "b142a0c46c8f87b4b9fbf6117231df34a958953b2310fc368850cfb637ea27a3",
+  "freeze_sha256": "6c566bc41188dead5269b952048a52b547008020a6bd4233161124e602b878d0",
+  "source_revision": "9f20940d494a223cc950a5b98f748fb28109d458",
+  "coverage_schema_id": "aon_timer_uvm_source_trace_v2",
+  "created_utc": "2026-11-13T10:07:01.554574+00:00",
+  "status": "PASS",
+  "budget": {
+    "suite_runs": 1,
+    "workers": 1,
+    "wall_clock_timeout_seconds_per_run": 300,
+    "simulation_time_limit_ns_per_suite": 25000
+  },
+  "workers_used": 1,
+  "attempt_count": 1,
+  "attempts": [
+    {
+      "run_id": "stage05-count-event-trace-v2-seed1-v1-seed1",
+      "seed": 1,
+      "result": "PASS",
+      "shell_exit_code": 0,
+      "tests_run": 4,
+      "tests_passed": 4,
+      "tests_failed": 0,
+      "testcases": [
+        {
+          "name": "aon_timer_smoke_sequence",
+          "result": "PASS",
+          "simulation_time_ns": 2040.001
+        },
+        {
+          "name": "aon_timer_jump_sequence",
+          "result": "PASS",
+          "simulation_time_ns": 3601.001
+        },
+        {
+          "name": "aon_timer_prescaler_sequence",
+          "result": "PASS",
+          "simulation_time_ns": 6180.001
+        },
+        {
+          "name": "aon_timer_intr_test_sequence",
+          "result": "PASS",
+          "simulation_time_ns": 1520.0010000000002
+        }
+      ],
+      "simulation_time_ns": 13341.004,
+      "randomized_stimulus": false,
+      "coverage_schema_id": "aon_timer_uvm_source_trace_v2",
+      "coverage_trace": {
+        "status": "PARTIAL_SOURCE_SAMPLE_TRACE",
+        "canonical_vector_generated": false,
+        "validated": true,
+        "file_count": 4,
+        "total_sample_count": 201,
+        "sample_counts_by_covergroup": {
+          "intr_pins_cg": 20,
+          "timer_cfg_cg": 78,
+          "intr_test_cg": 4,
+          "intr_cg": 10,
+          "wake_up_timer_thold_hit_cg": 40,
+          "watchdog_timer_bark_thold_hit_cg": 22,
+          "watchdog_timer_bite_thold_hit_cg": 27
+        },
+        "resolved_canonical_bin_identity_hit_counts": {
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_0||0": 69,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_max||0": 5,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_0||0": 71,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_max||0": 5,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_0||0": 77,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0": 78,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_0||0": 55,
+          "aon_timer_env_pkg::aon_timer_env_cov::wake_up_timer_thold_hit_cg||variable||wkup_int_cp||name:set||0": 9,
+          "aon_timer_env_pkg::aon_timer_env_cov::wake_up_timer_thold_hit_cg||variable||wkup_int_cp||name:unset||0": 31,
+          "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bark_thold_hit_cg||variable||wdog_bark_int_cp||name:set||0": 5,
+          "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bark_thold_hit_cg||variable||wdog_bark_int_cp||name:unset||0": 17,
+          "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bite_thold_hit_cg||variable||wdog_bite_rst_cp||name:set||0": 2,
+          "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bite_thold_hit_cg||variable||wdog_bite_rst_cp||name:unset||0": 25
+        },
+        "files": {
+          "stage05-count-event-trace-v2-seed1-v1-seed1__aon_timer_intr_test_sequence__seed1.json": {
+            "testcase": "aon_timer_intr_test_sequence",
+            "sha256": "26d160514956ff6d0d5a9cdda8ae2018fb2dd8860fef554af8a7474a9c9d2586",
+            "sample_count": 23,
+            "sample_counts_by_covergroup": {
+              "intr_pins_cg": 2,
+              "timer_cfg_cg": 13,
+              "intr_test_cg": 4,
+              "intr_cg": 4
+            },
+            "coverage_status": "SAMPLE_TRACE_WITH_COUNT_EVENTS_CANONICAL_IDENTITIES_AVAILABLE_VALUE_PARTITIONS_UNMAPPED",
+            "count_event_samples_valid": true,
+            "validation": "PASS",
+            "checks": {
+              "sha256": true,
+              "sample_count": true,
+              "sample_counts_by_covergroup": true,
+              "resolved_identity_hit_counts": true,
+              "count_event_samples": true,
+              "coverage_status": true,
+              "run_id": true,
+              "seed": true,
+              "source_revision": true,
+              "coverage_schema_id": true,
+              "no_canonical_vector": true
+            }
+          },
+          "stage05-count-event-trace-v2-seed1-v1-seed1__aon_timer_jump_sequence__seed1.json": {
+            "testcase": "aon_timer_jump_sequence",
+            "sha256": "557747389ba9bd758e2e5388f7fba39075e609ffcbbd3cea745b683bf08fd77b",
+            "sample_count": 85,
+            "sample_counts_by_covergroup": {
+              "intr_pins_cg": 6,
+              "timer_cfg_cg": 21,
+              "wake_up_timer_thold_hit_cg": 18,
+              "watchdog_timer_bark_thold_hit_cg": 19,
+              "watchdog_timer_bite_thold_hit_cg": 21
+            },
+            "coverage_status": "SAMPLE_TRACE_WITH_COUNT_EVENTS_CANONICAL_IDENTITIES_AVAILABLE_VALUE_PARTITIONS_UNMAPPED",
+            "count_event_samples_valid": true,
+            "validation": "PASS",
+            "checks": {
+              "sha256": true,
+              "sample_count": true,
+              "sample_counts_by_covergroup": true,
+              "resolved_identity_hit_counts": true,
+              "count_event_samples": true,
+              "coverage_status": true,
+              "run_id": true,
+              "seed": true,
+              "source_revision": true,
+              "coverage_schema_id": true,
+              "no_canonical_vector": true
+            }
+          },
+          "stage05-count-event-trace-v2-seed1-v1-seed1__aon_timer_prescaler_sequence__seed1.json": {
+            "testcase": "aon_timer_prescaler_sequence",
+            "sha256": "4d549042e83803cd5db278afea25949a719f48b74ac2802b4c160053c9c3b52e",
+            "sample_count": 57,
+            "sample_counts_by_covergroup": {
+              "intr_pins_cg": 8,
+              "timer_cfg_cg": 28,
+              "wake_up_timer_thold_hit_cg": 17,
+              "intr_cg": 4
+            },
+            "coverage_status": "SAMPLE_TRACE_WITH_COUNT_EVENTS_CANONICAL_IDENTITIES_AVAILABLE_VALUE_PARTITIONS_UNMAPPED",
+            "count_event_samples_valid": true,
+            "validation": "PASS",
+            "checks": {
+              "sha256": true,
+              "sample_count": true,
+              "sample_counts_by_covergroup": true,
+              "resolved_identity_hit_counts": true,
+              "count_event_samples": true,
+              "coverage_status": true,
+              "run_id": true,
+              "seed": true,
+              "source_revision": true,
+              "coverage_schema_id": true,
+              "no_canonical_vector": true
+            }
+          },
+          "stage05-count-event-trace-v2-seed1-v1-seed1__aon_timer_smoke_sequence__seed1.json": {
+            "testcase": "aon_timer_smoke_sequence",
+            "sha256": "16e8e87ad64d0d37cc7f67e42e6d052cc3215c661a8301215f3513eab0f03332",
+            "sample_count": 36,
+            "sample_counts_by_covergroup": {
+              "timer_cfg_cg": 16,
+              "wake_up_timer_thold_hit_cg": 5,
+              "watchdog_timer_bark_thold_hit_cg": 3,
+              "watchdog_timer_bite_thold_hit_cg": 6,
+              "intr_pins_cg": 4,
+              "intr_cg": 2
+            },
+            "coverage_status": "SAMPLE_TRACE_WITH_COUNT_EVENTS_CANONICAL_IDENTITIES_AVAILABLE_VALUE_PARTITIONS_UNMAPPED",
+            "count_event_samples_valid": true,
+            "validation": "PASS",
+            "checks": {
+              "sha256": true,
+              "sample_count": true,
+              "sample_counts_by_covergroup": true,
+              "resolved_identity_hit_counts": true,
+              "count_event_samples": true,
+              "coverage_status": true,
+              "run_id": true,
+              "seed": true,
+              "source_revision": true,
+              "coverage_schema_id": true,
+              "no_canonical_vector": true
+            }
+          }
+        }
+      },
+      "toolchain": {
+        "python": "3.12.3",
+        "cocotb": "1.9.2",
+        "verilator": "5.020",
+        "fusesoc": "0.5.dev0",
+        "edalize": "0.4.0"
+      },
+      "run_manifest_sha256": "e1a774f40003e7ed24207de604826c6959a017a5cd3d468138ef361132a1c6aa",
+      "results_xml_sha256": "ac15ef01b8824a82f9fa66630c43bdf359447c08b43a8ac77733ead55caec6ba",
+      "stage04_log_sha256": "665990c952d689cabbab94dca733c4da85befb509798bd677f63d12d99946ec7"
+    }
+  ],
+  "source_file_sha256": {
+    "tools/test_sequences.py": "4018ee80b0b80ecf8112301aad80b02ee37f328c12b8272d2a94cf7d02939ce4",
+    "tools/aon_timer_tb.sv": "8b9f34aaa6fec73d0e3cc4940bfd8a601ab4447c908d6a50007ebd4f429f83ca",
+    "tools/coverage_model.py": "2af8d7d15923efccc22de793df4e051ce93d49e2853940cb998d665c92121d04",
+    "tools/cocotb_coverage_adapter.py": "306b20586351502e5d065f48ca557f91b2f8d50ecd4bb77386c309775b68827c",
+    "tools/run_stage04_tests.sh": "5d7848015acf85ed044235885024bcb306d1398b5849ab2dc53dd39798008667",
+    "tools/stage05_corpus.py": "493975e0ced2745df0c32856db46bce2611332a92450e6e37e9cbf3ceba09a95",
+    "tools/run_stage05_corpus.py": "b40a200433ee874d32bfb5a09b66cf0142b035f32967eb0fe91382145a3b3f7e",
+    "configs/coverage_schema.json": "91ed7e94413f6c181748a5f69271ec40efd2ea980f79cc2ad806ac1dc7b84d92"
+  },
+  "coverage_vector_generated": false,
+  "note": "This is a functional testcase corpus; it is not a canonical coverage vector."
+}

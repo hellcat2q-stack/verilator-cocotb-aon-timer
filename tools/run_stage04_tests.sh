@@ -84,7 +84,7 @@ manifest = {
     "run_id": run_id,
     "source_revision": actual_revision,
     "expected_source_revision": "9f20940d494a223cc950a5b98f748fb28109d458",
-    "coverage_schema_id": "aon_timer_uvm_source_trace_v1",
+    "coverage_schema_id": "aon_timer_uvm_source_trace_v2",
     "test_module": "test_sequences",
     "testcases": [
         "aon_timer_smoke_sequence",

@@ -129,6 +129,48 @@ class CoverageTraceTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.trace.sample_interrupt(intr=2, intr_en=0, intr_state=0)
 
+    def test_timer_sample_scheduler_matches_start_count_expiry_and_restart(self):
+        from tools.coverage_model import TimerSampleScheduler
+
+        scheduler = TimerSampleScheduler(startup_cycles=4)
+        self.assertEqual(
+            [scheduler.tick(enabled=True, target_cycles=2) for _ in range(4)],
+            [[], [], [], []],
+        )
+        self.assertEqual(scheduler.tick(enabled=True, target_cycles=2), ["count"])
+        self.assertEqual(
+            scheduler.tick(enabled=True, target_cycles=2, post_expiry_cycles=1),
+            ["count", "expiry"],
+        )
+        self.assertEqual(scheduler.tick(enabled=True, target_cycles=2), [])
+        for _ in range(4):
+            self.assertEqual(scheduler.tick(enabled=True, target_cycles=2), [])
+        self.assertEqual(scheduler.tick(enabled=True, target_cycles=2), ["count"])
+
+    def test_timer_sample_scheduler_emits_expiry_for_zero_countdown(self):
+        from tools.coverage_model import TimerSampleScheduler
+
+        scheduler = TimerSampleScheduler(startup_cycles=2)
+        self.assertEqual(scheduler.tick(enabled=True, target_cycles=0), [])
+        self.assertEqual(scheduler.tick(enabled=True, target_cycles=0), ["expiry"])
+
+    def test_timer_sample_scheduler_resets_and_counts_on_first_edge_after_update(self):
+        from tools.coverage_model import TimerSampleScheduler
+
+        scheduler = TimerSampleScheduler(startup_cycles=0)
+        self.assertEqual(scheduler.tick(enabled=True, target_cycles=4), ["count"])
+        self.assertEqual(
+            scheduler.tick(enabled=True, target_cycles=2, update_due=True), ["count"]
+        )
+        self.assertEqual(scheduler.tick(enabled=True, target_cycles=2), ["count", "expiry"])
+
+    def test_timer_sample_scheduler_zero_target_update_emits_expiry_only(self):
+        from tools.coverage_model import TimerSampleScheduler
+
+        scheduler = TimerSampleScheduler(startup_cycles=0)
+        self.assertEqual(scheduler.tick(enabled=True, target_cycles=4), ["count"])
+        self.assertEqual(scheduler.tick(enabled=True, target_cycles=0, update_due=True), ["expiry"])
+
     def test_interrupt_pin_transition_history_is_per_pin(self):
         first = self.trace.sample_interrupt_pin(intr_pin=0, intr_pin_value=0)
         second = self.trace.sample_interrupt_pin(intr_pin=1, intr_pin_value=1)
@@ -160,7 +202,7 @@ class CoverageTraceTests(unittest.TestCase):
         self.assertEqual(record["canonical_bin_identity_count"], 4507)
         self.assertEqual(
             record["coverage_status"],
-            "SAMPLE_TRACE_ONLY_CANONICAL_IDENTITIES_AVAILABLE_VALUE_PARTITIONS_UNMAPPED",
+            "SAMPLE_TRACE_WITH_COUNT_EVENTS_CANONICAL_IDENTITIES_AVAILABLE_VALUE_PARTITIONS_UNMAPPED",
         )
 
     def test_canonical_bin_catalog_has_all_unique_reference_identities(self):

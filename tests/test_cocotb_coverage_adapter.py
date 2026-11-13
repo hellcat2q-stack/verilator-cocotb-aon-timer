@@ -8,6 +8,7 @@ from tools.cocotb_coverage_adapter import (
     WDOG_CTRL,
     WDOG_REGWEN,
     WKUP_CAUSE,
+    WKUP_COUNT_LO,
     WKUP_CTRL,
     WKUP_THOLD_LO,
     CocotbCoverageAdapter,
@@ -96,6 +97,25 @@ class CocotbCoverageAdapterTests(unittest.TestCase):
         self.assertEqual(adapter.config["wdog_regwen"], 0)
         self.assertEqual(adapter.config["prescale"], 0)
         self.assertEqual(adapter.config["wkup_cause"], 0)
+
+    def test_countdown_targets_follow_scoreboard_mirrors_and_data_phase_updates(self):
+        adapter = self.make_adapter()
+        adapter.on_write_address(WKUP_COUNT_LO, 20)
+        adapter.on_write_address(WKUP_THOLD_LO, 29)
+        adapter.on_write_address(WKUP_CTRL, 1 | (3 << 1))
+        self.assertEqual(adapter._wkup_target_cycles(), 40)
+        self.assertFalse(adapter._wkup_update_pending)
+        adapter.on_write_data(WKUP_THOLD_LO, 29)
+        self.assertTrue(adapter._wkup_update_pending)
+        self.assertEqual(adapter._wkup_target_cycles(), 40)
+
+    def test_watchdog_countdown_targets_use_strict_threshold_comparison(self):
+        adapter = self.make_adapter()
+        adapter.on_write_address(0x28, 20)
+        adapter.on_write_address(0x20, 29)
+        adapter.on_write_address(0x24, 20)
+        self.assertEqual(adapter._wdog_target_cycles("bark_thold"), 9)
+        self.assertEqual(adapter._wdog_target_cycles("bite_thold"), 0)
 
 
 if __name__ == "__main__":

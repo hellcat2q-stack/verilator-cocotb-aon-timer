@@ -1,6 +1,6 @@
 {
-  "schema_id": "aon_timer_uvm_source_trace_v1",
-  "status": "SOURCE_TRACE_IMPLEMENTED; CANONICAL_IDENTITIES_ENUMERATED; SEMANTIC_MAPPING_INCOMPLETE",
+  "schema_id": "aon_timer_uvm_source_trace_v2",
+  "status": "SCHEDULED_COUNT_TRACE_IMPLEMENTED; CANONICAL_IDENTITIES_ENUMERATED; SEMANTIC_MAPPING_INCOMPLETE",
   "source_revision": "9f20940d494a223cc950a5b98f748fb28109d458",
   "reference_counts": {
     "canonical_bins": 4507,
@@ -30,7 +30,7 @@
     "identity_mapping_status": "PARTIAL_LEGACY_LABEL_BRIDGE"
   },
   "sample_site_mapping": {
-    "status": "PARTIAL_CAPTURE_ONLY",
+    "status": "PARTIAL_SCHEDULED_CAPTURE",
     "complete": false,
     "source_revision": "9f20940d494a223cc950a5b98f748fb28109d458",
     "capture_sites": [
@@ -53,17 +53,30 @@
         "covergroup": "intr_pins_cg",
         "status": "RAW_TRACE_CAPTURED",
         "event": "AON reset-request or wakeup-request pin change; sample both pins"
+      },
+      {
+        "covergroup": "wake_up_timer_thold_hit_cg",
+        "status": "SCOREBOARD_CADENCE_MODELED_RTL_COUNTERS_OBSERVED",
+        "event": "four-cycle startup, source-derived countdown samples and expiry sample; actual RTL count via read-only simulation probe"
+      },
+      {
+        "covergroup": "watchdog_timer_bark_thold_hit_cg",
+        "status": "SCOREBOARD_CADENCE_MODELED_RTL_COUNTERS_OBSERVED",
+        "event": "four-cycle startup, source-derived countdown samples and expiry sample; actual RTL count via read-only simulation probe"
+      },
+      {
+        "covergroup": "watchdog_timer_bite_thold_hit_cg",
+        "status": "SCOREBOARD_CADENCE_MODELED_RTL_COUNTERS_OBSERVED",
+        "event": "four-cycle startup, source-derived countdown samples and expiry sample; actual RTL count via read-only simulation probe"
       }
     ],
     "unmapped": [
-      "wake_up_timer_thold_hit_cg count-event and expiry sample calls",
-      "watchdog_timer_bark_thold_hit_cg count-event and expiry sample calls",
-      "watchdog_timer_bite_thold_hit_cg count-event and expiry sample calls",
-      "conditional resets_cg sample_resets history",
+      "count-event scheduler timing parity against a VCS/UVM execution has not been measured",
+      "conditional resets_cg behavior under the original test configuration is unresolved; the pinned AON config leaves num_edn at its default zero",
       "one-to-one sample and canonical identity mapping for shared/non-AON definitions",
       "complete mapping from observed samples to all 4,507 canonical identities"
     ],
-    "note": "RAW_TRACE_CAPTURED records observable arguments only. It does not assert complete identity/bin mapping or equivalent UVM/VCS coverage semantics."
+    "note": "Count groups use the pinned scoreboard startup/countdown/expiry cadence and read actual RTL counter state through simulation-only outputs. Their sample timing has not been compared against UVM/VCS, and generated auto-bin/cross identities remain unresolved. This does not assert equivalent UVM/VCS coverage semantics."
   },
   "environment_parameters": {
     "num_interrupts": 2,

@@ -1,0 +1,85 @@
+{
+  "schema": "aon-timer-stage04-run-v1",
+  "run_id": "stage05-count-event-trace-v2-seed1-v1-seed1",
+  "source_revision": "9f20940d494a223cc950a5b98f748fb28109d458",
+  "expected_source_revision": "9f20940d494a223cc950a5b98f748fb28109d458",
+  "coverage_schema_id": "aon_timer_uvm_source_trace_v2",
+  "test_module": "test_sequences",
+  "testcases": [
+    "aon_timer_smoke_sequence",
+    "aon_timer_jump_sequence",
+    "aon_timer_prescaler_sequence",
+    "aon_timer_intr_test_sequence"
+  ],
+  "seed": 1,
+  "randomized_stimulus": false,
+  "exit_code": 0,
+  "result": "PASS",
+  "tests_run": 4,
+  "tests_passed": 4,
+  "tests_failed": 0,
+  "failed_testcases": [],
+  "simulation_time_ns": 13341.004,
+  "toolchain": {
+    "python": "3.12.3",
+    "cocotb": "1.9.2",
+    "verilator": "5.020",
+    "fusesoc": "0.5.dev0",
+    "edalize": "0.4.0"
+  },
+  "coverage_vector": null,
+  "coverage_trace": {
+    "status": "PARTIAL_SOURCE_SAMPLE_TRACE",
+    "canonical_vector_generated": false,
+    "files": {
+      "stage05-count-event-trace-v2-seed1-v1-seed1__aon_timer_intr_test_sequence__seed1.json": {
+        "sha256": "26d160514956ff6d0d5a9cdda8ae2018fb2dd8860fef554af8a7474a9c9d2586",
+        "sample_count": 23,
+        "sample_counts_by_covergroup": {
+          "intr_cg": 4,
+          "intr_pins_cg": 2,
+          "intr_test_cg": 4,
+          "timer_cfg_cg": 13
+        },
+        "coverage_status": "SAMPLE_TRACE_WITH_COUNT_EVENTS_CANONICAL_IDENTITIES_AVAILABLE_VALUE_PARTITIONS_UNMAPPED"
+      },
+      "stage05-count-event-trace-v2-seed1-v1-seed1__aon_timer_jump_sequence__seed1.json": {
+        "sha256": "557747389ba9bd758e2e5388f7fba39075e609ffcbbd3cea745b683bf08fd77b",
+        "sample_count": 85,
+        "sample_counts_by_covergroup": {
+          "intr_pins_cg": 6,
+          "timer_cfg_cg": 21,
+          "wake_up_timer_thold_hit_cg": 18,
+          "watchdog_timer_bark_thold_hit_cg": 19,
+          "watchdog_timer_bite_thold_hit_cg": 21
+        },
+        "coverage_status": "SAMPLE_TRACE_WITH_COUNT_EVENTS_CANONICAL_IDENTITIES_AVAILABLE_VALUE_PARTITIONS_UNMAPPED"
+      },
+      "stage05-count-event-trace-v2-seed1-v1-seed1__aon_timer_prescaler_sequence__seed1.json": {
+        "sha256": "4d549042e83803cd5db278afea25949a719f48b74ac2802b4c160053c9c3b52e",
+        "sample_count": 57,
+        "sample_counts_by_covergroup": {
+          "intr_cg": 4,
+          "intr_pins_cg": 8,
+          "timer_cfg_cg": 28,
+          "wake_up_timer_thold_hit_cg": 17
+        },
+        "coverage_status": "SAMPLE_TRACE_WITH_COUNT_EVENTS_CANONICAL_IDENTITIES_AVAILABLE_VALUE_PARTITIONS_UNMAPPED"
+      },
+      "stage05-count-event-trace-v2-seed1-v1-seed1__aon_timer_smoke_sequence__seed1.json": {
+        "sha256": "16e8e87ad64d0d37cc7f67e42e6d052cc3215c661a8301215f3513eab0f03332",
+        "sample_count": 36,
+        "sample_counts_by_covergroup": {
+          "intr_cg": 2,
+          "intr_pins_cg": 4,
+          "timer_cfg_cg": 16,
+          "wake_up_timer_thold_hit_cg": 5,
+          "watchdog_timer_bark_thold_hit_cg": 3,
+          "watchdog_timer_bite_thold_hit_cg": 6
+        },
+        "coverage_status": "SAMPLE_TRACE_WITH_COUNT_EVENTS_CANONICAL_IDENTITIES_AVAILABLE_VALUE_PARTITIONS_UNMAPPED"
+      }
+    }
+  },
+  "note": "This run validates functional checks and captures a partial raw sample trace; no 4,507-bin vector is produced."
+}

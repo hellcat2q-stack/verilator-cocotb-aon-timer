@@ -291,8 +291,9 @@ def audit_preconditions(
         "blockers": blockers,
         "next_actions": [
             "Validate VCS-reference array-bin partition behavior against the current Verilator coverage implementation.",
-            "Build a one-to-one mapping from the detailed source definitions to all frozen legacy identities, including auto-bin and cross labels.",
-            "Connect count-event, conditional reset, and shared DV/TL sample calls to observable Cocotb events, then rerun the frozen suite.",
+            "Compare the new count-event trace timing and RTL values against an independent UVM/VCS event trace before claiming sampling parity.",
+            "Build a one-to-one mapping from the detailed source definitions to all frozen legacy identities, including auto-bin and cross labels and shared groups.",
+            "Resolve whether conditional reset coverage is active in the reference test configuration; retain it as not applicable only when num_edn is confirmed zero.",
             "Rebuild and independently audit exact Stage 06 vectors before enabling Stage 07 scores/UCB and launching Stage 08.",
         ],
     }

@@ -21,6 +21,44 @@ except ModuleNotFoundError:  # Support importing this file as tools.run_stage05_
 
 
 ROOT = Path(__file__).resolve().parents[1]
+COUNT_EVENT_FIELDS = {
+    "wake_up_timer_thold_hit_cg": "wkup_count",
+    "watchdog_timer_bark_thold_hit_cg": "wdog_count",
+    "watchdog_timer_bite_thold_hit_cg": "wdog_count",
+}
+
+
+def validate_count_event_sample(sample: dict[str, Any]) -> bool:
+    """Check the count-event trace shape and its independent RTL count probe."""
+    group = sample.get("covergroup")
+    if group not in COUNT_EVENT_FIELDS:
+        return True
+    field_name = COUNT_EVENT_FIELDS[group]
+    fields = sample.get("fields")
+    if not isinstance(fields, dict):
+        return False
+    expected_event_prefix = {
+        "wake_up_timer_thold_hit_cg": "aon_countdown_wakeup_",
+        "watchdog_timer_bark_thold_hit_cg": "aon_countdown_bark_",
+        "watchdog_timer_bite_thold_hit_cg": "aon_countdown_bite_",
+    }[group]
+    event = sample.get("capture_event")
+    if event not in {expected_event_prefix + "count", expected_event_prefix + "expiry"}:
+        return False
+    observed = fields.get(field_name)
+    rtl_count = sample.get("rtl_count")
+    target = sample.get("scoreboard_target_cycles")
+    countdown = sample.get("scoreboard_countdown_cycles")
+    integers = (observed, rtl_count, target, countdown)
+    if any(not isinstance(value, int) or isinstance(value, bool) or value < 0 for value in integers):
+        return False
+    if observed != rtl_count or countdown > target:
+        return False
+    if event.endswith("_expiry") and countdown != target:
+        return False
+    if event.endswith("_count") and target == 0:
+        return False
+    return True
 
 
 def parse_results_xml(path: Path) -> tuple[list[dict[str, Any]], float]:
@@ -104,12 +142,16 @@ def summarize_coverage_trace(run_root: Path, runner_manifest: dict[str, Any]) ->
         sample_count = len(samples)
         counts: dict[str, int] = {}
         identity_hits: dict[str, int] = {}
+        count_event_samples_valid = True
         for sample in samples:
             if not isinstance(sample, dict) or not isinstance(sample.get("covergroup"), str):
                 valid = False
                 file_valid = False
                 continue
             group = sample["covergroup"]
+            count_event_samples_valid = (
+                validate_count_event_sample(sample) and count_event_samples_valid
+            )
             counts[group] = counts.get(group, 0) + 1
             sample_hits = sample.get("resolved_canonical_bin_identity_hits", [])
             if not isinstance(sample_hits, list) or any(not isinstance(hit, str) for hit in sample_hits):
@@ -125,6 +167,7 @@ def summarize_coverage_trace(run_root: Path, runner_manifest: dict[str, Any]) ->
             "sample_count": sample_count == declared.get("sample_count") == trace.get("sample_count"),
             "sample_counts_by_covergroup": counts == declared_count,
             "resolved_identity_hit_counts": identity_hits == declared_identity_hits,
+            "count_event_samples": count_event_samples_valid,
             "coverage_status": trace.get("coverage_status") == declared.get("coverage_status"),
             "run_id": trace.get("run_id") == runner_manifest.get("run_id"),
             "seed": trace.get("seed") == runner_manifest.get("seed"),
@@ -148,6 +191,7 @@ def summarize_coverage_trace(run_root: Path, runner_manifest: dict[str, Any]) ->
             "sample_count": sample_count,
             "sample_counts_by_covergroup": counts,
             "coverage_status": trace.get("coverage_status"),
+            "count_event_samples_valid": count_event_samples_valid,
             "validation": "PASS" if file_passed else "FAIL",
             "checks": file_checks,
         }
@@ -287,7 +331,7 @@ def run(args: argparse.Namespace) -> int:
         "pool_sha256": pool_hash,
         "freeze_sha256": sha256_file(args.freeze),
         "source_revision": actual_revision,
-        "coverage_schema_id": "aon_timer_uvm_source_trace_v1",
+        "coverage_schema_id": "aon_timer_uvm_source_trace_v2",
         "created_utc": datetime.now(timezone.utc).isoformat(),
         "status": "PASS" if success else "FAIL",
         "budget": pool["budget"],
@@ -296,10 +340,13 @@ def run(args: argparse.Namespace) -> int:
         "attempts": attempts,
         "source_file_sha256": {
             "tools/test_sequences.py": sha256_file(ROOT / "tools" / "test_sequences.py"),
+            "tools/aon_timer_tb.sv": sha256_file(ROOT / "tools" / "aon_timer_tb.sv"),
+            "tools/coverage_model.py": sha256_file(ROOT / "tools" / "coverage_model.py"),
             "tools/cocotb_coverage_adapter.py": sha256_file(ROOT / "tools" / "cocotb_coverage_adapter.py"),
             "tools/run_stage04_tests.sh": sha256_file(ROOT / "tools" / "run_stage04_tests.sh"),
             "tools/stage05_corpus.py": sha256_file(ROOT / "tools" / "stage05_corpus.py"),
             "tools/run_stage05_corpus.py": sha256_file(ROOT / "tools" / "run_stage05_corpus.py"),
+            "configs/coverage_schema.json": sha256_file(ROOT / "configs" / "coverage_schema.json"),
         },
         "coverage_vector_generated": False,
         "note": "This is a functional testcase corpus; it is not a canonical coverage vector.",

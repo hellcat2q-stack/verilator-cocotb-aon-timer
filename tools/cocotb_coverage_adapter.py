@@ -1,10 +1,4 @@
-"""Capture source-aligned raw coverage samples from the Cocotb test harness.
-
-This adapter records only sample calls whose data and trigger are observable in
-the current testbench: timer configuration writes, INTR_STATE reads,
-INTR_TEST writes, and AON interrupt-pin changes. It does not infer count-based
-timer samples or emit canonical bin vectors.
-"""
+"""Capture source-aligned raw coverage samples from the Cocotb test harness."""
 
 from __future__ import annotations
 
@@ -14,9 +8,9 @@ from pathlib import Path
 from typing import Any
 
 try:
-    from coverage_model import CoverageTrace
+    from coverage_model import CoverageTrace, TimerSampleScheduler
 except ModuleNotFoundError:  # Support package-style imports in unit tests.
-    from tools.coverage_model import CoverageTrace
+    from tools.coverage_model import CoverageTrace, TimerSampleScheduler
 
 
 WKUP_CTRL = 0x04
@@ -79,7 +73,14 @@ class CocotbCoverageAdapter:
         self.wkup_enabled = 0
         self.wdog_enabled = 0
         self.expected_intr_state = 0
-        self._pin_task = None
+        self.expected_bite_reset = 0
+        self._count_mirror = {"wkup": 0, "wdog": 0}
+        self._wkup_scheduler = TimerSampleScheduler()
+        self._bark_scheduler = TimerSampleScheduler()
+        self._bite_scheduler = TimerSampleScheduler()
+        self._wkup_update_pending = False
+        self._wdog_update_pending = False
+        self._tasks = []
 
     @staticmethod
     def _annotate(record: dict[str, Any], event: str) -> dict[str, Any]:
@@ -116,10 +117,16 @@ class CocotbCoverageAdapter:
             self.config["wkup_thold"] = (self.config["wkup_thold"] & 0xFFFFFFFF00000000) | value
         elif address == WKUP_THOLD_HI:
             self.config["wkup_thold"] = (self.config["wkup_thold"] & 0xFFFFFFFF) | (value << 32)
+        elif address == WKUP_COUNT_LO:
+            self._count_mirror["wkup"] = (self._count_mirror["wkup"] & 0xFFFFFFFF00000000) | value
+        elif address == WKUP_COUNT_HI:
+            self._count_mirror["wkup"] = (self._count_mirror["wkup"] & 0xFFFFFFFF) | (value << 32)
         elif address == WDOG_BARK_THOLD:
             self.config["bark_thold"] = value & 0xFFFFFFFF
         elif address == WDOG_BITE_THOLD:
             self.config["bite_thold"] = value & 0xFFFFFFFF
+        elif address == WDOG_COUNT:
+            self._count_mirror["wdog"] = value & 0xFFFFFFFF
         elif address == WDOG_REGWEN:
             # WDOG_REGWEN is W0C: writing zero locks it until reset; writing
             # one never unlocks a previously locked register.
@@ -129,6 +136,10 @@ class CocotbCoverageAdapter:
 
     def on_write_data(self, address: int, value: int) -> None:
         """Apply scoreboard state updates performed on the TL data phase."""
+        if address in {WKUP_THOLD_HI, WKUP_THOLD_LO, WKUP_COUNT_HI, WKUP_COUNT_LO, WKUP_CTRL}:
+            self._wkup_update_pending = True
+        if address in {WDOG_BARK_THOLD, WDOG_BITE_THOLD, WDOG_COUNT}:
+            self._wdog_update_pending = True
         if address == INTR_STATE:
             self.expected_intr_state &= ~(value & 0b11)
         elif address == INTR_TEST:
@@ -179,7 +190,10 @@ class CocotbCoverageAdapter:
     def start_pin_monitor(self, dut) -> None:
         import cocotb
 
-        self._pin_task = cocotb.start_soon(self._monitor_aon_interrupt_pins(dut))
+        self._tasks = [
+            cocotb.start_soon(self._monitor_aon_interrupt_pins(dut)),
+            cocotb.start_soon(self._monitor_timer_samples(dut)),
+        ]
 
     async def _monitor_aon_interrupt_pins(self, dut) -> None:
         from cocotb.triggers import Edge, First, ReadOnly
@@ -208,10 +222,109 @@ class CocotbCoverageAdapter:
                     )
                     self._annotate(record, "aon_intr_pins_change")
 
+    def _wkup_target_cycles(self) -> int:
+        count = self._count_mirror["wkup"]
+        threshold = self.config["wkup_thold"]
+        if count > threshold:
+            return 0
+        return (threshold - count + 1) * (self.config["prescale"] + 1)
+
+    def _wdog_target_cycles(self, threshold_key: str) -> int:
+        count = self._count_mirror["wdog"]
+        threshold = self.config[threshold_key]
+        return threshold - count if count < threshold else 0
+
+    async def _monitor_timer_samples(self, dut) -> None:
+        from cocotb.triggers import ReadOnly, RisingEdge
+
+        while True:
+            await RisingEdge(dut.clk_aon_i)
+            await ReadOnly()
+            if int(dut.rst_aon_ni.value) == 0:
+                self._wkup_scheduler.disable()
+                self._bark_scheduler.disable()
+                self._bite_scheduler.disable()
+                self._wkup_update_pending = False
+                self._wdog_update_pending = False
+                continue
+            try:
+                wkup_count = int(dut.dbg_wkup_count_o.value)
+                wdog_count = int(dut.dbg_wdog_count_o.value)
+            except (AttributeError, ValueError, TypeError):
+                continue
+
+            timer_events = (
+                (
+                    "wakeup",
+                    self._wkup_scheduler,
+                    bool(self.wkup_enabled),
+                    self._wkup_target_cycles(),
+                    self._wkup_update_pending,
+                    self.config["prescale"] + 1,
+                ),
+                (
+                    "bark",
+                    self._bark_scheduler,
+                    bool(self.wdog_enabled),
+                    self._wdog_target_cycles("bark_thold"),
+                    self._wdog_update_pending,
+                    1,
+                ),
+                (
+                    "bite",
+                    self._bite_scheduler,
+                    bool(self.wdog_enabled),
+                    self._wdog_target_cycles("bite_thold"),
+                    self._wdog_update_pending,
+                    1,
+                ),
+            )
+            for timer_name, scheduler, enabled, target_cycles, update_due, restart_delay in timer_events:
+                events = scheduler.tick(
+                    enabled=enabled,
+                    target_cycles=target_cycles,
+                    update_due=update_due,
+                    post_expiry_cycles=restart_delay,
+                )
+                for event in events:
+                    if event == "expiry":
+                        if timer_name == "wakeup":
+                            self.expected_intr_state |= 1
+                        elif timer_name == "bark":
+                            self.expected_intr_state |= 2
+                        else:
+                            self.expected_bite_reset = 1
+                    if timer_name == "wakeup":
+                        record = self.trace.sample_wakeup_timer_thold_hit(
+                            wkup_int=self.expected_intr_state & 1,
+                            wkup_thold=self.config["wkup_thold"],
+                            wkup_count=wkup_count,
+                        )
+                    elif timer_name == "bark":
+                        record = self.trace.sample_watchdog_bark_thold_hit(
+                            wdog_bark_int=(self.expected_intr_state >> 1) & 1,
+                            wdog_thold=self.config["bark_thold"],
+                            wdog_count=wdog_count,
+                        )
+                    else:
+                        record = self.trace.sample_watchdog_bite_thold_hit(
+                            wdog_bite_rst=self.expected_bite_reset,
+                            wdog_thold=self.config["bite_thold"],
+                            wdog_count=wdog_count,
+                        )
+                    record["capture_event"] = f"aon_countdown_{timer_name}_{event}"
+                    record["scoreboard_countdown_cycles"] = scheduler.countdown_cycles
+                    record["scoreboard_target_cycles"] = target_cycles
+                    record["rtl_count"] = wkup_count if timer_name == "wakeup" else wdog_count
+                    self._annotate(record, record["capture_event"])
+
+            self._wkup_update_pending = False
+            self._wdog_update_pending = False
+
     def close(self) -> Path:
-        if self._pin_task is not None:
-            self._pin_task.kill()
-            self._pin_task = None
+        for task in self._tasks:
+            task.kill()
+        self._tasks.clear()
         output_dir = Path(
             os.environ.get("COVERAGE_TRACE_DIR", Path.cwd() / "coverage-traces")
         )
@@ -220,20 +333,26 @@ class CocotbCoverageAdapter:
         path = output_dir / filename
         payload = self.trace.to_dict()
         payload["capture_adapter"] = {
-            "schema": "aon-timer-cocotb-raw-trace-v1",
+            "schema": "aon-timer-cocotb-raw-trace-v2",
             "status": "PARTIAL_SOURCE_SAMPLE_TRACE",
             "integrated_sample_sites": [
                 "timer_cfg_cg on accepted valid CSR write address phase",
                 "intr_test_cg on INTR_TEST address and data phase invocations",
                 "intr_cg on INTR_STATE read data phase",
                 "intr_pins_cg on AON reset-request or wakeup-request pin change",
+                "three timer count-event groups on AON clocks using source countdown lengths and RTL counts",
             ],
             "not_integrated": [
-                "wake_up_timer_thold_hit_cg count-event samples",
-                "watchdog_timer_bark_thold_hit_cg count-event samples",
-                "watchdog_timer_bite_thold_hit_cg count-event samples",
                 "conditional resets_cg and 228 shared/non-AON identities",
+                "canonical auto-bin and cross identity mapping for count-event samples",
             ],
+            "count_event_capture": {
+                "status": "SCOREBOARD_CADENCE_MODELED_RTL_COUNTERS_OBSERVED",
+                "startup_cycles": 4,
+                "counter_source": "aon_timer_tb read-only debug outputs from pinned RTL internal counter state",
+                "sleep_mode": "fixed low by aon_timer_tb",
+                "canonical_bin_vector_generated": False,
+            },
             "canonical_vector_generated": False,
             "value_partition_status": "UNRESOLVED",
         }
