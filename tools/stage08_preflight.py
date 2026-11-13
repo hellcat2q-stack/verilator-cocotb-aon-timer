@@ -260,6 +260,18 @@ def audit_preconditions(
             f"{len(unmapped_sample_sites)} sample or identity mapping item(s) remain unresolved."
         )
 
+    next_actions = [
+        "Validate VCS-reference array-bin partition behavior against the current Verilator coverage implementation.",
+        "Compare the new count-event trace timing and RTL values against an independent UVM/VCS event trace before claiming sampling parity.",
+        "Build a one-to-one mapping from the detailed source definitions to all frozen legacy identities, including auto-bin and cross labels and shared groups.",
+        "Rebuild and independently audit exact Stage 06 vectors before enabling Stage 07 scores/UCB and launching Stage 08.",
+    ]
+    if any("conditional resets_cg" in str(item) for item in unmapped_sample_sites):
+        next_actions.insert(
+            3,
+            "Resolve whether conditional reset coverage is active in the reference test configuration; retain it as not applicable only when num_edn is confirmed zero.",
+        )
+
     ready = not blockers
     return {
         "schema": "aon-timer-stage08-preflight-v2",
@@ -289,13 +301,7 @@ def audit_preconditions(
         "unmapped_sample_site_count": len(unmapped_sample_sites),
         "unmapped_sample_sites": unmapped_sample_sites,
         "blockers": blockers,
-        "next_actions": [
-            "Validate VCS-reference array-bin partition behavior against the current Verilator coverage implementation.",
-            "Compare the new count-event trace timing and RTL values against an independent UVM/VCS event trace before claiming sampling parity.",
-            "Build a one-to-one mapping from the detailed source definitions to all frozen legacy identities, including auto-bin and cross labels and shared groups.",
-            "Resolve whether conditional reset coverage is active in the reference test configuration; retain it as not applicable only when num_edn is confirmed zero.",
-            "Rebuild and independently audit exact Stage 06 vectors before enabling Stage 07 scores/UCB and launching Stage 08.",
-        ],
+        "next_actions": next_actions,
     }
 
 

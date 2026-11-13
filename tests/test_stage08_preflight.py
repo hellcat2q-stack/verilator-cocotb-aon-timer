@@ -119,6 +119,10 @@ class Stage08PreflightTests(unittest.TestCase):
             "VCS reference array-bin partitions have not been verified against the current Verilator coverage semantics.",
             result["blockers"],
         )
+        self.assertNotIn(
+            "Resolve whether conditional reset coverage is active in the reference test configuration; retain it as not applicable only when num_edn is confirmed zero.",
+            result["next_actions"],
+        )
         self.assertFalse(result["ready_for_online_coverage_feedback"])
 
     def test_preflight_rejects_a_tampered_vcs_reference_partition(self):
