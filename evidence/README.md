@@ -20,4 +20,6 @@
 
 `stage03_raw_trace/` 保存冻结 Stage 05 pool 重新运行生成的 partial source-sample traces 与汇总审计。trace 只证明已接入的 API 运行过，不提供未接入 sample sites、完整 bin mapping 或 vector。
 
-`references/bin_definitions.v1.json` 保存 4,507 个 revision-matched 类型级 bin 定义，不包含 run hit data；自动分区和 cross product audits 见该文件。`stage08_preflight/2026-11-12-final/` 记录本轮 readiness 门禁与输入哈希；数组边界、legacy identity bridge、完整 sample APIs 和 exact Stage 06 vectors 尚未完成，因此 scheduler 保持 disabled，且本轮未启动在线 coverage 仿真。
+`stage03_array_bin_observations/2026-11-13-seed1-final-v3.json` 使用 VCS 参考区间审计 Stage 05 的 78 条配置样本，记录 40 次正向归属观察、6 个不同数组 identity 和 raw trace hashes。该审计不导入 VCS run hit counts、不生成 Stage 06 vector，也不推断 miss。
+
+`references/bin_definitions.v1.json` 保存 4,507 个 revision-matched 类型级 bin 定义，不包含 run hit data；自动分区和 cross product audits 见该文件。`references/array_bin_ranges.v1.json` 保存由 VCS vectors 表头导入的 160 个数组 bin 参考区间，不含历史 hit counts；Verilator 等价性仍未验证。`stage08_preflight/2026-11-13-final-v5/` 记录更新后的 readiness v2 门禁与输入哈希；legacy identity bridge、Verilator 区间等价性、完整 sample APIs 和 exact Stage 06 vectors 尚未完成，因此 scheduler 保持 disabled，且本轮未启动在线 coverage 仿真。

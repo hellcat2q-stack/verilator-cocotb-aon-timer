@@ -16,6 +16,6 @@
 
 identity 清单冻结了每个 canonical 列的完整 label。`references/bin_definitions.v1.json` 从与固定 revision 匹配的详细定义清单中提取了 4,507 个类型 bin 定义，包含 64/32-bit auto-bin 实际区间和全部 3 个 AON Timer cross 的成员组合；自动分区连续无重叠，cross 组合数量分别为 1,024、512、512。此文件只保存定义，不含历史 run 命中数。
 
-`timer_cfg_cg` 的 160 个数组 bin 已确认数组索引与声明取值域，但来源 manifest 没有各索引 bin 的精确边界。旧 Stage 06 canonical label 只与 341 列直接匹配；重复的 `*X*`、`values:{...}` 标签及 shared-group 实例需要单独建立、验证一对一映射。Python trace 保留原始整数和 exact sample tuple，因此定义参考已增加，但当前仍不生成完整 4,507 维 sample vector。
+`timer_cfg_cg` 的 160 个数组 bin 现已从兼容项目 VCS `vectors.csv` 的首行表头导入逐项区间，保存于 `references/array_bin_ranges.v1.json`。导入器只读取表头，不读 run rows 或 hit counts；preflight 重新核对每项源码索引、canonical identity、声明域、连续性及输入哈希。它们是固定源码定义下的 VCS 参考分区，当前尚未证明与 Verilator/Python coverage 实现等价。另一个独立审计将区间用于 Stage 05 已校验的 78 条 `timer_cfg_cg` 原始配置样本，识别出 40 次正向归属观察、涉及 6 个数组 identity；结果存放于 `evidence/stage03_array_bin_observations/`，没有合并进 Stage 06 vector。旧 Stage 06 canonical label 仍只有 341 列可按直接标签匹配；重复的 `*X*`、`values:{...}` 标签及 shared-group 实例需要建立、验证一对一映射。当前仍不生成完整 4,507 维 sample vector。
 
 完成 exact sample mapping 后，需逐项验证 identity、covergroup/instance scope、coverpoint/cross、边界值、illegal/ignore/weight 规则和采样时机，再与 4,507 canonical 列一一对账。4,525 URG 汇总继续独立记录；计数相同也不作为语义等价的证据。

@@ -22,7 +22,10 @@
     "auto_bin_partitions_validated": 6,
     "cross_products_validated": 3,
     "array_bin_count": 160,
-    "array_bin_individual_boundaries_status": "UNRESOLVED",
+    "array_bin_individual_boundaries_status": "VCS_REFERENCE_PARTITIONS_IMPORTED_VERILATOR_EQUIVALENCE_UNVERIFIED",
+    "array_bin_range_catalog": "references/array_bin_ranges.v1.json",
+    "array_bin_range_catalog_sha256": "aa7acb62bfe5e49777250aa72695d29a92493a57fe1ec76b6f18f2dc051bba27",
+    "array_bin_partition_note": "160 interval labels imported from a compatibility-project VCS vector CSV header only; no run rows or hit counts. Current Verilator/Python coverage equivalence is unverified.",
     "historical_hit_counts_imported": false,
     "identity_mapping_status": "PARTIAL_LEGACY_LABEL_BRIDGE"
   },
@@ -106,10 +109,10 @@
         "wkup_cause": {"width": 1}
       },
       "coverpoints": [
-        {"name": "prescale_cp", "field": "prescale", "explicit_bins": [{"name": "prescale_0", "values": [0]}, {"name": "prescale_max", "values": [4095]}], "array_bins": {"name": "prescale", "count": 32, "range": [1, 4095], "partition_mapping": "UNRESOLVED"}},
-        {"name": "bark_thold_cp", "field": "bark_thold", "explicit_bins": [{"name": "bark_0", "values": [0]}, {"name": "bark_max", "values": [4294967295]}], "array_bins": {"name": "bark", "count": 32, "range": [1, 4294967295], "partition_mapping": "UNRESOLVED"}},
-        {"name": "bite_thold_cp", "field": "bite_thold", "explicit_bins": [{"name": "bite_0", "values": [0]}, {"name": "bite_max", "values": [4294967295]}], "array_bins": {"name": "bite", "count": 32, "range": [1, 4294967295], "partition_mapping": "UNRESOLVED"}},
-        {"name": "wkup_thold_cp", "field": "wkup_thold", "explicit_bins": [{"name": "wkup_0", "values": [0]}, {"name": "wkup_max", "values": [18446744073709551615]}], "array_bins": {"name": "wkup", "count": 64, "range": [1, 18446744073709551615], "partition_mapping": "UNRESOLVED"}},
+        {"name": "prescale_cp", "field": "prescale", "explicit_bins": [{"name": "prescale_0", "values": [0]}, {"name": "prescale_max", "values": [4095]}], "array_bins": {"name": "prescale", "count": 32, "range": [1, 4095], "partition_mapping": "VCS_REFERENCE_PARTITION_IMPORTED_VERILATOR_EQUIVALENCE_UNVERIFIED"}},
+        {"name": "bark_thold_cp", "field": "bark_thold", "explicit_bins": [{"name": "bark_0", "values": [0]}, {"name": "bark_max", "values": [4294967295]}], "array_bins": {"name": "bark", "count": 32, "range": [1, 4294967295], "partition_mapping": "VCS_REFERENCE_PARTITION_IMPORTED_VERILATOR_EQUIVALENCE_UNVERIFIED"}},
+        {"name": "bite_thold_cp", "field": "bite_thold", "explicit_bins": [{"name": "bite_0", "values": [0]}, {"name": "bite_max", "values": [4294967295]}], "array_bins": {"name": "bite", "count": 32, "range": [1, 4294967295], "partition_mapping": "VCS_REFERENCE_PARTITION_IMPORTED_VERILATOR_EQUIVALENCE_UNVERIFIED"}},
+        {"name": "wkup_thold_cp", "field": "wkup_thold", "explicit_bins": [{"name": "wkup_0", "values": [0]}, {"name": "wkup_max", "values": [18446744073709551615]}], "array_bins": {"name": "wkup", "count": 64, "range": [1, 18446744073709551615], "partition_mapping": "VCS_REFERENCE_PARTITION_IMPORTED_VERILATOR_EQUIVALENCE_UNVERIFIED"}},
         {"name": "wkup_cause_cp", "field": "wkup_cause", "explicit_bins": [{"name": "wkup_cause_cleared", "values": [0]}]},
         {"name": "wdog_regwen_cp", "field": "wdog_regwen", "default_integral_bins": [0, 1]},
         {"name": "pause_in_sleep_cp", "field": "pause_in_sleep", "default_integral_bins": [0, 1]}
@@ -200,7 +203,7 @@
     }
   ],
   "unmapped_scope": [
-    "The matched reference manifest provides all six event auto-bin partitions and three same-sample cross products. The 160 bins[] array entries have known indices and declared domains but not per-bin boundaries; the detailed reference identities do not map one-to-one onto all 4,507 frozen legacy columns.",
+    "The matched reference manifest provides all six event auto-bin partitions and three same-sample cross products. The 160 timer_cfg_cg array bins now have per-index ranges imported from a prior VCS vector header and checked as a complete partition; parity with the current Verilator/Python coverage implementation remains unverified, and the detailed source catalog still records their individual ranges as unresolved.",
     "The 228 shared or non-AON Timer identities are catalogued but their source sample APIs are not included in this AON Timer model.",
     "TL agent and other shared DV-framework covergroups are not included in this AON Timer source inventory."
   ]

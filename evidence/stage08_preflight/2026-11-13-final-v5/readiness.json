@@ -1,0 +1,91 @@
+{
+  "schema": "aon-timer-stage08-preflight-v2",
+  "status": "BLOCKED_PREREQUISITES_INCOMPLETE",
+  "ready_for_online_coverage_feedback": false,
+  "canonical_bin_count": 4507,
+  "reference_definition_count": 4507,
+  "aon_timer_definition_count": 4279,
+  "shared_or_other_definition_count": 228,
+  "direct_legacy_identity_matches": 341,
+  "legacy_identity_match_count_is_complete": false,
+  "automatic_partitions_audited": 6,
+  "automatic_partitions_valid": true,
+  "cross_products_audited": 3,
+  "cross_products_valid": true,
+  "array_bin_count": 160,
+  "array_bin_definition_catalog_boundaries_unresolved": 160,
+  "array_bin_value_boundaries_unresolved": 0,
+  "array_bin_reference_partitions_verified": true,
+  "array_bin_verilator_equivalence_verified": false,
+  "shared_or_other_source_scopes": [
+    "alert_esc_agent_pkg::alert_handshake_complete_cg",
+    "cip_base_pkg::intr_cg::SHAPE{(num_interrupts - 1)=1}",
+    "cip_base_pkg::intr_pins_cg::SHAPE{(num_interrupts - 1)=1}",
+    "cip_base_pkg::intr_test_cg::SHAPE{(num_interrupts - 1)=1}",
+    "cip_base_pkg::tl_errors_cg_wrap::tl_errors_cg",
+    "cip_base_pkg::tl_intg_err_cg_wrap::tl_intg_err_cg",
+    "dv_base_reg_pkg::dv_base_lockable_field_cov::regwen_val_when_new_value_written_cg",
+    "dv_lib_pkg::bit_toggle_cg_wrap::bit_toggle_cg",
+    "tb.dut.u_reg.u_prim_reg_we_check.u_prim_onehot_check.u_prim_onehot_check_if::prim_onehot_check_without_addr_fault_if_proxy::onehot_without_addr_fault_cg",
+    "tl_agent_pkg::max_outstanding_cg::SHAPE{max_outstanding=1}",
+    "tl_agent_pkg::pending_req_on_rst_cg",
+    "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}"
+  ],
+  "stage06_matrix_status": "PARTIAL_OR_UNAVAILABLE",
+  "exact_vector_matrix_available": false,
+  "stage07_scheduler_allowed": false,
+  "sample_sites_complete": false,
+  "sample_site_mapping_status": "PARTIAL_CAPTURE_ONLY",
+  "unmapped_sample_site_count": 6,
+  "unmapped_sample_sites": [
+    "wake_up_timer_thold_hit_cg count-event and expiry sample calls",
+    "watchdog_timer_bark_thold_hit_cg count-event and expiry sample calls",
+    "watchdog_timer_bite_thold_hit_cg count-event and expiry sample calls",
+    "conditional resets_cg sample_resets history",
+    "one-to-one sample and canonical identity mapping for shared/non-AON definitions",
+    "complete mapping from observed samples to all 4,507 canonical identities"
+  ],
+  "blockers": [
+    "Legacy identity bridge resolves only 341 of 4507 canonical columns by exact label.",
+    "VCS reference array-bin partitions have not been verified against the current Verilator coverage semantics.",
+    "Stage 06 does not contain a complete exact run matrix.",
+    "Stage 07 has not enabled coverage-based scheduling.",
+    "Sample-site mapping is incomplete; 6 sample or identity mapping item(s) remain unresolved."
+  ],
+  "next_actions": [
+    "Validate VCS-reference array-bin partition behavior against the current Verilator coverage implementation.",
+    "Build a one-to-one mapping from the detailed source definitions to all frozen legacy identities, including auto-bin and cross labels.",
+    "Connect count-event, conditional reset, and shared DV/TL sample calls to observable Cocotb events, then rerun the frozen suite.",
+    "Rebuild and independently audit exact Stage 06 vectors before enabling Stage 07 scores/UCB and launching Stage 08."
+  ],
+  "inputs": {
+    "bin_definition_catalog": {
+      "path": "bin_definitions.v1.json",
+      "sha256": "3aa1bed296f7fa6ec7afeaa749cd95e1b4efd38509d6fdc00ad32516dc10ffd8"
+    },
+    "canonical_bin_ids": {
+      "path": "canonical_bin_ids.txt",
+      "sha256": "dbcf02f06c121675401c8983dde65a9275239cefd3aff842712bdeef5da11355"
+    },
+    "stage06_matrix_audit": {
+      "path": "coverage_matrix_audit.json",
+      "sha256": "1fde17be50b319e5ddb6918437727b7c35a1195f5dfd0e18b13f4bd409977dcd"
+    },
+    "stage07_scheduler_input": {
+      "path": "scheduler_input.json",
+      "sha256": "6984754f8d8e89161493d74ea976eece2bce85979de30d5cb1d300f2e6cc7677"
+    },
+    "sample_site_audit": {
+      "path": "coverage_schema.json",
+      "sha256": "0cff21f7114cc2c49f460969b0dcd3d9b7e6366d6e2846b26470e19ee77752a2"
+    },
+    "array_bin_range_catalog": {
+      "path": "array_bin_ranges.v1.json",
+      "sha256": "aa7acb62bfe5e49777250aa72695d29a92493a57fe1ec76b6f18f2dc051bba27"
+    },
+    "array_bin_range_catalog_sha256": {
+      "path": "array_bin_ranges.v1.json.sha256",
+      "sha256": "75feed14be3ddb1a23ac6c1a97df2adb18fc491660d3afa4b3de3724e1c2a113"
+    }
+  }
+}

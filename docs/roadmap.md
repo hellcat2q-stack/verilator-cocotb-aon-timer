@@ -4,7 +4,7 @@
 | --- | --- | --- |
 | 01 | 源码与环境锁定 | revision、coverage reference、工具版本可追溯 |
 | 02 | Verilator build/Cocotb smoke | 固定 RTL 构建、寄存器/复位/时钟 smoke 通过 |
-| 03 | Python coverage dictionary | source/sample API、identity catalog 和 intr_test A/D multiplicity 已核对；可观测 CSR/pin 调用已生成并验证 raw traces；7 个 named-bin identity 可确认命中，完整 value partition/shared sample mapping 待补 |
+| 03 | Python coverage dictionary | source/sample API 和 intr_test A/D multiplicity 已核对；7 个 named-bin identity 可确认命中；78 个配置样本另有 40 次 VCS 参考数组 bin 正向观察；Verilator 等价性、完整 identity 和 shared sample mapping 待补 |
 | 04 | Cocotb 测试集 | 固定 smoke/jump/prescaler/intr_test 已映射实跑并接入 partial raw trace；stress-all/generic tests 待补 |
 | 05 | 初始语料 | frozen deterministic pool 已实跑，4/4 PASS；attempt manifest 记录并校验 trace hashes/sample counts；112 条 raw samples 产生 7 个可确认 identity hits |
 | 06 | Bin-by-run matrix | 4,507 列三态矩阵、identity/hash 审计已实测；1 个 partial vector 含 7 hits、4,500 unknown、0 推断 miss；完整矩阵阶段门未通过 |
@@ -13,7 +13,7 @@
 | 09 | 基线/消融 | 方法使用统一输入、seed、预算、worker 数 |
 | 10 | 最终报告 | 独立复核并完整披露限制 |
 
-阶段 01/02 已完成。阶段 03 的 canonical identity 已从原 stage06 矩阵表头提取并校验；取值分区和共享 covergroup sample API 未完成前，不声称生成与 VCS 等价的 coverage vector，也不使用 sparse hits 做调度对照。
+阶段 01/02 已完成。阶段 03 的 canonical identity 已从原 stage06 矩阵表头提取并校验；160 个数组 bin 的数值区间已从兼容项目 VCS vectors 表头恢复，但当前实现等价性和共享 covergroup sample API 未完成前，不声称生成与 VCS 等价的 coverage vector，也不使用 sparse hits 做调度对照。
 
 阶段 06 工具使用 `1/0/?` 表示已知命中/已知未命中/未知；当前阶段 05 run 有一个 `PARTIAL_VALIDATED` vector，矩阵 union 为 7 hit、0 miss、4,500 unknown。阶段 06 最终阶段门仍等待 exact sample mapping 与完整 Cocotb coverage data。
 
