@@ -12,6 +12,7 @@ import argparse
 import hashlib
 import json
 import re
+import subprocess
 from pathlib import Path
 from typing import Any
 
@@ -22,6 +23,13 @@ REQUIRED_FILES = (
     "hw/dv/sv/cip_lib/cip_base_env_cov.sv",
     "hw/dv/sv/cip_lib/cip_base_scoreboard.sv",
 )
+PINNED_REVISION = "9f20940d494a223cc950a5b98f748fb28109d458"
+PINNED_HASHES = dict(zip(REQUIRED_FILES, (
+    "e0782c3656a30ca21f403e0412dc51d63de11bf5a730c83cc8eaec99a75ecad0",
+    "8820a5f9ce33b77a9c5285de5b7e7c74058ba7a66777e1251bd288a2bf12035f",
+    "e542fde933e1c99e9ccb3a91484ab347b43e407a7058166cffb48a5f2c4c9f48",
+    "e9b9e6736cb3f367bb1a411a848effba2106da22fa1838a7f966641484631939",
+)))
 
 DECLARATION_RE = re.compile(r"\buint\s+num_edn\s*;")
 ASSIGNMENT_RE = re.compile(r"\bnum_edn\s*=")
@@ -49,6 +57,15 @@ def _relative_source_files(source_root: Path) -> list[Path]:
 
 def audit_source_tree(source_root: Path, source_revision: str = "unknown") -> dict[str, Any]:
     source_root = source_root.resolve()
+    try:
+        actual_revision = subprocess.check_output(
+            ["git", "-C", str(source_root), "rev-parse", "HEAD"], text=True,
+            stderr=subprocess.DEVNULL).strip()
+        clean_checkout = not subprocess.check_output(
+            ["git", "-C", str(source_root), "status", "--porcelain"], text=True,
+            stderr=subprocess.DEVNULL).strip()
+    except (OSError, subprocess.SubprocessError):
+        actual_revision, clean_checkout = None, False
     file_records: list[dict[str, Any]] = []
     missing: list[str] = []
     texts: dict[str, str] = {}
@@ -78,12 +95,21 @@ def audit_source_tree(source_root: Path, source_revision: str = "unknown") -> di
     env_cfg_no_assignment = not bool(ASSIGNMENT_RE.search(texts.get(REQUIRED_FILES[1], "")))
     coverage_guard_present = "if (cfg.num_edn) resets_cg" in texts.get(REQUIRED_FILES[2], "")
     sampling_guard_present = "if (cfg.num_edn && cfg.en_cov)" in texts.get(REQUIRED_FILES[3], "")
-    applicable = not missing and declaration_present and env_cfg_no_assignment and not override_sites
+    mismatched_hashes = [record["path"] for record in file_records
+                         if record["sha256"] != PINNED_HASHES[record["path"]]]
+    provenance_verified = (source_revision == actual_revision == PINNED_REVISION
+                           and clean_checkout and not missing and not mismatched_hashes)
+    applicable = (provenance_verified and declaration_present and env_cfg_no_assignment
+                  and not override_sites and coverage_guard_present and sampling_guard_present)
     status = "NOT_APPLICABLE_NUM_EDN_ZERO" if applicable else "REQUIRES_RUNTIME_CONFIG_AUDIT"
 
     return {
-        "schema": "aon-timer-conditional-reset-audit-v1",
+        "schema": "aon-timer-conditional-reset-audit-v2",
         "source_revision": source_revision,
+        "actual_source_revision": actual_revision,
+        "clean_checkout": clean_checkout,
+        "source_provenance_verified": provenance_verified,
+        "mismatched_source_hashes": mismatched_hashes,
         "status": status,
         "conditional_reset_covergroup": "resets_cg",
         "num_edn": {

@@ -1,6 +1,10 @@
 {
-  "schema": "aon-timer-conditional-reset-audit-v1",
+  "schema": "aon-timer-conditional-reset-audit-v2",
   "source_revision": "9f20940d494a223cc950a5b98f748fb28109d458",
+  "actual_source_revision": "9f20940d494a223cc950a5b98f748fb28109d458",
+  "clean_checkout": true,
+  "source_provenance_verified": true,
+  "mismatched_source_hashes": [],
   "status": "NOT_APPLICABLE_NUM_EDN_ZERO",
   "conditional_reset_covergroup": "resets_cg",
   "num_edn": {
@@ -19,19 +23,19 @@
   "source_files": [
     {
       "path": "hw/dv/sv/cip_lib/cip_base_env_cfg.sv",
-      "sha256": "298a313a9a90880ef1d43222eed61adf41c0b2d5e1da1cafe9f12f3d36d1b17b"
+      "sha256": "e0782c3656a30ca21f403e0412dc51d63de11bf5a730c83cc8eaec99a75ecad0"
     },
     {
       "path": "hw/ip/aon_timer/dv/env/aon_timer_env_cfg.sv",
-      "sha256": "633d60c25d14e271663f7b64ac241347aabd69b0990eba4de2e7e4c1eac33627"
+      "sha256": "8820a5f9ce33b77a9c5285de5b7e7c74058ba7a66777e1251bd288a2bf12035f"
     },
     {
       "path": "hw/dv/sv/cip_lib/cip_base_env_cov.sv",
-      "sha256": "e098f7cc664af1a7e15b46c57c879a69ca6b014a1a8301869f33363dcbea6995"
+      "sha256": "e542fde933e1c99e9ccb3a91484ab347b43e407a7058166cffb48a5f2c4c9f48"
     },
     {
       "path": "hw/dv/sv/cip_lib/cip_base_scoreboard.sv",
-      "sha256": "c3913c20fb6a3fbb3fc53fea88a045e2de3634aad92ece63dfa9eea55e7f788e"
+      "sha256": "e9b9e6736cb3f367bb1a411a848effba2106da22fa1838a7f966641484631939"
     }
   ],
   "missing_files": [],
