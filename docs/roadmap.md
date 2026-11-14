@@ -4,12 +4,12 @@
 | --- | --- | --- |
 | 01 | 源码与环境锁定 | revision、coverage reference、工具版本可追溯 |
 | 02 | Verilator build/Cocotb smoke | 固定 RTL 构建、寄存器/复位/时钟 smoke 通过 |
-| 03 | Python coverage dictionary | count-event v2 已接 RTL counter probe；13 个 identity 可确认命中；完整 identity、shared sample mapping 与 UVM/VCS 对照待补 |
+| 03 | Python coverage dictionary | count-event v2 与 live Python 参考数组分类已接 RTL trace；20 个 identity 可确认命中；完整 identity、shared sample mapping 与 UVM/VCS 对照待补 |
 | 04 | Cocotb 测试集 | 固定 smoke/jump/prescaler/intr_test 已映射实跑并接入 partial raw trace；stress-all/generic tests 待补 |
 | 05 | 初始语料 | frozen deterministic pool、seed 1 已实跑，4/4 PASS；count-event v2 suite 有 201 条 raw samples、13 个可确认 identity hits |
 | 06 | Bin-by-run matrix | count-event v2 partial vector：13 hits、4,494 unknown、0 推断 miss；完整矩阵阶段门未通过 |
 | 07 | 聚类与调度 | canonical identity clustering 和固定输入回放已实现；已知 sparse hits 仍不能确认 misses/remaining bins，coverage score/UCB 保持 blocked |
-| 08 | 在线闭环 | 独立 positive-hit pilot：12 次真实仿真、4 warmup + 8 testcase UCB 决策、12/12 PASS、585 样本；完整论文闭环仍受 Stage 03/06/07 限制 |
+| 08 | 在线闭环 | 独立 action-boundary pilot：18 次真实仿真、6 warmup + 12 action UCB 决策、18/18 PASS、330 样本、20 positives；完整论文闭环仍受 Stage 03/06/07 限制 |
 | 09 | 基线/消融 | 方法使用统一输入、seed、预算、worker 数 |
 | 10 | 最终报告 | 独立复核并完整披露限制 |
 

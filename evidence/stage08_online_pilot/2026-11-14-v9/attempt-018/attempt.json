@@ -1,0 +1,94 @@
+{
+  "run_id": "stage08-array-boundary-pilot-v3-018",
+  "testcase": "aon_timer_config_sweep_array_low",
+  "seed": 1,
+  "phase": "ucb",
+  "completed_attempts_before_selection": 17,
+  "observed_positive_count_before_selection": 20,
+  "ucb_scores": {
+    "aon_timer_config_sweep_zero": 0.014113189532397203,
+    "aon_timer_config_sweep_one": 0.014039230505697994,
+    "aon_timer_config_sweep_array_low": 0.016832151805566086,
+    "aon_timer_config_sweep_array_mid": 0.013965271478998785,
+    "aon_timer_config_sweep_array_high": 0.014039230505697994,
+    "aon_timer_config_sweep_max": 0.014039230505697994
+  },
+  "prior_attempt_sha256": "addff87376538376cea2484d8576cfe17b942a30b1ae0a4f0c0a423fe21b7b4b",
+  "result": "PASS",
+  "exit_code": 0,
+  "timed_out": false,
+  "wall_seconds": 1.8808,
+  "simulation_time_ns": 1370.001,
+  "testcases": [
+    {
+      "name": "aon_timer_config_sweep_array_low",
+      "result": "PASS",
+      "simulation_time_ns": 1370.001
+    }
+  ],
+  "trace_summary": {
+    "status": "PARTIAL_SOURCE_SAMPLE_TRACE",
+    "canonical_vector_generated": false,
+    "validated": true,
+    "file_count": 1,
+    "total_sample_count": 18,
+    "sample_counts_by_covergroup": {
+      "timer_cfg_cg": 18
+    },
+    "resolved_canonical_bin_identity_hit_counts": {
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[0]||0": 4,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_0||0": 14,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[0]||0": 3,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_0||0": 15,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[0]||0": 2,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_0||0": 16,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0": 18,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[0]||0": 6,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_0||0": 12
+    },
+    "files": {
+      "stage08-array-boundary-pilot-v3-018__aon_timer_config_sweep_array_low__seed1.json": {
+        "testcase": "aon_timer_config_sweep_array_low",
+        "sha256": "f0c184adeee1f2b772c3df3f74d1bcd4095ef2948b95e9594e83c42ef5d2455e",
+        "sample_count": 18,
+        "sample_counts_by_covergroup": {
+          "timer_cfg_cg": 18
+        },
+        "coverage_status": "SAMPLE_TRACE_WITH_COUNT_EVENTS_CANONICAL_IDENTITIES_AVAILABLE_VALUE_PARTITIONS_UNMAPPED",
+        "count_event_samples_valid": true,
+        "validation": "PASS",
+        "checks": {
+          "sha256": true,
+          "sample_count": true,
+          "sample_counts_by_covergroup": true,
+          "resolved_identity_hit_counts": true,
+          "count_event_samples": true,
+          "coverage_status": true,
+          "run_id": true,
+          "seed": true,
+          "source_revision": true,
+          "coverage_schema_id": true,
+          "no_canonical_vector": true
+        }
+      }
+    }
+  },
+  "validation_error": null,
+  "new_positive_identities": [],
+  "new_positive_count": 0,
+  "cumulative_positive_count": 20,
+  "cumulative_unknown_count": 4487,
+  "observed_cluster_ids": [
+    "0",
+    "11",
+    "17",
+    "18",
+    "24",
+    "74"
+  ],
+  "reward": 0.0,
+  "simulation_log_sha256": "675e1dc26cdbf41ffaa8a11c82f2ab68b7ed918d5dc185f8b4fe9b59f4d50f9a",
+  "raw_results_xml_sha256": "e7185c17c4177c54ea0a87ebda64d6abc28c42b31ca22c832a9333906a33925b",
+  "public_results_xml_sha256": "c955a4772a85f5428699aa80d055ff260de280b4826d6221fb17eaff155a23f7",
+  "positive_vector_sha256": "332eee98d6fb9ecb426f8919149ef57988957c65b2473f59568c17028c54fbca"
+}

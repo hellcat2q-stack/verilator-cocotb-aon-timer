@@ -1,0 +1,86 @@
+{
+  "run_id": "stage08-array-boundary-pilot-v3-001",
+  "testcase": "aon_timer_config_sweep_zero",
+  "seed": 1,
+  "phase": "warmup",
+  "completed_attempts_before_selection": 0,
+  "observed_positive_count_before_selection": 0,
+  "ucb_scores": {},
+  "prior_attempt_sha256": null,
+  "result": "PASS",
+  "exit_code": 0,
+  "timed_out": false,
+  "wall_seconds": 15.7981,
+  "simulation_time_ns": 1370.001,
+  "testcases": [
+    {
+      "name": "aon_timer_config_sweep_zero",
+      "result": "PASS",
+      "simulation_time_ns": 1370.001
+    }
+  ],
+  "trace_summary": {
+    "status": "PARTIAL_SOURCE_SAMPLE_TRACE",
+    "canonical_vector_generated": false,
+    "validated": true,
+    "file_count": 1,
+    "total_sample_count": 18,
+    "sample_counts_by_covergroup": {
+      "timer_cfg_cg": 18
+    },
+    "resolved_canonical_bin_identity_hit_counts": {
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_0||0": 18,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_0||0": 18,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_0||0": 18,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0": 18,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_0||0": 18
+    },
+    "files": {
+      "stage08-array-boundary-pilot-v3-001__aon_timer_config_sweep_zero__seed1.json": {
+        "testcase": "aon_timer_config_sweep_zero",
+        "sha256": "ffcda4823f9772dbf637b7cf2a81beb551b59cfe86244ea25f5f7274705a45b3",
+        "sample_count": 18,
+        "sample_counts_by_covergroup": {
+          "timer_cfg_cg": 18
+        },
+        "coverage_status": "SAMPLE_TRACE_WITH_COUNT_EVENTS_CANONICAL_IDENTITIES_AVAILABLE_VALUE_PARTITIONS_UNMAPPED",
+        "count_event_samples_valid": true,
+        "validation": "PASS",
+        "checks": {
+          "sha256": true,
+          "sample_count": true,
+          "sample_counts_by_covergroup": true,
+          "resolved_identity_hit_counts": true,
+          "count_event_samples": true,
+          "coverage_status": true,
+          "run_id": true,
+          "seed": true,
+          "source_revision": true,
+          "coverage_schema_id": true,
+          "no_canonical_vector": true
+        }
+      }
+    }
+  },
+  "validation_error": null,
+  "new_positive_identities": [
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_0||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_0||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_0||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_0||0"
+  ],
+  "new_positive_count": 5,
+  "cumulative_positive_count": 5,
+  "cumulative_unknown_count": 4502,
+  "observed_cluster_ids": [
+    "17",
+    "18",
+    "74"
+  ],
+  "reward": 0.0011093854004881295,
+  "simulation_log_sha256": "c834b9f82893f4714b2d589845f59c3ef0483ed1c081d11ed0b64f5d2d537bf5",
+  "raw_results_xml_sha256": "ca57b0cc1ec790a6db0d5ec1b3c8eaa94b018fea90867c93224bccf0e9fad0d2",
+  "public_results_xml_sha256": "d460d1e1d1d2a2ce5da02bee787f7314265199988afc80a4633841c30f3f4aa9",
+  "positive_vector_sha256": "e8db19e3dbec2b4632fb22f5ade6623071e4c77b33c5fac42bfde912efa15578"
+}

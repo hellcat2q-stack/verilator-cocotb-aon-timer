@@ -1,0 +1,10 @@
+{
+  "run_id": "stage08-array-boundary-pilot-v3-001",
+  "testcase": "aon_timer_config_sweep_zero",
+  "seed": 1,
+  "phase": "warmup",
+  "completed_attempts_before_selection": 0,
+  "observed_positive_count_before_selection": 0,
+  "ucb_scores": {},
+  "prior_attempt_sha256": null
+}

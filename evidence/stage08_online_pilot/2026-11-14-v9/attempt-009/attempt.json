@@ -1,0 +1,97 @@
+{
+  "run_id": "stage08-array-boundary-pilot-v3-009",
+  "testcase": "aon_timer_config_sweep_array_high",
+  "seed": 1,
+  "phase": "ucb",
+  "completed_attempts_before_selection": 8,
+  "observed_positive_count_before_selection": 20,
+  "ucb_scores": {
+    "aon_timer_config_sweep_zero": 0.014974961566252895,
+    "aon_timer_config_sweep_one": 0.014864023026204083,
+    "aon_timer_config_sweep_array_low": 0.020393339803376178,
+    "aon_timer_config_sweep_array_mid": 0.021058971043669057,
+    "aon_timer_config_sweep_array_high": 0.021280848123766682,
+    "aon_timer_config_sweep_max": 0.021280848123766682
+  },
+  "prior_attempt_sha256": "bf16de0e587134d24c1b73b8d6115948b228d472631f0d9898cbcd23df347eea",
+  "result": "PASS",
+  "exit_code": 0,
+  "timed_out": false,
+  "wall_seconds": 1.807,
+  "simulation_time_ns": 1370.001,
+  "testcases": [
+    {
+      "name": "aon_timer_config_sweep_array_high",
+      "result": "PASS",
+      "simulation_time_ns": 1370.001
+    }
+  ],
+  "trace_summary": {
+    "status": "PARTIAL_SOURCE_SAMPLE_TRACE",
+    "canonical_vector_generated": false,
+    "validated": true,
+    "file_count": 1,
+    "total_sample_count": 19,
+    "sample_counts_by_covergroup": {
+      "timer_cfg_cg": 19
+    },
+    "resolved_canonical_bin_identity_hit_counts": {
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[31]||0": 5,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_0||0": 14,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[31]||0": 4,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_0||0": 15,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[31]||0": 3,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_0||0": 16,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0": 19,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[0]||0": 1,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[63]||0": 6,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_0||0": 12
+    },
+    "files": {
+      "stage08-array-boundary-pilot-v3-009__aon_timer_config_sweep_array_high__seed1.json": {
+        "testcase": "aon_timer_config_sweep_array_high",
+        "sha256": "5a63fcdf0d9f58bfdd7d7975309ff85acfbd37654b808c3da64f6ab319044f35",
+        "sample_count": 19,
+        "sample_counts_by_covergroup": {
+          "timer_cfg_cg": 19
+        },
+        "coverage_status": "SAMPLE_TRACE_WITH_COUNT_EVENTS_CANONICAL_IDENTITIES_AVAILABLE_VALUE_PARTITIONS_UNMAPPED",
+        "count_event_samples_valid": true,
+        "validation": "PASS",
+        "checks": {
+          "sha256": true,
+          "sample_count": true,
+          "sample_counts_by_covergroup": true,
+          "resolved_identity_hit_counts": true,
+          "count_event_samples": true,
+          "coverage_status": true,
+          "run_id": true,
+          "seed": true,
+          "source_revision": true,
+          "coverage_schema_id": true,
+          "no_canonical_vector": true
+        }
+      }
+    }
+  },
+  "validation_error": null,
+  "new_positive_identities": [],
+  "new_positive_count": 0,
+  "cumulative_positive_count": 20,
+  "cumulative_unknown_count": 4487,
+  "observed_cluster_ids": [
+    "0",
+    "11",
+    "17",
+    "18",
+    "2",
+    "3",
+    "74",
+    "8"
+  ],
+  "reward": 0.0,
+  "simulation_log_sha256": "5e4f688325bb4dd72eea8590b904e86beea69bce4f236aa183c1bcdb232ad580",
+  "raw_results_xml_sha256": "8d51aa76cefd555ec222cbc5cc1be526a2533274bb1180fb2d406d90b697b575",
+  "public_results_xml_sha256": "a6bc44dbe3f205cef56e77ab3690248364d73415f7f73f1d7429304f571580a7",
+  "positive_vector_sha256": "c101cd0a60e6642a1825b7f4faf9af34c6e2d4165d6a352e81dd6fe89d975d69"
+}

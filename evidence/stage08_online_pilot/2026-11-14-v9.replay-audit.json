@@ -1,0 +1,13 @@
+{
+  "schema": "aon-timer-stage08-pilot-replay-audit-v1",
+  "status": "PASS",
+  "summary_sha256": "a49820974d34f376b26ebfd24b1b36113693bae275307d5f86fc17cb8b680b8f",
+  "attempts_replayed": 18,
+  "real_tests_passed": 18,
+  "raw_samples_revalidated": 330,
+  "ucb_decisions_replayed": 12,
+  "known_positive_count": 20,
+  "unknown_count": 4487,
+  "errors": [],
+  "note": "Pilot integrity replay only; no claim of paper scheduling efficiency or UVM/VCS coverage parity."
+}

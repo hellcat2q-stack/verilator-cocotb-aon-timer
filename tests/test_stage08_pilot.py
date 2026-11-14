@@ -95,12 +95,10 @@ class Stage08PilotTests(unittest.TestCase):
             self.assertFalse(passed)
             self.assertFalse(summary["validated"])
 
-    def test_saved_real_simulation_evidence_replays(self):
+    def test_previous_simulation_evidence_is_rejected_after_input_change(self):
         result = audit(RECORDED_PILOT)
-        self.assertEqual(result["status"], "PASS", result["errors"])
-        self.assertEqual(result["attempts_replayed"], 12)
-        self.assertEqual(result["ucb_decisions_replayed"], 8)
-        self.assertEqual(result["raw_samples_revalidated"], 585)
+        self.assertEqual(result["status"], "FAIL")
+        self.assertTrue(any(error.startswith("input changed:") for error in result["errors"]))
 
     def test_modified_reward_is_rejected_by_replay(self):
         with tempfile.TemporaryDirectory() as directory:

@@ -1,0 +1,17 @@
+{
+  "run_id": "stage08-array-boundary-pilot-v3-010",
+  "testcase": "aon_timer_config_sweep_max",
+  "seed": 1,
+  "phase": "ucb",
+  "completed_attempts_before_selection": 9,
+  "observed_positive_count_before_selection": 20,
+  "ucb_scores": {
+    "aon_timer_config_sweep_zero": 0.015377730773919178,
+    "aon_timer_config_sweep_one": 0.015266792233870365,
+    "aon_timer_config_sweep_array_low": 0.020962941479364103,
+    "aon_timer_config_sweep_array_mid": 0.021628572719656982,
+    "aon_timer_config_sweep_array_high": 0.015266792233870365,
+    "aon_timer_config_sweep_max": 0.021850449799754607
+  },
+  "prior_attempt_sha256": "50940f855ed61e2884dc2c98121d313c609ec9431716aa654d4457a770b0592e"
+}

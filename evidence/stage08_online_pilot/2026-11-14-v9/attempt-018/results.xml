@@ -1,0 +1,6 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1" />
+    <testcase name="aon_timer_config_sweep_array_low" classname="test_sequences" file="tools/test_sequences.py" lineno="99" time="0.02067279815673828" sim_time_ns="1370.001" ratio_time="66270.70944208147" />
+  </testsuite>
+</testsuites>

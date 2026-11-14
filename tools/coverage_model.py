@@ -22,6 +22,7 @@ SUPPORTED_COVERAGE_SCHEMA_IDS = {
 SCHEMA_PATH = Path(__file__).resolve().parents[1] / "configs" / "coverage_schema.json"
 BIN_CATALOG_PATH = Path(__file__).resolve().parents[1] / "references" / "canonical_bin_catalog.json"
 BIN_IDS_PATH = Path(__file__).resolve().parents[1] / "references" / "canonical_bin_ids.txt"
+ARRAY_RANGE_PATH = Path(__file__).resolve().parents[1] / "references" / "array_bin_ranges.v1.json"
 
 
 def load_schema(path: Path = SCHEMA_PATH) -> dict[str, Any]:
@@ -129,6 +130,24 @@ def load_bin_catalog() -> tuple[dict[str, Any], list[str]]:
     return catalog, bin_ids
 
 
+def load_array_ranges() -> dict[tuple[str, str], list[dict[str, Any]]]:
+    """Load checked VCS-reference intervals for the timer_cfg arrays.
+
+    This is a live Python reference classifier; it is not native Verilator
+    SystemVerilog coverage equivalence evidence.
+    """
+    with ARRAY_RANGE_PATH.open(encoding="utf-8") as stream:
+        document = json.load(stream)
+    names = {"prescale": "prescale_cp", "bark": "bark_thold_cp",
+             "bite": "bite_thold_cp", "wkup": "wkup_thold_cp"}
+    result = {("timer_cfg_cg", names[name]): entries
+              for name, entries in document.get("arrays", {}).items() if name in names}
+    expected = {("timer_cfg_cg", value) for value in names.values()}
+    if set(result) != expected:
+        raise ValueError("array-bin reference catalog is incomplete")
+    return result
+
+
 class CoverageTrace:
     """Record raw SV covergroup sample tuples without inventing bin IDs."""
 
@@ -140,6 +159,7 @@ class CoverageTrace:
 
         self.schema = load_schema()
         self.bin_catalog, self.bin_ids = load_bin_catalog()
+        self._array_ranges = load_array_ranges()
         self.run_id = run_id
         self.testcase = testcase
         self.seed = seed
@@ -210,6 +230,7 @@ class CoverageTrace:
         explicit_bins: list[str] = []
         canonical_identities: list[str] = []
         array_declarations: list[str] = []
+        array_memberships: list[str] = []
         for coverpoint in group["coverpoints"]:
             field_name = coverpoint.get("field")
             if field_name is None:
@@ -233,6 +254,14 @@ class CoverageTrace:
                 array_declarations.append(
                     f"{group_name}.{coverpoint['name']}.{array_spec['name']}[]"
                 )
+                for entry in self._array_ranges.get((group_name, coverpoint["name"]), []):
+                    low, high = entry["value_range"]
+                    if low <= value <= high:
+                        identity = entry["canonical_identity"]
+                        array_memberships.append(identity)
+                        canonical_identities.append(identity)
+                        self._canonical_identity_hits[identity] += 1
+                        break
 
         sample_index = self._sample_counts[group_name]
         self._sample_counts[group_name] += 1
@@ -245,6 +274,7 @@ class CoverageTrace:
             "resolved_explicit_bin_memberships": explicit_bins,
             "resolved_canonical_bin_identity_hits": canonical_identities,
             "unpartitioned_array_declarations": array_declarations,
+            "reference_array_bin_memberships": array_memberships,
         }
         self.samples.append(record)
         return record

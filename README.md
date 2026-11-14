@@ -4,7 +4,7 @@
 
 在固定 OpenTitan AON Timer RTL 上用 Verilator + Cocotb 运行测试，移植官方测试刺激、覆盖采样与反馈调度，建立可审计的开源实验链路。旧 VCS 命中数不会作为 Cocotb 结果复用。
 
-**当前已进入第 08 步：在线闭环 pilot 实跑通过。** 2026-11-14 使用固定 RTL 完成 12 次独立 Verilator/Cocotb 仿真，4 次 warmup + 8 次根据前次反馈选择的 testcase UCB 决策，12/12 PASS。585 条 raw samples 可重放，累计 13 个可确认命中、4,494 unknown，未推断 miss。详见 [阶段 08](08_在线覆盖闭环/README.md) 和 [实测回放](evidence/stage08_online_pilot/2026-11-14-v3.replay-audit.json)。这是明确限定范围的工程闭环；完整 4,507-bin 论文调度和覆盖等价性仍待完成。
+**当前已进入第 08 步：在线闭环 pilot 实跑通过。** 2026-11-14 使用固定 RTL 完成 18 次独立 Verilator/Cocotb 仿真，6 次 warmup + 12 次根据前次反馈选择的 action UCB 决策，18/18 PASS。330 条 raw samples 可重放，累计 20 个可确认命中、4,487 unknown，未推断 miss；其中包括实时 Python 参考数组分区命中。详见 [阶段 08](08_在线覆盖闭环/README.md) 和 [实测回放](evidence/stage08_online_pilot/2026-11-14-v9.replay-audit.json)。这是明确限定范围的工程闭环；完整 4,507-bin 论文调度和覆盖等价性仍待完成。
 
 ## 固定参考
 
@@ -27,12 +27,12 @@
 | --- | --- | --- |
 | 01 | 固定源码、bin 参考口径、工具版本 | 完成 |
 | 02 | Verilator 构建与 Cocotb RTL smoke | smoke 通过；Lint/coverage 迁移待后续阶段 |
-| 03 | 移植覆盖模型并核验 bin/sample 语义 | 4,507 个定义已导入；count-event v2 已采集 RTL 计数值；完整 legacy identity、shared 采样和 UVM/VCS 时序对照待补 |
+| 03 | 移植覆盖模型并核验 bin/sample 语义 | 4,507 个定义已导入；live Python 参考数组分类已接入 trace；完整 legacy identity、shared 采样和 UVM/VCS 时序对照待补 |
 | 04 | 移植测试序列和关键 scoreboard 检查 | 固定 4/4 功能序列接入 partial raw sample trace；完整 vector 与 stress-all 待后续 |
 | 05 | 冻结测试池、seed 并生成初始语料 | frozen pool 校验 trace hashes/sample counts；1 suite、4/4 PASS；导出稀疏部分命中记录 |
-| 06 | 生成 bin-by-run 矩阵并审计 | count-event v2：13 known hits、0 推断 miss、4,494 unknown；完整 coverage 阶段门未通过 |
+| 06 | 生成 bin-by-run 矩阵并审计 | Stage 05 partial matrix 仍为 13 known hits；Stage 08 pilot 可确认 20 个正向 identity、4,487 unknown，0 推断 miss；完整 coverage 阶段门未通过 |
 | 07 | 接入聚类、信息评分与 UCB 调度 | 4,507 identities → 78 clusters 已回放；论文信息评分与 cluster UCB 待补；另有 Stage 08 testcase UCB pilot 已运行 |
-| 08 | 在线仿真和 coverage feedback 闭环 | pilot 完成 12 次真实单用例仿真与逐轮反馈，12/12 PASS；完整论文闭环尚未完成 |
+| 08 | 在线仿真和 coverage feedback 闭环 | action-boundary pilot 完成 18 次真实仿真与逐轮反馈，18/18 PASS、330 样本、20 positives；完整论文闭环尚未完成 |
 | 09 | Random、Full 和消融对照 | 待开始 |
 | 10 | 独立复核与最终报告 | 待开始 |
 

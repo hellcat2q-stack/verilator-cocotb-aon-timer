@@ -40,14 +40,18 @@ def coverage_test(test_function):
     @wraps(test_function)
     async def wrapped(dut):
         global _ACTIVE_COVERAGE
-        recorder = CocotbCoverageAdapter(test_function.__name__)
-        _ACTIVE_COVERAGE = recorder
-        recorder.start_pin_monitor(dut)
+        owns_recorder = _ACTIVE_COVERAGE is None
+        recorder = (_ACTIVE_COVERAGE or
+                    CocotbCoverageAdapter(os.environ.get("TESTCASE", test_function.__name__)))
+        if owns_recorder:
+            _ACTIVE_COVERAGE = recorder
+            recorder.start_pin_monitor(dut)
         try:
             return await test_function(dut)
         finally:
-            recorder.close()
-            _ACTIVE_COVERAGE = None
+            if owns_recorder:
+                recorder.close()
+                _ACTIVE_COVERAGE = None
 
     return cocotb.test()(wrapped)
 
@@ -56,12 +60,48 @@ def load_stimulus_pool() -> dict[str, dict]:
     pool_path = Path(os.environ.get("AON_TIMER_TEST_POOL", DEFAULT_POOL_PATH))
     with pool_path.open(encoding="utf-8") as stream:
         pool = json.load(stream)
-    if pool.get("schema") != "aon-timer-stage05-test-pool-v1":
+    if pool.get("schema") not in {
+        "aon-timer-stage05-test-pool-v1",
+        "aon-timer-stage08-action-pool-v1",
+    }:
         raise ValueError(f"unsupported AON Timer test pool schema in {pool_path}")
-    return {case["name"]: case["stimulus"] for case in pool["testcases"]}
+    entries = pool.get("testcases", pool.get("actions"))
+    if not isinstance(entries, list):
+        raise ValueError(f"pool has no testcase/action list: {pool_path}")
+    return {
+        entry["name"]: ({**entry["stimulus"], "base_test": entry.get("base_test")}
+                         if entry.get("base_test") else entry["stimulus"])
+        for entry in entries
+    }
 
 
 STIMULUS_POOL = load_stimulus_pool()
+
+
+def selected_stimulus(base_name: str) -> dict:
+    """Select the action-specific stimulus while retaining base test code."""
+    selected = os.environ.get("TESTCASE", base_name)
+    stimulus = STIMULUS_POOL.get(selected, STIMULUS_POOL.get(base_name))
+    if stimulus is None:
+        raise ValueError(f"missing stimulus for {selected} (base {base_name})")
+    return stimulus
+
+
+def _register_action_variants() -> None:
+    """Expose action names to Cocotb's TESTCASE selector."""
+    for action_name, action in STIMULUS_POOL.items():
+        base_name = action.get("base_test") if isinstance(action, dict) else None
+        if not base_name or action_name in globals() or base_name not in globals():
+            continue
+        base = globals()[base_name]
+        implementation = base
+
+        async def variant(dut, _implementation=implementation):
+            return await _implementation(dut)
+
+        variant.__name__ = action_name
+        variant.__qualname__ = action_name
+        globals()[action_name] = coverage_test(variant)
 
 
 async def transfer(dut, opcode: int, address: int, data: int = 0) -> int:
@@ -170,7 +210,7 @@ async def aon_timer_smoke_sequence(dut):
     await start_clocks_and_reset(dut)
     await initialize_disabled(dut)
 
-    stimulus = STIMULUS_POOL["aon_timer_smoke_sequence"]
+    stimulus = selected_stimulus("aon_timer_smoke_sequence")
     # The official sequence randomizes these in [1:10]; the frozen pool uses
     # explicit values so the initial corpus is deterministic and replayable.
     await write_reg(dut, WKUP_THOLD_LO, stimulus["wkup_threshold"])
@@ -201,7 +241,7 @@ async def aon_timer_jump_sequence(dut):
     """Check threshold changes while both counters run, including below-count updates."""
     await start_clocks_and_reset(dut)
     await initialize_disabled(dut)
-    stimulus = STIMULUS_POOL["aon_timer_jump_sequence"]
+    stimulus = selected_stimulus("aon_timer_jump_sequence")
     initial_count = stimulus["initial_count"]
     initial_threshold = stimulus["initial_threshold"]
     threshold_offset = stimulus["threshold_below_live_count_by"]
@@ -256,7 +296,7 @@ async def aon_timer_prescaler_sequence(dut):
     await start_clocks_and_reset(dut)
     measured_cycles = {}
 
-    stimulus = STIMULUS_POOL["aon_timer_prescaler_sequence"]
+    stimulus = selected_stimulus("aon_timer_prescaler_sequence")
     for prescaler in stimulus["prescaler_values"]:
         await reset_again(dut)
         await initialize_disabled(dut)
@@ -295,7 +335,7 @@ async def aon_timer_intr_test_sequence(dut):
     """Translate the inherited CIP interrupt-test scenario for both AON IRQs."""
     await start_clocks_and_reset(dut)
     await initialize_disabled(dut)
-    stimulus = STIMULUS_POOL["aon_timer_intr_test_sequence"]
+    stimulus = selected_stimulus("aon_timer_intr_test_sequence")
     intr_test_mask = stimulus["intr_test_mask"]
     await write_reg(dut, INTR_TEST, intr_test_mask)
 
@@ -317,3 +357,42 @@ async def aon_timer_intr_test_sequence(dut):
     assert int(dut.intr_wkup_o.value) == 0, "WKUP interrupt output stayed asserted after W1C"
     assert int(dut.intr_wdog_o.value) == 0, "WDOG interrupt output stayed asserted after W1C"
     dut._log.info("STAGE04_INTR_TEST_PASS state_before_clear=0x%x state_after_clear=0x%x", intr_state, cleared)
+
+
+@coverage_test
+async def aon_timer_config_sweep_sequence(dut):
+    """Program timer endpoints and observe their real RTL readback."""
+    await start_clocks_and_reset(dut)
+    await initialize_disabled(dut)
+    assert _ACTIVE_COVERAGE is not None, "Stage08 coverage recorder was not installed"
+    dut._log.info("STAGE08_CONFIG_RECORDER_START active=%s samples=%d",
+                  _ACTIVE_COVERAGE is not None,
+                  len(_ACTIVE_COVERAGE.trace.samples) if _ACTIVE_COVERAGE else -1)
+    stimulus = selected_stimulus("aon_timer_config_sweep_sequence")
+    wkup = int(stimulus["wkup_threshold"])
+    bark = int(stimulus["wdog_bark_threshold"])
+    bite = int(stimulus["wdog_bite_threshold"])
+    prescale = int(stimulus["prescale"])
+    pause = int(stimulus["wdog_pause_in_sleep"])
+    await write_reg(dut, WKUP_THOLD_LO, wkup & 0xFFFFFFFF)
+    await write_reg(dut, WKUP_THOLD_HI, (wkup >> 32) & 0xFFFFFFFF)
+    await write_reg(dut, WDOG_BARK_THOLD, bark)
+    await write_reg(dut, WDOG_BITE_THOLD, bite)
+    await write_reg(dut, WKUP_CTRL, (prescale << 1) & 0x1FFE)
+    await write_reg(dut, WDOG_CTRL, (pause << 1) & 0x2)
+    if stimulus.get("lock_wdog_regwen", 0):
+        await write_reg(dut, WDOG_REGWEN, 0)
+    await write_reg(dut, INTR_STATE, 3)
+    assert await read_reg(dut, WKUP_THOLD_LO) == (wkup & 0xFFFFFFFF)
+    assert await read_reg(dut, WDOG_BARK_THOLD) == bark
+    assert await read_reg(dut, WDOG_BITE_THOLD) == bite
+    assert _ACTIVE_COVERAGE is not None and _ACTIVE_COVERAGE.trace.samples, (
+        "configuration sweep did not capture any TL coverage samples"
+    )
+    dut._log.info(
+        "STAGE08_CONFIG_SWEEP_PASS wkup=%d bark=%d bite=%d prescale=%d pause=%d lock=%d",
+        wkup, bark, bite, prescale, pause, stimulus.get("lock_wdog_regwen", 0),
+    )
+
+
+_register_action_variants()

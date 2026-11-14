@@ -43,6 +43,25 @@ def input_sha256(path):
     return hashlib.sha256(path.read_bytes().replace(b"\r\n", b"\n")).hexdigest()
 
 
+def load_action_pool(path):
+    with path.open(encoding="utf-8") as stream:
+        pool = json.load(stream)
+    if pool.get("schema") != "aon-timer-stage08-action-pool-v1":
+        raise ValueError("unsupported Stage 08 action pool schema")
+    if pool.get("source_revision") != PINNED_REVISION or pool.get("deterministic") is not True:
+        raise ValueError("action pool source revision or deterministic flag is invalid")
+    actions = pool.get("actions")
+    if not isinstance(actions, list) or not actions:
+        raise ValueError("action pool must contain actions")
+    names = [item.get("name") for item in actions]
+    if len(set(names)) != len(names) or any(not isinstance(name, str) or not name for name in names):
+        raise ValueError("action names must be unique non-empty strings")
+    for action in actions:
+        if not isinstance(action.get("base_test"), str) or not isinstance(action.get("stimulus"), dict):
+            raise ValueError("each action needs base_test and stimulus")
+    return pool
+
+
 def export_results_xml(source_path, target_path, private_roots=()):
     """Keep the unmodified XML locally; publish an explicitly normalized copy."""
     tree = ET.parse(source_path)
@@ -128,8 +147,14 @@ def run(args):
             or protocol.get("source_revision") != PINNED_REVISION
             or protocol.get("selection_policy") != "testcase_ucb_positive_novelty_v1"):
         raise ValueError("unsupported pilot protocol or source revision")
-    pool, _, pool_hash = load_frozen_pool(ROOT / protocol["pool_path"], ROOT / protocol["freeze_path"])
-    arms = [case["name"] for case in pool["testcases"]]
+    pool_path = ROOT / protocol["pool_path"]
+    pool = load_action_pool(pool_path)
+    freeze_path = ROOT / protocol["freeze_path"]
+    freeze = json.loads(freeze_path.read_text(encoding="utf-8"))
+    pool_hash = input_sha256(pool_path)
+    if freeze.get("action_pool_sha256") != pool_hash:
+        raise ValueError("action pool does not match its freeze record")
+    arms = [case["name"] for case in pool["actions"]]
     budget = protocol["attempt_budget"]
     if not isinstance(budget, int) or budget < len(arms):
         raise ValueError("budget must allow one real attempt per arm")
@@ -188,7 +213,7 @@ def run(args):
         raise ValueError("work/output must be fresh directories; do not overwrite prior evidence")
     work.mkdir(parents=True)
     output.mkdir(parents=True)
-    inputs = [args.protocol, ROOT / protocol["pool_path"], ROOT / protocol["freeze_path"],
+    inputs = [args.protocol, pool_path, freeze_path,
               ROOT / protocol["cluster_path"], ROOT / "configs/coverage_schema.json",
               ROOT / "references/canonical_bin_catalog.json", ROOT / "references/canonical_bin_ids.txt"]
     inputs += [ROOT / "tools" / name for name in (

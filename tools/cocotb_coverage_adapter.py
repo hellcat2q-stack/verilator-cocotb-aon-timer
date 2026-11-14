@@ -354,7 +354,12 @@ class CocotbCoverageAdapter:
                 "canonical_bin_vector_generated": False,
             },
             "canonical_vector_generated": False,
-            "value_partition_status": "UNRESOLVED",
+            "value_partition_status": "REFERENCE_ARRAY_CLASSIFIER_LIVE_PYTHON_NATIVE_EQUIVALENCE_UNVERIFIED",
+            "reference_array_classifier": {
+                "source": "references/array_bin_ranges.v1.json",
+                "status": "LIVE_PYTHON_REFERENCE_PARTITION_CLASSIFIER",
+                "native_verilator_equivalence_verified": False,
+            },
         }
         path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
         return path

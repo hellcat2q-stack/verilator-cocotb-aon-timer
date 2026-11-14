@@ -1,0 +1,8 @@
+{
+  "schema": "aon-timer-stage08-action-freeze-v1",
+  "pool_id": "aon-timer-config-boundary-actions-v1",
+  "source_revision": "9f20940d494a223cc950a5b98f748fb28109d458",
+  "status": "FROZEN_BEFORE_FORMAL_RUN",
+  "action_pool_path": "configs/stage08-action-pool.json",
+  "action_pool_sha256": "e23fddb3b1a69e64b9ab58d56caa8a08ea4c9f1fea3547d476046e6684c7fa6a"
+}

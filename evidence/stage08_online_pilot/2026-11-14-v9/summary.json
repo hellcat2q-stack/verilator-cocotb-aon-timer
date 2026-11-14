@@ -1,0 +1,1792 @@
+{
+  "schema": "aon-timer-stage08-positive-hit-pilot-v1",
+  "status": "PASS",
+  "started_utc": "2026-11-14T05:49:33.571822+00:00",
+  "protocol": {
+    "schema": "aon-timer-stage08-pilot-protocol-v1",
+    "experiment_id": "stage08-array-boundary-pilot-v3",
+    "source_revision": "9f20940d494a223cc950a5b98f748fb28109d458",
+    "coverage_schema_id": "aon_timer_uvm_source_trace_v2",
+    "pool_path": "configs/stage08-action-pool.json",
+    "freeze_path": "configs/stage08-action-pool-freeze.json",
+    "cluster_path": "evidence/stage07_count_event_v2_verified/clusters.json",
+    "attempt_budget": 18,
+    "seed": 1,
+    "timeout_seconds_per_attempt": 300,
+    "simulation_time_limit_ns_per_attempt": 25000,
+    "selection_policy": "testcase_ucb_positive_novelty_v1",
+    "exploration_coefficient": 0.01,
+    "reward": "new_confirmed_positive_canonical_identities / 4507; failed_attempts_receive_zero",
+    "unknown_policy": "unobserved canonical identities remain unknown; never infer misses",
+    "scope": "Stage08 online integration pilot using six deterministic configuration-boundary actions; live Python reference array classification is recorded, while native equivalence, paper cluster/information-score scheduling and full coverage equivalence remain out of scope"
+  },
+  "source_revision": "9f20940d494a223cc950a5b98f748fb28109d458",
+  "pool_sha256": "e23fddb3b1a69e64b9ab58d56caa8a08ea4c9f1fea3547d476046e6684c7fa6a",
+  "toolchain": {
+    "verilator": "Verilator 5.020 2024-01-01 rev (Debian 5.020-1)",
+    "cocotb": "1.9.2",
+    "fusesoc": "0.5.dev0",
+    "edalize_python_package": "0.4.0",
+    "cocotb_python_package": "1.9.2",
+    "launcher_python": "3.12.3",
+    "simulator_python": "Python 3.12.3"
+  },
+  "project_commit_before_run": "2a1a9dec23792d863a1ca68ff75ac7ed9bd75347",
+  "input_hash_policy": "sha256_of_lf_normalized_repository_text_bytes",
+  "input_sha256": {
+    "configs/stage08-pilot.json": "cc5a0b74b850dfa3dec7e2df075a1d58862a5d35eba6d975a925486a4abb57dc",
+    "configs/stage08-action-pool.json": "e23fddb3b1a69e64b9ab58d56caa8a08ea4c9f1fea3547d476046e6684c7fa6a",
+    "configs/stage08-action-pool-freeze.json": "c243e110528d0db9b0bd14901dd80db1446c9ee258093fee4bb57d6c7ad1c444",
+    "evidence/stage07_count_event_v2_verified/clusters.json": "f05cab159edddada9ee52420ecaed29b757420ce18d74c17c76fa9370e2e1257",
+    "configs/coverage_schema.json": "91fbaa1f361357c1c448da2fb3585119520344276777630b42d60b99f78e4331",
+    "references/canonical_bin_catalog.json": "c7ca813f1d0bfecad4c16e3924826c70b642cea2c7b812dfcf38933ee31b3223",
+    "references/canonical_bin_ids.txt": "dbcf02f06c121675401c8983dde65a9275239cefd3aff842712bdeef5da11355",
+    "tools/run_stage08_pilot.py": "870df357d0cc0c7521989c6280a34e99a9d2dc1a056c2a44411459d1df93e29c",
+    "tools/test_sequences.py": "6273d59fab15fa971fcde9a33dc569dd5d29552dada9e5c52258130f5849cf6e",
+    "tools/coverage_model.py": "8943147088600c1099dbd80bbfb5331ac72911976e42387b41292994768a02fb",
+    "tools/cocotb_coverage_adapter.py": "39c60ea3f6579acdeff2ab5add5c0abb45280b898ed5293003866b3328c97113",
+    "tools/run_stage05_corpus.py": "b40a200433ee874d32bfb5a09b66cf0142b035f32967eb0fe91382145a3b3f7e",
+    "tools/stage05_corpus.py": "493975e0ced2745df0c32856db46bce2611332a92450e6e37e9cbf3ceba09a95",
+    "tools/AonMakefile": "f17d518d2ac290a9e43a363b98bc5d99dbcf7156ffe08cbfb31337cbfa571f5a",
+    "tools/aon_timer_tb.sv": "8b9f34aaa6fec73d0e3cc4940bfd8a601ab4447c908d6a50007ebd4f429f83ca"
+  },
+  "canonical_identity_count": 4507,
+  "cluster_count": 78,
+  "paper_scheduler_enabled": false,
+  "paper_equivalence_claimed": false,
+  "attempts": [
+    {
+      "run_id": "stage08-array-boundary-pilot-v3-001",
+      "testcase": "aon_timer_config_sweep_zero",
+      "seed": 1,
+      "phase": "warmup",
+      "completed_attempts_before_selection": 0,
+      "observed_positive_count_before_selection": 0,
+      "ucb_scores": {},
+      "prior_attempt_sha256": null,
+      "result": "PASS",
+      "exit_code": 0,
+      "timed_out": false,
+      "wall_seconds": 15.7981,
+      "simulation_time_ns": 1370.001,
+      "testcases": [
+        {
+          "name": "aon_timer_config_sweep_zero",
+          "result": "PASS",
+          "simulation_time_ns": 1370.001
+        }
+      ],
+      "trace_summary": {
+        "status": "PARTIAL_SOURCE_SAMPLE_TRACE",
+        "canonical_vector_generated": false,
+        "validated": true,
+        "file_count": 1,
+        "total_sample_count": 18,
+        "sample_counts_by_covergroup": {
+          "timer_cfg_cg": 18
+        },
+        "resolved_canonical_bin_identity_hit_counts": {
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_0||0": 18,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_0||0": 18,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_0||0": 18,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0": 18,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_0||0": 18
+        },
+        "files": {
+          "stage08-array-boundary-pilot-v3-001__aon_timer_config_sweep_zero__seed1.json": {
+            "testcase": "aon_timer_config_sweep_zero",
+            "sha256": "ffcda4823f9772dbf637b7cf2a81beb551b59cfe86244ea25f5f7274705a45b3",
+            "sample_count": 18,
+            "sample_counts_by_covergroup": {
+              "timer_cfg_cg": 18
+            },
+            "coverage_status": "SAMPLE_TRACE_WITH_COUNT_EVENTS_CANONICAL_IDENTITIES_AVAILABLE_VALUE_PARTITIONS_UNMAPPED",
+            "count_event_samples_valid": true,
+            "validation": "PASS",
+            "checks": {
+              "sha256": true,
+              "sample_count": true,
+              "sample_counts_by_covergroup": true,
+              "resolved_identity_hit_counts": true,
+              "count_event_samples": true,
+              "coverage_status": true,
+              "run_id": true,
+              "seed": true,
+              "source_revision": true,
+              "coverage_schema_id": true,
+              "no_canonical_vector": true
+            }
+          }
+        }
+      },
+      "validation_error": null,
+      "new_positive_identities": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_0||0"
+      ],
+      "new_positive_count": 5,
+      "cumulative_positive_count": 5,
+      "cumulative_unknown_count": 4502,
+      "observed_cluster_ids": [
+        "17",
+        "18",
+        "74"
+      ],
+      "reward": 0.0011093854004881295,
+      "simulation_log_sha256": "c834b9f82893f4714b2d589845f59c3ef0483ed1c081d11ed0b64f5d2d537bf5",
+      "raw_results_xml_sha256": "ca57b0cc1ec790a6db0d5ec1b3c8eaa94b018fea90867c93224bccf0e9fad0d2",
+      "public_results_xml_sha256": "d460d1e1d1d2a2ce5da02bee787f7314265199988afc80a4633841c30f3f4aa9",
+      "positive_vector_sha256": "e8db19e3dbec2b4632fb22f5ade6623071e4c77b33c5fac42bfde912efa15578"
+    },
+    {
+      "run_id": "stage08-array-boundary-pilot-v3-002",
+      "testcase": "aon_timer_config_sweep_one",
+      "seed": 1,
+      "phase": "warmup",
+      "completed_attempts_before_selection": 1,
+      "observed_positive_count_before_selection": 5,
+      "ucb_scores": {},
+      "prior_attempt_sha256": "2bd1acd9b5798ffc89334725937361f58cf0f0b500312f153535d850bf5bfb7c",
+      "result": "PASS",
+      "exit_code": 0,
+      "timed_out": false,
+      "wall_seconds": 1.6176,
+      "simulation_time_ns": 1370.001,
+      "testcases": [
+        {
+          "name": "aon_timer_config_sweep_one",
+          "result": "PASS",
+          "simulation_time_ns": 1370.001
+        }
+      ],
+      "trace_summary": {
+        "status": "PARTIAL_SOURCE_SAMPLE_TRACE",
+        "canonical_vector_generated": false,
+        "validated": true,
+        "file_count": 1,
+        "total_sample_count": 19,
+        "sample_counts_by_covergroup": {
+          "timer_cfg_cg": 19
+        },
+        "resolved_canonical_bin_identity_hit_counts": {
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[0]||0": 5,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_0||0": 14,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[0]||0": 4,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_0||0": 15,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[0]||0": 3,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_0||0": 16,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0": 19,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[0]||0": 7,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_0||0": 12
+        },
+        "files": {
+          "stage08-array-boundary-pilot-v3-002__aon_timer_config_sweep_one__seed1.json": {
+            "testcase": "aon_timer_config_sweep_one",
+            "sha256": "d7e4ecb6e7c3fff5d16779af425a93990462eb902ec15e9d66c40ec78d71afda",
+            "sample_count": 19,
+            "sample_counts_by_covergroup": {
+              "timer_cfg_cg": 19
+            },
+            "coverage_status": "SAMPLE_TRACE_WITH_COUNT_EVENTS_CANONICAL_IDENTITIES_AVAILABLE_VALUE_PARTITIONS_UNMAPPED",
+            "count_event_samples_valid": true,
+            "validation": "PASS",
+            "checks": {
+              "sha256": true,
+              "sample_count": true,
+              "sample_counts_by_covergroup": true,
+              "resolved_identity_hit_counts": true,
+              "count_event_samples": true,
+              "coverage_status": true,
+              "run_id": true,
+              "seed": true,
+              "source_revision": true,
+              "coverage_schema_id": true,
+              "no_canonical_vector": true
+            }
+          }
+        }
+      },
+      "validation_error": null,
+      "new_positive_identities": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[0]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[0]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[0]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[0]||0"
+      ],
+      "new_positive_count": 4,
+      "cumulative_positive_count": 9,
+      "cumulative_unknown_count": 4498,
+      "observed_cluster_ids": [
+        "0",
+        "11",
+        "17",
+        "18",
+        "24",
+        "74"
+      ],
+      "reward": 0.0008875083203905037,
+      "simulation_log_sha256": "a48cbe07fda0e01be9b9a47a4b74e9bf8a2a52d842b9691f5942e3b9b5acb169",
+      "raw_results_xml_sha256": "0c98d04943792ea73ade4cba7bb869696978f8a12ffd31d3869c3a3661706086",
+      "public_results_xml_sha256": "67d14ae9852e8f77be4d9755c149c76c24c683f01c2a53241e0e9a059c8e55ea",
+      "positive_vector_sha256": "c3ed16d3b9e49fb38b2e606441ebf3e783b990449a75626f297078deffb42f88"
+    },
+    {
+      "run_id": "stage08-array-boundary-pilot-v3-003",
+      "testcase": "aon_timer_config_sweep_array_low",
+      "seed": 1,
+      "phase": "warmup",
+      "completed_attempts_before_selection": 2,
+      "observed_positive_count_before_selection": 9,
+      "ucb_scores": {},
+      "prior_attempt_sha256": "75bb2e55994e8045bd520a65d59b85374175b25db59b86c591ad2a26f87daba3",
+      "result": "PASS",
+      "exit_code": 0,
+      "timed_out": false,
+      "wall_seconds": 1.6639,
+      "simulation_time_ns": 1370.001,
+      "testcases": [
+        {
+          "name": "aon_timer_config_sweep_array_low",
+          "result": "PASS",
+          "simulation_time_ns": 1370.001
+        }
+      ],
+      "trace_summary": {
+        "status": "PARTIAL_SOURCE_SAMPLE_TRACE",
+        "canonical_vector_generated": false,
+        "validated": true,
+        "file_count": 1,
+        "total_sample_count": 18,
+        "sample_counts_by_covergroup": {
+          "timer_cfg_cg": 18
+        },
+        "resolved_canonical_bin_identity_hit_counts": {
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[0]||0": 4,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_0||0": 14,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[0]||0": 3,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_0||0": 15,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[0]||0": 2,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_0||0": 16,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0": 18,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[0]||0": 6,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_0||0": 12
+        },
+        "files": {
+          "stage08-array-boundary-pilot-v3-003__aon_timer_config_sweep_array_low__seed1.json": {
+            "testcase": "aon_timer_config_sweep_array_low",
+            "sha256": "025a0adc47dc8f3bd3016d44b584478616cb3ab3808cd335c3246072cc6219d7",
+            "sample_count": 18,
+            "sample_counts_by_covergroup": {
+              "timer_cfg_cg": 18
+            },
+            "coverage_status": "SAMPLE_TRACE_WITH_COUNT_EVENTS_CANONICAL_IDENTITIES_AVAILABLE_VALUE_PARTITIONS_UNMAPPED",
+            "count_event_samples_valid": true,
+            "validation": "PASS",
+            "checks": {
+              "sha256": true,
+              "sample_count": true,
+              "sample_counts_by_covergroup": true,
+              "resolved_identity_hit_counts": true,
+              "count_event_samples": true,
+              "coverage_status": true,
+              "run_id": true,
+              "seed": true,
+              "source_revision": true,
+              "coverage_schema_id": true,
+              "no_canonical_vector": true
+            }
+          }
+        }
+      },
+      "validation_error": null,
+      "new_positive_identities": [],
+      "new_positive_count": 0,
+      "cumulative_positive_count": 9,
+      "cumulative_unknown_count": 4498,
+      "observed_cluster_ids": [
+        "0",
+        "11",
+        "17",
+        "18",
+        "24",
+        "74"
+      ],
+      "reward": 0.0,
+      "simulation_log_sha256": "a27b8fe522f9b8741faa5259edddab64537ff8fb84bcde11cb3651e24beac4bf",
+      "raw_results_xml_sha256": "374b6e2a8967a62c0380519f6382b2464078f0b4a269b9b498b921f9a8ce4bb8",
+      "public_results_xml_sha256": "5a23a1cd6a1b80b19e81121943f4bc669285a67e2034c1bb834d6873ec2c350d",
+      "positive_vector_sha256": "2973c02abee1e3834149c0eb600ec92da0e24c73abf69b992c420c6de09fa6e0"
+    },
+    {
+      "run_id": "stage08-array-boundary-pilot-v3-004",
+      "testcase": "aon_timer_config_sweep_array_mid",
+      "seed": 1,
+      "phase": "warmup",
+      "completed_attempts_before_selection": 3,
+      "observed_positive_count_before_selection": 9,
+      "ucb_scores": {},
+      "prior_attempt_sha256": "5cf16ffccd8f1a2c5b1721ee2690ba07d41509c65ecb74589ca31da83cc0290e",
+      "result": "PASS",
+      "exit_code": 0,
+      "timed_out": false,
+      "wall_seconds": 1.7273,
+      "simulation_time_ns": 1370.001,
+      "testcases": [
+        {
+          "name": "aon_timer_config_sweep_array_mid",
+          "result": "PASS",
+          "simulation_time_ns": 1370.001
+        }
+      ],
+      "trace_summary": {
+        "status": "PARTIAL_SOURCE_SAMPLE_TRACE",
+        "canonical_vector_generated": false,
+        "validated": true,
+        "file_count": 1,
+        "total_sample_count": 18,
+        "sample_counts_by_covergroup": {
+          "timer_cfg_cg": 18
+        },
+        "resolved_canonical_bin_identity_hit_counts": {
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[16]||0": 4,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_0||0": 14,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[16]||0": 3,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_0||0": 15,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[8]||0": 2,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_0||0": 16,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0": 18,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[0]||0": 6,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_0||0": 12
+        },
+        "files": {
+          "stage08-array-boundary-pilot-v3-004__aon_timer_config_sweep_array_mid__seed1.json": {
+            "testcase": "aon_timer_config_sweep_array_mid",
+            "sha256": "10a6c3cb15186ed8662522a41d381e5d318ed5cc3f4996cf8b55e0b69af2599f",
+            "sample_count": 18,
+            "sample_counts_by_covergroup": {
+              "timer_cfg_cg": 18
+            },
+            "coverage_status": "SAMPLE_TRACE_WITH_COUNT_EVENTS_CANONICAL_IDENTITIES_AVAILABLE_VALUE_PARTITIONS_UNMAPPED",
+            "count_event_samples_valid": true,
+            "validation": "PASS",
+            "checks": {
+              "sha256": true,
+              "sample_count": true,
+              "sample_counts_by_covergroup": true,
+              "resolved_identity_hit_counts": true,
+              "count_event_samples": true,
+              "coverage_status": true,
+              "run_id": true,
+              "seed": true,
+              "source_revision": true,
+              "coverage_schema_id": true,
+              "no_canonical_vector": true
+            }
+          }
+        }
+      },
+      "validation_error": null,
+      "new_positive_identities": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[16]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[16]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[8]||0"
+      ],
+      "new_positive_count": 3,
+      "cumulative_positive_count": 12,
+      "cumulative_unknown_count": 4495,
+      "observed_cluster_ids": [
+        "1",
+        "11",
+        "15",
+        "17",
+        "18",
+        "73",
+        "74"
+      ],
+      "reward": 0.0006656312402928778,
+      "simulation_log_sha256": "11ac49b8eb9657eea3abeca799281f3e632fe2f25af6aebe146bb5ff47b18232",
+      "raw_results_xml_sha256": "ed8d179e65cf30fe69de4b99379790143a1f9ce50b05e58986fa711ffa814319",
+      "public_results_xml_sha256": "09f8fa60ac2533e192aed5dcffc7ec3e2ee5a07dba386308eaea6fbc0c41f482",
+      "positive_vector_sha256": "02f392b5cd36cb44f4e0079608f12c4e65be8b1ae4a6fb7214914541e8d0ec86"
+    },
+    {
+      "run_id": "stage08-array-boundary-pilot-v3-005",
+      "testcase": "aon_timer_config_sweep_array_high",
+      "seed": 1,
+      "phase": "warmup",
+      "completed_attempts_before_selection": 4,
+      "observed_positive_count_before_selection": 12,
+      "ucb_scores": {},
+      "prior_attempt_sha256": "7304d1d48acc580cc60e1ea9cbb9aa83c971e2e2a3b25f477a5484769fdd9887",
+      "result": "PASS",
+      "exit_code": 0,
+      "timed_out": false,
+      "wall_seconds": 1.6962,
+      "simulation_time_ns": 1370.001,
+      "testcases": [
+        {
+          "name": "aon_timer_config_sweep_array_high",
+          "result": "PASS",
+          "simulation_time_ns": 1370.001
+        }
+      ],
+      "trace_summary": {
+        "status": "PARTIAL_SOURCE_SAMPLE_TRACE",
+        "canonical_vector_generated": false,
+        "validated": true,
+        "file_count": 1,
+        "total_sample_count": 19,
+        "sample_counts_by_covergroup": {
+          "timer_cfg_cg": 19
+        },
+        "resolved_canonical_bin_identity_hit_counts": {
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[31]||0": 5,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_0||0": 14,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[31]||0": 4,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_0||0": 15,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[31]||0": 3,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_0||0": 16,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0": 19,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[0]||0": 1,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[63]||0": 6,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_0||0": 12
+        },
+        "files": {
+          "stage08-array-boundary-pilot-v3-005__aon_timer_config_sweep_array_high__seed1.json": {
+            "testcase": "aon_timer_config_sweep_array_high",
+            "sha256": "bf0d7474fc1303359d4a3d3ad971c665909bf6af7163ff42e6e5c22eb792f639",
+            "sample_count": 19,
+            "sample_counts_by_covergroup": {
+              "timer_cfg_cg": 19
+            },
+            "coverage_status": "SAMPLE_TRACE_WITH_COUNT_EVENTS_CANONICAL_IDENTITIES_AVAILABLE_VALUE_PARTITIONS_UNMAPPED",
+            "count_event_samples_valid": true,
+            "validation": "PASS",
+            "checks": {
+              "sha256": true,
+              "sample_count": true,
+              "sample_counts_by_covergroup": true,
+              "resolved_identity_hit_counts": true,
+              "count_event_samples": true,
+              "coverage_status": true,
+              "run_id": true,
+              "seed": true,
+              "source_revision": true,
+              "coverage_schema_id": true,
+              "no_canonical_vector": true
+            }
+          }
+        }
+      },
+      "validation_error": null,
+      "new_positive_identities": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[31]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[31]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[31]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[63]||0"
+      ],
+      "new_positive_count": 4,
+      "cumulative_positive_count": 16,
+      "cumulative_unknown_count": 4491,
+      "observed_cluster_ids": [
+        "0",
+        "11",
+        "17",
+        "18",
+        "2",
+        "3",
+        "74",
+        "8"
+      ],
+      "reward": 0.0008875083203905037,
+      "simulation_log_sha256": "af4e007ea2a9f48769e2d9db775efac5f02835329f631875538efa9c99f0c764",
+      "raw_results_xml_sha256": "9f82e6cd049c2ba58abc58c0795014eefc993546e60e2b6f8bb2996163da9db2",
+      "public_results_xml_sha256": "4a42e12046a74eb68bf9bf2dce9f2faa0025be464e2c0edcfa081828807b4d75",
+      "positive_vector_sha256": "febf2b46d1d620a6b3afd957fb8cb411ca7e901e7a2efd4637485d37844047d2"
+    },
+    {
+      "run_id": "stage08-array-boundary-pilot-v3-006",
+      "testcase": "aon_timer_config_sweep_max",
+      "seed": 1,
+      "phase": "warmup",
+      "completed_attempts_before_selection": 5,
+      "observed_positive_count_before_selection": 16,
+      "ucb_scores": {},
+      "prior_attempt_sha256": "6f5c4057eff37df2e6e916b143d1e0ffcc7358ff5dc53246f29f5c3009ddd4d4",
+      "result": "PASS",
+      "exit_code": 0,
+      "timed_out": false,
+      "wall_seconds": 1.7414,
+      "simulation_time_ns": 1370.001,
+      "testcases": [
+        {
+          "name": "aon_timer_config_sweep_max",
+          "result": "PASS",
+          "simulation_time_ns": 1370.001
+        }
+      ],
+      "trace_summary": {
+        "status": "PARTIAL_SOURCE_SAMPLE_TRACE",
+        "canonical_vector_generated": false,
+        "validated": true,
+        "file_count": 1,
+        "total_sample_count": 18,
+        "sample_counts_by_covergroup": {
+          "timer_cfg_cg": 18
+        },
+        "resolved_canonical_bin_identity_hit_counts": {
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[31]||0": 4,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_0||0": 14,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_max||0": 4,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[31]||0": 3,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_0||0": 15,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_max||0": 3,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[31]||0": 2,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_0||0": 16,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_max||0": 2,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0": 18,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[0]||0": 1,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[63]||0": 5,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_0||0": 12,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_max||0": 5
+        },
+        "files": {
+          "stage08-array-boundary-pilot-v3-006__aon_timer_config_sweep_max__seed1.json": {
+            "testcase": "aon_timer_config_sweep_max",
+            "sha256": "85f8d82488f237c39874517575ed292d8dc29ca63d3c485697b6c7711260738a",
+            "sample_count": 18,
+            "sample_counts_by_covergroup": {
+              "timer_cfg_cg": 18
+            },
+            "coverage_status": "SAMPLE_TRACE_WITH_COUNT_EVENTS_CANONICAL_IDENTITIES_AVAILABLE_VALUE_PARTITIONS_UNMAPPED",
+            "count_event_samples_valid": true,
+            "validation": "PASS",
+            "checks": {
+              "sha256": true,
+              "sample_count": true,
+              "sample_counts_by_covergroup": true,
+              "resolved_identity_hit_counts": true,
+              "count_event_samples": true,
+              "coverage_status": true,
+              "run_id": true,
+              "seed": true,
+              "source_revision": true,
+              "coverage_schema_id": true,
+              "no_canonical_vector": true
+            }
+          }
+        }
+      },
+      "validation_error": null,
+      "new_positive_identities": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_max||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_max||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_max||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_max||0"
+      ],
+      "new_positive_count": 4,
+      "cumulative_positive_count": 20,
+      "cumulative_unknown_count": 4487,
+      "observed_cluster_ids": [
+        "0",
+        "10",
+        "11",
+        "17",
+        "18",
+        "2",
+        "3",
+        "74",
+        "8"
+      ],
+      "reward": 0.0008875083203905037,
+      "simulation_log_sha256": "e9343a2be93a47458661f574a5ad4ba8f7a8fb2f50dd59aa7767d73816d68618",
+      "raw_results_xml_sha256": "bc062b52c98431b9040e6ecdd780205208cbe7d7776c4492a4a12f4ce02f228d",
+      "public_results_xml_sha256": "a63e0eaf07eab825c0c909faa1aa2c7272005146f8e37cc2cfcc03a679f50c18",
+      "positive_vector_sha256": "b1d376594f1592f1f5a26d2c707507ed6298b4220d85b7f0a42ff64237d84f67"
+    },
+    {
+      "run_id": "stage08-array-boundary-pilot-v3-007",
+      "testcase": "aon_timer_config_sweep_zero",
+      "seed": 1,
+      "phase": "ucb",
+      "completed_attempts_before_selection": 6,
+      "observed_positive_count_before_selection": 20,
+      "ucb_scores": {
+        "aon_timer_config_sweep_zero": 0.020039570128736583,
+        "aon_timer_config_sweep_one": 0.019817693048638958,
+        "aon_timer_config_sweep_array_low": 0.018930184728248454,
+        "aon_timer_config_sweep_array_mid": 0.019595815968541333,
+        "aon_timer_config_sweep_array_high": 0.019817693048638958,
+        "aon_timer_config_sweep_max": 0.019817693048638958
+      },
+      "prior_attempt_sha256": "151c77a9d45be0ff9acb41ed09f33729a11afdf3e6c774fe86374b833b2092d8",
+      "result": "PASS",
+      "exit_code": 0,
+      "timed_out": false,
+      "wall_seconds": 1.7627,
+      "simulation_time_ns": 1370.001,
+      "testcases": [
+        {
+          "name": "aon_timer_config_sweep_zero",
+          "result": "PASS",
+          "simulation_time_ns": 1370.001
+        }
+      ],
+      "trace_summary": {
+        "status": "PARTIAL_SOURCE_SAMPLE_TRACE",
+        "canonical_vector_generated": false,
+        "validated": true,
+        "file_count": 1,
+        "total_sample_count": 18,
+        "sample_counts_by_covergroup": {
+          "timer_cfg_cg": 18
+        },
+        "resolved_canonical_bin_identity_hit_counts": {
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_0||0": 18,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_0||0": 18,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_0||0": 18,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0": 18,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_0||0": 18
+        },
+        "files": {
+          "stage08-array-boundary-pilot-v3-007__aon_timer_config_sweep_zero__seed1.json": {
+            "testcase": "aon_timer_config_sweep_zero",
+            "sha256": "95f4e271b44f21217e85f09cb35befaa7947916be33fad78b58dfec79d76c750",
+            "sample_count": 18,
+            "sample_counts_by_covergroup": {
+              "timer_cfg_cg": 18
+            },
+            "coverage_status": "SAMPLE_TRACE_WITH_COUNT_EVENTS_CANONICAL_IDENTITIES_AVAILABLE_VALUE_PARTITIONS_UNMAPPED",
+            "count_event_samples_valid": true,
+            "validation": "PASS",
+            "checks": {
+              "sha256": true,
+              "sample_count": true,
+              "sample_counts_by_covergroup": true,
+              "resolved_identity_hit_counts": true,
+              "count_event_samples": true,
+              "coverage_status": true,
+              "run_id": true,
+              "seed": true,
+              "source_revision": true,
+              "coverage_schema_id": true,
+              "no_canonical_vector": true
+            }
+          }
+        }
+      },
+      "validation_error": null,
+      "new_positive_identities": [],
+      "new_positive_count": 0,
+      "cumulative_positive_count": 20,
+      "cumulative_unknown_count": 4487,
+      "observed_cluster_ids": [
+        "17",
+        "18",
+        "74"
+      ],
+      "reward": 0.0,
+      "simulation_log_sha256": "97ba46e76e6b421283bd85c7ecc31c48e55dde65fbbab6da1f58819caa62ed9f",
+      "raw_results_xml_sha256": "0b3279d0302dc6b7f1bf91fffff69ec2071696d640c6340231badc9d04a13bb8",
+      "public_results_xml_sha256": "148dc2c87fd3c0ff7b35282d31aba4c78dd92e66a56eb9923f6f6e784f0b39ec",
+      "positive_vector_sha256": "1ca5618d6bc11eb0dfda29ded595b3e1f307d0deefa8878c0a7529e4e98b9490"
+    },
+    {
+      "run_id": "stage08-array-boundary-pilot-v3-008",
+      "testcase": "aon_timer_config_sweep_one",
+      "seed": 1,
+      "phase": "ucb",
+      "completed_attempts_before_selection": 7,
+      "observed_positive_count_before_selection": 20,
+      "ucb_scores": {
+        "aon_timer_config_sweep_zero": 0.014504281042038648,
+        "aon_timer_config_sweep_one": 0.020615205342878015,
+        "aon_timer_config_sweep_array_low": 0.01972769702248751,
+        "aon_timer_config_sweep_array_mid": 0.02039332826278039,
+        "aon_timer_config_sweep_array_high": 0.020615205342878015,
+        "aon_timer_config_sweep_max": 0.020615205342878015
+      },
+      "prior_attempt_sha256": "0c4c1466ca788a6e542d799d68a53affb6d9775eabf90a6860ea37d088b50ce4",
+      "result": "PASS",
+      "exit_code": 0,
+      "timed_out": false,
+      "wall_seconds": 1.7618,
+      "simulation_time_ns": 1370.001,
+      "testcases": [
+        {
+          "name": "aon_timer_config_sweep_one",
+          "result": "PASS",
+          "simulation_time_ns": 1370.001
+        }
+      ],
+      "trace_summary": {
+        "status": "PARTIAL_SOURCE_SAMPLE_TRACE",
+        "canonical_vector_generated": false,
+        "validated": true,
+        "file_count": 1,
+        "total_sample_count": 19,
+        "sample_counts_by_covergroup": {
+          "timer_cfg_cg": 19
+        },
+        "resolved_canonical_bin_identity_hit_counts": {
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[0]||0": 5,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_0||0": 14,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[0]||0": 4,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_0||0": 15,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[0]||0": 3,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_0||0": 16,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0": 19,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[0]||0": 7,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_0||0": 12
+        },
+        "files": {
+          "stage08-array-boundary-pilot-v3-008__aon_timer_config_sweep_one__seed1.json": {
+            "testcase": "aon_timer_config_sweep_one",
+            "sha256": "51a0d4ced27b1213100b77eccaf4474004091b407ff4627018a03af9d99e36c1",
+            "sample_count": 19,
+            "sample_counts_by_covergroup": {
+              "timer_cfg_cg": 19
+            },
+            "coverage_status": "SAMPLE_TRACE_WITH_COUNT_EVENTS_CANONICAL_IDENTITIES_AVAILABLE_VALUE_PARTITIONS_UNMAPPED",
+            "count_event_samples_valid": true,
+            "validation": "PASS",
+            "checks": {
+              "sha256": true,
+              "sample_count": true,
+              "sample_counts_by_covergroup": true,
+              "resolved_identity_hit_counts": true,
+              "count_event_samples": true,
+              "coverage_status": true,
+              "run_id": true,
+              "seed": true,
+              "source_revision": true,
+              "coverage_schema_id": true,
+              "no_canonical_vector": true
+            }
+          }
+        }
+      },
+      "validation_error": null,
+      "new_positive_identities": [],
+      "new_positive_count": 0,
+      "cumulative_positive_count": 20,
+      "cumulative_unknown_count": 4487,
+      "observed_cluster_ids": [
+        "0",
+        "11",
+        "17",
+        "18",
+        "24",
+        "74"
+      ],
+      "reward": 0.0,
+      "simulation_log_sha256": "155f3bd5db46f7085ea1bc48bdb7b7036f3a876eeba9c909de4f9c505930bee9",
+      "raw_results_xml_sha256": "5b9e7f722b9e21c34b3173f7abd15089fabc3d98d19d98f7d06987f38dbe3d3c",
+      "public_results_xml_sha256": "4c9b0715555fc218861162c8d416daeeb8128e637bc6033863a9f3c3f6399365",
+      "positive_vector_sha256": "95e203d0c7f8a8cbafe66abb96ea7bbe56962dcaacabe7211df17fc607298455"
+    },
+    {
+      "run_id": "stage08-array-boundary-pilot-v3-009",
+      "testcase": "aon_timer_config_sweep_array_high",
+      "seed": 1,
+      "phase": "ucb",
+      "completed_attempts_before_selection": 8,
+      "observed_positive_count_before_selection": 20,
+      "ucb_scores": {
+        "aon_timer_config_sweep_zero": 0.014974961566252895,
+        "aon_timer_config_sweep_one": 0.014864023026204083,
+        "aon_timer_config_sweep_array_low": 0.020393339803376178,
+        "aon_timer_config_sweep_array_mid": 0.021058971043669057,
+        "aon_timer_config_sweep_array_high": 0.021280848123766682,
+        "aon_timer_config_sweep_max": 0.021280848123766682
+      },
+      "prior_attempt_sha256": "bf16de0e587134d24c1b73b8d6115948b228d472631f0d9898cbcd23df347eea",
+      "result": "PASS",
+      "exit_code": 0,
+      "timed_out": false,
+      "wall_seconds": 1.807,
+      "simulation_time_ns": 1370.001,
+      "testcases": [
+        {
+          "name": "aon_timer_config_sweep_array_high",
+          "result": "PASS",
+          "simulation_time_ns": 1370.001
+        }
+      ],
+      "trace_summary": {
+        "status": "PARTIAL_SOURCE_SAMPLE_TRACE",
+        "canonical_vector_generated": false,
+        "validated": true,
+        "file_count": 1,
+        "total_sample_count": 19,
+        "sample_counts_by_covergroup": {
+          "timer_cfg_cg": 19
+        },
+        "resolved_canonical_bin_identity_hit_counts": {
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[31]||0": 5,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_0||0": 14,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[31]||0": 4,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_0||0": 15,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[31]||0": 3,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_0||0": 16,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0": 19,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[0]||0": 1,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[63]||0": 6,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_0||0": 12
+        },
+        "files": {
+          "stage08-array-boundary-pilot-v3-009__aon_timer_config_sweep_array_high__seed1.json": {
+            "testcase": "aon_timer_config_sweep_array_high",
+            "sha256": "5a63fcdf0d9f58bfdd7d7975309ff85acfbd37654b808c3da64f6ab319044f35",
+            "sample_count": 19,
+            "sample_counts_by_covergroup": {
+              "timer_cfg_cg": 19
+            },
+            "coverage_status": "SAMPLE_TRACE_WITH_COUNT_EVENTS_CANONICAL_IDENTITIES_AVAILABLE_VALUE_PARTITIONS_UNMAPPED",
+            "count_event_samples_valid": true,
+            "validation": "PASS",
+            "checks": {
+              "sha256": true,
+              "sample_count": true,
+              "sample_counts_by_covergroup": true,
+              "resolved_identity_hit_counts": true,
+              "count_event_samples": true,
+              "coverage_status": true,
+              "run_id": true,
+              "seed": true,
+              "source_revision": true,
+              "coverage_schema_id": true,
+              "no_canonical_vector": true
+            }
+          }
+        }
+      },
+      "validation_error": null,
+      "new_positive_identities": [],
+      "new_positive_count": 0,
+      "cumulative_positive_count": 20,
+      "cumulative_unknown_count": 4487,
+      "observed_cluster_ids": [
+        "0",
+        "11",
+        "17",
+        "18",
+        "2",
+        "3",
+        "74",
+        "8"
+      ],
+      "reward": 0.0,
+      "simulation_log_sha256": "5e4f688325bb4dd72eea8590b904e86beea69bce4f236aa183c1bcdb232ad580",
+      "raw_results_xml_sha256": "8d51aa76cefd555ec222cbc5cc1be526a2533274bb1180fb2d406d90b697b575",
+      "public_results_xml_sha256": "a6bc44dbe3f205cef56e77ab3690248364d73415f7f73f1d7429304f571580a7",
+      "positive_vector_sha256": "c101cd0a60e6642a1825b7f4faf9af34c6e2d4165d6a352e81dd6fe89d975d69"
+    },
+    {
+      "run_id": "stage08-array-boundary-pilot-v3-010",
+      "testcase": "aon_timer_config_sweep_max",
+      "seed": 1,
+      "phase": "ucb",
+      "completed_attempts_before_selection": 9,
+      "observed_positive_count_before_selection": 20,
+      "ucb_scores": {
+        "aon_timer_config_sweep_zero": 0.015377730773919178,
+        "aon_timer_config_sweep_one": 0.015266792233870365,
+        "aon_timer_config_sweep_array_low": 0.020962941479364103,
+        "aon_timer_config_sweep_array_mid": 0.021628572719656982,
+        "aon_timer_config_sweep_array_high": 0.015266792233870365,
+        "aon_timer_config_sweep_max": 0.021850449799754607
+      },
+      "prior_attempt_sha256": "50940f855ed61e2884dc2c98121d313c609ec9431716aa654d4457a770b0592e",
+      "result": "PASS",
+      "exit_code": 0,
+      "timed_out": false,
+      "wall_seconds": 1.7293,
+      "simulation_time_ns": 1370.001,
+      "testcases": [
+        {
+          "name": "aon_timer_config_sweep_max",
+          "result": "PASS",
+          "simulation_time_ns": 1370.001
+        }
+      ],
+      "trace_summary": {
+        "status": "PARTIAL_SOURCE_SAMPLE_TRACE",
+        "canonical_vector_generated": false,
+        "validated": true,
+        "file_count": 1,
+        "total_sample_count": 18,
+        "sample_counts_by_covergroup": {
+          "timer_cfg_cg": 18
+        },
+        "resolved_canonical_bin_identity_hit_counts": {
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[31]||0": 4,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_0||0": 14,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_max||0": 4,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[31]||0": 3,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_0||0": 15,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_max||0": 3,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[31]||0": 2,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_0||0": 16,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_max||0": 2,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0": 18,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[0]||0": 1,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[63]||0": 5,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_0||0": 12,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_max||0": 5
+        },
+        "files": {
+          "stage08-array-boundary-pilot-v3-010__aon_timer_config_sweep_max__seed1.json": {
+            "testcase": "aon_timer_config_sweep_max",
+            "sha256": "05fa1955bca850309e91e06531a0849c51da31036e9dfdef5272ce406cc2b16a",
+            "sample_count": 18,
+            "sample_counts_by_covergroup": {
+              "timer_cfg_cg": 18
+            },
+            "coverage_status": "SAMPLE_TRACE_WITH_COUNT_EVENTS_CANONICAL_IDENTITIES_AVAILABLE_VALUE_PARTITIONS_UNMAPPED",
+            "count_event_samples_valid": true,
+            "validation": "PASS",
+            "checks": {
+              "sha256": true,
+              "sample_count": true,
+              "sample_counts_by_covergroup": true,
+              "resolved_identity_hit_counts": true,
+              "count_event_samples": true,
+              "coverage_status": true,
+              "run_id": true,
+              "seed": true,
+              "source_revision": true,
+              "coverage_schema_id": true,
+              "no_canonical_vector": true
+            }
+          }
+        }
+      },
+      "validation_error": null,
+      "new_positive_identities": [],
+      "new_positive_count": 0,
+      "cumulative_positive_count": 20,
+      "cumulative_unknown_count": 4487,
+      "observed_cluster_ids": [
+        "0",
+        "10",
+        "11",
+        "17",
+        "18",
+        "2",
+        "3",
+        "74",
+        "8"
+      ],
+      "reward": 0.0,
+      "simulation_log_sha256": "8013f91fcf1d089995cb76ed5400ad763b4780bdb100199ef81fb7855eaf644c",
+      "raw_results_xml_sha256": "679d323038972c8dfa3b08529cee27527efa8c36b0c40e14e1c8a5d3d43c78a4",
+      "public_results_xml_sha256": "dd21bf98ed9e31f4479c178a73e0ed5c15da29917d275a25cd006d6991d66c3b",
+      "positive_vector_sha256": "be030a91a19f1bacc11a20865e74675f53fe786dac37d7b47ca25d6c7304b9b1"
+    },
+    {
+      "run_id": "stage08-array-boundary-pilot-v3-011",
+      "testcase": "aon_timer_config_sweep_array_mid",
+      "seed": 1,
+      "phase": "ucb",
+      "completed_attempts_before_selection": 10,
+      "observed_positive_count_before_selection": 20,
+      "ucb_scores": {
+        "aon_timer_config_sweep_zero": 0.01572896399409553,
+        "aon_timer_config_sweep_one": 0.015618025454046718,
+        "aon_timer_config_sweep_array_low": 0.021459660262893473,
+        "aon_timer_config_sweep_array_mid": 0.022125291503186352,
+        "aon_timer_config_sweep_array_high": 0.015618025454046718,
+        "aon_timer_config_sweep_max": 0.015618025454046718
+      },
+      "prior_attempt_sha256": "e36c5e42cb27f4230b73e7e399dc0ce3bb0bab095be53edd9a038a2a5a0ea932",
+      "result": "PASS",
+      "exit_code": 0,
+      "timed_out": false,
+      "wall_seconds": 1.7545,
+      "simulation_time_ns": 1370.001,
+      "testcases": [
+        {
+          "name": "aon_timer_config_sweep_array_mid",
+          "result": "PASS",
+          "simulation_time_ns": 1370.001
+        }
+      ],
+      "trace_summary": {
+        "status": "PARTIAL_SOURCE_SAMPLE_TRACE",
+        "canonical_vector_generated": false,
+        "validated": true,
+        "file_count": 1,
+        "total_sample_count": 18,
+        "sample_counts_by_covergroup": {
+          "timer_cfg_cg": 18
+        },
+        "resolved_canonical_bin_identity_hit_counts": {
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[16]||0": 4,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_0||0": 14,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[16]||0": 3,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_0||0": 15,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[8]||0": 2,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_0||0": 16,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0": 18,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[0]||0": 6,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_0||0": 12
+        },
+        "files": {
+          "stage08-array-boundary-pilot-v3-011__aon_timer_config_sweep_array_mid__seed1.json": {
+            "testcase": "aon_timer_config_sweep_array_mid",
+            "sha256": "4ca3d3f2c774077da3c20a179100027748d4fb0c8122ed3ad5d94031748849c3",
+            "sample_count": 18,
+            "sample_counts_by_covergroup": {
+              "timer_cfg_cg": 18
+            },
+            "coverage_status": "SAMPLE_TRACE_WITH_COUNT_EVENTS_CANONICAL_IDENTITIES_AVAILABLE_VALUE_PARTITIONS_UNMAPPED",
+            "count_event_samples_valid": true,
+            "validation": "PASS",
+            "checks": {
+              "sha256": true,
+              "sample_count": true,
+              "sample_counts_by_covergroup": true,
+              "resolved_identity_hit_counts": true,
+              "count_event_samples": true,
+              "coverage_status": true,
+              "run_id": true,
+              "seed": true,
+              "source_revision": true,
+              "coverage_schema_id": true,
+              "no_canonical_vector": true
+            }
+          }
+        }
+      },
+      "validation_error": null,
+      "new_positive_identities": [],
+      "new_positive_count": 0,
+      "cumulative_positive_count": 20,
+      "cumulative_unknown_count": 4487,
+      "observed_cluster_ids": [
+        "1",
+        "11",
+        "15",
+        "17",
+        "18",
+        "73",
+        "74"
+      ],
+      "reward": 0.0,
+      "simulation_log_sha256": "4b58f72f00623b22c3cddf0e588b1efe351dae7d4dd8e6cb518ced87549ec980",
+      "raw_results_xml_sha256": "a3f619b08d825bdfe3e430817dee05d2a685583bcfeba80808d8b37bc1eb2482",
+      "public_results_xml_sha256": "7c4aebb8968cd4d29fdfde69d363a71342f0999b9ea60f87fdc6f21d55995c23",
+      "positive_vector_sha256": "80ec6ebaed0feb30d690d984e3c69e134cbb238f3fb153134a09d69ecef86e45"
+    },
+    {
+      "run_id": "stage08-array-boundary-pilot-v3-012",
+      "testcase": "aon_timer_config_sweep_array_low",
+      "seed": 1,
+      "phase": "ucb",
+      "completed_attempts_before_selection": 11,
+      "observed_positive_count_before_selection": 20,
+      "ucb_scores": {
+        "aon_timer_config_sweep_zero": 0.01603983161727794,
+        "aon_timer_config_sweep_one": 0.01592889307722913,
+        "aon_timer_config_sweep_array_low": 0.02189929347170073,
+        "aon_timer_config_sweep_array_mid": 0.015817954537180316,
+        "aon_timer_config_sweep_array_high": 0.01592889307722913,
+        "aon_timer_config_sweep_max": 0.01592889307722913
+      },
+      "prior_attempt_sha256": "1f569d1252cac7cfe5e7299d46699f318fe00d34637d5bf460fcfd09b9d33372",
+      "result": "PASS",
+      "exit_code": 0,
+      "timed_out": false,
+      "wall_seconds": 1.8144,
+      "simulation_time_ns": 1370.001,
+      "testcases": [
+        {
+          "name": "aon_timer_config_sweep_array_low",
+          "result": "PASS",
+          "simulation_time_ns": 1370.001
+        }
+      ],
+      "trace_summary": {
+        "status": "PARTIAL_SOURCE_SAMPLE_TRACE",
+        "canonical_vector_generated": false,
+        "validated": true,
+        "file_count": 1,
+        "total_sample_count": 18,
+        "sample_counts_by_covergroup": {
+          "timer_cfg_cg": 18
+        },
+        "resolved_canonical_bin_identity_hit_counts": {
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[0]||0": 4,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_0||0": 14,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[0]||0": 3,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_0||0": 15,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[0]||0": 2,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_0||0": 16,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0": 18,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[0]||0": 6,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_0||0": 12
+        },
+        "files": {
+          "stage08-array-boundary-pilot-v3-012__aon_timer_config_sweep_array_low__seed1.json": {
+            "testcase": "aon_timer_config_sweep_array_low",
+            "sha256": "f34a9d87fb4a569a80a649b81ef7c97e2e2ef320f7754852627c98326cef412f",
+            "sample_count": 18,
+            "sample_counts_by_covergroup": {
+              "timer_cfg_cg": 18
+            },
+            "coverage_status": "SAMPLE_TRACE_WITH_COUNT_EVENTS_CANONICAL_IDENTITIES_AVAILABLE_VALUE_PARTITIONS_UNMAPPED",
+            "count_event_samples_valid": true,
+            "validation": "PASS",
+            "checks": {
+              "sha256": true,
+              "sample_count": true,
+              "sample_counts_by_covergroup": true,
+              "resolved_identity_hit_counts": true,
+              "count_event_samples": true,
+              "coverage_status": true,
+              "run_id": true,
+              "seed": true,
+              "source_revision": true,
+              "coverage_schema_id": true,
+              "no_canonical_vector": true
+            }
+          }
+        }
+      },
+      "validation_error": null,
+      "new_positive_identities": [],
+      "new_positive_count": 0,
+      "cumulative_positive_count": 20,
+      "cumulative_unknown_count": 4487,
+      "observed_cluster_ids": [
+        "0",
+        "11",
+        "17",
+        "18",
+        "24",
+        "74"
+      ],
+      "reward": 0.0,
+      "simulation_log_sha256": "d1d4d9ae0b231791c2b181aa655d0d150a957beb03aef2e0a7ce0863f238ad6e",
+      "raw_results_xml_sha256": "c8037c3cb084dbe5d2bef4d053e06e5b138a3ef879ec2a2c3f38b7e8f86c6610",
+      "public_results_xml_sha256": "be943fbdd74af232d90670c4c7bb135eedb1ddd271738b7232a18298fb409ed1",
+      "positive_vector_sha256": "03e94ccfb825267f77498dfecdfad8016b3b9e5fea3b0523a9cb6d7094b1ca94"
+    },
+    {
+      "run_id": "stage08-array-boundary-pilot-v3-013",
+      "testcase": "aon_timer_config_sweep_zero",
+      "seed": 1,
+      "phase": "ucb",
+      "completed_attempts_before_selection": 12,
+      "observed_positive_count_before_selection": 20,
+      "ucb_scores": {
+        "aon_timer_config_sweep_zero": 0.016318279379004708,
+        "aon_timer_config_sweep_one": 0.016207340838955895,
+        "aon_timer_config_sweep_array_low": 0.015763586678760644,
+        "aon_timer_config_sweep_array_mid": 0.016096402298907082,
+        "aon_timer_config_sweep_array_high": 0.016207340838955895,
+        "aon_timer_config_sweep_max": 0.016207340838955895
+      },
+      "prior_attempt_sha256": "7957bc32d99322bb9c69f763848c11db292aa41ab0dd9ada9ac30aefbbc16995",
+      "result": "PASS",
+      "exit_code": 0,
+      "timed_out": false,
+      "wall_seconds": 1.8445,
+      "simulation_time_ns": 1370.001,
+      "testcases": [
+        {
+          "name": "aon_timer_config_sweep_zero",
+          "result": "PASS",
+          "simulation_time_ns": 1370.001
+        }
+      ],
+      "trace_summary": {
+        "status": "PARTIAL_SOURCE_SAMPLE_TRACE",
+        "canonical_vector_generated": false,
+        "validated": true,
+        "file_count": 1,
+        "total_sample_count": 18,
+        "sample_counts_by_covergroup": {
+          "timer_cfg_cg": 18
+        },
+        "resolved_canonical_bin_identity_hit_counts": {
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_0||0": 18,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_0||0": 18,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_0||0": 18,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0": 18,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_0||0": 18
+        },
+        "files": {
+          "stage08-array-boundary-pilot-v3-013__aon_timer_config_sweep_zero__seed1.json": {
+            "testcase": "aon_timer_config_sweep_zero",
+            "sha256": "a61cccc97129f57bf1f56e359baeab382decd0e7adfcc6876b9c04d3f53f6734",
+            "sample_count": 18,
+            "sample_counts_by_covergroup": {
+              "timer_cfg_cg": 18
+            },
+            "coverage_status": "SAMPLE_TRACE_WITH_COUNT_EVENTS_CANONICAL_IDENTITIES_AVAILABLE_VALUE_PARTITIONS_UNMAPPED",
+            "count_event_samples_valid": true,
+            "validation": "PASS",
+            "checks": {
+              "sha256": true,
+              "sample_count": true,
+              "sample_counts_by_covergroup": true,
+              "resolved_identity_hit_counts": true,
+              "count_event_samples": true,
+              "coverage_status": true,
+              "run_id": true,
+              "seed": true,
+              "source_revision": true,
+              "coverage_schema_id": true,
+              "no_canonical_vector": true
+            }
+          }
+        }
+      },
+      "validation_error": null,
+      "new_positive_identities": [],
+      "new_positive_count": 0,
+      "cumulative_positive_count": 20,
+      "cumulative_unknown_count": 4487,
+      "observed_cluster_ids": [
+        "17",
+        "18",
+        "74"
+      ],
+      "reward": 0.0,
+      "simulation_log_sha256": "29fc2438a8b13e8ba4b820a7d7094556ae71ffe79c502f3431f0d4b9b3412001",
+      "raw_results_xml_sha256": "f48919e3b060c580966b691b79b7350558b06e6b763d1132d3a26546cc4985b7",
+      "public_results_xml_sha256": "ed294d0c166c3bcb895d6852411530fb8bb629deb7ef05b6d2be3632cfcbe6eb",
+      "positive_vector_sha256": "9ab585eb46211e845332be85ed72dd12da6428aa2d170ab09a371ec7376a9579"
+    },
+    {
+      "run_id": "stage08-array-boundary-pilot-v3-014",
+      "testcase": "aon_timer_config_sweep_one",
+      "seed": 1,
+      "phase": "ucb",
+      "completed_attempts_before_selection": 13,
+      "observed_positive_count_before_selection": 20,
+      "ucb_scores": {
+        "aon_timer_config_sweep_zero": 0.013446362872423913,
+        "aon_timer_config_sweep_one": 0.016459213433851868,
+        "aon_timer_config_sweep_array_low": 0.016015459273656617,
+        "aon_timer_config_sweep_array_mid": 0.016348274893803055,
+        "aon_timer_config_sweep_array_high": 0.016459213433851868,
+        "aon_timer_config_sweep_max": 0.016459213433851868
+      },
+      "prior_attempt_sha256": "f458929ced4c4b298c39816b40d1506f0ad7b9b17dfe0b1798739884d588e35e",
+      "result": "PASS",
+      "exit_code": 0,
+      "timed_out": false,
+      "wall_seconds": 1.8297,
+      "simulation_time_ns": 1370.001,
+      "testcases": [
+        {
+          "name": "aon_timer_config_sweep_one",
+          "result": "PASS",
+          "simulation_time_ns": 1370.001
+        }
+      ],
+      "trace_summary": {
+        "status": "PARTIAL_SOURCE_SAMPLE_TRACE",
+        "canonical_vector_generated": false,
+        "validated": true,
+        "file_count": 1,
+        "total_sample_count": 19,
+        "sample_counts_by_covergroup": {
+          "timer_cfg_cg": 19
+        },
+        "resolved_canonical_bin_identity_hit_counts": {
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[0]||0": 5,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_0||0": 14,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[0]||0": 4,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_0||0": 15,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[0]||0": 3,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_0||0": 16,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0": 19,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[0]||0": 7,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_0||0": 12
+        },
+        "files": {
+          "stage08-array-boundary-pilot-v3-014__aon_timer_config_sweep_one__seed1.json": {
+            "testcase": "aon_timer_config_sweep_one",
+            "sha256": "440604bbe790dc3aecf313902439c8a2c386f07e667a4c0e7e969dc694df3062",
+            "sample_count": 19,
+            "sample_counts_by_covergroup": {
+              "timer_cfg_cg": 19
+            },
+            "coverage_status": "SAMPLE_TRACE_WITH_COUNT_EVENTS_CANONICAL_IDENTITIES_AVAILABLE_VALUE_PARTITIONS_UNMAPPED",
+            "count_event_samples_valid": true,
+            "validation": "PASS",
+            "checks": {
+              "sha256": true,
+              "sample_count": true,
+              "sample_counts_by_covergroup": true,
+              "resolved_identity_hit_counts": true,
+              "count_event_samples": true,
+              "coverage_status": true,
+              "run_id": true,
+              "seed": true,
+              "source_revision": true,
+              "coverage_schema_id": true,
+              "no_canonical_vector": true
+            }
+          }
+        }
+      },
+      "validation_error": null,
+      "new_positive_identities": [],
+      "new_positive_count": 0,
+      "cumulative_positive_count": 20,
+      "cumulative_unknown_count": 4487,
+      "observed_cluster_ids": [
+        "0",
+        "11",
+        "17",
+        "18",
+        "24",
+        "74"
+      ],
+      "reward": 0.0,
+      "simulation_log_sha256": "5106a90b7a6fe70c8ac50b3d232e52a76368928c1f6911b605ebad3356d31526",
+      "raw_results_xml_sha256": "6a55e12989033545aa3ba589fd057cad4ad6f570fbe3762e6259e95b0f5cab11",
+      "public_results_xml_sha256": "b7e58e0c8c8da8dd9de1116fa9afab1ed7fc853f1d69f421a136fff724b6237a",
+      "positive_vector_sha256": "1e6c48cfbbdc24e2b777532ee4eb9eb3552d8a18dfc0f73e44cd7fd4273b3022"
+    },
+    {
+      "run_id": "stage08-array-boundary-pilot-v3-015",
+      "testcase": "aon_timer_config_sweep_array_high",
+      "seed": 1,
+      "phase": "ucb",
+      "completed_attempts_before_selection": 14,
+      "observed_positive_count_before_selection": 20,
+      "ucb_scores": {
+        "aon_timer_config_sweep_zero": 0.013633925534984258,
+        "aon_timer_config_sweep_one": 0.01355996650828505,
+        "aon_timer_config_sweep_array_low": 0.016245175682691952,
+        "aon_timer_config_sweep_array_mid": 0.01657799130283839,
+        "aon_timer_config_sweep_array_high": 0.016688929842887203,
+        "aon_timer_config_sweep_max": 0.016688929842887203
+      },
+      "prior_attempt_sha256": "db41daca18b31fbd0aa08939860b939fae2ec7b8a277d5f3e8b93775b9a96193",
+      "result": "PASS",
+      "exit_code": 0,
+      "timed_out": false,
+      "wall_seconds": 1.7302,
+      "simulation_time_ns": 1370.001,
+      "testcases": [
+        {
+          "name": "aon_timer_config_sweep_array_high",
+          "result": "PASS",
+          "simulation_time_ns": 1370.001
+        }
+      ],
+      "trace_summary": {
+        "status": "PARTIAL_SOURCE_SAMPLE_TRACE",
+        "canonical_vector_generated": false,
+        "validated": true,
+        "file_count": 1,
+        "total_sample_count": 19,
+        "sample_counts_by_covergroup": {
+          "timer_cfg_cg": 19
+        },
+        "resolved_canonical_bin_identity_hit_counts": {
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[31]||0": 5,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_0||0": 14,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[31]||0": 4,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_0||0": 15,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[31]||0": 3,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_0||0": 16,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0": 19,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[0]||0": 1,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[63]||0": 6,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_0||0": 12
+        },
+        "files": {
+          "stage08-array-boundary-pilot-v3-015__aon_timer_config_sweep_array_high__seed1.json": {
+            "testcase": "aon_timer_config_sweep_array_high",
+            "sha256": "0c93ee10027890e742b222c8024f6a6c5b9ecdcd62011fc843fe81d6d33506f1",
+            "sample_count": 19,
+            "sample_counts_by_covergroup": {
+              "timer_cfg_cg": 19
+            },
+            "coverage_status": "SAMPLE_TRACE_WITH_COUNT_EVENTS_CANONICAL_IDENTITIES_AVAILABLE_VALUE_PARTITIONS_UNMAPPED",
+            "count_event_samples_valid": true,
+            "validation": "PASS",
+            "checks": {
+              "sha256": true,
+              "sample_count": true,
+              "sample_counts_by_covergroup": true,
+              "resolved_identity_hit_counts": true,
+              "count_event_samples": true,
+              "coverage_status": true,
+              "run_id": true,
+              "seed": true,
+              "source_revision": true,
+              "coverage_schema_id": true,
+              "no_canonical_vector": true
+            }
+          }
+        }
+      },
+      "validation_error": null,
+      "new_positive_identities": [],
+      "new_positive_count": 0,
+      "cumulative_positive_count": 20,
+      "cumulative_unknown_count": 4487,
+      "observed_cluster_ids": [
+        "0",
+        "11",
+        "17",
+        "18",
+        "2",
+        "3",
+        "74",
+        "8"
+      ],
+      "reward": 0.0,
+      "simulation_log_sha256": "6a8f3a61c1d501a536cda720415a75284411a224b321dc0e34be45f0edc5f875",
+      "raw_results_xml_sha256": "5b60af78923a138462af6e41b2bce2d714db8c9ae74a21d1e2d41bee6765a86b",
+      "public_results_xml_sha256": "a1678d940c12edc322ab59fc375b6182d66b0ed6506b582fa621e0c3aa9faad1",
+      "positive_vector_sha256": "bce54534df338e9dde75f234cc166a4fd12d37246123c53aa1a3cae3d14d2812"
+    },
+    {
+      "run_id": "stage08-array-boundary-pilot-v3-016",
+      "testcase": "aon_timer_config_sweep_max",
+      "seed": 1,
+      "phase": "ucb",
+      "completed_attempts_before_selection": 15,
+      "observed_positive_count_before_selection": 20,
+      "ucb_scores": {
+        "aon_timer_config_sweep_zero": 0.013806188997680014,
+        "aon_timer_config_sweep_one": 0.013732229970980805,
+        "aon_timer_config_sweep_array_low": 0.016456154475156734,
+        "aon_timer_config_sweep_array_mid": 0.016788970095303172,
+        "aon_timer_config_sweep_array_high": 0.013732229970980805,
+        "aon_timer_config_sweep_max": 0.016899908635351985
+      },
+      "prior_attempt_sha256": "80a669d66dc06ebd2f3d60ea6900fe8c97692230a99402d0cc670615bb2fe84b",
+      "result": "PASS",
+      "exit_code": 0,
+      "timed_out": false,
+      "wall_seconds": 1.6708,
+      "simulation_time_ns": 1370.001,
+      "testcases": [
+        {
+          "name": "aon_timer_config_sweep_max",
+          "result": "PASS",
+          "simulation_time_ns": 1370.001
+        }
+      ],
+      "trace_summary": {
+        "status": "PARTIAL_SOURCE_SAMPLE_TRACE",
+        "canonical_vector_generated": false,
+        "validated": true,
+        "file_count": 1,
+        "total_sample_count": 18,
+        "sample_counts_by_covergroup": {
+          "timer_cfg_cg": 18
+        },
+        "resolved_canonical_bin_identity_hit_counts": {
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[31]||0": 4,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_0||0": 14,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_max||0": 4,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[31]||0": 3,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_0||0": 15,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_max||0": 3,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[31]||0": 2,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_0||0": 16,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_max||0": 2,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0": 18,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[0]||0": 1,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[63]||0": 5,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_0||0": 12,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_max||0": 5
+        },
+        "files": {
+          "stage08-array-boundary-pilot-v3-016__aon_timer_config_sweep_max__seed1.json": {
+            "testcase": "aon_timer_config_sweep_max",
+            "sha256": "f9f294341452bfb8626649a75a4cdb45c31d7faede5394d04234a28a26234b29",
+            "sample_count": 18,
+            "sample_counts_by_covergroup": {
+              "timer_cfg_cg": 18
+            },
+            "coverage_status": "SAMPLE_TRACE_WITH_COUNT_EVENTS_CANONICAL_IDENTITIES_AVAILABLE_VALUE_PARTITIONS_UNMAPPED",
+            "count_event_samples_valid": true,
+            "validation": "PASS",
+            "checks": {
+              "sha256": true,
+              "sample_count": true,
+              "sample_counts_by_covergroup": true,
+              "resolved_identity_hit_counts": true,
+              "count_event_samples": true,
+              "coverage_status": true,
+              "run_id": true,
+              "seed": true,
+              "source_revision": true,
+              "coverage_schema_id": true,
+              "no_canonical_vector": true
+            }
+          }
+        }
+      },
+      "validation_error": null,
+      "new_positive_identities": [],
+      "new_positive_count": 0,
+      "cumulative_positive_count": 20,
+      "cumulative_unknown_count": 4487,
+      "observed_cluster_ids": [
+        "0",
+        "10",
+        "11",
+        "17",
+        "18",
+        "2",
+        "3",
+        "74",
+        "8"
+      ],
+      "reward": 0.0,
+      "simulation_log_sha256": "8b3816f79a2552cfc267f5036f7bae14698ebf80401c56e22c5f8eaae65c6780",
+      "raw_results_xml_sha256": "59f57c07d36cd5f27dc163df57d0db5ed6b6a56e9a4cc93e18f7c253630b9522",
+      "public_results_xml_sha256": "b9ad476e989a32936090455a0c1a100cf544f16e068462da574248a4a05d6fea",
+      "positive_vector_sha256": "207fd283148acb13c846e4bfdb480004fff46e3e89687c5982f1194a7db9f568"
+    },
+    {
+      "run_id": "stage08-array-boundary-pilot-v3-017",
+      "testcase": "aon_timer_config_sweep_array_mid",
+      "seed": 1,
+      "phase": "ucb",
+      "completed_attempts_before_selection": 16,
+      "observed_positive_count_before_selection": 20,
+      "ucb_scores": {
+        "aon_timer_config_sweep_zero": 0.013965355002413497,
+        "aon_timer_config_sweep_one": 0.013891395975714288,
+        "aon_timer_config_sweep_array_low": 0.016651092223153953,
+        "aon_timer_config_sweep_array_mid": 0.01698390784330039,
+        "aon_timer_config_sweep_array_high": 0.013891395975714288,
+        "aon_timer_config_sweep_max": 0.013891395975714288
+      },
+      "prior_attempt_sha256": "b3a1f62fd7d8ed8ae13a30275e757c799a4dca4d3f7d166b5f1d4c4faffd293b",
+      "result": "PASS",
+      "exit_code": 0,
+      "timed_out": false,
+      "wall_seconds": 1.7023,
+      "simulation_time_ns": 1370.001,
+      "testcases": [
+        {
+          "name": "aon_timer_config_sweep_array_mid",
+          "result": "PASS",
+          "simulation_time_ns": 1370.001
+        }
+      ],
+      "trace_summary": {
+        "status": "PARTIAL_SOURCE_SAMPLE_TRACE",
+        "canonical_vector_generated": false,
+        "validated": true,
+        "file_count": 1,
+        "total_sample_count": 18,
+        "sample_counts_by_covergroup": {
+          "timer_cfg_cg": 18
+        },
+        "resolved_canonical_bin_identity_hit_counts": {
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[16]||0": 4,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_0||0": 14,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[16]||0": 3,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_0||0": 15,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[8]||0": 2,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_0||0": 16,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0": 18,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[0]||0": 6,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_0||0": 12
+        },
+        "files": {
+          "stage08-array-boundary-pilot-v3-017__aon_timer_config_sweep_array_mid__seed1.json": {
+            "testcase": "aon_timer_config_sweep_array_mid",
+            "sha256": "bd456771325de78010c4e85d04915c9232303289a318d4ecced026c71b3f1d0c",
+            "sample_count": 18,
+            "sample_counts_by_covergroup": {
+              "timer_cfg_cg": 18
+            },
+            "coverage_status": "SAMPLE_TRACE_WITH_COUNT_EVENTS_CANONICAL_IDENTITIES_AVAILABLE_VALUE_PARTITIONS_UNMAPPED",
+            "count_event_samples_valid": true,
+            "validation": "PASS",
+            "checks": {
+              "sha256": true,
+              "sample_count": true,
+              "sample_counts_by_covergroup": true,
+              "resolved_identity_hit_counts": true,
+              "count_event_samples": true,
+              "coverage_status": true,
+              "run_id": true,
+              "seed": true,
+              "source_revision": true,
+              "coverage_schema_id": true,
+              "no_canonical_vector": true
+            }
+          }
+        }
+      },
+      "validation_error": null,
+      "new_positive_identities": [],
+      "new_positive_count": 0,
+      "cumulative_positive_count": 20,
+      "cumulative_unknown_count": 4487,
+      "observed_cluster_ids": [
+        "1",
+        "11",
+        "15",
+        "17",
+        "18",
+        "73",
+        "74"
+      ],
+      "reward": 0.0,
+      "simulation_log_sha256": "e4522dd5e0e249dbc194496315b3f3d3a0eaba1f2ae6ee0e21a5c5da5e8b41aa",
+      "raw_results_xml_sha256": "e57a5a610d4e6ef3e5f6ce8003a5e4100a50d7159ac579129a6e408c99b3a2b5",
+      "public_results_xml_sha256": "cd6cc0372112b476e79ad6430c6cc0662e96cb8f7d2f0ed095dd7031dad0b3ae",
+      "positive_vector_sha256": "fbf61f687171eb6988c45dc2682ec467aad708cfa9127c20c1acc82a8cfa3e97"
+    },
+    {
+      "run_id": "stage08-array-boundary-pilot-v3-018",
+      "testcase": "aon_timer_config_sweep_array_low",
+      "seed": 1,
+      "phase": "ucb",
+      "completed_attempts_before_selection": 17,
+      "observed_positive_count_before_selection": 20,
+      "ucb_scores": {
+        "aon_timer_config_sweep_zero": 0.014113189532397203,
+        "aon_timer_config_sweep_one": 0.014039230505697994,
+        "aon_timer_config_sweep_array_low": 0.016832151805566086,
+        "aon_timer_config_sweep_array_mid": 0.013965271478998785,
+        "aon_timer_config_sweep_array_high": 0.014039230505697994,
+        "aon_timer_config_sweep_max": 0.014039230505697994
+      },
+      "prior_attempt_sha256": "addff87376538376cea2484d8576cfe17b942a30b1ae0a4f0c0a423fe21b7b4b",
+      "result": "PASS",
+      "exit_code": 0,
+      "timed_out": false,
+      "wall_seconds": 1.8808,
+      "simulation_time_ns": 1370.001,
+      "testcases": [
+        {
+          "name": "aon_timer_config_sweep_array_low",
+          "result": "PASS",
+          "simulation_time_ns": 1370.001
+        }
+      ],
+      "trace_summary": {
+        "status": "PARTIAL_SOURCE_SAMPLE_TRACE",
+        "canonical_vector_generated": false,
+        "validated": true,
+        "file_count": 1,
+        "total_sample_count": 18,
+        "sample_counts_by_covergroup": {
+          "timer_cfg_cg": 18
+        },
+        "resolved_canonical_bin_identity_hit_counts": {
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[0]||0": 4,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_0||0": 14,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[0]||0": 3,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_0||0": 15,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[0]||0": 2,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_0||0": 16,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0": 18,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[0]||0": 6,
+          "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_0||0": 12
+        },
+        "files": {
+          "stage08-array-boundary-pilot-v3-018__aon_timer_config_sweep_array_low__seed1.json": {
+            "testcase": "aon_timer_config_sweep_array_low",
+            "sha256": "f0c184adeee1f2b772c3df3f74d1bcd4095ef2948b95e9594e83c42ef5d2455e",
+            "sample_count": 18,
+            "sample_counts_by_covergroup": {
+              "timer_cfg_cg": 18
+            },
+            "coverage_status": "SAMPLE_TRACE_WITH_COUNT_EVENTS_CANONICAL_IDENTITIES_AVAILABLE_VALUE_PARTITIONS_UNMAPPED",
+            "count_event_samples_valid": true,
+            "validation": "PASS",
+            "checks": {
+              "sha256": true,
+              "sample_count": true,
+              "sample_counts_by_covergroup": true,
+              "resolved_identity_hit_counts": true,
+              "count_event_samples": true,
+              "coverage_status": true,
+              "run_id": true,
+              "seed": true,
+              "source_revision": true,
+              "coverage_schema_id": true,
+              "no_canonical_vector": true
+            }
+          }
+        }
+      },
+      "validation_error": null,
+      "new_positive_identities": [],
+      "new_positive_count": 0,
+      "cumulative_positive_count": 20,
+      "cumulative_unknown_count": 4487,
+      "observed_cluster_ids": [
+        "0",
+        "11",
+        "17",
+        "18",
+        "24",
+        "74"
+      ],
+      "reward": 0.0,
+      "simulation_log_sha256": "675e1dc26cdbf41ffaa8a11c82f2ab68b7ed918d5dc185f8b4fe9b59f4d50f9a",
+      "raw_results_xml_sha256": "e7185c17c4177c54ea0a87ebda64d6abc28c42b31ca22c832a9333906a33925b",
+      "public_results_xml_sha256": "c955a4772a85f5428699aa80d055ff260de280b4826d6221fb17eaff155a23f7",
+      "positive_vector_sha256": "332eee98d6fb9ecb426f8919149ef57988957c65b2473f59568c17028c54fbca"
+    }
+  ],
+  "setup": {
+    "exit_code": 0,
+    "timed_out": false,
+    "wall_seconds": 2.3148,
+    "log_sha256": "86b42501beccc718d6d3a8b728f98615fa98520ceed95c50d3d0968fd43f214f"
+  },
+  "generated_filelist_sha256": "d6b08a16b1f14f9825aa78d90dda48e854aeb29f0e4449fedae8b6c72c906bf7",
+  "completed_utc": "2026-11-14T05:50:19.869391+00:00",
+  "attempts_used": 18,
+  "known_positive_count": 20,
+  "unknown_count": 4487,
+  "inferred_misses": 0,
+  "action_counts": {
+    "aon_timer_config_sweep_zero": 3,
+    "aon_timer_config_sweep_one": 3,
+    "aon_timer_config_sweep_array_low": 3,
+    "aon_timer_config_sweep_array_mid": 3,
+    "aon_timer_config_sweep_array_high": 3,
+    "aon_timer_config_sweep_max": 3
+  },
+  "cumulative_positive_identities": [
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[0]||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[16]||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[31]||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_0||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_max||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[0]||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[16]||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[31]||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_0||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_max||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[0]||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[31]||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[8]||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_0||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_max||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[0]||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[63]||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_0||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_max||0"
+  ],
+  "inputs_unchanged_after_run": true
+}

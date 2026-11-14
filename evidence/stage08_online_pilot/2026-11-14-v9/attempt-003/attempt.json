@@ -1,0 +1,87 @@
+{
+  "run_id": "stage08-array-boundary-pilot-v3-003",
+  "testcase": "aon_timer_config_sweep_array_low",
+  "seed": 1,
+  "phase": "warmup",
+  "completed_attempts_before_selection": 2,
+  "observed_positive_count_before_selection": 9,
+  "ucb_scores": {},
+  "prior_attempt_sha256": "75bb2e55994e8045bd520a65d59b85374175b25db59b86c591ad2a26f87daba3",
+  "result": "PASS",
+  "exit_code": 0,
+  "timed_out": false,
+  "wall_seconds": 1.6639,
+  "simulation_time_ns": 1370.001,
+  "testcases": [
+    {
+      "name": "aon_timer_config_sweep_array_low",
+      "result": "PASS",
+      "simulation_time_ns": 1370.001
+    }
+  ],
+  "trace_summary": {
+    "status": "PARTIAL_SOURCE_SAMPLE_TRACE",
+    "canonical_vector_generated": false,
+    "validated": true,
+    "file_count": 1,
+    "total_sample_count": 18,
+    "sample_counts_by_covergroup": {
+      "timer_cfg_cg": 18
+    },
+    "resolved_canonical_bin_identity_hit_counts": {
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[0]||0": 4,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_0||0": 14,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[0]||0": 3,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_0||0": 15,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[0]||0": 2,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_0||0": 16,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0": 18,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[0]||0": 6,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_0||0": 12
+    },
+    "files": {
+      "stage08-array-boundary-pilot-v3-003__aon_timer_config_sweep_array_low__seed1.json": {
+        "testcase": "aon_timer_config_sweep_array_low",
+        "sha256": "025a0adc47dc8f3bd3016d44b584478616cb3ab3808cd335c3246072cc6219d7",
+        "sample_count": 18,
+        "sample_counts_by_covergroup": {
+          "timer_cfg_cg": 18
+        },
+        "coverage_status": "SAMPLE_TRACE_WITH_COUNT_EVENTS_CANONICAL_IDENTITIES_AVAILABLE_VALUE_PARTITIONS_UNMAPPED",
+        "count_event_samples_valid": true,
+        "validation": "PASS",
+        "checks": {
+          "sha256": true,
+          "sample_count": true,
+          "sample_counts_by_covergroup": true,
+          "resolved_identity_hit_counts": true,
+          "count_event_samples": true,
+          "coverage_status": true,
+          "run_id": true,
+          "seed": true,
+          "source_revision": true,
+          "coverage_schema_id": true,
+          "no_canonical_vector": true
+        }
+      }
+    }
+  },
+  "validation_error": null,
+  "new_positive_identities": [],
+  "new_positive_count": 0,
+  "cumulative_positive_count": 9,
+  "cumulative_unknown_count": 4498,
+  "observed_cluster_ids": [
+    "0",
+    "11",
+    "17",
+    "18",
+    "24",
+    "74"
+  ],
+  "reward": 0.0,
+  "simulation_log_sha256": "a27b8fe522f9b8741faa5259edddab64537ff8fb84bcde11cb3651e24beac4bf",
+  "raw_results_xml_sha256": "374b6e2a8967a62c0380519f6382b2464078f0b4a269b9b498b921f9a8ce4bb8",
+  "public_results_xml_sha256": "5a23a1cd6a1b80b19e81121943f4bc669285a67e2034c1bb834d6873ec2c350d",
+  "positive_vector_sha256": "2973c02abee1e3834149c0eb600ec92da0e24c73abf69b992c420c6de09fa6e0"
+}

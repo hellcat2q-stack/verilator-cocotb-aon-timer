@@ -1,0 +1,15 @@
+{
+  "schema": "aon-timer-stage08-action-pool-v1",
+  "pool_id": "aon-timer-config-boundary-actions-v1",
+  "source_revision": "9f20940d494a223cc950a5b98f748fb28109d458",
+  "deterministic": true,
+  "seed_list": [1],
+  "actions": [
+    {"name": "aon_timer_config_sweep_zero", "base_test": "aon_timer_config_sweep_sequence", "stimulus": {"wkup_threshold": 0, "wdog_bark_threshold": 0, "wdog_bite_threshold": 0, "prescale": 0, "wdog_pause_in_sleep": 0, "lock_wdog_regwen": 0}},
+    {"name": "aon_timer_config_sweep_one", "base_test": "aon_timer_config_sweep_sequence", "stimulus": {"wkup_threshold": 1, "wdog_bark_threshold": 1, "wdog_bite_threshold": 1, "prescale": 1, "wdog_pause_in_sleep": 1, "lock_wdog_regwen": 1}},
+    {"name": "aon_timer_config_sweep_array_low", "base_test": "aon_timer_config_sweep_sequence", "stimulus": {"wkup_threshold": 1, "wdog_bark_threshold": 1, "wdog_bite_threshold": 1, "prescale": 2, "wdog_pause_in_sleep": 0, "lock_wdog_regwen": 0}},
+    {"name": "aon_timer_config_sweep_array_mid", "base_test": "aon_timer_config_sweep_sequence", "stimulus": {"wkup_threshold": 4294967295, "wdog_bark_threshold": 2147483648, "wdog_bite_threshold": 2147483648, "prescale": 1024, "wdog_pause_in_sleep": 1, "lock_wdog_regwen": 0}},
+    {"name": "aon_timer_config_sweep_array_high", "base_test": "aon_timer_config_sweep_sequence", "stimulus": {"wkup_threshold": 18446744073709551614, "wdog_bark_threshold": 4294967294, "wdog_bite_threshold": 4294967294, "prescale": 4094, "wdog_pause_in_sleep": 0, "lock_wdog_regwen": 1}},
+    {"name": "aon_timer_config_sweep_max", "base_test": "aon_timer_config_sweep_sequence", "stimulus": {"wkup_threshold": 18446744073709551615, "wdog_bark_threshold": 4294967295, "wdog_bite_threshold": 4294967295, "prescale": 4095, "wdog_pause_in_sleep": 1, "lock_wdog_regwen": 0}}
+  ]
+}

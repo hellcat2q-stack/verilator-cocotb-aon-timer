@@ -21,7 +21,8 @@ def audit(directory):
     summary = json.loads((directory / "summary.json").read_text(encoding="utf-8"))
     protocol = summary["protocol"]
     pool = json.loads((ROOT / protocol["pool_path"]).read_text(encoding="utf-8"))
-    arms = [case["name"] for case in pool["testcases"]]
+    entries = pool.get("testcases", pool.get("actions"))
+    arms = [case["name"] for case in entries]
     errors = []
 
     def check(condition, message):

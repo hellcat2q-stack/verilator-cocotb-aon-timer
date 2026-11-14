@@ -1,0 +1,92 @@
+{
+  "run_id": "stage08-array-boundary-pilot-v3-004",
+  "testcase": "aon_timer_config_sweep_array_mid",
+  "seed": 1,
+  "phase": "warmup",
+  "completed_attempts_before_selection": 3,
+  "observed_positive_count_before_selection": 9,
+  "ucb_scores": {},
+  "prior_attempt_sha256": "5cf16ffccd8f1a2c5b1721ee2690ba07d41509c65ecb74589ca31da83cc0290e",
+  "result": "PASS",
+  "exit_code": 0,
+  "timed_out": false,
+  "wall_seconds": 1.7273,
+  "simulation_time_ns": 1370.001,
+  "testcases": [
+    {
+      "name": "aon_timer_config_sweep_array_mid",
+      "result": "PASS",
+      "simulation_time_ns": 1370.001
+    }
+  ],
+  "trace_summary": {
+    "status": "PARTIAL_SOURCE_SAMPLE_TRACE",
+    "canonical_vector_generated": false,
+    "validated": true,
+    "file_count": 1,
+    "total_sample_count": 18,
+    "sample_counts_by_covergroup": {
+      "timer_cfg_cg": 18
+    },
+    "resolved_canonical_bin_identity_hit_counts": {
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[16]||0": 4,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_0||0": 14,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[16]||0": 3,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_0||0": 15,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[8]||0": 2,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_0||0": 16,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0": 18,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[0]||0": 6,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_0||0": 12
+    },
+    "files": {
+      "stage08-array-boundary-pilot-v3-004__aon_timer_config_sweep_array_mid__seed1.json": {
+        "testcase": "aon_timer_config_sweep_array_mid",
+        "sha256": "10a6c3cb15186ed8662522a41d381e5d318ed5cc3f4996cf8b55e0b69af2599f",
+        "sample_count": 18,
+        "sample_counts_by_covergroup": {
+          "timer_cfg_cg": 18
+        },
+        "coverage_status": "SAMPLE_TRACE_WITH_COUNT_EVENTS_CANONICAL_IDENTITIES_AVAILABLE_VALUE_PARTITIONS_UNMAPPED",
+        "count_event_samples_valid": true,
+        "validation": "PASS",
+        "checks": {
+          "sha256": true,
+          "sample_count": true,
+          "sample_counts_by_covergroup": true,
+          "resolved_identity_hit_counts": true,
+          "count_event_samples": true,
+          "coverage_status": true,
+          "run_id": true,
+          "seed": true,
+          "source_revision": true,
+          "coverage_schema_id": true,
+          "no_canonical_vector": true
+        }
+      }
+    }
+  },
+  "validation_error": null,
+  "new_positive_identities": [
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[16]||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[16]||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[8]||0"
+  ],
+  "new_positive_count": 3,
+  "cumulative_positive_count": 12,
+  "cumulative_unknown_count": 4495,
+  "observed_cluster_ids": [
+    "1",
+    "11",
+    "15",
+    "17",
+    "18",
+    "73",
+    "74"
+  ],
+  "reward": 0.0006656312402928778,
+  "simulation_log_sha256": "11ac49b8eb9657eea3abeca799281f3e632fe2f25af6aebe146bb5ff47b18232",
+  "raw_results_xml_sha256": "ed8d179e65cf30fe69de4b99379790143a1f9ce50b05e58986fa711ffa814319",
+  "public_results_xml_sha256": "09f8fa60ac2533e192aed5dcffc7ec3e2ee5a07dba386308eaea6fbc0c41f482",
+  "positive_vector_sha256": "02f392b5cd36cb44f4e0079608f12c4e65be8b1ae4a6fb7214914541e8d0ec86"
+}

@@ -1,0 +1,102 @@
+{
+  "run_id": "stage08-array-boundary-pilot-v3-016",
+  "testcase": "aon_timer_config_sweep_max",
+  "seed": 1,
+  "phase": "ucb",
+  "completed_attempts_before_selection": 15,
+  "observed_positive_count_before_selection": 20,
+  "ucb_scores": {
+    "aon_timer_config_sweep_zero": 0.013806188997680014,
+    "aon_timer_config_sweep_one": 0.013732229970980805,
+    "aon_timer_config_sweep_array_low": 0.016456154475156734,
+    "aon_timer_config_sweep_array_mid": 0.016788970095303172,
+    "aon_timer_config_sweep_array_high": 0.013732229970980805,
+    "aon_timer_config_sweep_max": 0.016899908635351985
+  },
+  "prior_attempt_sha256": "80a669d66dc06ebd2f3d60ea6900fe8c97692230a99402d0cc670615bb2fe84b",
+  "result": "PASS",
+  "exit_code": 0,
+  "timed_out": false,
+  "wall_seconds": 1.6708,
+  "simulation_time_ns": 1370.001,
+  "testcases": [
+    {
+      "name": "aon_timer_config_sweep_max",
+      "result": "PASS",
+      "simulation_time_ns": 1370.001
+    }
+  ],
+  "trace_summary": {
+    "status": "PARTIAL_SOURCE_SAMPLE_TRACE",
+    "canonical_vector_generated": false,
+    "validated": true,
+    "file_count": 1,
+    "total_sample_count": 18,
+    "sample_counts_by_covergroup": {
+      "timer_cfg_cg": 18
+    },
+    "resolved_canonical_bin_identity_hit_counts": {
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[31]||0": 4,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_0||0": 14,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_max||0": 4,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[31]||0": 3,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_0||0": 15,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_max||0": 3,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[31]||0": 2,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_0||0": 16,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_max||0": 2,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0": 18,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[0]||0": 1,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[63]||0": 5,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_0||0": 12,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_max||0": 5
+    },
+    "files": {
+      "stage08-array-boundary-pilot-v3-016__aon_timer_config_sweep_max__seed1.json": {
+        "testcase": "aon_timer_config_sweep_max",
+        "sha256": "f9f294341452bfb8626649a75a4cdb45c31d7faede5394d04234a28a26234b29",
+        "sample_count": 18,
+        "sample_counts_by_covergroup": {
+          "timer_cfg_cg": 18
+        },
+        "coverage_status": "SAMPLE_TRACE_WITH_COUNT_EVENTS_CANONICAL_IDENTITIES_AVAILABLE_VALUE_PARTITIONS_UNMAPPED",
+        "count_event_samples_valid": true,
+        "validation": "PASS",
+        "checks": {
+          "sha256": true,
+          "sample_count": true,
+          "sample_counts_by_covergroup": true,
+          "resolved_identity_hit_counts": true,
+          "count_event_samples": true,
+          "coverage_status": true,
+          "run_id": true,
+          "seed": true,
+          "source_revision": true,
+          "coverage_schema_id": true,
+          "no_canonical_vector": true
+        }
+      }
+    }
+  },
+  "validation_error": null,
+  "new_positive_identities": [],
+  "new_positive_count": 0,
+  "cumulative_positive_count": 20,
+  "cumulative_unknown_count": 4487,
+  "observed_cluster_ids": [
+    "0",
+    "10",
+    "11",
+    "17",
+    "18",
+    "2",
+    "3",
+    "74",
+    "8"
+  ],
+  "reward": 0.0,
+  "simulation_log_sha256": "8b3816f79a2552cfc267f5036f7bae14698ebf80401c56e22c5f8eaae65c6780",
+  "raw_results_xml_sha256": "59f57c07d36cd5f27dc163df57d0db5ed6b6a56e9a4cc93e18f7c253630b9522",
+  "public_results_xml_sha256": "b9ad476e989a32936090455a0c1a100cf544f16e068462da574248a4a05d6fea",
+  "positive_vector_sha256": "207fd283148acb13c846e4bfdb480004fff46e3e89687c5982f1194a7db9f568"
+}
