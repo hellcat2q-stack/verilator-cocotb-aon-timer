@@ -1,0 +1,15 @@
+{
+  "run_id": "stage08-positive-hit-pilot-v3-008",
+  "testcase": "aon_timer_intr_test_sequence",
+  "seed": 1,
+  "phase": "ucb",
+  "completed_attempts_before_selection": 7,
+  "observed_positive_count_before_selection": 13,
+  "ucb_scores": {
+    "aon_timer_smoke_sequence": 0.015169912282331525,
+    "aon_timer_jump_sequence": 0.014171465421892208,
+    "aon_timer_prescaler_sequence": 0.013949588341794583,
+    "aon_timer_intr_test_sequence": 0.01972769702248751
+  },
+  "prior_attempt_sha256": "a3c68757c4c4d161c763a34171b228159d841c6ca5d7d1456f3df4d1fbbd2db6"
+}

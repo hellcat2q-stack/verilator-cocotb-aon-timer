@@ -1,0 +1,6 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1" />
+    <testcase name="aon_timer_prescaler_sequence" classname="test_sequences" file="tools/test_sequences.py" lineno="253" time="0.04462552070617676" sim_time_ns="6180.001" ratio_time="138485.8014473455" />
+  </testsuite>
+</testsuites>

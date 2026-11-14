@@ -1,0 +1,10 @@
+{
+  "run_id": "stage08-positive-hit-pilot-v3-002",
+  "testcase": "aon_timer_jump_sequence",
+  "seed": 1,
+  "phase": "warmup",
+  "completed_attempts_before_selection": 1,
+  "observed_positive_count_before_selection": 11,
+  "ucb_scores": {},
+  "prior_attempt_sha256": "7a429ba5fe8939f195568c7c8d95af4b2df4ad2b6125c9315a28786e2b9f56a9"
+}

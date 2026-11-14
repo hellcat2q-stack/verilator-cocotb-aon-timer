@@ -4,17 +4,19 @@
 | --- | --- | --- |
 | 01 | 源码与环境锁定 | revision、coverage reference、工具版本可追溯 |
 | 02 | Verilator build/Cocotb smoke | 固定 RTL 构建、寄存器/复位/时钟 smoke 通过 |
-| 03 | Python coverage dictionary | source/sample API 和 intr_test A/D multiplicity 已核对；7 个 named-bin identity 可确认命中；78 个配置样本另有 40 次 VCS 参考数组 bin 正向观察；Verilator 等价性、完整 identity 和 shared sample mapping 待补 |
+| 03 | Python coverage dictionary | count-event v2 已接 RTL counter probe；13 个 identity 可确认命中；完整 identity、shared sample mapping 与 UVM/VCS 对照待补 |
 | 04 | Cocotb 测试集 | 固定 smoke/jump/prescaler/intr_test 已映射实跑并接入 partial raw trace；stress-all/generic tests 待补 |
-| 05 | 初始语料 | frozen deterministic pool 已实跑，4/4 PASS；attempt manifest 记录并校验 trace hashes/sample counts；112 条 raw samples 产生 7 个可确认 identity hits |
-| 06 | Bin-by-run matrix | 4,507 列三态矩阵、identity/hash 审计已实测；1 个 partial vector 含 7 hits、4,500 unknown、0 推断 miss；完整矩阵阶段门未通过 |
+| 05 | 初始语料 | frozen deterministic pool、seed 1 已实跑，4/4 PASS；count-event v2 suite 有 201 条 raw samples、13 个可确认 identity hits |
+| 06 | Bin-by-run matrix | count-event v2 partial vector：13 hits、4,494 unknown、0 推断 miss；完整矩阵阶段门未通过 |
 | 07 | 聚类与调度 | canonical identity clustering 和固定输入回放已实现；已知 sparse hits 仍不能确认 misses/remaining bins，coverage score/UCB 保持 blocked |
-| 08 | 在线闭环 | Readiness preflight 已生成并复核；精确 vector、scheduler gate、bin identity 和完整 sample mapping 全部通过后，才能启动在线 feedback |
+| 08 | 在线闭环 | 独立 positive-hit pilot：12 次真实仿真、4 warmup + 8 testcase UCB 决策、12/12 PASS、585 样本；完整论文闭环仍受 Stage 03/06/07 限制 |
 | 09 | 基线/消融 | 方法使用统一输入、seed、预算、worker 数 |
 | 10 | 最终报告 | 独立复核并完整披露限制 |
 
-阶段 01/02 已完成。阶段 03 的 canonical identity 已从原 stage06 矩阵表头提取并校验；160 个数组 bin 的数值区间已从兼容项目 VCS vectors 表头恢复，但当前实现等价性和共享 covergroup sample API 未完成前，不声称生成与 VCS 等价的 coverage vector，也不使用 sparse hits 做调度对照。
+阶段 01/02 已完成。其余阶段可以并行推进，但不能将工程 pilot 与完整论文复现混为一谈。160 个数组 bin 的 VCS 参考区间只提供边界参考；Python/Cocotb live 采样、legacy identity 和 shared coverage 尚待核验，不能宣称覆盖等价。
 
-阶段 06 工具使用 `1/0/?` 表示已知命中/已知未命中/未知；当前阶段 05 run 有一个 `PARTIAL_VALIDATED` vector，矩阵 union 为 7 hit、0 miss、4,500 unknown。阶段 06 最终阶段门仍等待 exact sample mapping 与完整 Cocotb coverage data。
+阶段 06 保持 `1/0/?` 三态。最新 suite union 为 13 hit、0 miss、4,494 unknown；Stage 08 pilot 同样只使用正向命中奖励，不将 unknown 解释为未命中。
 
-阶段 07 可以仅根据 canonical identity 生成静态 cluster mapping；partial vector 的已知 hits 不能推断 omitted bins 为 miss，自信息、cluster prior 和 UCB state 必须保持 unavailable，不能作为真实 coverage feedback。
+阶段 07 的论文自信息和 residual cluster prior 需要完整语义，继续保持 unavailable。Stage 08 的 `testcase_ucb_positive_novelty_v1` 是另行登记的工程策略：只统计已完成 run 的新增正向命中，不需要推断 misses；并非论文 cluster UCB。
+
+接下来依次完成：参数化刺激与 live coverage 扩展 → 信息评分/cluster UCB → 第 09 步统一预算的 Random/Full/消融 → 第 10 步独立复核。原生 SystemVerilog covergroup 不是 Python/Cocotb 在线闭环的前置条件。

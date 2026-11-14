@@ -1,5 +1,16 @@
 # 工具目录
 
+## 2026-11-14 新增：实际 Stage 08 pilot
+
+- `run_stage08_pilot.py --source-root <clean-pinned-source> --python-env <compatible-venv> --work-root <new-linux-work> --output <new-evidence-dir>`：读 `configs/stage08-pilot.json` 冻结协议，单实验内复用编译，执行 4 warmup + 8 testcase UCB 的真实仿真，导出正向 vectors、XML/trace、反馈事件链与观察曲线。超时/失败消耗预算，未观察 identity 保持 unknown。
+- `audit_stage08_pilot.py --evidence-dir <pilot-dir> --output <separate-audit.json>`：校验输入与证据哈希，从真实 XML/trace 重算结果、novelty、奖励和 UCB 选择。该回放不是额外 RTL 运行，也不是 UVM/VCS parity。
+- `stage08_preflight.py` 现明确检查完整 4,507-bin 论文口径，不评价 pilot readiness；移除“必须原生 SV covergroup”的措辞。完整映射/采样等价性仍待补。
+- `audit_conditional_reset.py` v2 增加真实 revision、clean checkout、四个 pinned 源码哈希和两个 guard 验证；`configs/conditional-reset-audit.json` 已在正确源码重做。下文旧登记中的“Verilator 等价”应理解为 live Python/Cocotb 功能覆盖等价性，并不要求原生 SV covergroup。
+
+工具测试：`python3 -m unittest discover -s tests -q`。最终 RTL 证据及复现命令见 [阶段 08](../08_在线覆盖闭环/README.md)。
+
+## 原有阶段工具
+
 按阶段增加固定源码校验、FuseSoC/Verilator build、seeded Cocotb runner、coverage JSON、bin-by-run 转换和审计脚本。每个入口登记参数、输出格式、工具版本与验收方式。
 
 阶段 04 使用 `test_sequences.py` 和 `run_stage04_tests.sh`；runner 在独立的 pinned OpenTitan source tree 上构建，接受 `SOURCE_ROOT`、`PYTHON_ENV`、`WORK_ROOT`、`RANDOM_SEED` 和 `RUN_ID`，保存 `run_manifest.json`、Cocotb XML summary 与完整工作日志到 `WORK_ROOT`。

@@ -1,0 +1,89 @@
+{
+  "run_id": "stage08-positive-hit-pilot-v3-008",
+  "testcase": "aon_timer_intr_test_sequence",
+  "seed": 1,
+  "phase": "ucb",
+  "completed_attempts_before_selection": 7,
+  "observed_positive_count_before_selection": 13,
+  "ucb_scores": {
+    "aon_timer_smoke_sequence": 0.015169912282331525,
+    "aon_timer_jump_sequence": 0.014171465421892208,
+    "aon_timer_prescaler_sequence": 0.013949588341794583,
+    "aon_timer_intr_test_sequence": 0.01972769702248751
+  },
+  "prior_attempt_sha256": "a3c68757c4c4d161c763a34171b228159d841c6ca5d7d1456f3df4d1fbbd2db6",
+  "result": "PASS",
+  "exit_code": 0,
+  "timed_out": false,
+  "wall_seconds": 1.7511,
+  "simulation_time_ns": 1520.001,
+  "testcases": [
+    {
+      "name": "aon_timer_intr_test_sequence",
+      "result": "PASS",
+      "simulation_time_ns": 1520.001
+    }
+  ],
+  "trace_summary": {
+    "status": "PARTIAL_SOURCE_SAMPLE_TRACE",
+    "canonical_vector_generated": false,
+    "validated": true,
+    "file_count": 1,
+    "total_sample_count": 21,
+    "sample_counts_by_covergroup": {
+      "timer_cfg_cg": 13,
+      "intr_test_cg": 4,
+      "intr_cg": 4
+    },
+    "resolved_canonical_bin_identity_hit_counts": {
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_0||0": 13,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_0||0": 13,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_0||0": 13,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0": 13,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_0||0": 13
+    },
+    "files": {
+      "stage08-positive-hit-pilot-v3-008__aon_timer_intr_test_sequence__seed1.json": {
+        "testcase": "aon_timer_intr_test_sequence",
+        "sha256": "22a375b4d815ba5903ad389dd5b5d692ba8579c597dd06ed527a11c54accf5f4",
+        "sample_count": 21,
+        "sample_counts_by_covergroup": {
+          "timer_cfg_cg": 13,
+          "intr_test_cg": 4,
+          "intr_cg": 4
+        },
+        "coverage_status": "SAMPLE_TRACE_WITH_COUNT_EVENTS_CANONICAL_IDENTITIES_AVAILABLE_VALUE_PARTITIONS_UNMAPPED",
+        "count_event_samples_valid": true,
+        "validation": "PASS",
+        "checks": {
+          "sha256": true,
+          "sample_count": true,
+          "sample_counts_by_covergroup": true,
+          "resolved_identity_hit_counts": true,
+          "count_event_samples": true,
+          "coverage_status": true,
+          "run_id": true,
+          "seed": true,
+          "source_revision": true,
+          "coverage_schema_id": true,
+          "no_canonical_vector": true
+        }
+      }
+    }
+  },
+  "validation_error": null,
+  "new_positive_identities": [],
+  "new_positive_count": 0,
+  "cumulative_positive_count": 13,
+  "cumulative_unknown_count": 4494,
+  "observed_cluster_ids": [
+    "17",
+    "18",
+    "74"
+  ],
+  "reward": 0.0,
+  "simulation_log_sha256": "6e3a1fc7a293fdadca48cb09b17a903d5eb7880a82d67debf8c66f4c9112c87e",
+  "raw_results_xml_sha256": "93d032336b203d1ebcfcc7e2f999b1568e70f3ab9f9b836e928d2cc9044332f2",
+  "public_results_xml_sha256": "d76a50d9082e4053ed5946cdee4d6be83084d66e33eae60e3db11d39f8bce687",
+  "positive_vector_sha256": "f852d34cd072e3b7f2be9517b09ef2820c725992c26e58d5ea299b35b76edd7f"
+}

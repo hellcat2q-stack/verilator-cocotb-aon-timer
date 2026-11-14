@@ -4,6 +4,8 @@
 
 在固定 OpenTitan AON Timer RTL 上用 Verilator + Cocotb 运行测试，移植官方测试刺激、覆盖采样与反馈调度，建立可审计的开源实验链路。旧 VCS 命中数不会作为 Cocotb 结果复用。
 
+**当前已进入第 08 步：在线闭环 pilot 实跑通过。** 2026-11-14 使用固定 RTL 完成 12 次独立 Verilator/Cocotb 仿真，4 次 warmup + 8 次根据前次反馈选择的 testcase UCB 决策，12/12 PASS。585 条 raw samples 可重放，累计 13 个可确认命中、4,494 unknown，未推断 miss。详见 [阶段 08](08_在线覆盖闭环/README.md) 和 [实测回放](evidence/stage08_online_pilot/2026-11-14-v3.replay-audit.json)。这是明确限定范围的工程闭环；完整 4,507-bin 论文调度和覆盖等价性仍待完成。
+
 ## 固定参考
 
 | 项目 | 值 |
@@ -25,12 +27,12 @@
 | --- | --- | --- |
 | 01 | 固定源码、bin 参考口径、工具版本 | 完成 |
 | 02 | Verilator 构建与 Cocotb RTL smoke | smoke 通过；Lint/coverage 迁移待后续阶段 |
-| 03 | 移植覆盖模型并核验 bin/sample 语义 | 4,507 个定义已导入；78 条 trace 样本中有 40 次 VCS 参考区间正向观察；Verilator 等价性、legacy identity 和完整采样仍待补 |
+| 03 | 移植覆盖模型并核验 bin/sample 语义 | 4,507 个定义已导入；count-event v2 已采集 RTL 计数值；完整 legacy identity、shared 采样和 UVM/VCS 时序对照待补 |
 | 04 | 移植测试序列和关键 scoreboard 检查 | 固定 4/4 功能序列接入 partial raw sample trace；完整 vector 与 stress-all 待后续 |
 | 05 | 冻结测试池、seed 并生成初始语料 | frozen pool 校验 trace hashes/sample counts；1 suite、4/4 PASS；导出稀疏部分命中记录 |
-| 06 | 生成 bin-by-run 矩阵并审计 | 4,507 列三态矩阵：7 known hits、0 推断 miss、4,500 unknown；完整 coverage 阶段门未通过 |
-| 07 | 接入聚类、信息评分与 UCB 调度 | canonical identity clustering 与可重放映射已实现；partial hits 不足以确认 misses，coverage scores/UCB 仍 blocked |
-| 08 | 在线仿真和 coverage feedback 闭环 | `resets_cg` 已确认在 `num_edn=0` 配置中不适用；Verilator 等价性、Stage 06 exact vector、Stage 07 scheduler、count-event parity 和完整 identity 映射未通过，在线调度未启动 |
+| 06 | 生成 bin-by-run 矩阵并审计 | count-event v2：13 known hits、0 推断 miss、4,494 unknown；完整 coverage 阶段门未通过 |
+| 07 | 接入聚类、信息评分与 UCB 调度 | 4,507 identities → 78 clusters 已回放；论文信息评分与 cluster UCB 待补；另有 Stage 08 testcase UCB pilot 已运行 |
+| 08 | 在线仿真和 coverage feedback 闭环 | pilot 完成 12 次真实单用例仿真与逐轮反馈，12/12 PASS；完整论文闭环尚未完成 |
 | 09 | Random、Full 和消融对照 | 待开始 |
 | 10 | 独立复核与最终报告 | 待开始 |
 
@@ -44,6 +46,8 @@
 - `references/`：来源登记；不复制 OpenTitan 全仓。
 
 coverage 数量相同不代表语义等价。必须验证 bin identity、边界、采样时机、cross 同次采样、实例展开和排除规则后，才能讨论与 VCS 结果的可比性。阶段只有在真实运行并复核后才标记完成。
+
+后续顺序：扩展参数化刺激和 live coverage 映射，突破当前固定四用例的命中平台；再补论文信息评分/cluster UCB；最后在统一预算下执行第 09 步 Random、Full 和消融对照。不能把当前 pilot 的 PASS 当作论文覆盖率或效率结论。
 
 ## 阶段 02 快速运行
 

@@ -2,6 +2,10 @@
 
 状态：待开始。
 
+2026-11-14 的 Stage 08 pilot 已实跑，但四个固定刺激在第二次运行后不再产生新命中，实际 UCB 顺序与 round-robin 相同；不把它包装成方法优越性的对照结果。
+
+启动本阶段前依次补齐：有差异的参数化动作、足够的 live coverage、论文信息评分/cluster UCB。随后冻结相同输入/seed/attempt 与仿真时间预算/worker 数，单独预编译，保留失败次数，再运行 Random、Full 与消融。pilot novelty 与完整论文覆盖率分别报告。
+
 ## 目标
 统一预算下运行 Random、Full 与 ablations。
 

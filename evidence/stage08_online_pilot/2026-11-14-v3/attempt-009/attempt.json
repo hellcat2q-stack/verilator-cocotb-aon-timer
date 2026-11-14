@@ -1,0 +1,102 @@
+{
+  "run_id": "stage08-positive-hit-pilot-v3-009",
+  "testcase": "aon_timer_smoke_sequence",
+  "seed": 1,
+  "phase": "ucb",
+  "completed_attempts_before_selection": 8,
+  "observed_positive_count_before_selection": 13,
+  "ucb_scores": {
+    "aon_timer_smoke_sequence": 0.015640592806545773,
+    "aon_timer_jump_sequence": 0.014642145946106456,
+    "aon_timer_prescaler_sequence": 0.01442026886600883,
+    "aon_timer_intr_test_sequence": 0.01442026886600883
+  },
+  "prior_attempt_sha256": "35b9fd96a0569c622737a8ae716836aca2975632737fcb87e3effca41d9340f3",
+  "result": "PASS",
+  "exit_code": 0,
+  "timed_out": false,
+  "wall_seconds": 1.7841,
+  "simulation_time_ns": 2040.001,
+  "testcases": [
+    {
+      "name": "aon_timer_smoke_sequence",
+      "result": "PASS",
+      "simulation_time_ns": 2040.001
+    }
+  ],
+  "trace_summary": {
+    "status": "PARTIAL_SOURCE_SAMPLE_TRACE",
+    "canonical_vector_generated": false,
+    "validated": true,
+    "file_count": 1,
+    "total_sample_count": 36,
+    "sample_counts_by_covergroup": {
+      "timer_cfg_cg": 16,
+      "wake_up_timer_thold_hit_cg": 5,
+      "watchdog_timer_bark_thold_hit_cg": 3,
+      "watchdog_timer_bite_thold_hit_cg": 6,
+      "intr_pins_cg": 4,
+      "intr_cg": 2
+    },
+    "resolved_canonical_bin_identity_hit_counts": {
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_0||0": 13,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_0||0": 14,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_0||0": 16,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0": 16,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_0||0": 12,
+      "aon_timer_env_pkg::aon_timer_env_cov::wake_up_timer_thold_hit_cg||variable||wkup_int_cp||name:set||0": 1,
+      "aon_timer_env_pkg::aon_timer_env_cov::wake_up_timer_thold_hit_cg||variable||wkup_int_cp||name:unset||0": 4,
+      "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bark_thold_hit_cg||variable||wdog_bark_int_cp||name:set||0": 1,
+      "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bark_thold_hit_cg||variable||wdog_bark_int_cp||name:unset||0": 2,
+      "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bite_thold_hit_cg||variable||wdog_bite_rst_cp||name:set||0": 1,
+      "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bite_thold_hit_cg||variable||wdog_bite_rst_cp||name:unset||0": 5
+    },
+    "files": {
+      "stage08-positive-hit-pilot-v3-009__aon_timer_smoke_sequence__seed1.json": {
+        "testcase": "aon_timer_smoke_sequence",
+        "sha256": "b8f4a4c432286be8ad162b4b695312c984cb7619b5fca54d27a62023f724f2c5",
+        "sample_count": 36,
+        "sample_counts_by_covergroup": {
+          "timer_cfg_cg": 16,
+          "wake_up_timer_thold_hit_cg": 5,
+          "watchdog_timer_bark_thold_hit_cg": 3,
+          "watchdog_timer_bite_thold_hit_cg": 6,
+          "intr_pins_cg": 4,
+          "intr_cg": 2
+        },
+        "coverage_status": "SAMPLE_TRACE_WITH_COUNT_EVENTS_CANONICAL_IDENTITIES_AVAILABLE_VALUE_PARTITIONS_UNMAPPED",
+        "count_event_samples_valid": true,
+        "validation": "PASS",
+        "checks": {
+          "sha256": true,
+          "sample_count": true,
+          "sample_counts_by_covergroup": true,
+          "resolved_identity_hit_counts": true,
+          "count_event_samples": true,
+          "coverage_status": true,
+          "run_id": true,
+          "seed": true,
+          "source_revision": true,
+          "coverage_schema_id": true,
+          "no_canonical_vector": true
+        }
+      }
+    }
+  },
+  "validation_error": null,
+  "new_positive_identities": [],
+  "new_positive_count": 0,
+  "cumulative_positive_count": 13,
+  "cumulative_unknown_count": 4494,
+  "observed_cluster_ids": [
+    "17",
+    "18",
+    "74",
+    "77"
+  ],
+  "reward": 0.0,
+  "simulation_log_sha256": "a8cabe369283aacac8154b1b5f494ff2868b63cf3b32641607de0730d13106e2",
+  "raw_results_xml_sha256": "a2b6257da9a100e9f63183a9c995ac8297a79f503b2e5176870d1782d4df80c6",
+  "public_results_xml_sha256": "46119c8a9515635eb20b79681009bc5260d5b68ee9891d0e787e8b859e7a282a",
+  "positive_vector_sha256": "017c15928e38e8a7d096098937f6f24b720ffd19a026544321f41b0e8082f1c4"
+}

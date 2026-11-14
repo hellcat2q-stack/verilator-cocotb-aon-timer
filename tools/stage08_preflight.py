@@ -246,8 +246,8 @@ def audit_preconditions(
         )
     if array_entries and not array_verilator_equivalence_verified:
         blockers.append(
-            "Native Verilator/SystemVerilog covergroup equivalence has not been verified; "
-            "the Python/Cocotb array partition audit does not replace native coverage evidence."
+            "Live Python/Cocotb array-bin identity and sampling equivalence to the pinned UVM/VCS reference has not been established; "
+            "a static partition audit alone does not establish full coverage equivalence."
         )
     if not auto_partitions_valid:
         blockers.append("The six AON Timer automatic-bin partitions are not fully audited.")
@@ -264,10 +264,10 @@ def audit_preconditions(
         )
 
     next_actions = [
-        "If native covergroups are required, verify VCS reference array partitions against a native Verilator/SystemVerilog coverage run; the Python/Cocotb partition audit is already complete.",
+        "Connect the Python/Cocotb array classifier to live samples and validate identity, endpoints and sampling against the pinned UVM/VCS reference; native SystemVerilog covergroups are not required.",
         "Compare the new count-event trace timing and RTL values against an independent UVM/VCS event trace before claiming sampling parity.",
         "Build a one-to-one mapping from the detailed source definitions to all frozen legacy identities, including auto-bin and cross labels and shared groups.",
-        "Rebuild and independently audit exact Stage 06 vectors before enabling Stage 07 scores/UCB and launching Stage 08.",
+        "Rebuild and independently audit exact Stage 06 vectors before enabling the paper's Stage 07 information scores/UCB; the separately scoped positive-hit Stage 08 pilot can run without exact vectors.",
     ]
     if any("conditional resets_cg" in str(item) for item in unmapped_sample_sites):
         next_actions.insert(
@@ -278,6 +278,8 @@ def audit_preconditions(
     ready = not blockers
     return {
         "schema": "aon-timer-stage08-preflight-v2",
+        "evaluation_scope": "full_4507_bin_paper_equivalence",
+        "pilot_readiness_evaluated": False,
         "status": "READY" if ready else "BLOCKED_PREREQUISITES_INCOMPLETE",
         "ready_for_online_coverage_feedback": ready,
         "canonical_bin_count": len(canonical_ids),
@@ -295,6 +297,7 @@ def audit_preconditions(
         "array_bin_value_boundaries_unresolved": unresolved_array_boundaries,
         "array_bin_reference_partitions_verified": unresolved_array_boundaries == 0 and bool(array_entries),
         "array_bin_verilator_equivalence_verified": array_verilator_equivalence_verified,
+        "array_bin_python_mapping_and_sampling_equivalence_verified": array_verilator_equivalence_verified,
         "shared_or_other_source_scopes": shared_group_names,
         "stage06_matrix_status": matrix_audit.get("matrix_status"),
         "exact_vector_matrix_available": vector_exact,

@@ -1,0 +1,93 @@
+{
+  "run_id": "stage08-positive-hit-pilot-v3-007",
+  "testcase": "aon_timer_prescaler_sequence",
+  "seed": 1,
+  "phase": "ucb",
+  "completed_attempts_before_selection": 6,
+  "observed_positive_count_before_selection": 13,
+  "ucb_scores": {
+    "aon_timer_smoke_sequence": 0.014605985930995446,
+    "aon_timer_jump_sequence": 0.013607539070556129,
+    "aon_timer_prescaler_sequence": 0.018930184728248454,
+    "aon_timer_intr_test_sequence": 0.018930184728248454
+  },
+  "prior_attempt_sha256": "ba4cf63bf4246149f5caa0adb3e62f6281fb4ab823644f773e714694bbaf307d",
+  "result": "PASS",
+  "exit_code": 0,
+  "timed_out": false,
+  "wall_seconds": 1.7605,
+  "simulation_time_ns": 6180.001,
+  "testcases": [
+    {
+      "name": "aon_timer_prescaler_sequence",
+      "result": "PASS",
+      "simulation_time_ns": 6180.001
+    }
+  ],
+  "trace_summary": {
+    "status": "PARTIAL_SOURCE_SAMPLE_TRACE",
+    "canonical_vector_generated": false,
+    "validated": true,
+    "file_count": 1,
+    "total_sample_count": 55,
+    "sample_counts_by_covergroup": {
+      "timer_cfg_cg": 28,
+      "wake_up_timer_thold_hit_cg": 17,
+      "intr_pins_cg": 6,
+      "intr_cg": 4
+    },
+    "resolved_canonical_bin_identity_hit_counts": {
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_0||0": 28,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_0||0": 28,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_0||0": 27,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0": 28,
+      "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_0||0": 16,
+      "aon_timer_env_pkg::aon_timer_env_cov::wake_up_timer_thold_hit_cg||variable||wkup_int_cp||name:set||0": 2,
+      "aon_timer_env_pkg::aon_timer_env_cov::wake_up_timer_thold_hit_cg||variable||wkup_int_cp||name:unset||0": 15
+    },
+    "files": {
+      "stage08-positive-hit-pilot-v3-007__aon_timer_prescaler_sequence__seed1.json": {
+        "testcase": "aon_timer_prescaler_sequence",
+        "sha256": "d8f00eb08081d5cf42fd59354ccced1a40dbe50bd1626000c95d96044abdd6a4",
+        "sample_count": 55,
+        "sample_counts_by_covergroup": {
+          "timer_cfg_cg": 28,
+          "wake_up_timer_thold_hit_cg": 17,
+          "intr_pins_cg": 6,
+          "intr_cg": 4
+        },
+        "coverage_status": "SAMPLE_TRACE_WITH_COUNT_EVENTS_CANONICAL_IDENTITIES_AVAILABLE_VALUE_PARTITIONS_UNMAPPED",
+        "count_event_samples_valid": true,
+        "validation": "PASS",
+        "checks": {
+          "sha256": true,
+          "sample_count": true,
+          "sample_counts_by_covergroup": true,
+          "resolved_identity_hit_counts": true,
+          "count_event_samples": true,
+          "coverage_status": true,
+          "run_id": true,
+          "seed": true,
+          "source_revision": true,
+          "coverage_schema_id": true,
+          "no_canonical_vector": true
+        }
+      }
+    }
+  },
+  "validation_error": null,
+  "new_positive_identities": [],
+  "new_positive_count": 0,
+  "cumulative_positive_count": 13,
+  "cumulative_unknown_count": 4494,
+  "observed_cluster_ids": [
+    "17",
+    "18",
+    "74"
+  ],
+  "reward": 0.0,
+  "simulation_log_sha256": "ed14e0411e1f32529691aabba936b7c6ff52746c1108481baf9020af1eab47eb",
+  "raw_results_xml_sha256": "13174dd6efd36bc740adf3caf25e06654286dd626699712e0ef4dc3369036ea4",
+  "public_results_xml_sha256": "f0b667870c42183a429a39f7cb5474b98bbc6b811994bb5998704f42634bb91c",
+  "positive_vector_sha256": "12fe0cfdd884d561d336adb5e08c0ae9d12d9011fc2dcb9f00619ab57449ede2"
+}

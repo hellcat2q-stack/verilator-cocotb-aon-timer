@@ -1,0 +1,18 @@
+{
+  "schema": "aon-timer-stage08-pilot-protocol-v1",
+  "experiment_id": "stage08-positive-hit-pilot-v3",
+  "source_revision": "9f20940d494a223cc950a5b98f748fb28109d458",
+  "coverage_schema_id": "aon_timer_uvm_source_trace_v2",
+  "pool_path": "configs/stage05-test-pool.json",
+  "freeze_path": "configs/stage05-count-event-trace-freeze.json",
+  "cluster_path": "evidence/stage07_count_event_v2_verified/clusters.json",
+  "attempt_budget": 12,
+  "seed": 1,
+  "timeout_seconds_per_attempt": 300,
+  "simulation_time_limit_ns_per_attempt": 25000,
+  "selection_policy": "testcase_ucb_positive_novelty_v1",
+  "exploration_coefficient": 0.01,
+  "reward": "new_confirmed_positive_canonical_identities / 4507; failed_attempts_receive_zero",
+  "unknown_policy": "unobserved canonical identities remain unknown; never infer misses",
+  "scope": "Stage08 online integration pilot using four fixed deterministic testcases; not the paper cluster/information-score scheduler or full coverage equivalence"
+}

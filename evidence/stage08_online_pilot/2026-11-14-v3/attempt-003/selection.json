@@ -1,0 +1,10 @@
+{
+  "run_id": "stage08-positive-hit-pilot-v3-003",
+  "testcase": "aon_timer_prescaler_sequence",
+  "seed": 1,
+  "phase": "warmup",
+  "completed_attempts_before_selection": 2,
+  "observed_positive_count_before_selection": 13,
+  "ucb_scores": {},
+  "prior_attempt_sha256": "269bcf4f76c31783f27a223c47125241e0c3ed1f6ae8cfee4d7e979460a95166"
+}

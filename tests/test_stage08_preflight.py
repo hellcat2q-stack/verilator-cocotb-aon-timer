@@ -116,7 +116,7 @@ class Stage08PreflightTests(unittest.TestCase):
         self.assertTrue(result["array_bin_reference_partitions_verified"])
         self.assertFalse(result["array_bin_verilator_equivalence_verified"])
         self.assertIn(
-            "Native Verilator/SystemVerilog covergroup equivalence has not been verified; the Python/Cocotb array partition audit does not replace native coverage evidence.",
+            "Live Python/Cocotb array-bin identity and sampling equivalence to the pinned UVM/VCS reference has not been established; a static partition audit alone does not establish full coverage equivalence.",
             result["blockers"],
         )
         self.assertNotIn(
