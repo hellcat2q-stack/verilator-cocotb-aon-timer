@@ -35,4 +35,4 @@ python3 -m unittest discover -s tests -q
 
 ## 剩余工作
 
-Stage 09 工程对照通过；完整论文方法对照和 VCS/UVM 等价性仍不满足验收。下一步进入 Stage 10：独立复核实验协议、所有 evidence hashes 与结论边界，不把工程 pilot 结果提升为论文覆盖率结论。
+Stage 09 工程对照已由 [Stage 10](../10_最终复核与报告/README.md) 独立复核。完整论文方法对照和 VCS/UVM 等价性仍不满足验收；本阶段 positives 占目录比例不能提升为 full coverage 结论。

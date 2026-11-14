@@ -1,0 +1,62 @@
+{
+  "schema": "aon-timer-stage10-engineering-evidence-review-v1",
+  "review_id": "stage10-final-review-2026-11-14-v1",
+  "review_status": "ENGINEERING_EVIDENCE_REVIEW_PASS",
+  "overall_reproduction_status": "INCOMPLETE_FULL_COVERAGE_NOT_REPORTABLE",
+  "source_revision": "9f20940d494a223cc950a5b98f748fb28109d458",
+  "reviewed_stage09_experiment": "stage09-array-blocks-v1",
+  "stage09_replay_audit": {
+    "status": "PASS",
+    "attempts_replayed": 288,
+    "rtl_tests_passed": 288,
+    "evidence_file_count_verified": 1443,
+    "inferred_misses": 0
+  },
+  "coverage_accounting": {
+    "canonical_identity_universe": 4507,
+    "urg_dashboard_reference_count": 4525,
+    "urg_is_separate_metric": true,
+    "policy": "ucb",
+    "selection_seed": 1,
+    "confirmed_positive_identities": 175,
+    "source_named_positive_identities": 15,
+    "reference_array_positive_identities": 160,
+    "unknown_identities": 4332,
+    "confirmed_positive_identity_fraction_of_canonical_catalog_percent": 3.882848901708454,
+    "full_coverage_rate_percent": null,
+    "full_coverage_rate_status": "NOT_REPORTABLE_INCOMPLETE_IDENTITY_AND_SAMPLE_MAPPING",
+    "unknowns_counted_as_misses": false
+  },
+  "comparison_summary": {
+    "ucb_positive_identities_by_selection_seed_1_7_19": [175, 175, 175],
+    "random_positive_identities_by_selection_seed_1_7_19": [167, 160, 168],
+    "full_round_robin_positive_identities_by_selection_seed_1_7_19": [175, 175, 175],
+    "ucb_no_reward_positive_identities_by_selection_seed_1_7_19": [175, 175, 175],
+    "interpretation": "This frozen engineering action-pool comparison does not establish paper-algorithm superiority or complete functional coverage."
+  },
+  "full_paper_readiness": {
+    "status": "BLOCKED_PREREQUISITES_INCOMPLETE",
+    "stage07_scheduler_allowed": false,
+    "exact_vector_matrix_available": false,
+    "sample_sites_complete": false,
+    "array_bin_verilator_equivalence_verified": false,
+    "direct_legacy_identity_matches": 341,
+    "canonical_identity_count": 4507,
+    "unmapped_sample_or_identity_items": 3
+  },
+  "independent_recheck": {
+    "command": "python3 tools/audit_stage09_comparison.py --evidence-dir evidence/stage09_comparison/2026-11-14-v1",
+    "result": "PASS",
+    "scope": "Replay of the frozen Stage 09 evidence; it is not an independent UVM/VCS simulation."
+  },
+  "input_sha256": {
+    "stage09_summary.json": "3c82074319ca244a009457632796417189e1b0dd72187d5bed4cad893a72f09d",
+    "stage09_comparison.csv": "5c43e80b88fe4fe5f95639cf4c145764ec27471798a40690c55d85c7032c1300",
+    "stage09_replay_audit.json": "bc9917a4a9b876c7f2173d85a49d8e696c8636f72280279c5a15f9bd7bb949b0",
+    "stage09_freeze.json": "db621fd441332b597a6f9767de2728658ee3532caf4feb49ed2ebf580690f262",
+    "array_bin_ranges.v1.json": "aa7acb62bfe5e49777250aa72695d29a92493a57fe1ec76b6f18f2dc051bba27",
+    "canonical_bin_ids.txt": "dbcf02f06c121675401c8983dde65a9275239cefd3aff842712bdeef5da11355",
+    "full_paper_readiness.json": "02b11b7d0ce12d8fbf76dc56bdd9f46b485697a90288b79ad597f76d0c34367b"
+  },
+  "conclusion": "The current open-source experiment confirms positive observations for 175 of 4,507 canonical identities (3.8828% of the catalog). This ratio is not a full-coverage percentage. The remaining 4,332 identities are unknown, and complete coverage cannot be reported until the identity, sample-site, and UVM/VCS sampling mappings are completed."
+}
