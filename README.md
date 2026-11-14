@@ -4,7 +4,7 @@
 
 在固定 OpenTitan AON Timer RTL 上用 Verilator + Cocotb 运行测试，移植官方测试刺激、覆盖采样与反馈调度，建立可审计的开源实验链路。旧 VCS 命中数不会作为 Cocotb 结果复用。
 
-**当前已进入第 08 步：在线闭环 pilot 实跑通过。** 2026-11-14 使用固定 RTL 完成 18 次独立 Verilator/Cocotb 仿真，6 次 warmup + 12 次根据前次反馈选择的 action UCB 决策，18/18 PASS。330 条 raw samples 可重放，累计 20 个可确认命中、4,487 unknown，未推断 miss；其中包括实时 Python 参考数组分区命中。详见 [阶段 08](08_在线覆盖闭环/README.md) 和 [实测回放](evidence/stage08_online_pilot/2026-11-14-v9.replay-audit.json)。这是明确限定范围的工程闭环；完整 4,507-bin 论文调度和覆盖等价性仍待完成。
+**阶段 09 工程对照已实跑并独立审计通过。** 固定 RTL 上完成 288 次 Verilator/Cocotb 仿真（UCB、Random、round-robin Full、关闭 reward 消融；三个选择种子），288/288 PASS、16,515 条 samples。UCB/Full/消融均确认 175 个正向 identity；Random 为 160–168。4,332–4,347 个 identity 仍为 unknown，未推断 miss。逐次 XML、trace、向量、决策与审计见 [Stage 09 证据](evidence/stage09_comparison/2026-11-14-v1/summary.json) 和 [replay audit](evidence/stage09_comparison/2026-11-14-v1/replay-audit.json)。这是动作池上的工程对照，不是完整论文调度，也不证明 VCS/UVM 覆盖等价。
 
 ## 固定参考
 
@@ -33,7 +33,7 @@
 | 06 | 生成 bin-by-run 矩阵并审计 | Stage 05 partial matrix 仍为 13 known hits；Stage 08 pilot 可确认 20 个正向 identity、4,487 unknown，0 推断 miss；完整 coverage 阶段门未通过 |
 | 07 | 接入聚类、信息评分与 UCB 调度 | 4,507 identities → 78 clusters 已回放；论文信息评分与 cluster UCB 待补；另有 Stage 08 testcase UCB pilot 已运行 |
 | 08 | 在线仿真和 coverage feedback 闭环 | action-boundary pilot 完成 18 次真实仿真与逐轮反馈，18/18 PASS、330 样本、20 positives；完整论文闭环尚未完成 |
-| 09 | Random、Full 和消融对照 | 待开始 |
+| 09 | Random、Full 和消融对照 | 工程范围 288 次 RTL 对照及独立 replay audit 完成；完整论文方法对照仍待完成 |
 | 10 | 独立复核与最终报告 | 待开始 |
 
 ## 文件管理
@@ -47,7 +47,7 @@
 
 coverage 数量相同不代表语义等价。必须验证 bin identity、边界、采样时机、cross 同次采样、实例展开和排除规则后，才能讨论与 VCS 结果的可比性。阶段只有在真实运行并复核后才标记完成。
 
-后续顺序：扩展参数化刺激和 live coverage 映射，突破当前固定四用例的命中平台；再补论文信息评分/cluster UCB；最后在统一预算下执行第 09 步 Random、Full 和消融对照。不能把当前 pilot 的 PASS 当作论文覆盖率或效率结论。
+下一步是阶段 10 独立复核，并继续补齐完整论文 bin identity、sample-site/采样语义和 cluster UCB。阶段 09 的工程对照结果不能当作论文覆盖率或效率结论。
 
 ## 阶段 02 快速运行
 

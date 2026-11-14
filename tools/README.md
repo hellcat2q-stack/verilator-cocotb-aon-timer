@@ -9,6 +9,16 @@
 
 工具测试：`python3 -m unittest discover -s tests -q`。最终 RTL 证据及复现命令见 [阶段 08](../08_在线覆盖闭环/README.md)。
 
+## 2026-11-14 新增：Stage 09 工程对照
+
+- `stage09_protocol.py` 校验 VCS 参考数组分区并生成 12 个配置/功能动作、冻结 pool/protocol/freeze 和确定性的 UCB、Random、round-robin Full、`ucb_no_reward` 选择策略。
+- `test_stage09_sequences.py` 提供 8 个配置块和零值/最大值动作；每步写 CSR、读回 RTL 配置，并保存同一 trace sample 的 checkpoint。
+- `run_stage09_comparison.py` 检查 pinned clean source 与 OpenTitan 兼容工具链，单独预编译一次，交错运行 288 个单 testcase RTL attempts，保存 XML、trace、positive-only vector、选择/结果哈希链和策略汇总。失败消耗预算且不获覆盖奖励。
+- `audit_stage09_comparison.py` 从 XML、trace fields 和 checkpoint 独立重放结果、数组/显式 identity 分类、novelty reward、策略选择、汇总和文件 hash ledger；unknown 保持 unknown。
+- 实测结果和限制见 [阶段 09](../09_基线对照与消融/README.md) 与 [Stage 09 evidence](../evidence/stage09_comparison/2026-11-14-v1/summary.json)。策略定义是工程对照，不是论文 cluster UCB、论文 Full 或 VCS/UVM parity。
+
+在 WSL Ubuntu 中，使用新的 Linux work 目录和 evidence 目录运行 `run_stage09_comparison.py`，完成后运行 `audit_stage09_comparison.py --evidence-dir <run-dir>`。`tests/test_stage09_comparison.py` 覆盖 160 个参考数组 bins、策略回放确定性、freeze tamper 和空 trace 拒绝。
+
 ## 原有阶段工具
 
 按阶段增加固定源码校验、FuseSoC/Verilator build、seeded Cocotb runner、coverage JSON、bin-by-run 转换和审计脚本。每个入口登记参数、输出格式、工具版本与验收方式。

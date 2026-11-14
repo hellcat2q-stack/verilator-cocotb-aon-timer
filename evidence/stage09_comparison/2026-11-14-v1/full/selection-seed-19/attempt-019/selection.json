@@ -1,0 +1,13 @@
+{
+  "run_id": "stage09-array-blocks-v1-full-s19-019",
+  "policy": "full",
+  "selection_seed": 19,
+  "simulation_seed": 1,
+  "testcase": "aon_s09_config_block_6",
+  "phase": "round_robin",
+  "completed_attempts_before_selection": 18,
+  "positive_count_before_selection": 175,
+  "scores": {},
+  "prior_attempt_sha256": "0f0c5bcf0b2a158d15ffe846451c4db5f480a4f8385218a9bc2befa7fd2340dd",
+  "global_order": 265
+}

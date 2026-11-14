@@ -1,0 +1,47 @@
+{
+  "run_id": "stage09-array-blocks-v1-ucb-s1-011",
+  "policy": "ucb",
+  "selection_seed": 1,
+  "simulation_seed": 1,
+  "testcase": "aon_s09_smoke",
+  "phase": "warmup",
+  "completed_attempts_before_selection": 10,
+  "positive_count_before_selection": 169,
+  "scores": {},
+  "prior_attempt_sha256": "d5a32e0247afed9f113881d5c9a6c1103b3518a411006952b9f79dc7df462395",
+  "global_order": 41,
+  "result": "PASS",
+  "exit_code": 0,
+  "timed_out": false,
+  "wall_seconds": 1.5169,
+  "simulation_time_ns": 2040.001,
+  "testcases": [
+    {
+      "name": "aon_s09_smoke",
+      "result": "PASS",
+      "simulation_time_ns": 2040.001
+    }
+  ],
+  "sample_count": 36,
+  "new_positive_count": 6,
+  "new_positive_identities": [
+    "aon_timer_env_pkg::aon_timer_env_cov::wake_up_timer_thold_hit_cg||variable||wkup_int_cp||name:set||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::wake_up_timer_thold_hit_cg||variable||wkup_int_cp||name:unset||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bark_thold_hit_cg||variable||wdog_bark_int_cp||name:set||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bark_thold_hit_cg||variable||wdog_bark_int_cp||name:unset||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bite_thold_hit_cg||variable||wdog_bite_rst_cp||name:set||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bite_thold_hit_cg||variable||wdog_bite_rst_cp||name:unset||0"
+  ],
+  "cumulative_positive_count": 175,
+  "source_named_positive_count": 15,
+  "reference_array_positive_count": 160,
+  "cumulative_unknown_count": 4332,
+  "reward": 0.0013312624805857556,
+  "validation_error": null,
+  "trace_sha256": "02bc22a8676c8ccdb9c4e08420f1caf57ba5bafbfe4a1b741be3f6615cb09460",
+  "raw_results_xml_sha256": "d3b4a964628f9164a26e758180305f4f56a2295c6f6ad51ac5a00d8b7b56c7f9",
+  "public_results_xml_sha256": "ef26a1a1ad30468f8324187ae5347ede67361eff4569f04e892fd477e8f3736e",
+  "positive_vector_sha256": "41c2cca0bf6edeb46c1904ad34f83232b500fced6374253802bc363506e54ef6",
+  "simulation_log_sha256": "91ba02c881f63ad35e08f29c88498ba92f4d724ef1dadfd379c0c11c3739250b",
+  "attempt_record_path": "ucb/selection-seed-1/attempt-011/attempt.json"
+}

@@ -1,0 +1,49 @@
+{
+  "run_id": "stage09-array-blocks-v1-random-s7-004",
+  "policy": "random",
+  "selection_seed": 7,
+  "simulation_seed": 1,
+  "testcase": "aon_s09_smoke",
+  "phase": "uniform_random",
+  "completed_attempts_before_selection": 3,
+  "positive_count_before_selection": 79,
+  "scores": {},
+  "prior_attempt_sha256": "1edf8de2dd41a555e4f2b083f370fe9a2f4dc668adf62efce688ead72d1c7efc",
+  "global_order": 109,
+  "result": "PASS",
+  "exit_code": 0,
+  "timed_out": false,
+  "wall_seconds": 1.7178,
+  "simulation_time_ns": 2040.001,
+  "testcases": [
+    {
+      "name": "aon_s09_smoke",
+      "result": "PASS",
+      "simulation_time_ns": 2040.001
+    }
+  ],
+  "sample_count": 36,
+  "new_positive_count": 8,
+  "new_positive_identities": [
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[0]||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[0]||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::wake_up_timer_thold_hit_cg||variable||wkup_int_cp||name:set||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::wake_up_timer_thold_hit_cg||variable||wkup_int_cp||name:unset||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bark_thold_hit_cg||variable||wdog_bark_int_cp||name:set||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bark_thold_hit_cg||variable||wdog_bark_int_cp||name:unset||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bite_thold_hit_cg||variable||wdog_bite_rst_cp||name:set||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bite_thold_hit_cg||variable||wdog_bite_rst_cp||name:unset||0"
+  ],
+  "cumulative_positive_count": 87,
+  "source_named_positive_count": 11,
+  "reference_array_positive_count": 76,
+  "cumulative_unknown_count": 4420,
+  "reward": 0.0017750166407810074,
+  "validation_error": null,
+  "trace_sha256": "a7c341d9f241a542ca49fec6098b0d98da37f1e948ffe53461b8cb3c5852618d",
+  "raw_results_xml_sha256": "66c989d3c388962dfe73c3b9ba2bd11c8c24e348d0acdcbe3cb79daed508a9cc",
+  "public_results_xml_sha256": "71e5a226bb48e9b095d48723a46c33ffb77ce05dcf3b9a83e7ffd911eb7d4d3d",
+  "positive_vector_sha256": "008cc4b2fbd6e61dca0c9a33d219464ad163f2ba1f11c814b4fce2a04fd5cfa5",
+  "simulation_log_sha256": "d433233898713d4d3fc76dc3ee177da20b913db44fce18bb9f00eb101a23bdf8",
+  "attempt_record_path": "random/selection-seed-7/attempt-004/attempt.json"
+}

@@ -1,0 +1,6 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1" />
+    <testcase name="aon_s09_config_block_4" classname="test_stage09_sequences" file="tools/test_sequences.py" lineno="44" time="0.06802201271057129" sim_time_ns="4830.001" ratio_time="71006.44052611767" />
+  </testsuite>
+</testsuites>

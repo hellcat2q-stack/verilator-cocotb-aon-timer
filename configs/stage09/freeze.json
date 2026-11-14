@@ -1,0 +1,10 @@
+{
+  "schema": "aon-timer-stage09-input-freeze-v1",
+  "status": "FROZEN_BEFORE_FORMAL_RUN",
+  "source_revision": "9f20940d494a223cc950a5b98f748fb28109d458",
+  "sha256": {
+    "configs/stage09/action-pool.json": "284134263a899d7279d7189d4c0c8442a66735e45b15f91e5310d14feccabb22",
+    "configs/stage09/protocol.json": "911159e9a8b281d5ade3047adaf6586559cbc7cff4b13888f201691c505a0ea6"
+  },
+  "array_reference_sha256": "aa7acb62bfe5e49777250aa72695d29a92493a57fe1ec76b6f18f2dc051bba27"
+}

@@ -1,0 +1,53 @@
+{
+  "run_id": "stage09-array-blocks-v1-full-s1-008",
+  "policy": "full",
+  "selection_seed": 1,
+  "simulation_seed": 1,
+  "testcase": "aon_s09_config_block_7",
+  "phase": "round_robin",
+  "completed_attempts_before_selection": 7,
+  "positive_count_before_selection": 157,
+  "scores": {},
+  "prior_attempt_sha256": "cabe6bb3ac9fdde869ceafc2dffdc417d823ce860651e472f28ec95df556ea89",
+  "global_order": 31,
+  "result": "PASS",
+  "exit_code": 0,
+  "timed_out": false,
+  "wall_seconds": 1.6673,
+  "simulation_time_ns": 4830.001,
+  "testcases": [
+    {
+      "name": "aon_s09_config_block_7",
+      "result": "PASS",
+      "simulation_time_ns": 4830.001
+    }
+  ],
+  "sample_count": 67,
+  "new_positive_count": 12,
+  "new_positive_identities": [
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_max||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_max||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_max||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[56]||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[57]||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[58]||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[59]||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[60]||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[61]||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[62]||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[63]||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_max||0"
+  ],
+  "cumulative_positive_count": 169,
+  "source_named_positive_count": 9,
+  "reference_array_positive_count": 160,
+  "cumulative_unknown_count": 4338,
+  "reward": 0.002662524961171511,
+  "validation_error": null,
+  "trace_sha256": "44e10fbcd27f91e2a52c798bde9035c876ea44f5bf1ac4c721f3a4f6d6e9fb79",
+  "raw_results_xml_sha256": "de583ba7b9b2f1a8a7435d9db83903b076cc4167216509e8989ad8e580a066e4",
+  "public_results_xml_sha256": "084fbf64de51c3137715cbb181741f47e9433a59c887e35c92a4bbe7b1dc9a37",
+  "positive_vector_sha256": "e0d70d9bc4956de23212e58613a9c4a0aeffb3d40610712f4c2b6568f78634fc",
+  "simulation_log_sha256": "1084c4f1cc0db17b2a4fcc71270d6208e1a835b6b2e12387241d008ae455f95e",
+  "attempt_record_path": "full/selection-seed-1/attempt-008/attempt.json"
+}

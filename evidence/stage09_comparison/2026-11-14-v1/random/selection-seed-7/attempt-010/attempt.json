@@ -1,0 +1,49 @@
+{
+  "run_id": "stage09-array-blocks-v1-random-s7-010",
+  "policy": "random",
+  "selection_seed": 7,
+  "simulation_seed": 1,
+  "testcase": "aon_s09_endpoint_max",
+  "phase": "uniform_random",
+  "completed_attempts_before_selection": 9,
+  "positive_count_before_selection": 123,
+  "scores": {},
+  "prior_attempt_sha256": "4634201c925552e4fa71a67a31d9548fb8a6592b11b0c3f39cf464536ec73dfd",
+  "global_order": 133,
+  "result": "PASS",
+  "exit_code": 0,
+  "timed_out": false,
+  "wall_seconds": 1.5169,
+  "simulation_time_ns": 1470.001,
+  "testcases": [
+    {
+      "name": "aon_s09_endpoint_max",
+      "result": "PASS",
+      "simulation_time_ns": 1470.001
+    }
+  ],
+  "sample_count": 18,
+  "new_positive_count": 8,
+  "new_positive_identities": [
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[31]||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_max||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[31]||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_max||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[31]||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_max||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[63]||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_max||0"
+  ],
+  "cumulative_positive_count": 131,
+  "source_named_positive_count": 15,
+  "reference_array_positive_count": 116,
+  "cumulative_unknown_count": 4376,
+  "reward": 0.0017750166407810074,
+  "validation_error": null,
+  "trace_sha256": "85765a7f49fb4a800c72cab5e31ecbeab8611ba225faa38af3d8993aa3ba78f7",
+  "raw_results_xml_sha256": "f1ef098046bfc74f8def77aa4e190fe406d15001cf64217c5767b49f3f93de72",
+  "public_results_xml_sha256": "ff03899d9fcf2d27852f57f79aa23a24e9d6a5d3dfddbdc9329864d6b9d1f61b",
+  "positive_vector_sha256": "767e401e886c7be2b29d76e587e9799d2733e9d507f12cb6c4d2b391897bfd85",
+  "simulation_log_sha256": "b3990903ce072fbb1df64d8a099d4b2f3275041ece28c731b7e5915959db5a81",
+  "attempt_record_path": "random/selection-seed-7/attempt-010/attempt.json"
+}

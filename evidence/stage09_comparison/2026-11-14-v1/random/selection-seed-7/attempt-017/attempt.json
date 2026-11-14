@@ -1,0 +1,40 @@
+{
+  "run_id": "stage09-array-blocks-v1-random-s7-017",
+  "policy": "random",
+  "selection_seed": 7,
+  "simulation_seed": 1,
+  "testcase": "aon_s09_config_block_6",
+  "phase": "uniform_random",
+  "completed_attempts_before_selection": 16,
+  "positive_count_before_selection": 160,
+  "scores": {},
+  "prior_attempt_sha256": "109a1ac7e07f1fe2a38dbb033413d844779badef4c48c746125c1851d15bfae2",
+  "global_order": 161,
+  "result": "PASS",
+  "exit_code": 0,
+  "timed_out": false,
+  "wall_seconds": 1.5672,
+  "simulation_time_ns": 4830.001,
+  "testcases": [
+    {
+      "name": "aon_s09_config_block_6",
+      "result": "PASS",
+      "simulation_time_ns": 4830.001
+    }
+  ],
+  "sample_count": 67,
+  "new_positive_count": 0,
+  "new_positive_identities": [],
+  "cumulative_positive_count": 160,
+  "source_named_positive_count": 15,
+  "reference_array_positive_count": 145,
+  "cumulative_unknown_count": 4347,
+  "reward": 0.0,
+  "validation_error": null,
+  "trace_sha256": "191f442f7726d073682eea9d186a3f77e83ff10ddd8bec4080fd9d81def05ff9",
+  "raw_results_xml_sha256": "cdf18361ea9e694619454d1523cf8fc1e64483d6b2501be568f50758926a43df",
+  "public_results_xml_sha256": "55158e40a751552332ce760a0cc0963bf5cdffe6ab755c182e2e8431e959a141",
+  "positive_vector_sha256": "fd45a690d0d44326010b1584512946bcc0c9d39edbf82b345e2038f4cd7b94e5",
+  "simulation_log_sha256": "7a0d4a63072d1121c02842634b44841c2c31f47bac0d1febb0eb31a0c9ce24ca",
+  "attempt_record_path": "random/selection-seed-7/attempt-017/attempt.json"
+}

@@ -1,0 +1,53 @@
+{
+  "run_id": "stage09-array-blocks-v1-ucb-s1-020",
+  "policy": "ucb",
+  "selection_seed": 1,
+  "simulation_seed": 1,
+  "testcase": "aon_s09_config_block_6",
+  "phase": "ucb",
+  "completed_attempts_before_selection": 19,
+  "positive_count_before_selection": 175,
+  "scores": {
+    "aon_s09_config_block_0": 0.021264093625068578,
+    "aon_s09_config_block_1": 0.020709400924824515,
+    "aon_s09_config_block_2": 0.020709400924824515,
+    "aon_s09_config_block_3": 0.020709400924824515,
+    "aon_s09_config_block_4": 0.018046875963653005,
+    "aon_s09_config_block_5": 0.018046875963653005,
+    "aon_s09_config_block_6": 0.026042027083628887,
+    "aon_s09_config_block_7": 0.018490630123848256,
+    "aon_s09_endpoint_zero": 0.02426701044284788,
+    "aon_s09_endpoint_max": 0.02426701044284788,
+    "aon_s09_smoke": 0.025598272923433633,
+    "aon_s09_jump": 0.02426701044284788
+  },
+  "prior_attempt_sha256": "6ddb1a7c37b7d9cbbaaa95c9d22b1c12f16d3d7a475d217a7e52567b8b10d06e",
+  "global_order": 77,
+  "result": "PASS",
+  "exit_code": 0,
+  "timed_out": false,
+  "wall_seconds": 1.6674,
+  "simulation_time_ns": 4830.001,
+  "testcases": [
+    {
+      "name": "aon_s09_config_block_6",
+      "result": "PASS",
+      "simulation_time_ns": 4830.001
+    }
+  ],
+  "sample_count": 67,
+  "new_positive_count": 0,
+  "new_positive_identities": [],
+  "cumulative_positive_count": 175,
+  "source_named_positive_count": 15,
+  "reference_array_positive_count": 160,
+  "cumulative_unknown_count": 4332,
+  "reward": 0.0,
+  "validation_error": null,
+  "trace_sha256": "6376f5c469d3bfaa8656b28310f0890d4a84621d9765c8759699a8241dcf75b9",
+  "raw_results_xml_sha256": "64f97486cdd75d318bc83aef4a2f82ad52b229801a0e296d70fd58d837a34e14",
+  "public_results_xml_sha256": "4712d55980e74141ba8a7525eac8657830fae5627fcb9231ba91861c1108935e",
+  "positive_vector_sha256": "82bcae446c88475f3ec315ca0fc75686b4cd637bef4696416fb68a5f81762703",
+  "simulation_log_sha256": "e507e6ca5f2157bde7fbe665927f1e33df8f87e6fb3b81130fd6aca7fa1fc71c",
+  "attempt_record_path": "ucb/selection-seed-1/attempt-020/attempt.json"
+}

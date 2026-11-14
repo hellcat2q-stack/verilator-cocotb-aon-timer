@@ -1,0 +1,574 @@
+{
+  "schema": "aon-timer-stage08-action-pool-v1",
+  "pool_id": "stage09-array-partition-blocks-v1",
+  "source_revision": "9f20940d494a223cc950a5b98f748fb28109d458",
+  "deterministic": true,
+  "seed_list": [
+    1
+  ],
+  "actions": [
+    {
+      "name": "aon_s09_config_block_0",
+      "base_test": "aon_timer_config_batch_sequence",
+      "stimulus": {
+        "steps": [
+          {
+            "wkup_threshold": 1,
+            "wdog_bark_threshold": 1,
+            "wdog_bite_threshold": 1,
+            "prescale": 1,
+            "wdog_pause_in_sleep": 0
+          },
+          {
+            "wkup_threshold": 288230376151711744,
+            "wdog_bark_threshold": 134217728,
+            "wdog_bite_threshold": 134217728,
+            "prescale": 128,
+            "wdog_pause_in_sleep": 1
+          },
+          {
+            "wkup_threshold": 576460752303423487,
+            "wdog_bark_threshold": 268435455,
+            "wdog_bite_threshold": 268435455,
+            "prescale": 255,
+            "wdog_pause_in_sleep": 0
+          },
+          {
+            "wkup_threshold": 864691128455135230,
+            "wdog_bark_threshold": 402653182,
+            "wdog_bite_threshold": 402653182,
+            "prescale": 382,
+            "wdog_pause_in_sleep": 1
+          },
+          {
+            "wkup_threshold": 1152921504606846973,
+            "wdog_bark_threshold": 536870909,
+            "wdog_bite_threshold": 536870909,
+            "prescale": 509,
+            "wdog_pause_in_sleep": 0
+          },
+          {
+            "wkup_threshold": 1441151880758558716,
+            "wdog_bark_threshold": 671088636,
+            "wdog_bite_threshold": 671088636,
+            "prescale": 636,
+            "wdog_pause_in_sleep": 1
+          },
+          {
+            "wkup_threshold": 1729382256910270459,
+            "wdog_bark_threshold": 805306363,
+            "wdog_bite_threshold": 805306363,
+            "prescale": 763,
+            "wdog_pause_in_sleep": 0
+          },
+          {
+            "wkup_threshold": 2017612633061982202,
+            "wdog_bark_threshold": 939524090,
+            "wdog_bite_threshold": 939524090,
+            "prescale": 890,
+            "wdog_pause_in_sleep": 1
+          }
+        ]
+      }
+    },
+    {
+      "name": "aon_s09_config_block_1",
+      "base_test": "aon_timer_config_batch_sequence",
+      "stimulus": {
+        "steps": [
+          {
+            "wkup_threshold": 2305843009213693945,
+            "wdog_bark_threshold": 1073741817,
+            "wdog_bite_threshold": 1073741817,
+            "prescale": 1017,
+            "wdog_pause_in_sleep": 0
+          },
+          {
+            "wkup_threshold": 2594073385365405688,
+            "wdog_bark_threshold": 1207959544,
+            "wdog_bite_threshold": 1207959544,
+            "prescale": 1144,
+            "wdog_pause_in_sleep": 1
+          },
+          {
+            "wkup_threshold": 2882303761517117431,
+            "wdog_bark_threshold": 1342177271,
+            "wdog_bite_threshold": 1342177271,
+            "prescale": 1271,
+            "wdog_pause_in_sleep": 0
+          },
+          {
+            "wkup_threshold": 3170534137668829174,
+            "wdog_bark_threshold": 1476394998,
+            "wdog_bite_threshold": 1476394998,
+            "prescale": 1398,
+            "wdog_pause_in_sleep": 1
+          },
+          {
+            "wkup_threshold": 3458764513820540917,
+            "wdog_bark_threshold": 1610612725,
+            "wdog_bite_threshold": 1610612725,
+            "prescale": 1525,
+            "wdog_pause_in_sleep": 0
+          },
+          {
+            "wkup_threshold": 3746994889972252660,
+            "wdog_bark_threshold": 1744830452,
+            "wdog_bite_threshold": 1744830452,
+            "prescale": 1652,
+            "wdog_pause_in_sleep": 1
+          },
+          {
+            "wkup_threshold": 4035225266123964403,
+            "wdog_bark_threshold": 1879048179,
+            "wdog_bite_threshold": 1879048179,
+            "prescale": 1779,
+            "wdog_pause_in_sleep": 0
+          },
+          {
+            "wkup_threshold": 4323455642275676146,
+            "wdog_bark_threshold": 2013265906,
+            "wdog_bite_threshold": 2013265906,
+            "prescale": 1906,
+            "wdog_pause_in_sleep": 1
+          }
+        ]
+      }
+    },
+    {
+      "name": "aon_s09_config_block_2",
+      "base_test": "aon_timer_config_batch_sequence",
+      "stimulus": {
+        "steps": [
+          {
+            "wkup_threshold": 4611686018427387889,
+            "wdog_bark_threshold": 2147483633,
+            "wdog_bite_threshold": 2147483633,
+            "prescale": 2033,
+            "wdog_pause_in_sleep": 0
+          },
+          {
+            "wkup_threshold": 4899916394579099632,
+            "wdog_bark_threshold": 2281701360,
+            "wdog_bite_threshold": 2281701360,
+            "prescale": 2160,
+            "wdog_pause_in_sleep": 1
+          },
+          {
+            "wkup_threshold": 5188146770730811375,
+            "wdog_bark_threshold": 2415919087,
+            "wdog_bite_threshold": 2415919087,
+            "prescale": 2287,
+            "wdog_pause_in_sleep": 0
+          },
+          {
+            "wkup_threshold": 5476377146882523118,
+            "wdog_bark_threshold": 2550136814,
+            "wdog_bite_threshold": 2550136814,
+            "prescale": 2414,
+            "wdog_pause_in_sleep": 1
+          },
+          {
+            "wkup_threshold": 5764607523034234861,
+            "wdog_bark_threshold": 2684354541,
+            "wdog_bite_threshold": 2684354541,
+            "prescale": 2541,
+            "wdog_pause_in_sleep": 0
+          },
+          {
+            "wkup_threshold": 6052837899185946604,
+            "wdog_bark_threshold": 2818572268,
+            "wdog_bite_threshold": 2818572268,
+            "prescale": 2668,
+            "wdog_pause_in_sleep": 1
+          },
+          {
+            "wkup_threshold": 6341068275337658347,
+            "wdog_bark_threshold": 2952789995,
+            "wdog_bite_threshold": 2952789995,
+            "prescale": 2795,
+            "wdog_pause_in_sleep": 0
+          },
+          {
+            "wkup_threshold": 6629298651489370090,
+            "wdog_bark_threshold": 3087007722,
+            "wdog_bite_threshold": 3087007722,
+            "prescale": 2922,
+            "wdog_pause_in_sleep": 1
+          }
+        ]
+      }
+    },
+    {
+      "name": "aon_s09_config_block_3",
+      "base_test": "aon_timer_config_batch_sequence",
+      "stimulus": {
+        "steps": [
+          {
+            "wkup_threshold": 6917529027641081833,
+            "wdog_bark_threshold": 3221225449,
+            "wdog_bite_threshold": 3221225449,
+            "prescale": 3049,
+            "wdog_pause_in_sleep": 0
+          },
+          {
+            "wkup_threshold": 7205759403792793576,
+            "wdog_bark_threshold": 3355443176,
+            "wdog_bite_threshold": 3355443176,
+            "prescale": 3176,
+            "wdog_pause_in_sleep": 1
+          },
+          {
+            "wkup_threshold": 7493989779944505319,
+            "wdog_bark_threshold": 3489660903,
+            "wdog_bite_threshold": 3489660903,
+            "prescale": 3303,
+            "wdog_pause_in_sleep": 0
+          },
+          {
+            "wkup_threshold": 7782220156096217062,
+            "wdog_bark_threshold": 3623878630,
+            "wdog_bite_threshold": 3623878630,
+            "prescale": 3430,
+            "wdog_pause_in_sleep": 1
+          },
+          {
+            "wkup_threshold": 8070450532247928805,
+            "wdog_bark_threshold": 3758096357,
+            "wdog_bite_threshold": 3758096357,
+            "prescale": 3557,
+            "wdog_pause_in_sleep": 0
+          },
+          {
+            "wkup_threshold": 8358680908399640548,
+            "wdog_bark_threshold": 3892314084,
+            "wdog_bite_threshold": 3892314084,
+            "prescale": 3684,
+            "wdog_pause_in_sleep": 1
+          },
+          {
+            "wkup_threshold": 8646911284551352291,
+            "wdog_bark_threshold": 4026531811,
+            "wdog_bite_threshold": 4026531811,
+            "prescale": 3811,
+            "wdog_pause_in_sleep": 0
+          },
+          {
+            "wkup_threshold": 8935141660703064034,
+            "wdog_bark_threshold": 4160749538,
+            "wdog_bite_threshold": 4160749538,
+            "prescale": 3938,
+            "wdog_pause_in_sleep": 1
+          }
+        ]
+      }
+    },
+    {
+      "name": "aon_s09_config_block_4",
+      "base_test": "aon_timer_config_batch_sequence",
+      "stimulus": {
+        "steps": [
+          {
+            "wkup_threshold": 9511602413006487519,
+            "wdog_bark_threshold": 134217727,
+            "wdog_bite_threshold": 134217727,
+            "prescale": 127,
+            "wdog_pause_in_sleep": 0
+          },
+          {
+            "wkup_threshold": 9799832789158199262,
+            "wdog_bark_threshold": 268435454,
+            "wdog_bite_threshold": 268435454,
+            "prescale": 254,
+            "wdog_pause_in_sleep": 1
+          },
+          {
+            "wkup_threshold": 10088063165309911005,
+            "wdog_bark_threshold": 402653181,
+            "wdog_bite_threshold": 402653181,
+            "prescale": 381,
+            "wdog_pause_in_sleep": 0
+          },
+          {
+            "wkup_threshold": 10376293541461622748,
+            "wdog_bark_threshold": 536870908,
+            "wdog_bite_threshold": 536870908,
+            "prescale": 508,
+            "wdog_pause_in_sleep": 1
+          },
+          {
+            "wkup_threshold": 10664523917613334491,
+            "wdog_bark_threshold": 671088635,
+            "wdog_bite_threshold": 671088635,
+            "prescale": 635,
+            "wdog_pause_in_sleep": 0
+          },
+          {
+            "wkup_threshold": 10952754293765046234,
+            "wdog_bark_threshold": 805306362,
+            "wdog_bite_threshold": 805306362,
+            "prescale": 762,
+            "wdog_pause_in_sleep": 1
+          },
+          {
+            "wkup_threshold": 11240984669916757977,
+            "wdog_bark_threshold": 939524089,
+            "wdog_bite_threshold": 939524089,
+            "prescale": 889,
+            "wdog_pause_in_sleep": 0
+          },
+          {
+            "wkup_threshold": 11529215046068469720,
+            "wdog_bark_threshold": 1073741816,
+            "wdog_bite_threshold": 1073741816,
+            "prescale": 1016,
+            "wdog_pause_in_sleep": 1
+          }
+        ]
+      }
+    },
+    {
+      "name": "aon_s09_config_block_5",
+      "base_test": "aon_timer_config_batch_sequence",
+      "stimulus": {
+        "steps": [
+          {
+            "wkup_threshold": 11817445422220181463,
+            "wdog_bark_threshold": 1207959543,
+            "wdog_bite_threshold": 1207959543,
+            "prescale": 1143,
+            "wdog_pause_in_sleep": 0
+          },
+          {
+            "wkup_threshold": 12105675798371893206,
+            "wdog_bark_threshold": 1342177270,
+            "wdog_bite_threshold": 1342177270,
+            "prescale": 1270,
+            "wdog_pause_in_sleep": 1
+          },
+          {
+            "wkup_threshold": 12393906174523604949,
+            "wdog_bark_threshold": 1476394997,
+            "wdog_bite_threshold": 1476394997,
+            "prescale": 1397,
+            "wdog_pause_in_sleep": 0
+          },
+          {
+            "wkup_threshold": 12682136550675316692,
+            "wdog_bark_threshold": 1610612724,
+            "wdog_bite_threshold": 1610612724,
+            "prescale": 1524,
+            "wdog_pause_in_sleep": 1
+          },
+          {
+            "wkup_threshold": 12970366926827028435,
+            "wdog_bark_threshold": 1744830451,
+            "wdog_bite_threshold": 1744830451,
+            "prescale": 1651,
+            "wdog_pause_in_sleep": 0
+          },
+          {
+            "wkup_threshold": 13258597302978740178,
+            "wdog_bark_threshold": 1879048178,
+            "wdog_bite_threshold": 1879048178,
+            "prescale": 1778,
+            "wdog_pause_in_sleep": 1
+          },
+          {
+            "wkup_threshold": 13546827679130451921,
+            "wdog_bark_threshold": 2013265905,
+            "wdog_bite_threshold": 2013265905,
+            "prescale": 1905,
+            "wdog_pause_in_sleep": 0
+          },
+          {
+            "wkup_threshold": 13835058055282163664,
+            "wdog_bark_threshold": 2147483632,
+            "wdog_bite_threshold": 2147483632,
+            "prescale": 2032,
+            "wdog_pause_in_sleep": 1
+          }
+        ]
+      }
+    },
+    {
+      "name": "aon_s09_config_block_6",
+      "base_test": "aon_timer_config_batch_sequence",
+      "stimulus": {
+        "steps": [
+          {
+            "wkup_threshold": 14123288431433875407,
+            "wdog_bark_threshold": 2281701359,
+            "wdog_bite_threshold": 2281701359,
+            "prescale": 2159,
+            "wdog_pause_in_sleep": 0
+          },
+          {
+            "wkup_threshold": 14411518807585587150,
+            "wdog_bark_threshold": 2415919086,
+            "wdog_bite_threshold": 2415919086,
+            "prescale": 2286,
+            "wdog_pause_in_sleep": 1
+          },
+          {
+            "wkup_threshold": 14699749183737298893,
+            "wdog_bark_threshold": 2550136813,
+            "wdog_bite_threshold": 2550136813,
+            "prescale": 2413,
+            "wdog_pause_in_sleep": 0
+          },
+          {
+            "wkup_threshold": 14987979559889010636,
+            "wdog_bark_threshold": 2684354540,
+            "wdog_bite_threshold": 2684354540,
+            "prescale": 2540,
+            "wdog_pause_in_sleep": 1
+          },
+          {
+            "wkup_threshold": 15276209936040722379,
+            "wdog_bark_threshold": 2818572267,
+            "wdog_bite_threshold": 2818572267,
+            "prescale": 2667,
+            "wdog_pause_in_sleep": 0
+          },
+          {
+            "wkup_threshold": 15564440312192434122,
+            "wdog_bark_threshold": 2952789994,
+            "wdog_bite_threshold": 2952789994,
+            "prescale": 2794,
+            "wdog_pause_in_sleep": 1
+          },
+          {
+            "wkup_threshold": 15852670688344145865,
+            "wdog_bark_threshold": 3087007721,
+            "wdog_bite_threshold": 3087007721,
+            "prescale": 2921,
+            "wdog_pause_in_sleep": 0
+          },
+          {
+            "wkup_threshold": 16140901064495857608,
+            "wdog_bark_threshold": 3221225448,
+            "wdog_bite_threshold": 3221225448,
+            "prescale": 3048,
+            "wdog_pause_in_sleep": 1
+          }
+        ]
+      }
+    },
+    {
+      "name": "aon_s09_config_block_7",
+      "base_test": "aon_timer_config_batch_sequence",
+      "stimulus": {
+        "steps": [
+          {
+            "wkup_threshold": 16429131440647569351,
+            "wdog_bark_threshold": 3355443175,
+            "wdog_bite_threshold": 3355443175,
+            "prescale": 3175,
+            "wdog_pause_in_sleep": 0
+          },
+          {
+            "wkup_threshold": 16717361816799281094,
+            "wdog_bark_threshold": 3489660902,
+            "wdog_bite_threshold": 3489660902,
+            "prescale": 3302,
+            "wdog_pause_in_sleep": 1
+          },
+          {
+            "wkup_threshold": 17005592192950992837,
+            "wdog_bark_threshold": 3623878629,
+            "wdog_bite_threshold": 3623878629,
+            "prescale": 3429,
+            "wdog_pause_in_sleep": 0
+          },
+          {
+            "wkup_threshold": 17293822569102704580,
+            "wdog_bark_threshold": 3758096356,
+            "wdog_bite_threshold": 3758096356,
+            "prescale": 3556,
+            "wdog_pause_in_sleep": 1
+          },
+          {
+            "wkup_threshold": 17582052945254416323,
+            "wdog_bark_threshold": 3892314083,
+            "wdog_bite_threshold": 3892314083,
+            "prescale": 3683,
+            "wdog_pause_in_sleep": 0
+          },
+          {
+            "wkup_threshold": 17870283321406128066,
+            "wdog_bark_threshold": 4026531810,
+            "wdog_bite_threshold": 4026531810,
+            "prescale": 3810,
+            "wdog_pause_in_sleep": 1
+          },
+          {
+            "wkup_threshold": 18158513697557839809,
+            "wdog_bark_threshold": 4160749537,
+            "wdog_bite_threshold": 4160749537,
+            "prescale": 3937,
+            "wdog_pause_in_sleep": 0
+          },
+          {
+            "wkup_threshold": 18446744073709551615,
+            "wdog_bark_threshold": 4294967295,
+            "wdog_bite_threshold": 4294967295,
+            "prescale": 4095,
+            "wdog_pause_in_sleep": 1
+          }
+        ]
+      }
+    },
+    {
+      "name": "aon_s09_endpoint_zero",
+      "base_test": "aon_timer_config_batch_sequence",
+      "stimulus": {
+        "steps": [
+          {
+            "wkup_threshold": 0,
+            "wdog_bark_threshold": 0,
+            "wdog_bite_threshold": 0,
+            "prescale": 0,
+            "wdog_pause_in_sleep": 0
+          }
+        ]
+      }
+    },
+    {
+      "name": "aon_s09_endpoint_max",
+      "base_test": "aon_timer_config_batch_sequence",
+      "stimulus": {
+        "steps": [
+          {
+            "wkup_threshold": 18446744073709551615,
+            "wdog_bark_threshold": 4294967295,
+            "wdog_bite_threshold": 4294967295,
+            "prescale": 4095,
+            "wdog_pause_in_sleep": 0
+          }
+        ]
+      }
+    },
+    {
+      "name": "aon_s09_smoke",
+      "base_test": "aon_timer_smoke_sequence",
+      "stimulus": {
+        "wkup_threshold": 3,
+        "wdog_bark_threshold": 2,
+        "wdog_bite_threshold": 5,
+        "wdog_pause_in_sleep": 0
+      }
+    },
+    {
+      "name": "aon_s09_jump",
+      "base_test": "aon_timer_jump_sequence",
+      "stimulus": {
+        "initial_count": 20,
+        "initial_threshold": 4294967295,
+        "counter_run_aon_cycles": 10,
+        "threshold_below_live_count_by": 1
+      }
+    }
+  ],
+  "scope": "Python reference configuration-array membership and source-named positives; no VCS parity claim"
+}

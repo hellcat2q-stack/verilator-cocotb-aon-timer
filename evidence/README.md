@@ -33,3 +33,5 @@
 修复 cadence 过程中的临时 build 和 exploratory run 已清理，没有进入最终 evidence。Stage 06/07/preflight 的最终输入全部来自上述 `stage05_count_event_v2_verified/` run。
 
 `references/bin_definitions.v1.json` 保存 4,507 个 revision-matched 类型级 bin 定义，不包含 run hit data；自动分区和 cross product audits 见该文件。`references/array_bin_ranges.v1.json` 保存由 VCS vectors 表头导入的 160 个数组 bin 参考区间，不含历史 hit counts；Python/Cocotb 分区审计已完成，但 native Verilator/SystemVerilog covergroup 等价性仍未验证。`stage08_preflight/2026-11-13-final-v5/` 记录历史 readiness v2 门禁；当前门禁见 `stage08_preflight/2026-11-13-conditional-reset-audited/`，legacy identity bridge、native covergroup parity、完整 sample APIs 和 exact Stage 06 vectors 尚未完成，因此 scheduler 保持 disabled，且本轮未启动在线 coverage 仿真。
+
+`stage09_comparison/2026-11-14-v1/` 保存 UCB、Random、动作池 round-robin Full 和无 reward 消融的 288 次真实 RTL 对照，含每次 attempt 的 XML、raw sample trace、正向 vector、选择与结果链、comparison CSV、独立 replay audit 和 SHA-256 ledger。288/288 PASS；UCB/Full/消融各确认 175 个正向 identity，Random 为 160–168；unknown 未推断为 misses。160 项数组命中属于 VCS 范围参考映射，Verilator/UVM 采样等价性未验证。

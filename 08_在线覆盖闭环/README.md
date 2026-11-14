@@ -46,8 +46,6 @@ python3 -m unittest discover -s tests -q
 
 ## 后续工作
 
-1. 扩展参数化动作和 live coverage，突破当前六个配置 action 的命中平台。
-2. 补齐论文覆盖映射、信息评分和 cluster UCB。
-3. 固定输入/seed/预算/worker 后执行第 09 步 Random、Full 和消融；最后进行第 10 步复核。
+参数化动作已扩展并用于 [Stage 09 工程对照](../09_基线对照与消融/README.md)。下一步进行 Stage 10 独立复核，并继续补齐论文覆盖映射、信息评分和 cluster UCB。Stage 09 的 175 个正向 identity 不是完整覆盖率或 UVM/VCS 等价性证据。
 
 历史记录及本轮更正见 [实施记录](实施记录.md)。

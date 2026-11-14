@@ -1,0 +1,47 @@
+{
+  "run_id": "stage09-array-blocks-v1-full-s1-011",
+  "policy": "full",
+  "selection_seed": 1,
+  "simulation_seed": 1,
+  "testcase": "aon_s09_smoke",
+  "phase": "round_robin",
+  "completed_attempts_before_selection": 10,
+  "positive_count_before_selection": 169,
+  "scores": {},
+  "prior_attempt_sha256": "fe2b422d773764e38dd3c1415a7267ebcd8e446330ebcb71a56962967e3353af",
+  "global_order": 43,
+  "result": "PASS",
+  "exit_code": 0,
+  "timed_out": false,
+  "wall_seconds": 1.517,
+  "simulation_time_ns": 2040.001,
+  "testcases": [
+    {
+      "name": "aon_s09_smoke",
+      "result": "PASS",
+      "simulation_time_ns": 2040.001
+    }
+  ],
+  "sample_count": 36,
+  "new_positive_count": 6,
+  "new_positive_identities": [
+    "aon_timer_env_pkg::aon_timer_env_cov::wake_up_timer_thold_hit_cg||variable||wkup_int_cp||name:set||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::wake_up_timer_thold_hit_cg||variable||wkup_int_cp||name:unset||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bark_thold_hit_cg||variable||wdog_bark_int_cp||name:set||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bark_thold_hit_cg||variable||wdog_bark_int_cp||name:unset||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bite_thold_hit_cg||variable||wdog_bite_rst_cp||name:set||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bite_thold_hit_cg||variable||wdog_bite_rst_cp||name:unset||0"
+  ],
+  "cumulative_positive_count": 175,
+  "source_named_positive_count": 15,
+  "reference_array_positive_count": 160,
+  "cumulative_unknown_count": 4332,
+  "reward": 0.0013312624805857556,
+  "validation_error": null,
+  "trace_sha256": "e406511f899a908be218c5b12a00f6dd9df92679131ba870c8d86ecfda8a8113",
+  "raw_results_xml_sha256": "31e9aa4cf9c8ebb930ddf6b096c8151b60831e31b991508f125957fd946432fb",
+  "public_results_xml_sha256": "66ada2cdfb4536847ea55b268e3f9b8b4eaf7216fd3e6a047ba7140b4cfa22ce",
+  "positive_vector_sha256": "571bd34b0f91fdd5f0e8aa17ec533dab79d204266ced8b434d9f93b81a390944",
+  "simulation_log_sha256": "fe19968e1bb62868c3415e73d2b030fd74a904727dee377ad68bf583465a6bd4",
+  "attempt_record_path": "full/selection-seed-1/attempt-011/attempt.json"
+}

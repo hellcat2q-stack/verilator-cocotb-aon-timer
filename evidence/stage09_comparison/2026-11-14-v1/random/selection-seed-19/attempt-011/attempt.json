@@ -1,0 +1,46 @@
+{
+  "run_id": "stage09-array-blocks-v1-random-s19-011",
+  "policy": "random",
+  "selection_seed": 19,
+  "simulation_seed": 1,
+  "testcase": "aon_s09_endpoint_max",
+  "phase": "uniform_random",
+  "completed_attempts_before_selection": 10,
+  "positive_count_before_selection": 156,
+  "scores": {},
+  "prior_attempt_sha256": "667f74781366358d137b8bf97938af4b89885fda7d2c2c669716fa00526b63cc",
+  "global_order": 236,
+  "result": "PASS",
+  "exit_code": 0,
+  "timed_out": false,
+  "wall_seconds": 1.5168,
+  "simulation_time_ns": 1470.001,
+  "testcases": [
+    {
+      "name": "aon_s09_endpoint_max",
+      "result": "PASS",
+      "simulation_time_ns": 1470.001
+    }
+  ],
+  "sample_count": 18,
+  "new_positive_count": 5,
+  "new_positive_identities": [
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_max||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_max||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_max||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[63]||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_max||0"
+  ],
+  "cumulative_positive_count": 161,
+  "source_named_positive_count": 15,
+  "reference_array_positive_count": 146,
+  "cumulative_unknown_count": 4346,
+  "reward": 0.0011093854004881295,
+  "validation_error": null,
+  "trace_sha256": "490f3288adddaa95b1368b14ec94eb5c2f5685bb557534c0e5ac43e7847171ce",
+  "raw_results_xml_sha256": "792782df45d2ed7575be58529176f9ec63633085df00bf97e68264ca977358e2",
+  "public_results_xml_sha256": "fe676af6bbb748f007395f0ca183245b057042f1d1f6516eeab9b8b0763263ef",
+  "positive_vector_sha256": "4f77c45cd8227672acbce42daf14c7d86135a3f87a35255a934e7027a5cafa38",
+  "simulation_log_sha256": "082a09598e0b50aaab11401a32a47e5f0af1c8a7039b9aa2cf96fa26b51e2817",
+  "attempt_record_path": "random/selection-seed-19/attempt-011/attempt.json"
+}

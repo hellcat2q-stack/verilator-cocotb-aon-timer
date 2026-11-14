@@ -1,0 +1,13 @@
+{
+  "run_id": "stage09-array-blocks-v1-ucb-s1-004",
+  "policy": "ucb",
+  "selection_seed": 1,
+  "simulation_seed": 1,
+  "testcase": "aon_s09_config_block_3",
+  "phase": "warmup",
+  "completed_attempts_before_selection": 3,
+  "positive_count_before_selection": 101,
+  "scores": {},
+  "prior_attempt_sha256": "2115c917134de3df2223eff64b636d96903aa83ce78f7dda653c02abaf175ed3",
+  "global_order": 13
+}

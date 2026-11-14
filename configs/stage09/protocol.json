@@ -1,0 +1,33 @@
+{
+  "schema": "aon-timer-stage09-engineering-comparison-v1",
+  "experiment_id": "stage09-array-blocks-v1",
+  "source_revision": "9f20940d494a223cc950a5b98f748fb28109d458",
+  "coverage_schema_id": "aon_timer_uvm_source_trace_v2",
+  "pool_path": "configs/stage09/action-pool.json",
+  "freeze_path": "configs/stage09/freeze.json",
+  "policies": [
+    "ucb",
+    "random",
+    "full",
+    "ucb_no_reward"
+  ],
+  "selection_seeds": [
+    1,
+    7,
+    19
+  ],
+  "simulation_seed": 1,
+  "attempt_budget_per_policy_seed": 24,
+  "workers": 1,
+  "timeout_seconds_per_attempt": 120,
+  "simulation_time_limit_ns_per_attempt": 25000,
+  "total_simulation_time_cap_ns_per_policy_seed": 600000,
+  "exploration_coefficient": 0.01,
+  "reward": "new_observed_positive_count / 4507; failures get zero and consume attempts",
+  "full_definition": "round_robin_over_all_actions_in_frozen_order",
+  "random_definition": "uniform_with_replacement; no guaranteed initial exploration",
+  "ucb_definition": "one warmup per action, then mean novelty plus exploration bonus",
+  "ablation_definition": "same UCB warmup and exploration, with all selection reward means set to zero",
+  "comparison_scope": "Engineering pilot only; not paper cluster UCB, paper Full or full functional coverage",
+  "wall_time_policy": "precompile once before all methods; report actual simulation cost separately; no wall-time superiority claim"
+}

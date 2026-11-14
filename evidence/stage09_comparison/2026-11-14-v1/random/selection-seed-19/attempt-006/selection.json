@@ -1,0 +1,13 @@
+{
+  "run_id": "stage09-array-blocks-v1-random-s19-006",
+  "policy": "random",
+  "selection_seed": 19,
+  "simulation_seed": 1,
+  "testcase": "aon_s09_config_block_3",
+  "phase": "uniform_random",
+  "completed_attempts_before_selection": 5,
+  "positive_count_before_selection": 75,
+  "scores": {},
+  "prior_attempt_sha256": "4df766aa0e37fcf775ec5b8f597c40f11efb21353b8f7598a587f90ff992ac85",
+  "global_order": 216
+}

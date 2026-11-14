@@ -1,0 +1,26 @@
+{
+  "run_id": "stage09-array-blocks-v1-ucb-s1-020",
+  "policy": "ucb",
+  "selection_seed": 1,
+  "simulation_seed": 1,
+  "testcase": "aon_s09_config_block_6",
+  "phase": "ucb",
+  "completed_attempts_before_selection": 19,
+  "positive_count_before_selection": 175,
+  "scores": {
+    "aon_s09_config_block_0": 0.021264093625068578,
+    "aon_s09_config_block_1": 0.020709400924824515,
+    "aon_s09_config_block_2": 0.020709400924824515,
+    "aon_s09_config_block_3": 0.020709400924824515,
+    "aon_s09_config_block_4": 0.018046875963653005,
+    "aon_s09_config_block_5": 0.018046875963653005,
+    "aon_s09_config_block_6": 0.026042027083628887,
+    "aon_s09_config_block_7": 0.018490630123848256,
+    "aon_s09_endpoint_zero": 0.02426701044284788,
+    "aon_s09_endpoint_max": 0.02426701044284788,
+    "aon_s09_smoke": 0.025598272923433633,
+    "aon_s09_jump": 0.02426701044284788
+  },
+  "prior_attempt_sha256": "6ddb1a7c37b7d9cbbaaa95c9d22b1c12f16d3d7a475d217a7e52567b8b10d06e",
+  "global_order": 77
+}
