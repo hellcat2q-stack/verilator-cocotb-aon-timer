@@ -1,0 +1,26 @@
+{
+  "schema": "aon-timer-legacy-urg-recovery-v1",
+  "source_repository": "https://github.com/hellcat2q-stack/opentitan-aon-timer-paper-method-repro",
+  "source_repository_commit": "ff59c4a",
+  "source_export": "stage06_conversion_20261101T_v10",
+  "reference_report": "original_g0",
+  "reports": [
+    "original_g0",
+    "original_g1",
+    "original_g10",
+    "original_g20",
+    "original_g30"
+  ],
+  "report_page_count": 80,
+  "all_downloaded_page_hashes_match_server": true,
+  "urg_version": "P-2019.06-SP1",
+  "source_matrix_sha256": "71c02be6b80cb63973eeb96b26340f7e1d1ae2246674d148774c39c616ff1e94",
+  "source_manifest_sha256": "cbc7e64a0004f0387f16f36e24edc2442a8225b3179fae6c673fe3ac84c28e3e",
+  "source_converter_sha256": "31d9cf6e3c298409436be2888098ff7a9d888cd09b070bd27f0c3ddc12009506",
+  "source_file_hashes_location": "layouts.json reports[].pages[].sha256",
+  "historical_counts_exported": false,
+  "new_vcs_simulations_launched": 0,
+  "vcs_compiler_version": "P-2019.06-SP1_Full64",
+  "vcs_runtime_version": "P-2019.06-SP1_Full64",
+  "vcs_version_source": "original_g0 source run.log"
+}

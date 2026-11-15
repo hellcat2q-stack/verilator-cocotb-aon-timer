@@ -27,6 +27,8 @@ audit_canonical_identity_candidates.py --output <new-report.json> 按冻结的 c
 
 ## 原有阶段工具
 
+`audit_legacy_urg_layouts.py` 恢复 URG `grp*.html` 的定义标签布局，验证首份报告与冻结 4,507 列一致，并检测不同报告的按位置对齐冲突。明确变量按 bin 名或 singleton 值匹配；压缩行和通配 cross 不猜测。HTML 导入依赖 `configs/stage10-requirements.txt`；使用 `--layouts <layouts.json>` 重放时仅需 Python 标准库。`tests/test_legacy_urg_layouts.py` 覆盖行序互换、singleton 包装、重复/压缩身份拒绝、公开布局重放和导出内容范围。证据见 `evidence/stage10_legacy_urg_layout/2026-11-15-v1/`。
+
 按阶段增加固定源码校验、FuseSoC/Verilator build、seeded Cocotb runner、coverage JSON、bin-by-run 转换和审计脚本。每个入口登记参数、输出格式、工具版本与验收方式。
 
 阶段 04 使用 `test_sequences.py` 和 `run_stage04_tests.sh`；runner 在独立的 pinned OpenTitan source tree 上构建，接受 `SOURCE_ROOT`、`PYTHON_ENV`、`WORK_ROOT`、`RANDOM_SEED` 和 `RUN_ID`，保存 `run_manifest.json`、Cocotb XML summary 与完整工作日志到 `WORK_ROOT`。

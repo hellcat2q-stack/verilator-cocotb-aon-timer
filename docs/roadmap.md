@@ -20,3 +20,5 @@
 阶段 07 的论文自信息和 residual cluster prior 需要完整语义，继续保持 unavailable。Stage 08 的 `testcase_ucb_positive_novelty_v1` 是另行登记的工程策略：只统计已完成 run 的新增正向命中，不需要推断 misses；并非论文 cluster UCB。
 
 阶段 09 工程对照及第 10 步对其结果的独立复核已完成。完整论文自信息评分/cluster UCB、4,507-bin identity bridge 与 UVM/VCS 采样语义对照仍待完成，所以 full coverage rate 仍不可报告。原生 SystemVerilog covergroup 不是 Python/Cocotb 工程闭环的前置条件。
+
+2026-11-15 已恢复并校验旧 Stage 06 五份 URG 报告，确认旧按行号映射存在身份互换，证据见 `evidence/stage10_legacy_urg_layout/2026-11-15-v1/`。下一项工程任务是用固定源码定义中的 `definition_id` 建立独立的原始样本分类器和新 schema 向量；旧 CSV 只保留可逐项验证的显式名字/单值关联，压缩 occurrence offset 继续不可用于授予 coverage credit。

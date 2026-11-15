@@ -1,0 +1,3 @@
+# HTML layout audit only; does not change the Stage 02 simulation environment.
+beautifulsoup4==4.12.3
+soupsieve==4.1.1

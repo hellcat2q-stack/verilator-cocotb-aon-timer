@@ -8,6 +8,8 @@
 
 **覆盖率口径：**目前不能报告 full coverage rate。Stage 09 UCB seed 1 有 175/4,507 个正向 identity（3.8828% 的目录比例），其余 4,332 个是 unknown，不是 miss。4,507 canonical identities 与 4,525 URG dashboard reference 分开统计。见[阶段 10 复核](10_最终复核与报告/README.md)。
 
+**2026-11-15 映射复核：**已从原服务器恢复五份 URG 报告的 80 页并核验哈希。首份报告重建 4,507 列成功；四份后续报告合计检出 559 处按位置对齐的明确身份冲突，因此旧 CSV 行号不作为稳定 bin 身份。新增工具按明确 bin 名或 singleton 值对齐并拒绝压缩行猜测，证据和离线重放命令见[URG 布局审计](evidence/stage10_legacy_urg_layout/2026-11-15-v1/README.md)。这是身份审计，没有增加覆盖命中。
+
 ## 固定参考
 
 | 项目 | 值 |

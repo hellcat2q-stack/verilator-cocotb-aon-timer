@@ -1,0 +1,1629 @@
+{
+  "schema": "aon-timer-legacy-urg-layout-audit-v1",
+  "status": "UNSAFE_LEGACY_POSITIONAL_BRIDGE",
+  "reference_report_id": "original_g0",
+  "reference_header_reproduced": true,
+  "canonical_identity_count": 4507,
+  "report_count": 5,
+  "confirmed_semantic_position_conflicts": 559,
+  "positional_mapping_promotion_allowed": false,
+  "comparisons": [
+    {
+      "report_id": "original_g1",
+      "expanded_identity_count": 4507,
+      "changed_prefix_count": 12,
+      "explicit_semantic_alignment_count": 345,
+      "explicit_semantic_alignment_shift_count": 126,
+      "changed_prefixes": [
+        {
+          "scope": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg",
+          "kind": "variable",
+          "item": "wdog_regwen_cp",
+          "identity_count": 2,
+          "changed_label_positions": 2,
+          "confirmed_semantic_position_conflicts": 2,
+          "conflict_examples": [
+            {
+              "position": 0,
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wdog_regwen_cp||values:[{ [ 1 ] }]||0",
+              "report_identity_at_same_position": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wdog_regwen_cp||values:{ [ 0 ] }||0",
+              "reference_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wdog_regwen_cp||value:1",
+              "report_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wdog_regwen_cp||value:0"
+            },
+            {
+              "position": 1,
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wdog_regwen_cp||values:{ [ 0 ] }||0",
+              "report_identity_at_same_position": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wdog_regwen_cp||values:{ [ 1 ] }||0",
+              "reference_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wdog_regwen_cp||value:0",
+              "report_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wdog_regwen_cp||value:1"
+            }
+          ],
+          "explicit_semantic_pairs": 2,
+          "shifted_explicit_semantic_pairs": 2,
+          "shift_examples": [
+            {
+              "semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wdog_regwen_cp||value:0",
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wdog_regwen_cp||values:{ [ 0 ] }||0",
+              "report_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wdog_regwen_cp||values:{ [ 0 ] }||0",
+              "reference_position": 1,
+              "report_position": 0
+            },
+            {
+              "semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wdog_regwen_cp||value:1",
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wdog_regwen_cp||values:[{ [ 1 ] }]||0",
+              "report_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wdog_regwen_cp||values:{ [ 1 ] }||0",
+              "reference_position": 0,
+              "report_position": 1
+            }
+          ]
+        },
+        {
+          "scope": "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bark_thold_hit_cg",
+          "kind": "variable",
+          "item": "wdog_count_cp",
+          "identity_count": 256,
+          "changed_label_positions": 256,
+          "confirmed_semantic_position_conflicts": 0,
+          "conflict_examples": [],
+          "explicit_semantic_pairs": 0,
+          "shifted_explicit_semantic_pairs": 0,
+          "shift_examples": []
+        },
+        {
+          "scope": "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bark_thold_hit_cg",
+          "kind": "variable",
+          "item": "wdog_thold_cp",
+          "identity_count": 256,
+          "changed_label_positions": 256,
+          "confirmed_semantic_position_conflicts": 0,
+          "conflict_examples": [],
+          "explicit_semantic_pairs": 0,
+          "shifted_explicit_semantic_pairs": 0,
+          "shift_examples": []
+        },
+        {
+          "scope": "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bark_thold_hit_cg",
+          "kind": "variable",
+          "item": "wdog_bark_int",
+          "identity_count": 2,
+          "changed_label_positions": 2,
+          "confirmed_semantic_position_conflicts": 0,
+          "conflict_examples": [],
+          "explicit_semantic_pairs": 0,
+          "shifted_explicit_semantic_pairs": 0,
+          "shift_examples": []
+        },
+        {
+          "scope": "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bark_thold_hit_cg",
+          "kind": "cross",
+          "item": "wdog_thold_cpXwdog_bark_rst",
+          "identity_count": 512,
+          "changed_label_positions": 512,
+          "confirmed_semantic_position_conflicts": 0,
+          "conflict_examples": [],
+          "explicit_semantic_pairs": 0,
+          "shifted_explicit_semantic_pairs": 0,
+          "shift_examples": []
+        },
+        {
+          "scope": "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bite_thold_hit_cg",
+          "kind": "variable",
+          "item": "wdog_count_cp",
+          "identity_count": 256,
+          "changed_label_positions": 256,
+          "confirmed_semantic_position_conflicts": 0,
+          "conflict_examples": [],
+          "explicit_semantic_pairs": 0,
+          "shifted_explicit_semantic_pairs": 0,
+          "shift_examples": []
+        },
+        {
+          "scope": "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bite_thold_hit_cg",
+          "kind": "variable",
+          "item": "wdog_thold_cp",
+          "identity_count": 256,
+          "changed_label_positions": 256,
+          "confirmed_semantic_position_conflicts": 0,
+          "conflict_examples": [],
+          "explicit_semantic_pairs": 0,
+          "shifted_explicit_semantic_pairs": 0,
+          "shift_examples": []
+        },
+        {
+          "scope": "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bite_thold_hit_cg",
+          "kind": "variable",
+          "item": "wdog_bite_rst",
+          "identity_count": 2,
+          "changed_label_positions": 2,
+          "confirmed_semantic_position_conflicts": 0,
+          "conflict_examples": [],
+          "explicit_semantic_pairs": 0,
+          "shifted_explicit_semantic_pairs": 0,
+          "shift_examples": []
+        },
+        {
+          "scope": "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bite_thold_hit_cg",
+          "kind": "cross",
+          "item": "wdog_thold_cpXwdog_bite_rst",
+          "identity_count": 512,
+          "changed_label_positions": 512,
+          "confirmed_semantic_position_conflicts": 0,
+          "conflict_examples": [],
+          "explicit_semantic_pairs": 0,
+          "shifted_explicit_semantic_pairs": 0,
+          "shift_examples": []
+        },
+        {
+          "scope": "cip_base_pkg::intr_cg::SHAPE{(num_interrupts - 1)=1}",
+          "kind": "variable",
+          "item": "cp_intr_en",
+          "identity_count": 2,
+          "changed_label_positions": 1,
+          "confirmed_semantic_position_conflicts": 0,
+          "conflict_examples": [],
+          "explicit_semantic_pairs": 2,
+          "shifted_explicit_semantic_pairs": 0,
+          "shift_examples": []
+        },
+        {
+          "scope": "cip_base_pkg::intr_cg::SHAPE{(num_interrupts - 1)=1}",
+          "kind": "cross",
+          "item": "intr_cg_cc",
+          "identity_count": 8,
+          "changed_label_positions": 6,
+          "confirmed_semantic_position_conflicts": 0,
+          "conflict_examples": [],
+          "explicit_semantic_pairs": 0,
+          "shifted_explicit_semantic_pairs": 0,
+          "shift_examples": []
+        },
+        {
+          "scope": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}",
+          "kind": "variable",
+          "item": "cp_source",
+          "identity_count": 129,
+          "changed_label_positions": 124,
+          "confirmed_semantic_position_conflicts": 124,
+          "conflict_examples": [
+            {
+              "position": 5,
+              "reference_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x06]||0",
+              "report_identity_at_same_position": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x05]||0",
+              "reference_semantic_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x06]",
+              "report_semantic_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x05]"
+            },
+            {
+              "position": 6,
+              "reference_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x07]||0",
+              "report_identity_at_same_position": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x06]||0",
+              "reference_semantic_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x07]",
+              "report_semantic_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x06]"
+            },
+            {
+              "position": 7,
+              "reference_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x08]||0",
+              "report_identity_at_same_position": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x07]||0",
+              "reference_semantic_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x08]",
+              "report_semantic_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x07]"
+            },
+            {
+              "position": 8,
+              "reference_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x09]||0",
+              "report_identity_at_same_position": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x08]||0",
+              "reference_semantic_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x09]",
+              "report_semantic_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x08]"
+            }
+          ],
+          "explicit_semantic_pairs": 129,
+          "shifted_explicit_semantic_pairs": 124,
+          "shift_examples": [
+            {
+              "semantic_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x05]",
+              "reference_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x05]||0",
+              "report_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x05]||0",
+              "reference_position": 124,
+              "report_position": 5
+            },
+            {
+              "semantic_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x06]",
+              "reference_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x06]||0",
+              "report_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x06]||0",
+              "reference_position": 5,
+              "report_position": 6
+            },
+            {
+              "semantic_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x07]",
+              "reference_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x07]||0",
+              "report_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x07]||0",
+              "reference_position": 6,
+              "report_position": 7
+            },
+            {
+              "semantic_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x08]",
+              "reference_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x08]||0",
+              "report_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x08]||0",
+              "reference_position": 7,
+              "report_position": 8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "report_id": "original_g10",
+      "expanded_identity_count": 4507,
+      "changed_prefix_count": 4,
+      "explicit_semantic_alignment_count": 345,
+      "explicit_semantic_alignment_shift_count": 114,
+      "changed_prefixes": [
+        {
+          "scope": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg",
+          "kind": "variable",
+          "item": "prescale_cp",
+          "identity_count": 34,
+          "changed_label_positions": 2,
+          "confirmed_semantic_position_conflicts": 2,
+          "conflict_examples": [
+            {
+              "position": 31,
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[30]||0",
+              "report_identity_at_same_position": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[31]||0",
+              "reference_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[30]",
+              "report_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[31]"
+            },
+            {
+              "position": 32,
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[31]||0",
+              "report_identity_at_same_position": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[30]||0",
+              "reference_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[31]",
+              "report_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[30]"
+            }
+          ],
+          "explicit_semantic_pairs": 34,
+          "shifted_explicit_semantic_pairs": 2,
+          "shift_examples": [
+            {
+              "semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[30]",
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[30]||0",
+              "report_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[30]||0",
+              "reference_position": 31,
+              "report_position": 32
+            },
+            {
+              "semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[31]",
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[31]||0",
+              "report_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[31]||0",
+              "reference_position": 32,
+              "report_position": 31
+            }
+          ]
+        },
+        {
+          "scope": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg",
+          "kind": "variable",
+          "item": "wdog_regwen_cp",
+          "identity_count": 2,
+          "changed_label_positions": 2,
+          "confirmed_semantic_position_conflicts": 2,
+          "conflict_examples": [
+            {
+              "position": 0,
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wdog_regwen_cp||values:[{ [ 1 ] }]||0",
+              "report_identity_at_same_position": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wdog_regwen_cp||values:{ [ 0 ] }||0",
+              "reference_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wdog_regwen_cp||value:1",
+              "report_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wdog_regwen_cp||value:0"
+            },
+            {
+              "position": 1,
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wdog_regwen_cp||values:{ [ 0 ] }||0",
+              "report_identity_at_same_position": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wdog_regwen_cp||values:{ [ 1 ] }||0",
+              "reference_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wdog_regwen_cp||value:0",
+              "report_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wdog_regwen_cp||value:1"
+            }
+          ],
+          "explicit_semantic_pairs": 2,
+          "shifted_explicit_semantic_pairs": 2,
+          "shift_examples": [
+            {
+              "semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wdog_regwen_cp||value:0",
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wdog_regwen_cp||values:{ [ 0 ] }||0",
+              "report_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wdog_regwen_cp||values:{ [ 0 ] }||0",
+              "reference_position": 1,
+              "report_position": 0
+            },
+            {
+              "semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wdog_regwen_cp||value:1",
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wdog_regwen_cp||values:[{ [ 1 ] }]||0",
+              "report_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wdog_regwen_cp||values:{ [ 1 ] }||0",
+              "reference_position": 0,
+              "report_position": 1
+            }
+          ]
+        },
+        {
+          "scope": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}",
+          "kind": "variable",
+          "item": "cp_source",
+          "identity_count": 129,
+          "changed_label_positions": 110,
+          "confirmed_semantic_position_conflicts": 110,
+          "conflict_examples": [
+            {
+              "position": 3,
+              "reference_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x03]||0",
+              "report_identity_at_same_position": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x05]||0",
+              "reference_semantic_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x03]",
+              "report_semantic_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x05]"
+            },
+            {
+              "position": 4,
+              "reference_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x04]||0",
+              "report_identity_at_same_position": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x06]||0",
+              "reference_semantic_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x04]",
+              "report_semantic_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x06]"
+            },
+            {
+              "position": 5,
+              "reference_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x06]||0",
+              "report_identity_at_same_position": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x07]||0",
+              "reference_semantic_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x06]",
+              "report_semantic_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x07]"
+            },
+            {
+              "position": 6,
+              "reference_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x07]||0",
+              "report_identity_at_same_position": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x08]||0",
+              "reference_semantic_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x07]",
+              "report_semantic_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x08]"
+            }
+          ],
+          "explicit_semantic_pairs": 129,
+          "shifted_explicit_semantic_pairs": 110,
+          "shift_examples": [
+            {
+              "semantic_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x03]",
+              "reference_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x03]||0",
+              "report_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x03]||0",
+              "reference_position": 3,
+              "report_position": 118
+            },
+            {
+              "semantic_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x04]",
+              "reference_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x04]||0",
+              "report_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x04]||0",
+              "reference_position": 4,
+              "report_position": 119
+            },
+            {
+              "semantic_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x05]",
+              "reference_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x05]||0",
+              "report_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x05]||0",
+              "reference_position": 124,
+              "report_position": 3
+            },
+            {
+              "semantic_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x06]",
+              "reference_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x06]||0",
+              "report_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x06]||0",
+              "reference_position": 5,
+              "report_position": 4
+            }
+          ]
+        },
+        {
+          "scope": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}",
+          "kind": "cross",
+          "item": "tl_a_chan_cov_cg_cc",
+          "identity_count": 3,
+          "changed_label_positions": 1,
+          "confirmed_semantic_position_conflicts": 0,
+          "conflict_examples": [],
+          "explicit_semantic_pairs": 0,
+          "shifted_explicit_semantic_pairs": 0,
+          "shift_examples": []
+        }
+      ]
+    },
+    {
+      "report_id": "original_g20",
+      "expanded_identity_count": 4507,
+      "changed_prefix_count": 21,
+      "explicit_semantic_alignment_count": 345,
+      "explicit_semantic_alignment_shift_count": 83,
+      "changed_prefixes": [
+        {
+          "scope": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg",
+          "kind": "variable",
+          "item": "bark_thold_cp",
+          "identity_count": 34,
+          "changed_label_positions": 16,
+          "confirmed_semantic_position_conflicts": 16,
+          "conflict_examples": [
+            {
+              "position": 1,
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[1]||0",
+              "report_identity_at_same_position": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[0]||0",
+              "reference_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[1]",
+              "report_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[0]"
+            },
+            {
+              "position": 2,
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[2]||0",
+              "report_identity_at_same_position": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[1]||0",
+              "reference_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[2]",
+              "report_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[1]"
+            },
+            {
+              "position": 3,
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[3]||0",
+              "report_identity_at_same_position": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[2]||0",
+              "reference_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[3]",
+              "report_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[2]"
+            },
+            {
+              "position": 4,
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[4]||0",
+              "report_identity_at_same_position": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[3]||0",
+              "reference_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[4]",
+              "report_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[3]"
+            }
+          ],
+          "explicit_semantic_pairs": 34,
+          "shifted_explicit_semantic_pairs": 16,
+          "shift_examples": [
+            {
+              "semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[0]",
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[0]||0",
+              "report_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[0]||0",
+              "reference_position": 32,
+              "report_position": 1
+            },
+            {
+              "semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[10]",
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[10]||0",
+              "report_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[10]||0",
+              "reference_position": 10,
+              "report_position": 11
+            },
+            {
+              "semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[11]",
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[11]||0",
+              "report_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[11]||0",
+              "reference_position": 11,
+              "report_position": 12
+            },
+            {
+              "semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[12]",
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[12]||0",
+              "report_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[12]||0",
+              "reference_position": 12,
+              "report_position": 13
+            }
+          ]
+        },
+        {
+          "scope": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg",
+          "kind": "variable",
+          "item": "bite_thold_cp",
+          "identity_count": 34,
+          "changed_label_positions": 7,
+          "confirmed_semantic_position_conflicts": 7,
+          "conflict_examples": [
+            {
+              "position": 1,
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[1]||0",
+              "report_identity_at_same_position": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[0]||0",
+              "reference_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[1]",
+              "report_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[0]"
+            },
+            {
+              "position": 2,
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[2]||0",
+              "report_identity_at_same_position": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[1]||0",
+              "reference_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[2]",
+              "report_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[1]"
+            },
+            {
+              "position": 3,
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[3]||0",
+              "report_identity_at_same_position": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[2]||0",
+              "reference_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[3]",
+              "report_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[2]"
+            },
+            {
+              "position": 4,
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[4]||0",
+              "report_identity_at_same_position": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[3]||0",
+              "reference_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[4]",
+              "report_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[3]"
+            }
+          ],
+          "explicit_semantic_pairs": 34,
+          "shifted_explicit_semantic_pairs": 7,
+          "shift_examples": [
+            {
+              "semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[0]",
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[0]||0",
+              "report_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[0]||0",
+              "reference_position": 32,
+              "report_position": 1
+            },
+            {
+              "semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[1]",
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[1]||0",
+              "report_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[1]||0",
+              "reference_position": 1,
+              "report_position": 2
+            },
+            {
+              "semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[2]",
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[2]||0",
+              "report_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[2]||0",
+              "reference_position": 2,
+              "report_position": 3
+            },
+            {
+              "semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[3]",
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[3]||0",
+              "report_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[3]||0",
+              "reference_position": 3,
+              "report_position": 4
+            }
+          ]
+        },
+        {
+          "scope": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg",
+          "kind": "variable",
+          "item": "wdog_regwen_cp",
+          "identity_count": 2,
+          "changed_label_positions": 2,
+          "confirmed_semantic_position_conflicts": 2,
+          "conflict_examples": [
+            {
+              "position": 0,
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wdog_regwen_cp||values:[{ [ 1 ] }]||0",
+              "report_identity_at_same_position": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wdog_regwen_cp||values:{ [ 0 ] }||0",
+              "reference_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wdog_regwen_cp||value:1",
+              "report_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wdog_regwen_cp||value:0"
+            },
+            {
+              "position": 1,
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wdog_regwen_cp||values:{ [ 0 ] }||0",
+              "report_identity_at_same_position": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wdog_regwen_cp||values:{ [ 1 ] }||0",
+              "reference_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wdog_regwen_cp||value:0",
+              "report_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wdog_regwen_cp||value:1"
+            }
+          ],
+          "explicit_semantic_pairs": 2,
+          "shifted_explicit_semantic_pairs": 2,
+          "shift_examples": [
+            {
+              "semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wdog_regwen_cp||value:0",
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wdog_regwen_cp||values:{ [ 0 ] }||0",
+              "report_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wdog_regwen_cp||values:{ [ 0 ] }||0",
+              "reference_position": 1,
+              "report_position": 0
+            },
+            {
+              "semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wdog_regwen_cp||value:1",
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wdog_regwen_cp||values:[{ [ 1 ] }]||0",
+              "report_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wdog_regwen_cp||values:{ [ 1 ] }||0",
+              "reference_position": 0,
+              "report_position": 1
+            }
+          ]
+        },
+        {
+          "scope": "aon_timer_env_pkg::aon_timer_env_cov::wake_up_timer_thold_hit_cg",
+          "kind": "variable",
+          "item": "wkup_count_cp",
+          "identity_count": 512,
+          "changed_label_positions": 512,
+          "confirmed_semantic_position_conflicts": 0,
+          "conflict_examples": [],
+          "explicit_semantic_pairs": 0,
+          "shifted_explicit_semantic_pairs": 0,
+          "shift_examples": []
+        },
+        {
+          "scope": "aon_timer_env_pkg::aon_timer_env_cov::wake_up_timer_thold_hit_cg",
+          "kind": "variable",
+          "item": "wkup_thold_cp",
+          "identity_count": 512,
+          "changed_label_positions": 512,
+          "confirmed_semantic_position_conflicts": 0,
+          "conflict_examples": [],
+          "explicit_semantic_pairs": 0,
+          "shifted_explicit_semantic_pairs": 0,
+          "shift_examples": []
+        },
+        {
+          "scope": "aon_timer_env_pkg::aon_timer_env_cov::wake_up_timer_thold_hit_cg",
+          "kind": "variable",
+          "item": "wkup_int_cp",
+          "identity_count": 2,
+          "changed_label_positions": 2,
+          "confirmed_semantic_position_conflicts": 2,
+          "conflict_examples": [
+            {
+              "position": 0,
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::wake_up_timer_thold_hit_cg||variable||wkup_int_cp||name:set||0",
+              "report_identity_at_same_position": "aon_timer_env_pkg::aon_timer_env_cov::wake_up_timer_thold_hit_cg||variable||wkup_int_cp||name:unset||0",
+              "reference_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::wake_up_timer_thold_hit_cg||variable||wkup_int_cp||name:set",
+              "report_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::wake_up_timer_thold_hit_cg||variable||wkup_int_cp||name:unset"
+            },
+            {
+              "position": 1,
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::wake_up_timer_thold_hit_cg||variable||wkup_int_cp||name:unset||0",
+              "report_identity_at_same_position": "aon_timer_env_pkg::aon_timer_env_cov::wake_up_timer_thold_hit_cg||variable||wkup_int_cp||name:set||0",
+              "reference_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::wake_up_timer_thold_hit_cg||variable||wkup_int_cp||name:unset",
+              "report_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::wake_up_timer_thold_hit_cg||variable||wkup_int_cp||name:set"
+            }
+          ],
+          "explicit_semantic_pairs": 2,
+          "shifted_explicit_semantic_pairs": 2,
+          "shift_examples": [
+            {
+              "semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::wake_up_timer_thold_hit_cg||variable||wkup_int_cp||name:set",
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::wake_up_timer_thold_hit_cg||variable||wkup_int_cp||name:set||0",
+              "report_identity": "aon_timer_env_pkg::aon_timer_env_cov::wake_up_timer_thold_hit_cg||variable||wkup_int_cp||name:set||0",
+              "reference_position": 0,
+              "report_position": 1
+            },
+            {
+              "semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::wake_up_timer_thold_hit_cg||variable||wkup_int_cp||name:unset",
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::wake_up_timer_thold_hit_cg||variable||wkup_int_cp||name:unset||0",
+              "report_identity": "aon_timer_env_pkg::aon_timer_env_cov::wake_up_timer_thold_hit_cg||variable||wkup_int_cp||name:unset||0",
+              "reference_position": 1,
+              "report_position": 0
+            }
+          ]
+        },
+        {
+          "scope": "aon_timer_env_pkg::aon_timer_env_cov::wake_up_timer_thold_hit_cg",
+          "kind": "cross",
+          "item": "wkup_thold_cpXwkup_int_cp",
+          "identity_count": 1024,
+          "changed_label_positions": 1024,
+          "confirmed_semantic_position_conflicts": 0,
+          "conflict_examples": [],
+          "explicit_semantic_pairs": 0,
+          "shifted_explicit_semantic_pairs": 0,
+          "shift_examples": []
+        },
+        {
+          "scope": "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bark_thold_hit_cg",
+          "kind": "variable",
+          "item": "wdog_count_cp",
+          "identity_count": 256,
+          "changed_label_positions": 256,
+          "confirmed_semantic_position_conflicts": 0,
+          "conflict_examples": [],
+          "explicit_semantic_pairs": 0,
+          "shifted_explicit_semantic_pairs": 0,
+          "shift_examples": []
+        },
+        {
+          "scope": "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bark_thold_hit_cg",
+          "kind": "variable",
+          "item": "wdog_thold_cp",
+          "identity_count": 256,
+          "changed_label_positions": 256,
+          "confirmed_semantic_position_conflicts": 0,
+          "conflict_examples": [],
+          "explicit_semantic_pairs": 0,
+          "shifted_explicit_semantic_pairs": 0,
+          "shift_examples": []
+        },
+        {
+          "scope": "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bark_thold_hit_cg",
+          "kind": "variable",
+          "item": "wdog_bark_int",
+          "identity_count": 2,
+          "changed_label_positions": 2,
+          "confirmed_semantic_position_conflicts": 0,
+          "conflict_examples": [],
+          "explicit_semantic_pairs": 0,
+          "shifted_explicit_semantic_pairs": 0,
+          "shift_examples": []
+        },
+        {
+          "scope": "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bark_thold_hit_cg",
+          "kind": "cross",
+          "item": "wdog_thold_cpXwdog_bark_rst",
+          "identity_count": 512,
+          "changed_label_positions": 512,
+          "confirmed_semantic_position_conflicts": 0,
+          "conflict_examples": [],
+          "explicit_semantic_pairs": 0,
+          "shifted_explicit_semantic_pairs": 0,
+          "shift_examples": []
+        },
+        {
+          "scope": "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bite_thold_hit_cg",
+          "kind": "variable",
+          "item": "wdog_count_cp",
+          "identity_count": 256,
+          "changed_label_positions": 256,
+          "confirmed_semantic_position_conflicts": 0,
+          "conflict_examples": [],
+          "explicit_semantic_pairs": 0,
+          "shifted_explicit_semantic_pairs": 0,
+          "shift_examples": []
+        },
+        {
+          "scope": "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bite_thold_hit_cg",
+          "kind": "variable",
+          "item": "wdog_thold_cp",
+          "identity_count": 256,
+          "changed_label_positions": 256,
+          "confirmed_semantic_position_conflicts": 0,
+          "conflict_examples": [],
+          "explicit_semantic_pairs": 0,
+          "shifted_explicit_semantic_pairs": 0,
+          "shift_examples": []
+        },
+        {
+          "scope": "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bite_thold_hit_cg",
+          "kind": "variable",
+          "item": "wdog_bite_rst_cp",
+          "identity_count": 2,
+          "changed_label_positions": 2,
+          "confirmed_semantic_position_conflicts": 2,
+          "conflict_examples": [
+            {
+              "position": 0,
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bite_thold_hit_cg||variable||wdog_bite_rst_cp||name:set||0",
+              "report_identity_at_same_position": "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bite_thold_hit_cg||variable||wdog_bite_rst_cp||name:unset||0",
+              "reference_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bite_thold_hit_cg||variable||wdog_bite_rst_cp||name:set",
+              "report_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bite_thold_hit_cg||variable||wdog_bite_rst_cp||name:unset"
+            },
+            {
+              "position": 1,
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bite_thold_hit_cg||variable||wdog_bite_rst_cp||name:unset||0",
+              "report_identity_at_same_position": "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bite_thold_hit_cg||variable||wdog_bite_rst_cp||name:set||0",
+              "reference_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bite_thold_hit_cg||variable||wdog_bite_rst_cp||name:unset",
+              "report_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bite_thold_hit_cg||variable||wdog_bite_rst_cp||name:set"
+            }
+          ],
+          "explicit_semantic_pairs": 2,
+          "shifted_explicit_semantic_pairs": 2,
+          "shift_examples": [
+            {
+              "semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bite_thold_hit_cg||variable||wdog_bite_rst_cp||name:set",
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bite_thold_hit_cg||variable||wdog_bite_rst_cp||name:set||0",
+              "report_identity": "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bite_thold_hit_cg||variable||wdog_bite_rst_cp||name:set||0",
+              "reference_position": 0,
+              "report_position": 1
+            },
+            {
+              "semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bite_thold_hit_cg||variable||wdog_bite_rst_cp||name:unset",
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bite_thold_hit_cg||variable||wdog_bite_rst_cp||name:unset||0",
+              "report_identity": "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bite_thold_hit_cg||variable||wdog_bite_rst_cp||name:unset||0",
+              "reference_position": 1,
+              "report_position": 0
+            }
+          ]
+        },
+        {
+          "scope": "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bite_thold_hit_cg",
+          "kind": "variable",
+          "item": "wdog_bite_rst",
+          "identity_count": 2,
+          "changed_label_positions": 2,
+          "confirmed_semantic_position_conflicts": 0,
+          "conflict_examples": [],
+          "explicit_semantic_pairs": 0,
+          "shifted_explicit_semantic_pairs": 0,
+          "shift_examples": []
+        },
+        {
+          "scope": "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bite_thold_hit_cg",
+          "kind": "cross",
+          "item": "wdog_thold_cpXwdog_bite_rst",
+          "identity_count": 512,
+          "changed_label_positions": 512,
+          "confirmed_semantic_position_conflicts": 0,
+          "conflict_examples": [],
+          "explicit_semantic_pairs": 0,
+          "shifted_explicit_semantic_pairs": 0,
+          "shift_examples": []
+        },
+        {
+          "scope": "cip_base_pkg::intr_cg::SHAPE{(num_interrupts - 1)=1}",
+          "kind": "variable",
+          "item": "cp_intr_en",
+          "identity_count": 2,
+          "changed_label_positions": 1,
+          "confirmed_semantic_position_conflicts": 0,
+          "conflict_examples": [],
+          "explicit_semantic_pairs": 2,
+          "shifted_explicit_semantic_pairs": 0,
+          "shift_examples": []
+        },
+        {
+          "scope": "cip_base_pkg::intr_cg::SHAPE{(num_interrupts - 1)=1}",
+          "kind": "cross",
+          "item": "intr_cg_cc",
+          "identity_count": 8,
+          "changed_label_positions": 4,
+          "confirmed_semantic_position_conflicts": 0,
+          "conflict_examples": [],
+          "explicit_semantic_pairs": 0,
+          "shifted_explicit_semantic_pairs": 0,
+          "shift_examples": []
+        },
+        {
+          "scope": "cip_base_pkg::intr_pins_cg::SHAPE{(num_interrupts - 1)=1}",
+          "kind": "cross",
+          "item": "cp_intr_pins_all_values",
+          "identity_count": 8,
+          "changed_label_positions": 8,
+          "confirmed_semantic_position_conflicts": 0,
+          "conflict_examples": [],
+          "explicit_semantic_pairs": 0,
+          "shifted_explicit_semantic_pairs": 0,
+          "shift_examples": []
+        },
+        {
+          "scope": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}",
+          "kind": "variable",
+          "item": "cp_source",
+          "identity_count": 129,
+          "changed_label_positions": 54,
+          "confirmed_semantic_position_conflicts": 54,
+          "conflict_examples": [
+            {
+              "position": 5,
+              "reference_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x06]||0",
+              "report_identity_at_same_position": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x05]||0",
+              "reference_semantic_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x06]",
+              "report_semantic_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x05]"
+            },
+            {
+              "position": 6,
+              "reference_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x07]||0",
+              "report_identity_at_same_position": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x06]||0",
+              "reference_semantic_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x07]",
+              "report_semantic_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x06]"
+            },
+            {
+              "position": 7,
+              "reference_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x08]||0",
+              "report_identity_at_same_position": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x07]||0",
+              "reference_semantic_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x08]",
+              "report_semantic_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x07]"
+            },
+            {
+              "position": 8,
+              "reference_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x09]||0",
+              "report_identity_at_same_position": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x08]||0",
+              "reference_semantic_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x09]",
+              "report_semantic_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x08]"
+            }
+          ],
+          "explicit_semantic_pairs": 129,
+          "shifted_explicit_semantic_pairs": 54,
+          "shift_examples": [
+            {
+              "semantic_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x05]",
+              "reference_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x05]||0",
+              "report_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x05]||0",
+              "reference_position": 124,
+              "report_position": 5
+            },
+            {
+              "semantic_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x06]",
+              "reference_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x06]||0",
+              "report_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x06]||0",
+              "reference_position": 5,
+              "report_position": 6
+            },
+            {
+              "semantic_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x07]",
+              "reference_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x07]||0",
+              "report_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x07]||0",
+              "reference_position": 6,
+              "report_position": 7
+            },
+            {
+              "semantic_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x08]",
+              "reference_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x08]||0",
+              "report_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x08]||0",
+              "reference_position": 7,
+              "report_position": 8
+            }
+          ]
+        },
+        {
+          "scope": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}",
+          "kind": "cross",
+          "item": "tl_a_chan_cov_cg_cc",
+          "identity_count": 3,
+          "changed_label_positions": 1,
+          "confirmed_semantic_position_conflicts": 0,
+          "conflict_examples": [],
+          "explicit_semantic_pairs": 0,
+          "shifted_explicit_semantic_pairs": 0,
+          "shift_examples": []
+        }
+      ]
+    },
+    {
+      "report_id": "original_g30",
+      "expanded_identity_count": 4507,
+      "changed_prefix_count": 24,
+      "explicit_semantic_alignment_count": 345,
+      "explicit_semantic_alignment_shift_count": 236,
+      "changed_prefixes": [
+        {
+          "scope": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg",
+          "kind": "variable",
+          "item": "prescale_cp",
+          "identity_count": 34,
+          "changed_label_positions": 20,
+          "confirmed_semantic_position_conflicts": 20,
+          "conflict_examples": [
+            {
+              "position": 13,
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[12]||0",
+              "report_identity_at_same_position": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[13]||0",
+              "reference_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[12]",
+              "report_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[13]"
+            },
+            {
+              "position": 14,
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[13]||0",
+              "report_identity_at_same_position": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[14]||0",
+              "reference_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[13]",
+              "report_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[14]"
+            },
+            {
+              "position": 15,
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[14]||0",
+              "report_identity_at_same_position": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[15]||0",
+              "reference_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[14]",
+              "report_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[15]"
+            },
+            {
+              "position": 16,
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[15]||0",
+              "report_identity_at_same_position": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[16]||0",
+              "reference_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[15]",
+              "report_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[16]"
+            }
+          ],
+          "explicit_semantic_pairs": 34,
+          "shifted_explicit_semantic_pairs": 20,
+          "shift_examples": [
+            {
+              "semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[12]",
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[12]||0",
+              "report_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[12]||0",
+              "reference_position": 13,
+              "report_position": 29
+            },
+            {
+              "semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[13]",
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[13]||0",
+              "report_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[13]||0",
+              "reference_position": 14,
+              "report_position": 13
+            },
+            {
+              "semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[14]",
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[14]||0",
+              "report_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[14]||0",
+              "reference_position": 15,
+              "report_position": 14
+            },
+            {
+              "semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[15]",
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[15]||0",
+              "report_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[15]||0",
+              "reference_position": 16,
+              "report_position": 15
+            }
+          ]
+        },
+        {
+          "scope": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg",
+          "kind": "variable",
+          "item": "bark_thold_cp",
+          "identity_count": 34,
+          "changed_label_positions": 3,
+          "confirmed_semantic_position_conflicts": 3,
+          "conflict_examples": [
+            {
+              "position": 30,
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[30]||0",
+              "report_identity_at_same_position": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[31]||0",
+              "reference_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[30]",
+              "report_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[31]"
+            },
+            {
+              "position": 31,
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[31]||0",
+              "report_identity_at_same_position": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[0]||0",
+              "reference_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[31]",
+              "report_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[0]"
+            },
+            {
+              "position": 32,
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[0]||0",
+              "report_identity_at_same_position": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[30]||0",
+              "reference_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[0]",
+              "report_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[30]"
+            }
+          ],
+          "explicit_semantic_pairs": 34,
+          "shifted_explicit_semantic_pairs": 3,
+          "shift_examples": [
+            {
+              "semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[0]",
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[0]||0",
+              "report_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[0]||0",
+              "reference_position": 32,
+              "report_position": 31
+            },
+            {
+              "semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[30]",
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[30]||0",
+              "report_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[30]||0",
+              "reference_position": 30,
+              "report_position": 32
+            },
+            {
+              "semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[31]",
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[31]||0",
+              "report_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[31]||0",
+              "reference_position": 31,
+              "report_position": 30
+            }
+          ]
+        },
+        {
+          "scope": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg",
+          "kind": "variable",
+          "item": "bite_thold_cp",
+          "identity_count": 34,
+          "changed_label_positions": 26,
+          "confirmed_semantic_position_conflicts": 26,
+          "conflict_examples": [
+            {
+              "position": 7,
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[7]||0",
+              "report_identity_at_same_position": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[8]||0",
+              "reference_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[7]",
+              "report_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[8]"
+            },
+            {
+              "position": 8,
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[8]||0",
+              "report_identity_at_same_position": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[9]||0",
+              "reference_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[8]",
+              "report_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[9]"
+            },
+            {
+              "position": 9,
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[9]||0",
+              "report_identity_at_same_position": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[10]||0",
+              "reference_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[9]",
+              "report_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[10]"
+            },
+            {
+              "position": 10,
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[10]||0",
+              "report_identity_at_same_position": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[11]||0",
+              "reference_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[10]",
+              "report_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[11]"
+            }
+          ],
+          "explicit_semantic_pairs": 34,
+          "shifted_explicit_semantic_pairs": 26,
+          "shift_examples": [
+            {
+              "semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[0]",
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[0]||0",
+              "report_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[0]||0",
+              "reference_position": 32,
+              "report_position": 31
+            },
+            {
+              "semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[10]",
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[10]||0",
+              "report_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[10]||0",
+              "reference_position": 10,
+              "report_position": 9
+            },
+            {
+              "semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[11]",
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[11]||0",
+              "report_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[11]||0",
+              "reference_position": 11,
+              "report_position": 10
+            },
+            {
+              "semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[12]",
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[12]||0",
+              "report_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[12]||0",
+              "reference_position": 12,
+              "report_position": 11
+            }
+          ]
+        },
+        {
+          "scope": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg",
+          "kind": "variable",
+          "item": "wkup_thold_cp",
+          "identity_count": 66,
+          "changed_label_positions": 52,
+          "confirmed_semantic_position_conflicts": 52,
+          "conflict_examples": [
+            {
+              "position": 13,
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[13]||0",
+              "report_identity_at_same_position": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[14]||0",
+              "reference_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[13]",
+              "report_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[14]"
+            },
+            {
+              "position": 14,
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[14]||0",
+              "report_identity_at_same_position": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[15]||0",
+              "reference_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[14]",
+              "report_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[15]"
+            },
+            {
+              "position": 15,
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[15]||0",
+              "report_identity_at_same_position": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[16]||0",
+              "reference_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[15]",
+              "report_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[16]"
+            },
+            {
+              "position": 16,
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[16]||0",
+              "report_identity_at_same_position": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[17]||0",
+              "reference_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[16]",
+              "report_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[17]"
+            }
+          ],
+          "explicit_semantic_pairs": 66,
+          "shifted_explicit_semantic_pairs": 52,
+          "shift_examples": [
+            {
+              "semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[0]",
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[0]||0",
+              "report_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[0]||0",
+              "reference_position": 64,
+              "report_position": 62
+            },
+            {
+              "semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[13]",
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[13]||0",
+              "report_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[13]||0",
+              "reference_position": 13,
+              "report_position": 63
+            },
+            {
+              "semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[14]",
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[14]||0",
+              "report_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[14]||0",
+              "reference_position": 14,
+              "report_position": 13
+            },
+            {
+              "semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[15]",
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[15]||0",
+              "report_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[15]||0",
+              "reference_position": 15,
+              "report_position": 14
+            }
+          ]
+        },
+        {
+          "scope": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg",
+          "kind": "variable",
+          "item": "wdog_regwen_cp",
+          "identity_count": 2,
+          "changed_label_positions": 2,
+          "confirmed_semantic_position_conflicts": 2,
+          "conflict_examples": [
+            {
+              "position": 0,
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wdog_regwen_cp||values:[{ [ 1 ] }]||0",
+              "report_identity_at_same_position": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wdog_regwen_cp||values:{ [ 0 ] }||0",
+              "reference_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wdog_regwen_cp||value:1",
+              "report_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wdog_regwen_cp||value:0"
+            },
+            {
+              "position": 1,
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wdog_regwen_cp||values:{ [ 0 ] }||0",
+              "report_identity_at_same_position": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wdog_regwen_cp||values:{ [ 1 ] }||0",
+              "reference_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wdog_regwen_cp||value:0",
+              "report_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wdog_regwen_cp||value:1"
+            }
+          ],
+          "explicit_semantic_pairs": 2,
+          "shifted_explicit_semantic_pairs": 2,
+          "shift_examples": [
+            {
+              "semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wdog_regwen_cp||value:0",
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wdog_regwen_cp||values:{ [ 0 ] }||0",
+              "report_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wdog_regwen_cp||values:{ [ 0 ] }||0",
+              "reference_position": 1,
+              "report_position": 0
+            },
+            {
+              "semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wdog_regwen_cp||value:1",
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wdog_regwen_cp||values:[{ [ 1 ] }]||0",
+              "report_identity": "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wdog_regwen_cp||values:{ [ 1 ] }||0",
+              "reference_position": 0,
+              "report_position": 1
+            }
+          ]
+        },
+        {
+          "scope": "aon_timer_env_pkg::aon_timer_env_cov::wake_up_timer_thold_hit_cg",
+          "kind": "variable",
+          "item": "wkup_count_cp",
+          "identity_count": 512,
+          "changed_label_positions": 512,
+          "confirmed_semantic_position_conflicts": 0,
+          "conflict_examples": [],
+          "explicit_semantic_pairs": 0,
+          "shifted_explicit_semantic_pairs": 0,
+          "shift_examples": []
+        },
+        {
+          "scope": "aon_timer_env_pkg::aon_timer_env_cov::wake_up_timer_thold_hit_cg",
+          "kind": "variable",
+          "item": "wkup_thold_cp",
+          "identity_count": 512,
+          "changed_label_positions": 512,
+          "confirmed_semantic_position_conflicts": 0,
+          "conflict_examples": [],
+          "explicit_semantic_pairs": 0,
+          "shifted_explicit_semantic_pairs": 0,
+          "shift_examples": []
+        },
+        {
+          "scope": "aon_timer_env_pkg::aon_timer_env_cov::wake_up_timer_thold_hit_cg",
+          "kind": "cross",
+          "item": "wkup_thold_cpXwkup_int_cp",
+          "identity_count": 1024,
+          "changed_label_positions": 1024,
+          "confirmed_semantic_position_conflicts": 0,
+          "conflict_examples": [],
+          "explicit_semantic_pairs": 0,
+          "shifted_explicit_semantic_pairs": 0,
+          "shift_examples": []
+        },
+        {
+          "scope": "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bark_thold_hit_cg",
+          "kind": "variable",
+          "item": "wdog_count_cp",
+          "identity_count": 256,
+          "changed_label_positions": 256,
+          "confirmed_semantic_position_conflicts": 0,
+          "conflict_examples": [],
+          "explicit_semantic_pairs": 0,
+          "shifted_explicit_semantic_pairs": 0,
+          "shift_examples": []
+        },
+        {
+          "scope": "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bark_thold_hit_cg",
+          "kind": "variable",
+          "item": "wdog_thold_cp",
+          "identity_count": 256,
+          "changed_label_positions": 256,
+          "confirmed_semantic_position_conflicts": 0,
+          "conflict_examples": [],
+          "explicit_semantic_pairs": 0,
+          "shifted_explicit_semantic_pairs": 0,
+          "shift_examples": []
+        },
+        {
+          "scope": "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bark_thold_hit_cg",
+          "kind": "variable",
+          "item": "wdog_bark_int_cp",
+          "identity_count": 2,
+          "changed_label_positions": 2,
+          "confirmed_semantic_position_conflicts": 2,
+          "conflict_examples": [
+            {
+              "position": 0,
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bark_thold_hit_cg||variable||wdog_bark_int_cp||name:set||0",
+              "report_identity_at_same_position": "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bark_thold_hit_cg||variable||wdog_bark_int_cp||name:unset||0",
+              "reference_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bark_thold_hit_cg||variable||wdog_bark_int_cp||name:set",
+              "report_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bark_thold_hit_cg||variable||wdog_bark_int_cp||name:unset"
+            },
+            {
+              "position": 1,
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bark_thold_hit_cg||variable||wdog_bark_int_cp||name:unset||0",
+              "report_identity_at_same_position": "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bark_thold_hit_cg||variable||wdog_bark_int_cp||name:set||0",
+              "reference_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bark_thold_hit_cg||variable||wdog_bark_int_cp||name:unset",
+              "report_semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bark_thold_hit_cg||variable||wdog_bark_int_cp||name:set"
+            }
+          ],
+          "explicit_semantic_pairs": 2,
+          "shifted_explicit_semantic_pairs": 2,
+          "shift_examples": [
+            {
+              "semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bark_thold_hit_cg||variable||wdog_bark_int_cp||name:set",
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bark_thold_hit_cg||variable||wdog_bark_int_cp||name:set||0",
+              "report_identity": "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bark_thold_hit_cg||variable||wdog_bark_int_cp||name:set||0",
+              "reference_position": 0,
+              "report_position": 1
+            },
+            {
+              "semantic_identity": "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bark_thold_hit_cg||variable||wdog_bark_int_cp||name:unset",
+              "reference_identity": "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bark_thold_hit_cg||variable||wdog_bark_int_cp||name:unset||0",
+              "report_identity": "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bark_thold_hit_cg||variable||wdog_bark_int_cp||name:unset||0",
+              "reference_position": 1,
+              "report_position": 0
+            }
+          ]
+        },
+        {
+          "scope": "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bark_thold_hit_cg",
+          "kind": "variable",
+          "item": "wdog_bark_int",
+          "identity_count": 2,
+          "changed_label_positions": 2,
+          "confirmed_semantic_position_conflicts": 0,
+          "conflict_examples": [],
+          "explicit_semantic_pairs": 0,
+          "shifted_explicit_semantic_pairs": 0,
+          "shift_examples": []
+        },
+        {
+          "scope": "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bark_thold_hit_cg",
+          "kind": "cross",
+          "item": "wdog_thold_cpXwdog_bark_rst",
+          "identity_count": 512,
+          "changed_label_positions": 512,
+          "confirmed_semantic_position_conflicts": 0,
+          "conflict_examples": [],
+          "explicit_semantic_pairs": 0,
+          "shifted_explicit_semantic_pairs": 0,
+          "shift_examples": []
+        },
+        {
+          "scope": "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bite_thold_hit_cg",
+          "kind": "variable",
+          "item": "wdog_count_cp",
+          "identity_count": 256,
+          "changed_label_positions": 256,
+          "confirmed_semantic_position_conflicts": 0,
+          "conflict_examples": [],
+          "explicit_semantic_pairs": 0,
+          "shifted_explicit_semantic_pairs": 0,
+          "shift_examples": []
+        },
+        {
+          "scope": "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bite_thold_hit_cg",
+          "kind": "variable",
+          "item": "wdog_thold_cp",
+          "identity_count": 256,
+          "changed_label_positions": 256,
+          "confirmed_semantic_position_conflicts": 0,
+          "conflict_examples": [],
+          "explicit_semantic_pairs": 0,
+          "shifted_explicit_semantic_pairs": 0,
+          "shift_examples": []
+        },
+        {
+          "scope": "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bite_thold_hit_cg",
+          "kind": "variable",
+          "item": "wdog_bite_rst",
+          "identity_count": 2,
+          "changed_label_positions": 2,
+          "confirmed_semantic_position_conflicts": 0,
+          "conflict_examples": [],
+          "explicit_semantic_pairs": 0,
+          "shifted_explicit_semantic_pairs": 0,
+          "shift_examples": []
+        },
+        {
+          "scope": "aon_timer_env_pkg::aon_timer_env_cov::watchdog_timer_bite_thold_hit_cg",
+          "kind": "cross",
+          "item": "wdog_thold_cpXwdog_bite_rst",
+          "identity_count": 512,
+          "changed_label_positions": 512,
+          "confirmed_semantic_position_conflicts": 0,
+          "conflict_examples": [],
+          "explicit_semantic_pairs": 0,
+          "shifted_explicit_semantic_pairs": 0,
+          "shift_examples": []
+        },
+        {
+          "scope": "cip_base_pkg::intr_cg::SHAPE{(num_interrupts - 1)=1}",
+          "kind": "cross",
+          "item": "intr_cg_cc",
+          "identity_count": 8,
+          "changed_label_positions": 8,
+          "confirmed_semantic_position_conflicts": 0,
+          "conflict_examples": [],
+          "explicit_semantic_pairs": 0,
+          "shifted_explicit_semantic_pairs": 0,
+          "shift_examples": []
+        },
+        {
+          "scope": "cip_base_pkg::intr_test_cg::SHAPE{(num_interrupts - 1)=1}",
+          "kind": "variable",
+          "item": "cp_intr_test",
+          "identity_count": 2,
+          "changed_label_positions": 2,
+          "confirmed_semantic_position_conflicts": 0,
+          "conflict_examples": [],
+          "explicit_semantic_pairs": 0,
+          "shifted_explicit_semantic_pairs": 0,
+          "shift_examples": []
+        },
+        {
+          "scope": "cip_base_pkg::intr_test_cg::SHAPE{(num_interrupts - 1)=1}",
+          "kind": "variable",
+          "item": "cp_intr_en",
+          "identity_count": 2,
+          "changed_label_positions": 2,
+          "confirmed_semantic_position_conflicts": 0,
+          "conflict_examples": [],
+          "explicit_semantic_pairs": 0,
+          "shifted_explicit_semantic_pairs": 0,
+          "shift_examples": []
+        },
+        {
+          "scope": "cip_base_pkg::intr_test_cg::SHAPE{(num_interrupts - 1)=1}",
+          "kind": "variable",
+          "item": "cp_intr_state",
+          "identity_count": 2,
+          "changed_label_positions": 2,
+          "confirmed_semantic_position_conflicts": 0,
+          "conflict_examples": [],
+          "explicit_semantic_pairs": 0,
+          "shifted_explicit_semantic_pairs": 0,
+          "shift_examples": []
+        },
+        {
+          "scope": "cip_base_pkg::intr_test_cg::SHAPE{(num_interrupts - 1)=1}",
+          "kind": "cross",
+          "item": "intr_test_cg_cc",
+          "identity_count": 12,
+          "changed_label_positions": 12,
+          "confirmed_semantic_position_conflicts": 0,
+          "conflict_examples": [],
+          "explicit_semantic_pairs": 0,
+          "shifted_explicit_semantic_pairs": 0,
+          "shift_examples": []
+        },
+        {
+          "scope": "tl_agent_pkg::pending_req_on_rst_cg",
+          "kind": "variable",
+          "item": "cp_req_pending",
+          "identity_count": 2,
+          "changed_label_positions": 2,
+          "confirmed_semantic_position_conflicts": 2,
+          "conflict_examples": [
+            {
+              "position": 0,
+              "reference_identity": "tl_agent_pkg::pending_req_on_rst_cg||variable||cp_req_pending||name:values[0x0]||0",
+              "report_identity_at_same_position": "tl_agent_pkg::pending_req_on_rst_cg||variable||cp_req_pending||name:values[0x1]||0",
+              "reference_semantic_identity": "tl_agent_pkg::pending_req_on_rst_cg||variable||cp_req_pending||name:values[0x0]",
+              "report_semantic_identity": "tl_agent_pkg::pending_req_on_rst_cg||variable||cp_req_pending||name:values[0x1]"
+            },
+            {
+              "position": 1,
+              "reference_identity": "tl_agent_pkg::pending_req_on_rst_cg||variable||cp_req_pending||name:values[0x1]||0",
+              "report_identity_at_same_position": "tl_agent_pkg::pending_req_on_rst_cg||variable||cp_req_pending||name:values[0x0]||0",
+              "reference_semantic_identity": "tl_agent_pkg::pending_req_on_rst_cg||variable||cp_req_pending||name:values[0x1]",
+              "report_semantic_identity": "tl_agent_pkg::pending_req_on_rst_cg||variable||cp_req_pending||name:values[0x0]"
+            }
+          ],
+          "explicit_semantic_pairs": 2,
+          "shifted_explicit_semantic_pairs": 2,
+          "shift_examples": [
+            {
+              "semantic_identity": "tl_agent_pkg::pending_req_on_rst_cg||variable||cp_req_pending||name:values[0x0]",
+              "reference_identity": "tl_agent_pkg::pending_req_on_rst_cg||variable||cp_req_pending||name:values[0x0]||0",
+              "report_identity": "tl_agent_pkg::pending_req_on_rst_cg||variable||cp_req_pending||name:values[0x0]||0",
+              "reference_position": 0,
+              "report_position": 1
+            },
+            {
+              "semantic_identity": "tl_agent_pkg::pending_req_on_rst_cg||variable||cp_req_pending||name:values[0x1]",
+              "reference_identity": "tl_agent_pkg::pending_req_on_rst_cg||variable||cp_req_pending||name:values[0x1]||0",
+              "report_identity": "tl_agent_pkg::pending_req_on_rst_cg||variable||cp_req_pending||name:values[0x1]||0",
+              "reference_position": 1,
+              "report_position": 0
+            }
+          ]
+        },
+        {
+          "scope": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}",
+          "kind": "variable",
+          "item": "cp_source",
+          "identity_count": 129,
+          "changed_label_positions": 129,
+          "confirmed_semantic_position_conflicts": 129,
+          "conflict_examples": [
+            {
+              "position": 0,
+              "reference_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x00]||0",
+              "report_identity_at_same_position": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x0a]||0",
+              "reference_semantic_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x00]",
+              "report_semantic_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x0a]"
+            },
+            {
+              "position": 1,
+              "reference_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x01]||0",
+              "report_identity_at_same_position": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x12]||0",
+              "reference_semantic_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x01]",
+              "report_semantic_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x12]"
+            },
+            {
+              "position": 2,
+              "reference_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x02]||0",
+              "report_identity_at_same_position": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x18]||0",
+              "reference_semantic_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x02]",
+              "report_semantic_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x18]"
+            },
+            {
+              "position": 3,
+              "reference_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x03]||0",
+              "report_identity_at_same_position": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x19]||0",
+              "reference_semantic_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x03]",
+              "report_semantic_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x19]"
+            }
+          ],
+          "explicit_semantic_pairs": 129,
+          "shifted_explicit_semantic_pairs": 129,
+          "shift_examples": [
+            {
+              "semantic_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x00]",
+              "reference_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x00]||0",
+              "report_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x00]||0",
+              "reference_position": 0,
+              "report_position": 43
+            },
+            {
+              "semantic_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x01]",
+              "reference_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x01]||0",
+              "report_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x01]||0",
+              "reference_position": 1,
+              "report_position": 44
+            },
+            {
+              "semantic_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x02]",
+              "reference_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x02]||0",
+              "report_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x02]||0",
+              "reference_position": 2,
+              "report_position": 45
+            },
+            {
+              "semantic_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x03]",
+              "reference_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x03]||0",
+              "report_identity": "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}||variable||cp_source||name:valid_sources[0x03]||0",
+              "reference_position": 3,
+              "report_position": 46
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "coverage_credit_granted": 0,
+  "full_coverage_rate_percent": null,
+  "limitations": [
+    "Compressed NUMBER rows do not expose an individual bin order.",
+    "Only unique explicit names and singleton values are semantically aligned.",
+    "No historical run counts are imported or attributed to Cocotb.",
+    "This identity audit provides no UVM/Cocotb sample-timing equivalence evidence."
+  ],
+  "input_sha256": {
+    "layouts.json": "1dcde5727de8ebbfc9faac4a83ced2ae5ed769fb610bfe7d9f0fe0c5cc177330",
+    "canonical_bin_ids": "dbcf02f06c121675401c8983dde65a9275239cefd3aff842712bdeef5da11355"
+  },
+  "audit_tool_sha256": "db2829887115c56f1d709a458c93d42db06b43fe40bd257034223a886146c9a7"
+}
