@@ -1,6 +1,6 @@
 # 阶段 10：最终复核与报告
 
-状态（2026-11-14）：**Stage 09 工程结果已独立复核并形成报告；完整论文 full coverage 仍不可报告。**
+状态（2026-11-15）：**Stage 09 工程结果已独立复核；canonical identity 候选诊断完成；完整论文 full coverage 仍不可报告。**
 
 ## 复核结论
 
@@ -11,6 +11,12 @@
 Stage 09 独立 replay audit 通过，288/288 个 RTL testcase PASS，证据目录的 1,443 个文件均通过 SHA-256 ledger 校验。full-paper preflight 仍为 `BLOCKED_PREREQUISITES_INCOMPLETE`：仅 341/4,507 legacy identities 可按标签直接匹配，exact vector matrix 不可用，sample-site mapping 未完整，Stage 07 paper scheduler 未允许。
 
 机器可读审查记录及其 SHA-256 sidecar：[review.json](../evidence/stage10_final_review/2026-11-14-v1/review.json)、[review.json.sha256](../evidence/stage10_final_review/2026-11-14-v1/review.json.sha256)。Stage 09 的逐次运行结果见[汇总](../evidence/stage09_comparison/2026-11-14-v1/summary.json)与[对照表](../evidence/stage09_comparison/2026-11-14-v1/comparison.csv)。
+
+映射诊断入口为 tools/audit_canonical_identity_candidates.py。它报告 canonical labels 对 frozen source-definition 的 exact/range candidate 关系，不创建新的 coverage credit。运行命令：python3 tools/audit_canonical_identity_candidates.py --output evidence/stage10_final_review/2026-11-15-v1/identity-candidates.json。
+
+2026-11-15 候选审计将 4,507 个 canonical labels 分类为：341 个直接类型标签匹配、2 个精确值区间候选、2,074 个组合值区间候选、2,080 个 cross/展开标签未决，以及 10 个其他值标签未决。精确/组合区间仍有 legacy occurrence index 未决；标签匹配也不证明 sample-site 或 UVM/VCS 采样等价。该审计授予 0 个 coverage credit，不把未知项推断为 miss，因此 175 个正向 identity、4,332 个 unknown 和 `full_coverage_rate_percent: null` 均保持不变。报告和 SHA-256 sidecar：[identity-candidates.json](../evidence/stage10_final_review/2026-11-15-v1/identity-candidates.json)、[identity-candidates.json.sha256](../evidence/stage10_final_review/2026-11-15-v1/identity-candidates.json.sha256)。
+
+在 WSL Ubuntu 24.04 的现有项目虚拟环境中，全仓单测 96/96 通过。工具链已满足仓库锁定版本（Verilator 5.020、Cocotb 1.9.2、lowRISC FuseSoC 0.5.dev0、Edalize 0.4.0），无需额外安装缺失的项目包。下一步需要取得 canonical bin 展开与 legacy occurrence index 的可验证映射，并补齐 sample-site 与 VCS/UVM 同步采样证据；在这些材料齐备前，full coverage 门禁继续保持 blocked。
 
 ## 复核命令
 

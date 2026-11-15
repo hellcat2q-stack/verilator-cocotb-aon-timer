@@ -19,6 +19,10 @@
 
 在 WSL Ubuntu 中，使用新的 Linux work 目录和 evidence 目录运行 `run_stage09_comparison.py`，完成后运行 `audit_stage09_comparison.py --evidence-dir <run-dir>`。`tests/test_stage09_comparison.py` 覆盖 160 个参考数组 bins、策略回放确定性、freeze tamper 和空 trace 拒绝。
 
+## 2026-11-15 新增：canonical identity 候选映射诊断
+
+audit_canonical_identity_candidates.py --output <new-report.json> 按冻结的 canonical labels 和 pinned type-definition catalog 分类直接身份匹配、value-range 候选与 unresolved cross/instance 标签。Range 候选不获 coverage credit，也不改变 Stage 08/10 readiness gate；输出记录两个输入文件的 SHA-256。tests/test_canonical_identity_candidates.py 检查 instance index、range partition 与 cross 不猜测。
+
 ## 原有阶段工具
 
 按阶段增加固定源码校验、FuseSoC/Verilator build、seeded Cocotb runner、coverage JSON、bin-by-run 转换和审计脚本。每个入口登记参数、输出格式、工具版本与验收方式。
