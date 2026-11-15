@@ -23,6 +23,8 @@
 
 audit_canonical_identity_candidates.py --output <new-report.json> 按冻结的 canonical labels 和 pinned type-definition catalog 分类直接身份匹配、value-range 候选与 unresolved cross/instance 标签。Range 候选不获 coverage credit，也不改变 Stage 08/10 readiness gate；输出记录两个输入文件的 SHA-256。tests/test_canonical_identity_candidates.py 检查 instance index、range partition 与 cross 不猜测。
 
+该审计还输出 ordinal range candidates：仅当 canonical occurrence 数与连续且唯一的源 value-range 数相等、offset 为 `0..N-1` 时，按值域顺序生成一对一候选。候选仍需原始 URG bin 行顺序或等价 VCS 证据确认；这一步不会生成完整向量或增加 coverage credit。若要把旧 Stage 06 header 绑定到证据，可同时传入 `--legacy-manifest`、`--legacy-matrix` 和 `--legacy-converter`；工具验证 manifest 声明的 CSV hash 和完整 header 次序，并在报告中记录三个输入的 SHA-256，不保存本机路径。
+
 ## 原有阶段工具
 
 按阶段增加固定源码校验、FuseSoC/Verilator build、seeded Cocotb runner、coverage JSON、bin-by-run 转换和审计脚本。每个入口登记参数、输出格式、工具版本与验收方式。

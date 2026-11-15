@@ -1,8 +1,16 @@
+import csv
+import hashlib
 import json
+import tempfile
 import unittest
 from pathlib import Path
 
-from tools.audit_canonical_identity_candidates import build_audit, classify_identity
+from tools.audit_canonical_identity_candidates import (
+    build_audit,
+    build_ordinal_range_candidates,
+    classify_identity,
+    validate_legacy_header_provenance,
+)
 
 
 def definition(name, value_range=None):
@@ -45,6 +53,42 @@ class CanonicalIdentityCandidateTests(unittest.TestCase):
         row = classify_identity("pkg::cg||variable||cp||values:{ [ 0 : 9 ] }||0", source)
         self.assertEqual(row["classification"], "OVERLAPPING_SOURCE_RANGE_CANDIDATE")
 
+    def test_ordinal_candidates_require_complete_partition_and_zero_based_offsets(self):
+        source = [definition("auto[5:9]", [5, 9]), definition("auto[0:4]", [0, 4])]
+        complete = [
+            "pkg::cg||variable||cp||values:{ [ 0 : 9 ] }||0",
+            "pkg::cg||variable||cp||values:{ [ 0 : 9 ] }||1",
+        ]
+        candidates = build_ordinal_range_candidates(complete, source)
+        self.assertEqual([row["candidate_bin_name"] for row in candidates], ["auto[0:4]", "auto[5:9]"])
+        self.assertEqual([row["classification"] for row in candidates], ["RANGE_ORDER_CANDIDATE_UNVERIFIED"] * 2)
+
+        skipped_offset = [complete[0], complete[1].removesuffix("1") + "2"]
+        self.assertEqual(build_ordinal_range_candidates(skipped_offset, source), [])
+
+    def test_legacy_header_provenance_verifies_manifest_hash_and_identity_order(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            matrix_path = root / "matrix.csv"
+            manifest_path = root / "manifest.json"
+            converter_path = root / "converter.py"
+            canonical_ids = ["id-a", "id-b"]
+            with matrix_path.open("w", encoding="utf-8", newline="") as stream:
+                csv.writer(stream).writerow([*(f"meta-{i}" for i in range(13)), "report_id", *canonical_ids])
+            manifest_path.write_text(json.dumps({
+                "schema": "aon-timer-stage06-bin-manifest-v1",
+                "bin_count": len(canonical_ids),
+                "bin_key_format": "group::variable_or_cross::item::bin_name",
+                "csv_sha256": hashlib.sha256(matrix_path.read_bytes()).hexdigest(),
+            }), encoding="utf-8")
+            converter_path.write_text("# pinned converter source\n", encoding="utf-8")
+
+            result = validate_legacy_header_provenance(canonical_ids, manifest_path, matrix_path, converter_path)
+            self.assertTrue(result["matrix_header_matches_frozen_canonical_ids"])
+            self.assertEqual(result["bin_count"], 2)
+            with self.assertRaisesRegex(ValueError, "does not match frozen canonical identity order"):
+                validate_legacy_header_provenance(["id-a", "wrong"], manifest_path, matrix_path, converter_path)
+
     def test_audit_grants_no_coverage_credit(self):
         canonical = [f"pkg::cg||variable||cp||name:bin{i}||0" for i in range(4507)]
         catalog = {"schema": "aon-timer-bin-definitions-v1",
@@ -67,6 +111,18 @@ class CanonicalIdentityCandidateTests(unittest.TestCase):
             "EXACT_VALUE_RANGE_TYPE_CANDIDATE_INSTANCE_UNRESOLVED": 2,
             "VALUE_LABEL_OR_SOURCE_MAPPING_UNRESOLVED": 10,
         })
+        self.assertEqual(report["ordinal_range_mapping_candidate_count"], 2076)
+        ordinal_definition_ids = [
+            row["candidate_definition_id"] for row in report["ordinal_range_mapping_candidates"]
+        ]
+        direct_definition_ids = {
+            definition_id
+            for row in report["identities"]
+            if row["classification"] == "DIRECT_TYPE_IDENTITY_MATCH"
+            for definition_id in row["candidate_definition_ids"]
+        }
+        self.assertEqual(len(ordinal_definition_ids), len(set(ordinal_definition_ids)))
+        self.assertFalse(direct_definition_ids.intersection(ordinal_definition_ids))
         self.assertEqual(report["coverage_credit_granted"], 0)
 
 
