@@ -10,6 +10,8 @@
 
 **2026-11-15 映射复核：**已从原服务器恢复五份 URG 报告的 80 页并核验哈希。首份报告重建 4,507 列成功；四份后续报告合计检出 559 处按位置对齐的明确身份冲突，因此旧 CSV 行号不作为稳定 bin 身份。新增工具按明确 bin 名或 singleton 值对齐并拒绝压缩行猜测，证据和离线重放命令见[URG 布局审计](evidence/stage10_legacy_urg_layout/2026-11-15-v1/README.md)。这是身份审计，没有增加覆盖命中。
 
+**2026-11-16 source-definition 分类：**新增独立分类器并重新分类 Stage 09 的 288 份 PASS raw traces（16,515 个 samples），逐份校验 attempt 记录、trace SHA-256 和样本数。共匹配 43 个源码定义（35 个变量定义、8 个 cross），另有 11,215 个样本的 timer array 分区仍未解析、206 个 interrupt cross 未解析。source definition ID 与旧 VCS canonical identity 是不同层级；本次 coverage credit 增量为 0，175/4,507、4,332 unknown 和 full coverage `null` 均不变。证据见[分类报告](evidence/stage10_source_definition_classification/2026-11-16-v1/classification.json)。
+
 ## 固定参考
 
 | 项目 | 值 |
@@ -38,7 +40,7 @@
 | 07 | 接入聚类、信息评分与 UCB 调度 | 4,507 identities → 78 clusters 已回放；论文信息评分与 cluster UCB 待补；另有 Stage 08 testcase UCB pilot 已运行 |
 | 08 | 在线仿真和 coverage feedback 闭环 | action-boundary pilot 完成 18 次真实仿真与逐轮反馈，18/18 PASS、330 样本、20 positives；完整论文闭环尚未完成 |
 | 09 | Random、Full 和消融对照 | 工程范围 288 次 RTL 对照及独立 replay audit 完成；完整论文方法对照仍待完成 |
-| 10 | 独立复核与最终报告 | Stage 09 工程证据复核完成；完整论文 full coverage 仍不可报告 |
+| 10 | 独立复核与最终报告 | Stage 09 证据复核及 288 份 raw trace 的 source-definition 分类完成；完整论文 full coverage 仍不可报告 |
 
 ## 文件管理
 

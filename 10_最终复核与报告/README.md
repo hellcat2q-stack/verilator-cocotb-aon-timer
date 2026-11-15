@@ -1,6 +1,6 @@
 # 阶段 10：最终复核与报告
 
-状态（2026-11-15）：**Stage 09 工程结果已独立复核；原始 URG 标签布局已恢复并检出旧行号映射错误；完整论文 full coverage 仍不可报告。**
+状态（2026-11-16）：**Stage 09 工程结果已独立复核；旧 URG 行号映射错误已确认；Stage 09 raw traces 已完成 source-definition 分类；完整论文 full coverage 仍不可报告。**
 
 ## 复核结论
 
@@ -24,7 +24,24 @@ Stage 09 独立 replay audit 通过，288/288 个 RTL testcase PASS，证据目�
 
 新增审计器 `tools/audit_legacy_urg_layouts.py` 按明确 bin 名或 singleton 值对齐，可在每份对照报告中匹配 345 个明确变量 identity，拒绝压缩区间、wildcard cross、重复名字及缺失身份；这不是采样等价或完整映射。压缩行仍不暴露逐 bin 次序，因此 v2 顺序候选继续不获 credit。可公开重放的标签布局、来源哈希、恢复记录和错误反例见 [新证据目录](../evidence/stage10_legacy_urg_layout/2026-11-15-v1/README.md)。本轮没有启动 VCS 或 RTL 仿真，没有导出历史 hit counts；Stage 09 的 175 个正向观察来源于本仓库 Cocotb traces，结果不因此增加。
 
-后续先以固定源码定义中的 `definition_id` 建立稳定分类器，再把 Cocotb raw samples 分类并输出新 schema 的向量；对旧 CSV 仅保留能够逐项验证的明确身份关联。完整覆盖统计还需补齐 shared DV/TL sample-site 和采样语义。旧 39-run CSV 的按列语义需要单独修复，不能拿它的行号作为新 coverage classifier 的真值。
+### Source-definition 分类（2026-11-16）
+
+新增 `tools/classify_source_definitions.py` 和单测，以固定 catalog 的 `definition_id` 分类 Stage 09 的 288 份 PASS trace。工具先校验相邻 `attempt.json` 的 PASS 状态、run ID、testcase、sample count 和 raw trace SHA-256，再对样本做分类。机器可读报告和 SHA-256 sidecar：[classification.json](../evidence/stage10_source_definition_classification/2026-11-16-v1/classification.json)、[classification.json.sha256](../evidence/stage10_source_definition_classification/2026-11-16-v1/classification.json.sha256)。
+
+16,515 个样本中，观察到 43 个不同 source definitions（35 个变量定义、8 个 cross 定义）；分类记录含 64,299 次 named/singleton exact match、2,908 次 auto-bin value-range match、1,454 次 same-sample count-event cross match。11,215 个 timer config 样本仍有一个或多个数组分区未解析，共 42,480 个数组分区观察；206 个 interrupt cross 观察因导入定义结构不可靠而保持 unresolved。统计是 source-definition 层的观察，不是 legacy VCS bin 的覆盖命中；不使用旧 CSV occurrence offset，不推断 miss，也不增加原有 175 个 canonical positive identity。full coverage rate 继续为 `null`。
+
+在 WSL 仓库根目录重放分类：
+
+```bash
+python3 tools/classify_source_definitions.py \
+  --trace-root evidence/stage09_comparison/2026-11-14-v1 \
+  --expected-trace-count 288 \
+  --output build/stage10-source-definition-classification.json
+```
+
+此流程只消费已保存的 PASS traces，没有启动新的 RTL 仿真。source definition mapping 与 legacy VCS identity mapping、VCS/URG/Cocotb 采样等价是三类不同证据。
+
+后续还需补齐 timer_cfg array 的逐 bin source range、shared DV/TL sample-site 和 interrupt cross 的可靠 schema 对照，并获得 UVM/VCS sample timing 对照。旧 39-run CSV 的 occurrence 顺序候选继续不获 credit，不能拿其按列结果当作新 classifier 的真值。
 
 ## 复核命令
 
@@ -35,6 +52,11 @@ python3 tools/audit_stage09_comparison.py \
   --evidence-dir evidence/stage09_comparison/2026-11-14-v1
 
 python3 -m unittest discover -s tests -q
+
+python3 tools/classify_source_definitions.py \
+  --trace-root evidence/stage09_comparison/2026-11-14-v1 \
+  --expected-trace-count 288 \
+  --output build/stage10-source-definition-classification.json
 
 # 从公开的定义标签布局重放；不需要访问学校服务器或安装 HTML parser
 python3 tools/audit_legacy_urg_layouts.py \
