@@ -1,0 +1,23 @@
+{
+  "schema": "aon-timer-fixed-sample-validation-v1",
+  "unit_tests": {
+    "command": "python -m unittest discover -s tests -q",
+    "tests_run": 162,
+    "exit_code": 0,
+    "status": "PASS",
+    "duration_seconds": 68.777
+  },
+  "native_cause_probes_passed": 2,
+  "vcs_cases_passed": 3,
+  "cocotb_cases_passed": 3,
+  "fixed_reference_body_samples": 82,
+  "cocotb_body_samples": 82,
+  "per_group_fields_order_times_match": true,
+  "cross_group_global_same_time_order_matches": false,
+  "original_reference_parity_verified": false,
+  "complete_parity_verified": false,
+  "full_simulation_started": false,
+  "full_simulation_blockers": 5,
+  "coverage_credit_granted": 0,
+  "full_coverage_rate": null
+}

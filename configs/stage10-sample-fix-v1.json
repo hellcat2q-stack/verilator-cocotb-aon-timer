@@ -1,0 +1,22 @@
+{
+  "schema": "aon-timer-sample-fix-protocol-v1",
+  "source_revision": "9f20940d494a223cc950a5b98f748fb28109d458",
+  "reference_variant": "pinned-sampling-fixes-v1",
+  "baseline_evidence": "evidence/stage10_independent_sample_parity/2026-11-16-v1/audit.json",
+  "stimulus_protocol": "configs/stage10-paired-short-v1.json",
+  "stimulus_and_budgets_changed": false,
+  "reference_fixes": [
+    "Place reset-race timer fork and disable fork in a single isolated child process.",
+    "Read wkup_count_hi for the high half of the actual wakeup sample.",
+    "Wait on the named sample event itself, rather than its triggered property."
+  ],
+  "python_variant": "PinnedSamplingFixedAdapterV1",
+  "python_fix_policy": "Model native measured invocations, retain both scheduler producer kinds and emitted sample metadata, initialize source-local mirrors separately from RTL reset values.",
+  "native_same_time_semantics": "Measure count/expiry coalescing; do not force two sample invocations.",
+  "seed": 1,
+  "cases": [0, 1, 2],
+  "full_simulation_started": false,
+  "coverage_credit_granted": 0,
+  "complete_parity_verified": false,
+  "remaining_scope": "Update/restart/prescale/sleep/reset matrix, shared sample sites, exact identities/vectors and paper scheduler."
+}

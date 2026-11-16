@@ -1,0 +1,13 @@
+{
+  "producer_count": 5,
+  "property_wait_count": 1,
+  "named_event_wait_count": 5,
+  "schema": "aon-timer-native-event-control-probe-v1",
+  "build_exit_code": 0,
+  "process_exit_code": 0,
+  "source_sha256": "4ae74d1d015297103d92b9b279d8a4d82a97a6044e1dd4b88a9019c42e812aff",
+  "simv_sha256": "1027ad7994de2f0b1063aea1e1a6bc6d27e3e296f6dfa00874df0861e8102ca4",
+  "build_log_sha256": "913b647fe94564cd7495fab921b9ba9134fb07c3568e7b52a956626d17b38237",
+  "simulation_log_sha256": "b5bba4bda635572ea2564521b917fb75cf88a3b0f927420e063ede2151524491",
+  "coverage_credit_granted": 0
+}

@@ -14,6 +14,8 @@
 
 ## 固定参考
 
+**参考采样修复版已验证（2026-11-16）：**在新的 `pinned-sampling-fixes-v1` 中修复 reset fork 清理、wakeup 高字读取和命名事件等待；两个独立 VCS 探针分别复现原版 5 次触发只接收 1 次、复位后 5 个 tick 执行 10 次的问题，修复后均为 5 次。三组新 VCS/Cocotb 短测全部 PASS，body 内 **22/22、30/30、30/30 次采样**，每组字段、顺序和时间均一致，总线及逐 AON 边沿 RTL 状态也一致。跨 group 的同时间全局顺序仍不同，尚未扩展完整采样矩阵；原版差异、历史 adapter 和 coverage credit 保留原样。见[修复版证据](evidence/stage10_sample_fix/2026-11-16-v1/README.md)及 [v6 preflight](evidence/stage10_full_simulation_preflight/2026-11-16-v6/preflight.json)。这验证了三个短测下的修复版采样，不代表完整原版等价或最终覆盖率；full 未启动，5 项门禁仍在。
+
 **独立实际采样对照已实跑（2026-11-16）：**从固定版本重新导出并核验 10,514 个源码 blobs，声明日志与确定性测试配置 patch，独立构建 VCS；三组短测试及三个 Verilator/Cocotb 配对回放全部 PASS。TL 输入、响应时刻与逐 AON 边沿 RTL 计数器/引脚均一致，但 body 内实际 UVM/Cocotb samples 分别为 **20/23、26/32、26/32**。已复现配置镜像 `wdog_regwen` 初值、wakeup 低字重复读取、timer 调用次数等差异；pin 同时间多重集合相同而顺序不同。见[完整证据与差异](evidence/stage10_independent_sample_parity/2026-11-16-v1/README.md)。此前 [timing 证据 v2](evidence/stage10_uvm_vcs_timing/2026-11-16-v2/README.md)只检查 producer 控制消息，仍保留作历史诊断。新 [v5 preflight](evidence/stage10_full_simulation_preflight/2026-11-16-v5/preflight.json)已离线重放实际采样对照；完整 parity 仍为 false，5 项门禁未解除，full 未启动，coverage credit 增量为 0。
 
 | 项目 | 值 |
@@ -42,7 +44,7 @@
 | 07 | 接入聚类、信息评分与 UCB 调度 | 4,507 identities → 78 clusters 已回放；论文信息评分与 cluster UCB 待补；另有 Stage 08 testcase UCB pilot 已运行 |
 | 08 | 在线仿真和 coverage feedback 闭环 | action-boundary pilot 完成 18 次真实仿真与逐轮反馈，18/18 PASS、330 样本、20 positives；完整论文闭环尚未完成 |
 | 09 | Random、Full 和消融对照 | 工程范围 288 次 RTL 对照及独立 replay audit 完成；完整论文方法对照仍待完成 |
-| 10 | 独立复核与最终报告 | 独立 pinned UVM/Cocotb 三组实际采样对照完成，RTL 一致但采样存在实质差异；先前定义/身份/边界审计保留，5 项 blocker 仍在，未启动 full 仿真 |
+| 10 | 独立复核与最终报告 | 原版采样差异已保留；独立参考修复版三组逐组采样匹配 22/22、30/30、30/30，两个原生原因探针通过；完整矩阵与 5 项 full 门禁待补，未启动 full |
 
 ## 文件管理
 

@@ -1,0 +1,66 @@
+--- instrumented-original/scoreboard.sv
++++ fixed/scoreboard.sv
+@@ -207,19 +207,17 @@
+   virtual task check_interrupt();
+     forever begin
+       wait (!under_reset);
+-
+-      fork : isolation_fork
+-        fork
+-          wait (under_reset);
+-          run_wkup_timer();
+-          run_wdog_bark_timer();
+-          run_wdog_bite_timer();
+-        join_any
+-
+-        // run_wkup_timer and run_wdog_timer never return so if we've got here then we've gone into
+-        // reset. Kill the two timer processes then go around and wait until we come out of reset
+-        // again.
+-        disable fork;
++      fork
++        begin : isolation_fork
++          fork
++            wait (under_reset);
++            run_wkup_timer();
++            run_wdog_bark_timer();
++            run_wdog_bite_timer();
++          join_any
++          // Only this child's timer descendants are killed on reset.
++          disable fork;
++        end
+       join
+     end
+   endtask : check_interrupt
+@@ -271,12 +269,12 @@
+       fork
+         begin
+           forever begin
+-            @(sample_coverage.triggered);
++            @(sample_coverage);
+             if (cfg.en_cov) begin
+               bit [63:0] rtl_count;
+               //reading RTL value since TB doesn't keep track of count
+               csr_rd(.ptr(ral.wkup_count_lo), .value(rtl_count[31:0]), .backdoor(1));
+-              csr_rd(.ptr(ral.wkup_count_lo), .value(rtl_count[63:32]), .backdoor(1));
++              csr_rd(.ptr(ral.wkup_count_hi), .value(rtl_count[63:32]), .backdoor(1));
+               $display("AON_PARITY {\"kind\":\"sample\",\"time_ps\":%0.0f,\"seq\":%0d,\"group\":\"%0s\",\"wkup_int\":%0d,\"wkup_thold\":%0d,\"wkup_count\":%0d}", $realtime / 1ps, parity_sample_seq++, "wake_up_timer_thold_hit_cg", intr_status_exp[WKUP], wkup_thold, rtl_count);
+               cov.wake_up_timer_thold_hit_cg.sample(intr_status_exp[WKUP],
+                                                     wkup_thold,
+@@ -336,7 +334,7 @@
+       fork
+         begin
+           forever begin
+-            @(sample_coverage.triggered);
++            @(sample_coverage);
+             if (cfg.en_cov) begin
+               bit [31:0] rtl_count;
+               //reading RTL value since TB doesn't keep track of count
+@@ -400,7 +398,7 @@
+       fork
+         begin
+           forever begin
+-            @(sample_coverage.triggered);
++            @(sample_coverage);
+             if (cfg.en_cov) begin
+               bit [31:0] rtl_count;
+               //reading RTL value since TB doesn't keep track of count

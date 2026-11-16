@@ -1,0 +1,8 @@
+{
+  "vcs": "P-2019.06-SP1",
+  "build_log_sha256": "98220029c54928a0d866cb2cd90d218c0a349824762b514cd809f1c984a43efd",
+  "compatibility_argv_log_sha256": "0d648350799bb996c4c4af6eb053955149fcdd9f5d30bc8ae8fa2842b02e59ce",
+  "compatibility": "Existing wrapper removes unsupported xprop=mmsopt/cm_common_hier; no scoring fixes",
+  "requested_build_option": "+define+DISABLE_PRIM_CDC_RAND_DELAY",
+  "private_paths_exported": false
+}

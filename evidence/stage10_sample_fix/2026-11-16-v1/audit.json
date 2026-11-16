@@ -1,0 +1,487 @@
+{
+  "schema": "aon-timer-pinned-sample-fix-audit-v1",
+  "source_revision": "9f20940d494a223cc950a5b98f748fb28109d458",
+  "reference_variant": "pinned-sampling-fixes-v1",
+  "reference_logic_fixes": [
+    "reset-fork-isolation",
+    "wakeup-high-word-read",
+    "named-event-wait"
+  ],
+  "audit_tool_sha256": "286b679535823f2139060406df0f0fc073c8414f3243b28e28e7d04ffbcecbdc",
+  "comparison_tool_sha256": "14e94c1da71be0e417f7e71a571c8440436cb3b39f295a40fa73a80d74533d20",
+  "source_export_verified": true,
+  "post_build_source_verified": true,
+  "status": "BOUNDED_FIXED_REFERENCE_MATCH",
+  "fixed_reference_short_cases_match": true,
+  "original_reference_parity_verified": false,
+  "complete_parity_verified": false,
+  "full_simulation_started": false,
+  "coverage_credit_granted": 0,
+  "full_coverage_rate": null,
+  "scope": "Three unchanged deterministic short cases with declared fixes; equality required within each group and at each timestamp. Cross-group same-time invocation order is reported separately. Update/prescale/sleep/reset/shared matrix is not covered.",
+  "inputs_sha256": {
+    "cocotb-manifest.json": "59b20d607c4ec34299aa4d3f2b729fead8c85b17b16abfb8d2b6f5abb4023247",
+    "execution.json": "0329334219a79b797dd88365f3343b776ec6e6364e05a01d37ee30e7dc8173db",
+    "instrumentation.json": "206c60c53266fd7c982a3c498edba22dc72396df182d92fa6b47dc4cff465a0f",
+    "instrumentation.patch": "691712b45360f86512c84b9257932c361498583423d3cb71fb3a667b20bdb0a8",
+    "reference-fixes.patch": "3e24ef6b1793be4511cb85070d80d28d9d48d800859bd662c7ac48179bf5e87c",
+    "post-build-source.json": "b8cbc8fca4abe9b7e009409195700acc2a19fb5d38abc76cb24433118289cd96",
+    "source-attestation.json": "fc96c31d1f64e853e8a22d8322566b24608e97a53689eab72ffdf4d1c30020a7",
+    "event-probe.json": "a6559d012ad291f9c315caf44ed35988ab5f5a5bbd782051f416c44658750b8d",
+    "fork-probe.json": "bc01661dd4fc1ea11a5107f95e3a15104123362a0d01cb0fef6dc655934a9dce",
+    "simv.sha256": "286e37d18600cab2658ca9c04b01553e67f6f9237aa9e73b3fd98eec69e4d251",
+    "cocotb-export.json": "526884bbf64be3d8bb5468518e4319c4821c78fd060f022aa8603b697e82411f",
+    "vcs-case-0.json": "de9d9ebec48a9a7c59377de5d8c0a680a170b18d2184836e8afb956d7a252974",
+    "cocotb-case-0/replay.json": "e202105b4e56f84d236509e19d88139ce2c2695e827286c8c494aba82b0fa6c3",
+    "cocotb-case-0/stage10-sample-fix-v1-case-0__paired_case_0__seed1.json": "b35248ee4a6b1e2101cf26a21fad3e1f79571033fa1f76427fba70c65b6e0fb6",
+    "cocotb-case-0/results.xml": "29ed1d5903f2495b8e498836f6d7be4ed28a991e04a9d937fd5b27eca1d7edba",
+    "vcs-case-1.json": "8e8c9a1ae646329a33eb54f0be895795b830c60948a64a2309aab4066aa24c09",
+    "cocotb-case-1/replay.json": "71c602cbad6f439a92a9db43ee6d5bbbe59bda5f04fec5ccfdf4cae2cb6cf7f3",
+    "cocotb-case-1/stage10-sample-fix-v1-case-1__paired_case_1__seed1.json": "fc4d522a94c264a039e1a3ffca423ef101b0940ff6d6470fbbad13e514c0b72f",
+    "cocotb-case-1/results.xml": "138054cd3e3f2b263aad6d4d5988816cd4504fd01b359de83892e0b71b8e4b73",
+    "vcs-case-2.json": "4248cc41871b382e6efc2ffcf8ff278bcf3124970ca66fbca930db885f438a7e",
+    "cocotb-case-2/replay.json": "63bcb7ca2223d16120e927cc2049fbe37a9bbf0ed87e066d5c5f861e26ad016a",
+    "cocotb-case-2/stage10-sample-fix-v1-case-2__paired_case_2__seed1.json": "ac233b292d0e27744b365997120cdd8f89c1e0f769ccf854f0a95a8f4b31b039",
+    "cocotb-case-2/results.xml": "ceef28a543cb988366d6ba56d8a1660a93e5135a238b97d513ee803f4754d65c"
+  },
+  "event_probe": {
+    "producer_count": 5,
+    "property_wait_count": 1,
+    "named_event_wait_count": 5,
+    "schema": "aon-timer-native-event-control-probe-v1",
+    "build_exit_code": 0,
+    "process_exit_code": 0,
+    "source_sha256": "4ae74d1d015297103d92b9b279d8a4d82a97a6044e1dd4b88a9019c42e812aff",
+    "simv_sha256": "1027ad7994de2f0b1063aea1e1a6bc6d27e3e296f6dfa00874df0861e8102ca4",
+    "build_log_sha256": "913b647fe94564cd7495fab921b9ba9134fb07c3568e7b52a956626d17b38237",
+    "simulation_log_sha256": "b5bba4bda635572ea2564521b917fb75cf88a3b0f927420e063ede2151524491",
+    "coverage_credit_granted": 0
+  },
+  "fork_probe": {
+    "tick_count": 5,
+    "original_count": 10,
+    "isolated_count": 5,
+    "schema": "aon-timer-native-fork-cleanup-probe-v1",
+    "build_exit_code": 0,
+    "process_exit_code": 0,
+    "source_sha256": "972c2e2a6623e6341cdb6fde1c73cc21432508b3f41b2c42175d1185f61219c2",
+    "simv_sha256": "5d7b4debe97ff060f6d0663ebbd267769285ce7f39eb9a3f2fc2ee8932b48d34",
+    "build_log_sha256": "9ec2393a2448503b4c1a22d23ace82ed8392b707ea5519ffb9061a64dc2a0721",
+    "simulation_log_sha256": "995c4f171493db35b29a1f1ad4a06edc8bfe89646afe12a5f156d9fde2b75dde",
+    "coverage_credit_granted": 0
+  },
+  "cases": [
+    {
+      "case": 0,
+      "reference_status": "PASS",
+      "uvm_sample_count_in_body": 22,
+      "cocotb_sample_count_in_body": 22,
+      "accepted_tl_inputs_and_times_equal": true,
+      "tl_response_callbacks_and_read_values_equal": true,
+      "edge_observation_count": 29,
+      "aon_edge_timestamps_equal": true,
+      "rtl_counters_and_output_pins_at_aon_edges_equal": true,
+      "edge_differences": [],
+      "simultaneous_count_expiry": [
+        {
+          "label": "WKUP",
+          "time_ps": 441707766,
+          "control_events": [
+            "count",
+            "expiry"
+          ],
+          "actual_sample_invocations": 1
+        }
+      ],
+      "samples": {
+        "groups": {
+          "intr_cg": {
+            "uvm_count": 2,
+            "cocotb_count": 2,
+            "ordered_tuples_and_times_equal": true,
+            "same_time_multisets_equal": true,
+            "only_uvm_times_ps": [],
+            "only_cocotb_times_ps": [],
+            "matched_time_field_differences": []
+          },
+          "intr_pins_cg": {
+            "uvm_count": 2,
+            "cocotb_count": 2,
+            "ordered_tuples_and_times_equal": true,
+            "same_time_multisets_equal": true,
+            "only_uvm_times_ps": [],
+            "only_cocotb_times_ps": [],
+            "matched_time_field_differences": []
+          },
+          "timer_cfg_cg": {
+            "uvm_count": 14,
+            "cocotb_count": 14,
+            "ordered_tuples_and_times_equal": true,
+            "same_time_multisets_equal": true,
+            "only_uvm_times_ps": [],
+            "only_cocotb_times_ps": [],
+            "matched_time_field_differences": []
+          },
+          "wake_up_timer_thold_hit_cg": {
+            "uvm_count": 4,
+            "cocotb_count": 4,
+            "ordered_tuples_and_times_equal": true,
+            "same_time_multisets_equal": true,
+            "only_uvm_times_ps": [],
+            "only_cocotb_times_ps": [],
+            "matched_time_field_differences": []
+          }
+        },
+        "global_invocation_order_equal": false,
+        "same_time_multisets_equal": true
+      },
+      "cocotb_status": "PASS",
+      "producer_events": [
+        {
+          "time_ps": 426707766,
+          "label": "WKUP",
+          "kind": "count",
+          "count": 1
+        },
+        {
+          "time_ps": 431707766,
+          "label": "WKUP",
+          "kind": "count",
+          "count": 2
+        },
+        {
+          "time_ps": 436707766,
+          "label": "WKUP",
+          "kind": "count",
+          "count": 3
+        },
+        {
+          "time_ps": 441707766,
+          "label": "WKUP",
+          "kind": "count",
+          "count": 4
+        },
+        {
+          "time_ps": 441707766,
+          "label": "WKUP",
+          "kind": "expiry"
+        }
+      ],
+      "producer_events_are_unique": true
+    },
+    {
+      "case": 1,
+      "reference_status": "PASS",
+      "uvm_sample_count_in_body": 30,
+      "cocotb_sample_count_in_body": 30,
+      "accepted_tl_inputs_and_times_equal": true,
+      "tl_response_callbacks_and_read_values_equal": true,
+      "edge_observation_count": 29,
+      "aon_edge_timestamps_equal": true,
+      "rtl_counters_and_output_pins_at_aon_edges_equal": true,
+      "edge_differences": [],
+      "simultaneous_count_expiry": [
+        {
+          "label": "WDOG Bark",
+          "time_ps": 436707766,
+          "control_events": [
+            "count",
+            "expiry"
+          ],
+          "actual_sample_invocations": 1
+        },
+        {
+          "label": "WDOG Bite",
+          "time_ps": 451707766,
+          "control_events": [
+            "count",
+            "expiry"
+          ],
+          "actual_sample_invocations": 1
+        }
+      ],
+      "samples": {
+        "groups": {
+          "intr_cg": {
+            "uvm_count": 2,
+            "cocotb_count": 2,
+            "ordered_tuples_and_times_equal": true,
+            "same_time_multisets_equal": true,
+            "only_uvm_times_ps": [],
+            "only_cocotb_times_ps": [],
+            "matched_time_field_differences": []
+          },
+          "intr_pins_cg": {
+            "uvm_count": 4,
+            "cocotb_count": 4,
+            "ordered_tuples_and_times_equal": true,
+            "same_time_multisets_equal": true,
+            "only_uvm_times_ps": [],
+            "only_cocotb_times_ps": [],
+            "matched_time_field_differences": []
+          },
+          "timer_cfg_cg": {
+            "uvm_count": 14,
+            "cocotb_count": 14,
+            "ordered_tuples_and_times_equal": true,
+            "same_time_multisets_equal": true,
+            "only_uvm_times_ps": [],
+            "only_cocotb_times_ps": [],
+            "matched_time_field_differences": []
+          },
+          "watchdog_timer_bark_thold_hit_cg": {
+            "uvm_count": 4,
+            "cocotb_count": 4,
+            "ordered_tuples_and_times_equal": true,
+            "same_time_multisets_equal": true,
+            "only_uvm_times_ps": [],
+            "only_cocotb_times_ps": [],
+            "matched_time_field_differences": []
+          },
+          "watchdog_timer_bite_thold_hit_cg": {
+            "uvm_count": 6,
+            "cocotb_count": 6,
+            "ordered_tuples_and_times_equal": true,
+            "same_time_multisets_equal": true,
+            "only_uvm_times_ps": [],
+            "only_cocotb_times_ps": [],
+            "matched_time_field_differences": []
+          }
+        },
+        "global_invocation_order_equal": false,
+        "same_time_multisets_equal": true
+      },
+      "cocotb_status": "PASS",
+      "producer_events": [
+        {
+          "time_ps": 426707766,
+          "label": "WDOG Bark",
+          "kind": "count",
+          "count": 1
+        },
+        {
+          "time_ps": 426707766,
+          "label": "WDOG Bite",
+          "kind": "count",
+          "count": 1
+        },
+        {
+          "time_ps": 431707766,
+          "label": "WDOG Bark",
+          "kind": "count",
+          "count": 2
+        },
+        {
+          "time_ps": 431707766,
+          "label": "WDOG Bite",
+          "kind": "count",
+          "count": 2
+        },
+        {
+          "time_ps": 436707766,
+          "label": "WDOG Bark",
+          "kind": "count",
+          "count": 3
+        },
+        {
+          "time_ps": 436707766,
+          "label": "WDOG Bark",
+          "kind": "expiry"
+        },
+        {
+          "time_ps": 436707766,
+          "label": "WDOG Bite",
+          "kind": "count",
+          "count": 3
+        },
+        {
+          "time_ps": 441707766,
+          "label": "WDOG Bite",
+          "kind": "count",
+          "count": 4
+        },
+        {
+          "time_ps": 446707766,
+          "label": "WDOG Bite",
+          "kind": "count",
+          "count": 5
+        },
+        {
+          "time_ps": 451707766,
+          "label": "WDOG Bite",
+          "kind": "count",
+          "count": 6
+        },
+        {
+          "time_ps": 451707766,
+          "label": "WDOG Bite",
+          "kind": "expiry"
+        },
+        {
+          "time_ps": 466707766,
+          "label": "WDOG Bark",
+          "kind": "count",
+          "count": 1
+        }
+      ],
+      "producer_events_are_unique": true
+    },
+    {
+      "case": 2,
+      "reference_status": "PASS",
+      "uvm_sample_count_in_body": 30,
+      "cocotb_sample_count_in_body": 30,
+      "accepted_tl_inputs_and_times_equal": true,
+      "tl_response_callbacks_and_read_values_equal": true,
+      "edge_observation_count": 29,
+      "aon_edge_timestamps_equal": true,
+      "rtl_counters_and_output_pins_at_aon_edges_equal": true,
+      "edge_differences": [],
+      "simultaneous_count_expiry": [
+        {
+          "label": "WDOG Bite",
+          "time_ps": 436707766,
+          "control_events": [
+            "count",
+            "expiry"
+          ],
+          "actual_sample_invocations": 1
+        },
+        {
+          "label": "WDOG Bark",
+          "time_ps": 451707766,
+          "control_events": [
+            "count",
+            "expiry"
+          ],
+          "actual_sample_invocations": 1
+        }
+      ],
+      "samples": {
+        "groups": {
+          "intr_cg": {
+            "uvm_count": 2,
+            "cocotb_count": 2,
+            "ordered_tuples_and_times_equal": true,
+            "same_time_multisets_equal": true,
+            "only_uvm_times_ps": [],
+            "only_cocotb_times_ps": [],
+            "matched_time_field_differences": []
+          },
+          "intr_pins_cg": {
+            "uvm_count": 4,
+            "cocotb_count": 4,
+            "ordered_tuples_and_times_equal": true,
+            "same_time_multisets_equal": true,
+            "only_uvm_times_ps": [],
+            "only_cocotb_times_ps": [],
+            "matched_time_field_differences": []
+          },
+          "timer_cfg_cg": {
+            "uvm_count": 14,
+            "cocotb_count": 14,
+            "ordered_tuples_and_times_equal": true,
+            "same_time_multisets_equal": true,
+            "only_uvm_times_ps": [],
+            "only_cocotb_times_ps": [],
+            "matched_time_field_differences": []
+          },
+          "watchdog_timer_bark_thold_hit_cg": {
+            "uvm_count": 6,
+            "cocotb_count": 6,
+            "ordered_tuples_and_times_equal": true,
+            "same_time_multisets_equal": true,
+            "only_uvm_times_ps": [],
+            "only_cocotb_times_ps": [],
+            "matched_time_field_differences": []
+          },
+          "watchdog_timer_bite_thold_hit_cg": {
+            "uvm_count": 4,
+            "cocotb_count": 4,
+            "ordered_tuples_and_times_equal": true,
+            "same_time_multisets_equal": true,
+            "only_uvm_times_ps": [],
+            "only_cocotb_times_ps": [],
+            "matched_time_field_differences": []
+          }
+        },
+        "global_invocation_order_equal": false,
+        "same_time_multisets_equal": true
+      },
+      "cocotb_status": "PASS",
+      "producer_events": [
+        {
+          "time_ps": 426707766,
+          "label": "WDOG Bark",
+          "kind": "count",
+          "count": 1
+        },
+        {
+          "time_ps": 426707766,
+          "label": "WDOG Bite",
+          "kind": "count",
+          "count": 1
+        },
+        {
+          "time_ps": 431707766,
+          "label": "WDOG Bark",
+          "kind": "count",
+          "count": 2
+        },
+        {
+          "time_ps": 431707766,
+          "label": "WDOG Bite",
+          "kind": "count",
+          "count": 2
+        },
+        {
+          "time_ps": 436707766,
+          "label": "WDOG Bark",
+          "kind": "count",
+          "count": 3
+        },
+        {
+          "time_ps": 436707766,
+          "label": "WDOG Bite",
+          "kind": "count",
+          "count": 3
+        },
+        {
+          "time_ps": 436707766,
+          "label": "WDOG Bite",
+          "kind": "expiry"
+        },
+        {
+          "time_ps": 441707766,
+          "label": "WDOG Bark",
+          "kind": "count",
+          "count": 4
+        },
+        {
+          "time_ps": 446707766,
+          "label": "WDOG Bark",
+          "kind": "count",
+          "count": 5
+        },
+        {
+          "time_ps": 451707766,
+          "label": "WDOG Bark",
+          "kind": "count",
+          "count": 6
+        },
+        {
+          "time_ps": 451707766,
+          "label": "WDOG Bark",
+          "kind": "expiry"
+        },
+        {
+          "time_ps": 466707766,
+          "label": "WDOG Bite",
+          "kind": "count",
+          "count": 1
+        }
+      ],
+      "producer_events_are_unique": true
+    }
+  ]
+}

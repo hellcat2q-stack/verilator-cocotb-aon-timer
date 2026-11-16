@@ -71,9 +71,12 @@ DEFAULT_ACTUAL_SAMPLE_AUDIT = (
     ROOT / "evidence" / "stage10_independent_sample_parity"
     / "2026-11-16-v1" / "audit.json"
 )
+DEFAULT_SAMPLE_FIX_AUDIT = (
+    ROOT / "evidence" / "stage10_sample_fix" / "2026-11-16-v1" / "audit.json"
+)
 DEFAULT_OUTPUT = (
     ROOT / "evidence" / "stage10_full_simulation_preflight"
-    / "2026-11-16-v5" / "preflight.json"
+    / "2026-11-16-v6" / "preflight.json"
 )
 
 
@@ -108,6 +111,7 @@ def build_preflight(
     array_vcs_boundary_audit_path: Path = DEFAULT_ARRAY_VCS_BOUNDARY_AUDIT,
     uvm_timing_shape_audit_path: Path = DEFAULT_UVM_TIMING_SHAPE_AUDIT,
     actual_sample_audit_path: Path = DEFAULT_ACTUAL_SAMPLE_AUDIT,
+    sample_fix_audit_path: Path = DEFAULT_SAMPLE_FIX_AUDIT,
 ) -> dict[str, Any]:
     catalog, catalog_hash = load_catalog(CATALOG_PATH)
     array_definitions, array_reference = load_array_reference(catalog)
@@ -134,6 +138,19 @@ def build_preflight(
         raise ValueError("Actual sample audit does not replay from independently captured evidence")
     if not actual_samples["valid_independent_short_pairs"] or actual_samples["complete_parity_verified"]:
         raise ValueError("Three short diagnostic pairs cannot establish complete sampling parity")
+    sample_fix = read_json(sample_fix_audit_path)
+    sample_fix_hash = sha256_file(sample_fix_audit_path)
+    fix_sidecar = Path(str(sample_fix_audit_path) + ".sha256").read_text(encoding="ascii").split()
+    if fix_sidecar != [sample_fix_hash, Path(sample_fix_audit_path).name]:
+        raise ValueError("Fixed-reference sample audit SHA-256 sidecar mismatch")
+    try:
+        from tools.stage10_sample_fix.audit import audit_evidence as replay_sample_fix
+    except ModuleNotFoundError:
+        from stage10_sample_fix.audit import audit_evidence as replay_sample_fix
+    if sample_fix != replay_sample_fix(Path(sample_fix_audit_path).parent):
+        raise ValueError("Fixed-reference sample audit does not replay from captured evidence")
+    if sample_fix["original_reference_parity_verified"] or sample_fix["complete_parity_verified"]:
+        raise ValueError("A repaired reference and three short cases do not establish original/full parity")
     timing_shape_hash = sha256_file(uvm_timing_shape_audit_path)
     timing_sidecar = Path(str(uvm_timing_shape_audit_path) + ".sha256").read_text(encoding="ascii").split()
     if timing_sidecar != [timing_shape_hash, Path(uvm_timing_shape_audit_path).name]:
@@ -334,7 +351,7 @@ def build_preflight(
     if not timing_parity_complete:
         blockers.append(
             "Count-event sampling cadence lacks source-locked testcase/sample-level UVM/VCS timing parity; "
-            "three independent actual-sample pairs now show differences; complete semantics remain unresolved."
+            "the original shows differences; a declared repair matches three bounded cases, with the broader timing/shared matrix still unresolved."
         )
     if not replay.get("status") == "PASS" or replay.get("attempts_replayed") != 288:
         blockers.append("Stage 09 replay audit is not a verified 288/288 PASS.")
@@ -393,6 +410,8 @@ def build_preflight(
         ),
         "uvm_control_event_shape_diagnostic_is_replayed": timing_shape_verified,
         "independent_actual_sample_diagnostic_is_replayed": True,
+        "fixed_reference_sample_diagnostic_is_replayed": True,
+        "fixed_reference_three_short_cases_match": sample_fix["fixed_reference_short_cases_match"],
         "stage06_exact_matrix_is_available": stage06_exact,
         "legacy_identity_bridge_is_complete": mapping == canonical_count,
         "sample_site_mapping_is_complete": sample_site_complete,
@@ -469,6 +488,11 @@ def build_preflight(
             "independent_pinned_actual_sample_body_count": sum(c["uvm_sample_count_in_body"] for c in actual_samples["cases"]),
             "independent_cocotb_sample_body_count": sum(c["cocotb_sample_count_in_body"] for c in actual_samples["cases"]),
             "independent_source_export_and_declared_patch_verified": actual_samples["post_build_source_matches_declared_variant"],
+            "fixed_reference_variant": sample_fix["reference_variant"],
+            "fixed_reference_short_case_status": sample_fix["status"],
+            "fixed_reference_actual_sample_body_count": sum(c["uvm_sample_count_in_body"] for c in sample_fix["cases"]),
+            "fixed_adapter_sample_body_count": sum(c["cocotb_sample_count_in_body"] for c in sample_fix["cases"]),
+            "fixed_reference_is_original_reference_parity": False,
             "uvm_control_message_count": sum(row["event_count"] for row in timing_shape["runs"]),
             "uvm_covergroup_sample_invocations_observed": False,
             "uvm_build_source_revision_verified": timing_shape.get("build_source_revision_verified"),
@@ -543,6 +567,10 @@ def build_preflight(
                 "sha256": actual_samples_hash,
                 "scope": "Three pinned actual-sample pairs; preserves observed differences and does not satisfy complete parity.",
             },
+            "fixed_reference_sample_diagnostic": {
+                "path": _relative(sample_fix_audit_path), "sha256": sample_fix_hash,
+                "scope": "Declared reference repairs and separate adapter match three short cases; no original/full parity credit.",
+            },
             "trace_root": _relative(trace_root),
         },
     }
@@ -561,6 +589,7 @@ def main() -> int:
     parser.add_argument("--array-vcs-boundary-audit", type=Path, default=DEFAULT_ARRAY_VCS_BOUNDARY_AUDIT)
     parser.add_argument("--uvm-timing-shape-audit", type=Path, default=DEFAULT_UVM_TIMING_SHAPE_AUDIT)
     parser.add_argument("--actual-sample-audit", type=Path, default=DEFAULT_ACTUAL_SAMPLE_AUDIT)
+    parser.add_argument("--sample-fix-audit", type=Path, default=DEFAULT_SAMPLE_FIX_AUDIT)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument("--require-ready", action="store_true",
                         help="Return exit code 2 when the full-simulation start gate is blocked.")
@@ -578,6 +607,7 @@ def main() -> int:
             array_vcs_boundary_audit_path=args.array_vcs_boundary_audit,
             uvm_timing_shape_audit_path=args.uvm_timing_shape_audit,
             actual_sample_audit_path=args.actual_sample_audit,
+            sample_fix_audit_path=args.sample_fix_audit,
         )
     except (OSError, UnicodeError, ValueError, KeyError, json.JSONDecodeError) as exc:
         parser.error(str(exc))

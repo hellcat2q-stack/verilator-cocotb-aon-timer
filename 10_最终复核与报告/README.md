@@ -1,8 +1,10 @@
 # 阶段 10：最终复核与报告
 
-状态（2026-11-16）：**独立 pinned UVM/VCS 三组实际采样及 Cocotb 配对回放已完成，6/6 PASS；总线和逐 AON 边沿 RTL 行为一致，采样存在实质差异。Stage 09、source-definition、identity、sample-site 等既有审计保留；full 启动门禁仍 blocked，full coverage 不可报告。**
+状态（2026-11-16）：**独立参考修复版三组实际采样已与 Cocotb 逐组匹配：22/22、30/30、30/30，6/6 测试 PASS；两个原生原因探针和 162 项回归通过。原版采样差异与既有 Stage 09/identity/sample-site 审计保留；完整采样矩阵待扩展，full 门禁仍 blocked，full coverage 不可报告。**
 
 ## 复核结论
+
+新增[参考采样修复版](../evidence/stage10_sample_fix/2026-11-16-v1/README.md) `pinned-sampling-fixes-v1`，仅在新副本中修正 reset fork 隔离、高字读取和命名事件等待，刺激及预算不变。两个独立 VCS 探针分别确认 event-property 等待丢失后续通知、原复位 fork 拓扑遗留线程的原因。修复后 body 内合计 82/82 次逐组样本匹配，producer 不重复、bus/RTL 一致；跨 group 同时间调度顺序仍不同，`intr_test` 与 update/prescale/sleep/reset/shared 矩阵还未完成。新 adapter/trace schema 不导入旧覆盖结果，[v6 preflight](../evidence/stage10_full_simulation_preflight/2026-11-16-v6/preflight.json)重放原版差异与修复版匹配两套证据，五项 full 门禁保持 blocked。
 
 新增[独立实际采样对照](../evidence/stage10_independent_sample_parity/2026-11-16-v1/README.md)：构建前后核验固定源码，独立 VCS 构建仅有声明的日志、确定性序列和快时钟配置 patch。三组 UVM/VCS 测试与三个 Cocotb 回放全部通过；body 内 UVM/Cocotb 实际 samples 分别为 20/23、26/32、26/32，共 72/87。TL 输入/响应及逐 AON 边沿 RTL 状态一致，但采样次数、配置局部镜像初值和 wakeup 双低字读取存在差异。pin 样本同时间多重集合一致、遍历顺序不同，interrupt 读回样本逐项一致。[v5 preflight](../evidence/stage10_full_simulation_preflight/2026-11-16-v5/preflight.json)已校验并离线重放新证据，完整 timing gate 保持 false。
 

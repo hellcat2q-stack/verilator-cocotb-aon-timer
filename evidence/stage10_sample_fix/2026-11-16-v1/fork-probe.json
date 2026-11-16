@@ -1,0 +1,13 @@
+{
+  "tick_count": 5,
+  "original_count": 10,
+  "isolated_count": 5,
+  "schema": "aon-timer-native-fork-cleanup-probe-v1",
+  "build_exit_code": 0,
+  "process_exit_code": 0,
+  "source_sha256": "972c2e2a6623e6341cdb6fde1c73cc21432508b3f41b2c42175d1185f61219c2",
+  "simv_sha256": "5d7b4debe97ff060f6d0663ebbd267769285ce7f39eb9a3f2fc2ee8932b48d34",
+  "build_log_sha256": "9ec2393a2448503b4c1a22d23ace82ed8392b707ea5519ffb9061a64dc2a0721",
+  "simulation_log_sha256": "995c4f171493db35b29a1f1ad4a06edc8bfe89646afe12a5f156d9fde2b75dde",
+  "coverage_credit_granted": 0
+}

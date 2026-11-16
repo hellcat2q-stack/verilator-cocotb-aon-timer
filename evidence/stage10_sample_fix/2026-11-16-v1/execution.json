@@ -1,0 +1,62 @@
+{
+  "schema": "aon-timer-fixed-reference-execution-v1",
+  "reference_variant": "pinned-sampling-fixes-v1",
+  "seed": 1,
+  "testcase": "aon_timer_smoke_vseq",
+  "process_exit_code": 0,
+  "build_exit_code": 0,
+  "inputs_sha256": {
+    "aon_timer_smoke_vseq.sv": "b7cdad41c69ae4cb98329a3354b7dbf26c5b0b2197a2521af61f0d72e69c702d",
+    "collect_vcs.py": "0880415ab53066c6ceaa0fbc280239782f8f43571d25e105854996387d63391f",
+    "event_wait_probe.sv": "4ae74d1d015297103d92b9b279d8a4d82a97a6044e1dd4b88a9019c42e812aff",
+    "fork_cleanup_probe.sv": "972c2e2a6623e6341cdb6fde1c73cc21432508b3f41b2c42175d1185f61219c2",
+    "instrument.py": "b036e61c431af84521c5b9fbb61f31327ff638e3f39e759674be755a04002702",
+    "instrument_base.py": "d4fbca3ffd041fbb6c789eb893e0f7ad5ffd77bf569a571884a42cc026529324",
+    "run_vcs.sh": "16069c208f02779214cf0e613d8f9bc92ba4c7988c47206c4021c513654d679d",
+    "stage10-paired-short-v1.json": "33cf03686eba31a87fdcca8b80a88a7d29ec9b1885d355c59befd5f27946fd69",
+    "stage10-sample-fix-v1.json": "a17fb0116bb5b94828ce07e48826ee223341c05e449394b49716623694877b64",
+    "verify_source.py": "c6ce5a44f316875bff9c00bb3aaa9fbec17652c69f3d15db6a86a7f2ddf080cd"
+  },
+  "collector_tool_sha256": "2e268351ef53d2884666b54e5fdaa37cbfe818957cb5383a8e50277bf47d3178",
+  "private_logs_sha256": {
+    "build.private.log": "98220029c54928a0d866cb2cd90d218c0a349824762b514cd809f1c984a43efd",
+    "runner.private.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "vcs-argv.private.log": "0d648350799bb996c4c4af6eb053955149fcdd9f5d30bc8ae8fa2842b02e59ce"
+  },
+  "native_versions_from_log": {
+    "Compiler": "P-2019.06-SP1_Full64",
+    "Runtime": "P-2019.06-SP1_Full64"
+  },
+  "cdc_disable_define_in_actual_compile_argv": true,
+  "cases": [
+    {
+      "case": 0,
+      "testcase": "aon_timer_smoke_vseq",
+      "seed": 1,
+      "process_exit_code": 0,
+      "run_status": "PASS",
+      "sample_invocations": 24,
+      "full_log_sha256": "79d859ac29dd48050921119f199b638b205d3e44b557b93391c65925015f6841"
+    },
+    {
+      "case": 1,
+      "testcase": "aon_timer_smoke_vseq",
+      "seed": 1,
+      "process_exit_code": 0,
+      "run_status": "PASS",
+      "sample_invocations": 32,
+      "full_log_sha256": "8511dd9c2f0103cba472c3385f1f9ca027feaefa09edc913c44ad5e64a0b88e5"
+    },
+    {
+      "case": 2,
+      "testcase": "aon_timer_smoke_vseq",
+      "seed": 1,
+      "process_exit_code": 0,
+      "run_status": "PASS",
+      "sample_invocations": 32,
+      "full_log_sha256": "8018b2810a86b229e492e9e9f597721f65bbeb1cb8c6c496307fd6717d3cbbd6"
+    }
+  ],
+  "full_simulation_started": false,
+  "coverage_credit_granted": 0
+}

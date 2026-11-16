@@ -1,0 +1,83 @@
+{
+  "schema": "aon-timer-paired-fixed-cocotb-run-v1",
+  "source_revision": "9f20940d494a223cc950a5b98f748fb28109d458",
+  "source_clean": true,
+  "reference_variant": "pinned-sampling-fixes-v1",
+  "source_hashes": {
+    "hw/ip/aon_timer/rtl/aon_timer.sv": "46cd4ab123862c2c296a5ba7ea6216db1285a4fcdc5ce917b2c7fab2ac8c4fce",
+    "hw/ip/aon_timer/rtl/aon_timer_core.sv": "226ed77228b49c3d9231027410b5572ae7812bb0ed76dc6679c18ef028895d2b",
+    "hw/ip/aon_timer/dv/env/aon_timer_scoreboard.sv": "b6534a47a116206144cdb332fcff9a58e49ef64eea965d9ddd8497f0b4d26d65"
+  },
+  "tools_sha256": {
+    "tools/test_uvm_sample_fix_replay.py": "36564274bd1686904fd97edc499bc18c1f8fe76329d302000931a204a482756d",
+    "tools/pinned_sampling_fixed_adapter.py": "f3fb6f3c32c556bad0b0c00a9bb962fd92ae32caae3d9fd3925038e746338003",
+    "tools/test_uvm_sample_replay.py": "93ca52876bf0c8325df0a8f33a7f81cec12c450df20d02c1531700766ba39990",
+    "configs/stage10-sample-fix-v1.json": "a17fb0116bb5b94828ce07e48826ee223341c05e449394b49716623694877b64",
+    "tools/cocotb_coverage_adapter.py": "39c60ea3f6579acdeff2ab5add5c0abb45280b898ed5293003866b3328c97113",
+    "tools/coverage_model.py": "8943147088600c1099dbd80bbfb5331ac72911976e42387b41292994768a02fb",
+    "tools/aon_timer_tb.sv": "8b9f34aaa6fec73d0e3cc4940bfd8a601ab4447c908d6a50007ebd4f429f83ca",
+    "tools/AonMakefile": "f17d518d2ac290a9e43a363b98bc5d99dbcf7156ffe08cbfb31337cbfa571f5a",
+    "configs/stage10-paired-short-v1.json": "33cf03686eba31a87fdcca8b80a88a7d29ec9b1885d355c59befd5f27946fd69"
+  },
+  "seed": 1,
+  "coverage_vector": null,
+  "coverage_credit_granted": 0,
+  "full_simulation_started": false,
+  "cases": [
+    {
+      "case": 0,
+      "testcase": "replay_uvm_accepted_stimulus",
+      "seed": 1,
+      "process_exit_code": 0,
+      "tests_run": 1,
+      "xml_passed": true,
+      "run_status": "PASS",
+      "files_sha256": {
+        "results.xml": "032f411b1af7ea710f0191302332435dbc7b0bf1ca2a5e0c6289dc51014a1caa",
+        "simulation.log": "6066e5b585d45464ad455f1f067955454834896e6ef16a792023fdeb719cc1cb",
+        "process.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+        "replay.json": "e202105b4e56f84d236509e19d88139ce2c2695e827286c8c494aba82b0fa6c3",
+        "traces/stage10-sample-fix-v1-case-0__paired_case_0__seed1.json": "b35248ee4a6b1e2101cf26a21fad3e1f79571033fa1f76427fba70c65b6e0fb6"
+      }
+    },
+    {
+      "case": 1,
+      "testcase": "replay_uvm_accepted_stimulus",
+      "seed": 1,
+      "process_exit_code": 0,
+      "tests_run": 1,
+      "xml_passed": true,
+      "run_status": "PASS",
+      "files_sha256": {
+        "results.xml": "a6b731700b7a0d46e28f47ec36c9b217368184f0171d3457e50c4167a59d3a57",
+        "simulation.log": "931fce9b68efb34235408f7e40311f86c87b1814777c23c77a9485e672f8a52f",
+        "process.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+        "replay.json": "71c602cbad6f439a92a9db43ee6d5bbbe59bda5f04fec5ccfdf4cae2cb6cf7f3",
+        "traces/stage10-sample-fix-v1-case-1__paired_case_1__seed1.json": "fc4d522a94c264a039e1a3ffca423ef101b0940ff6d6470fbbad13e514c0b72f"
+      }
+    },
+    {
+      "case": 2,
+      "testcase": "replay_uvm_accepted_stimulus",
+      "seed": 1,
+      "process_exit_code": 0,
+      "tests_run": 1,
+      "xml_passed": true,
+      "run_status": "PASS",
+      "files_sha256": {
+        "results.xml": "278210e8510966ef07fde012d0e00ca7522f4843a7630048c0802ab1aaedb462",
+        "simulation.log": "1195c64d49dfd5d22b02cd27f70df0b62be1750fdd34f27a600efad89931574a",
+        "process.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+        "replay.json": "63bcb7ca2223d16120e927cc2049fbe37a9bbf0ed87e066d5c5f861e26ad016a",
+        "traces/stage10-sample-fix-v1-case-2__paired_case_2__seed1.json": "ac233b292d0e27744b365997120cdd8f89c1e0f769ccf854f0a95a8f4b31b039"
+      }
+    }
+  ],
+  "toolchain": {
+    "python": "3.12.3",
+    "cocotb": "1.9.2",
+    "fusesoc": "0.5.dev0",
+    "edalize": "0.4.0",
+    "verilator": "Verilator 5.020 2024-01-01 rev (Debian 5.020-1)"
+  }
+}

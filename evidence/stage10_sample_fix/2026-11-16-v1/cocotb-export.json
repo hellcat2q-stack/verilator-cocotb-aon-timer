@@ -1,0 +1,23 @@
+{
+  "schema": "aon-timer-paired-cocotb-export-v1",
+  "cases": [
+    {
+      "case": 0,
+      "xml_transform": "Source file attribute normalized to repo-relative tools path; all result fields retained",
+      "original_xml_sha256": "032f411b1af7ea710f0191302332435dbc7b0bf1ca2a5e0c6289dc51014a1caa",
+      "public_xml_sha256": "29ed1d5903f2495b8e498836f6d7be4ed28a991e04a9d937fd5b27eca1d7edba"
+    },
+    {
+      "case": 1,
+      "xml_transform": "Source file attribute normalized to repo-relative tools path; all result fields retained",
+      "original_xml_sha256": "a6b731700b7a0d46e28f47ec36c9b217368184f0171d3457e50c4167a59d3a57",
+      "public_xml_sha256": "138054cd3e3f2b263aad6d4d5988816cd4504fd01b359de83892e0b71b8e4b73"
+    },
+    {
+      "case": 2,
+      "xml_transform": "Source file attribute normalized to repo-relative tools path; all result fields retained",
+      "original_xml_sha256": "278210e8510966ef07fde012d0e00ca7522f4843a7630048c0802ab1aaedb462",
+      "public_xml_sha256": "ceef28a543cb988366d6ba56d8a1660a93e5135a238b97d513ee803f4754d65c"
+    }
+  ]
+}
