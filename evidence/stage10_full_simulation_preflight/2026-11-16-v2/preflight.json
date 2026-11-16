@@ -19,6 +19,11 @@
     "identity_bridge_audit_is_sidecar_verified": true,
     "identity_bridge_uses_current_tool": true,
     "identity_bridge_audit_is_complete_as_audit": true,
+    "sample_site_audit_is_sidecar_verified": true,
+    "sample_site_audit_uses_current_tool": true,
+    "aon_capture_protocol_is_complete": true,
+    "shared_scope_mapping_is_complete": false,
+    "count_event_cadence_model_is_present": true,
     "stage06_exact_matrix_is_available": false,
     "legacy_identity_bridge_is_complete": false,
     "sample_site_mapping_is_complete": false,
@@ -45,6 +50,10 @@
     "identity_bridge_ambiguous_candidate_count": 2064,
     "identity_bridge_unresolved_count": 0,
     "exact_stage06_matrix_available": false,
+    "aon_capture_protocol_complete": true,
+    "shared_definition_count": 228,
+    "shared_scope_mapping_complete": false,
+    "count_event_cadence_model_present": true,
     "sample_sites_complete": false,
     "native_verilator_uvm_equivalence_verified": false
   },
@@ -52,7 +61,7 @@
     "Legacy identity bridge has only 341 direct matches; the remaining identities require candidate or independent expansion evidence (2102 deterministic candidates, 2064 ambiguous candidates).",
     "Stage 06 does not contain a complete exact run matrix.",
     "Stage 07 paper scheduler has not been enabled.",
-    "Sample-site and shared-group mapping is incomplete.",
+    "Shared/non-AON scope mapping is unavailable for 228 definitions; the AON trace adapter does not sample those groups.",
     "Array reference partitions are validated for source/Python classification only; native Verilator/UVM/VCS equivalence remains unverified.",
     "Count-event sampling cadence has no independent UVM/VCS timing comparison."
   ],
@@ -98,6 +107,10 @@
     "source_identity_bridge_audit": {
       "path": "evidence/stage10_identity_bridge/2026-11-16-v1/bridge.json",
       "sha256": "d866637f6c496e1e4be57836d00723ab1ce0e7e27b036389c759a8b702d541ac"
+    },
+    "sample_site_audit": {
+      "path": "evidence/stage10_sample_site_audit/2026-11-16-v1/sample-site-audit.json",
+      "sha256": "d3c951eb0bb5b4ad31df53faf7b19421a5c84f787e313f4cbe66d278beb7e0a8"
     },
     "trace_root": "evidence/stage09_comparison/2026-11-14-v1"
   }

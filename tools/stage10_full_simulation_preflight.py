@@ -51,6 +51,10 @@ DEFAULT_IDENTITY_BRIDGE = (
     ROOT / "evidence" / "stage10_identity_bridge"
     / "2026-11-16-v1" / "bridge.json"
 )
+DEFAULT_SAMPLE_SITE_AUDIT = (
+    ROOT / "evidence" / "stage10_sample_site_audit"
+    / "2026-11-16-v1" / "sample-site-audit.json"
+)
 DEFAULT_OUTPUT = (
     ROOT / "evidence" / "stage10_full_simulation_preflight"
     / "2026-11-16-v2" / "preflight.json"
@@ -83,6 +87,7 @@ def build_preflight(
     stage08_readiness_path: Path = DEFAULT_STAGE08_READINESS,
     classification_path: Path = DEFAULT_CLASSIFICATION,
     identity_bridge_path: Path = DEFAULT_IDENTITY_BRIDGE,
+    sample_site_audit_path: Path = DEFAULT_SAMPLE_SITE_AUDIT,
 ) -> dict[str, Any]:
     catalog, catalog_hash = load_catalog(CATALOG_PATH)
     array_definitions, array_reference = load_array_reference(catalog)
@@ -94,6 +99,7 @@ def build_preflight(
     replay = read_json(replay_audit_path)
     classification = read_json(classification_path)
     identity_bridge = read_json(identity_bridge_path)
+    sample_site_audit = read_json(sample_site_audit_path)
     classification_hash = sha256_file(classification_path)
     sidecar_path = Path(str(classification_path) + ".sha256")
     sidecar = sidecar_path.read_text(encoding="ascii").split()
@@ -110,6 +116,14 @@ def build_preflight(
     if bridge_sidecar[1] != Path(identity_bridge_path).name:
         raise ValueError("identity bridge SHA-256 sidecar names a different artifact")
 
+    sample_site_audit_hash = sha256_file(sample_site_audit_path)
+    sample_site_audit_sidecar_path = Path(str(sample_site_audit_path) + ".sha256")
+    sample_site_audit_sidecar = sample_site_audit_sidecar_path.read_text(encoding="ascii").split()
+    if len(sample_site_audit_sidecar) != 2 or sample_site_audit_sidecar[0] != sample_site_audit_hash:
+        raise ValueError("sample-site audit SHA-256 sidecar is missing or inconsistent")
+    if sample_site_audit_sidecar[1] != Path(sample_site_audit_path).name:
+        raise ValueError("sample-site audit SHA-256 sidecar names a different artifact")
+
     stage08_sha_manifest = Path(stage08_readiness_path).with_name("sha256.txt")
     declared_readiness_hash = stage08_sha_manifest.read_text(encoding="ascii").split()[0]
     if declared_readiness_hash != sha256_file(stage08_readiness_path):
@@ -125,11 +139,15 @@ def build_preflight(
         raise ValueError("Stage 09 replay audit does not match its summary")
     classifier_path = ROOT / "tools" / "classify_source_definitions.py"
     bridge_tool_path = ROOT / "tools" / "audit_source_identity_bridge.py"
+    sample_site_tool_path = ROOT / "tools" / "audit_sample_site_mapping.py"
     classifier_hash_matches = classification.get("classifier_sha256") == sha256_file(
         classifier_path
     )
     bridge_tool_hash_matches = identity_bridge.get("audit_tool_sha256") == sha256_file(
         bridge_tool_path
+    )
+    sample_site_tool_hash_matches = sample_site_audit.get("audit_tool_sha256") == sha256_file(
+        sample_site_tool_path
     )
 
     array_bin_count = sum(len(records) for records in array_catalog["arrays"].values())
@@ -149,12 +167,38 @@ def build_preflight(
     )
     mapping = stage08.get("direct_legacy_identity_matches", 0)
     canonical_count = stage08.get("canonical_bin_count", 4507)
-    sample_site_complete = stage08.get("sample_sites_complete") is True
+    stage08_sample_site_complete = stage08.get("sample_sites_complete") is True
     if "sample_sites_complete" not in stage08:
-        sample_site_complete = stage08.get("sample_site_mapping_status") == "COMPLETE"
-    timing_parity_complete = not any(
+        stage08_sample_site_complete = stage08.get("sample_site_mapping_status") == "COMPLETE"
+    sample_site_audit_valid = (
+        sample_site_audit.get("schema") == "aon-timer-sample-site-mapping-audit-v1"
+        and sample_site_audit.get("source_revision") == catalog.get("source_revision")
+        and sample_site_audit.get("coverage_schema_id") == read_json(SCHEMA_PATH).get("schema_id")
+        and sample_site_audit.get("coverage_credit_granted") == 0
+        and sample_site_audit.get("unknowns_are_misses") is False
+        and sample_site_tool_hash_matches
+    )
+    aon_capture_protocol_complete = (
+        sample_site_audit_valid
+        and sample_site_audit.get("mapping_gates", {}).get("aon_capture_protocol_complete") is True
+    )
+    shared_scope_mapping_complete = (
+        sample_site_audit_valid
+        and sample_site_audit.get("mapping_gates", {}).get("shared_scope_mapping_complete") is True
+    )
+    timing_parity_complete = (
+        sample_site_audit_valid
+        and sample_site_audit.get("mapping_gates", {}).get("timing_parity_complete") is True
+        and not any(
         "timing parity" in str(item).lower()
         for item in stage08.get("unmapped_sample_sites", [])
+        )
+    )
+    sample_site_complete = (
+        stage08_sample_site_complete
+        and aon_capture_protocol_complete
+        and shared_scope_mapping_complete
+        and timing_parity_complete
     )
 
     blockers = []
@@ -168,8 +212,15 @@ def build_preflight(
         blockers.append("Stage 06 does not contain a complete exact run matrix.")
     if stage08.get("stage07_scheduler_allowed") is not True:
         blockers.append("Stage 07 paper scheduler has not been enabled.")
-    if not sample_site_complete:
-        blockers.append("Sample-site and shared-group mapping is incomplete.")
+    if not sample_site_audit_valid:
+        blockers.append("Sample-site audit is missing, stale, or not fail-closed.")
+    elif not aon_capture_protocol_complete:
+        blockers.append("AON capture protocol audit has not validated all seven AON covergroups.")
+    if not shared_scope_mapping_complete:
+        blockers.append(
+            f"Shared/non-AON scope mapping is unavailable for {sample_site_audit.get('shared_scope', {}).get('definition_count', 228)} definitions; "
+            "the AON trace adapter does not sample those groups."
+        )
     if stage08.get("array_bin_verilator_equivalence_verified") is not True:
         blockers.append(
             "Array reference partitions are validated for source/Python classification only; "
@@ -223,6 +274,13 @@ def build_preflight(
         "identity_bridge_audit_is_sidecar_verified": True,
         "identity_bridge_uses_current_tool": bridge_tool_hash_matches,
         "identity_bridge_audit_is_complete_as_audit": bridge_audit_valid,
+        "sample_site_audit_is_sidecar_verified": True,
+        "sample_site_audit_uses_current_tool": sample_site_tool_hash_matches,
+        "aon_capture_protocol_is_complete": aon_capture_protocol_complete,
+        "shared_scope_mapping_is_complete": shared_scope_mapping_complete,
+        "count_event_cadence_model_is_present": (
+            sample_site_audit.get("count_event_timing", {}).get("cadence_model_present") is True
+        ),
         "stage06_exact_matrix_is_available": stage06_exact,
         "legacy_identity_bridge_is_complete": mapping == canonical_count,
         "sample_site_mapping_is_complete": sample_site_complete,
@@ -275,6 +333,10 @@ def build_preflight(
             ),
             "identity_bridge_unresolved_count": identity_bridge.get("unresolved_count"),
             "exact_stage06_matrix_available": stage06_exact,
+            "aon_capture_protocol_complete": aon_capture_protocol_complete,
+            "shared_definition_count": sample_site_audit.get("shared_scope", {}).get("definition_count"),
+            "shared_scope_mapping_complete": shared_scope_mapping_complete,
+            "count_event_cadence_model_present": sample_site_audit.get("count_event_timing", {}).get("cadence_model_present"),
             "sample_sites_complete": sample_site_complete,
             "native_verilator_uvm_equivalence_verified": False,
         },
@@ -320,6 +382,10 @@ def build_preflight(
                 "path": _relative(identity_bridge_path),
                 "sha256": bridge_hash,
             },
+            "sample_site_audit": {
+                "path": _relative(sample_site_audit_path),
+                "sha256": sample_site_audit_hash,
+            },
             "trace_root": _relative(trace_root),
         },
     }
@@ -333,6 +399,7 @@ def main() -> None:
     parser.add_argument("--stage08-readiness", type=Path, default=DEFAULT_STAGE08_READINESS)
     parser.add_argument("--classification", type=Path, default=DEFAULT_CLASSIFICATION)
     parser.add_argument("--identity-bridge", type=Path, default=DEFAULT_IDENTITY_BRIDGE)
+    parser.add_argument("--sample-site-audit", type=Path, default=DEFAULT_SAMPLE_SITE_AUDIT)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     args = parser.parse_args()
     try:
@@ -343,6 +410,7 @@ def main() -> None:
             stage08_readiness_path=args.stage08_readiness,
             classification_path=args.classification,
             identity_bridge_path=args.identity_bridge,
+            sample_site_audit_path=args.sample_site_audit,
         )
     except (OSError, UnicodeError, ValueError, KeyError, json.JSONDecodeError) as exc:
         parser.error(str(exc))

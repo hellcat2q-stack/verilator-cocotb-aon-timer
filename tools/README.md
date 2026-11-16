@@ -37,6 +37,12 @@ audit_canonical_identity_candidates.py --output <new-report.json> 按冻结的 c
 - 报告中的 `EXACT_SOURCE_DEFINITION`、`RANGE_ORDER_CANDIDATE` 和 `CROSS_*_CANDIDATE` 都是身份候选，`coverage_credit_granted` 固定为 0；非唯一候选不能用于推断命中或 miss。当前 pinned 结果为 341 exact、2,074 range-order candidate、16 单候选 cross、2,064 非唯一 cross candidate。
 - 运行：`python3 tools/audit_source_identity_bridge.py --output evidence/stage10_identity_bridge/2026-11-16-v1/bridge.json`。`stage10_full_simulation_preflight.py` 会校验该报告及其 sidecar/tool hash，但仍要求独立 URG/VCS expansion/order 证据后才能解除 full 仿真门禁。
 
+## 2026-11-16 新增：AON sample-site / shared-scope 审计
+
+- `audit_sample_site_mapping.py` 读取 `configs/coverage_schema.json`，递归审计公开 raw traces 的 7 个 AON covergroup：字段键、同次采样 cross、事件名、trace sample counts、interrupt-test illegal 条件，以及三个 count-event group 的 RTL counter/cadence 元数据。它同时登记 228 个 shared/non-AON definitions 的未接入范围，并固定 `coverage_credit_granted=0`、`unknowns_are_misses=false`。
+- 运行：`python3 tools/audit_sample_site_mapping.py`，结果写入 `evidence/stage10_sample_site_audit/2026-11-16-v1/` 并生成 SHA-256 sidecar。报告可以把 AON capture protocol 标为 complete，但不会把 shared scope 或 count-event UVM/VCS timing parity 误报为 complete。
+- `stage10_full_simulation_preflight.py` 现在校验该审计的 sidecar 和工具 hash，并将 blocker 拆为 AON capture protocol、shared/non-AON scope、count-event timing parity 三类。full gate 仍必须保持 BLOCKED，直到 exact identity/vector 和独立 parity 证据齐全。
+
 ## 原有阶段工具
 
 `audit_legacy_urg_layouts.py` 恢复 URG `grp*.html` 的定义标签布局，验证首份报告与冻结 4,507 列一致，并检测不同报告的按位置对齐冲突。明确变量按 bin 名或 singleton 值匹配；压缩行和通配 cross 不猜测。HTML 导入依赖 `configs/stage10-requirements.txt`；使用 `--layouts <layouts.json>` 重放时仅需 Python 标准库。`tests/test_legacy_urg_layouts.py` 覆盖行序互换、singleton 包装、重复/压缩身份拒绝、公开布局重放和导出内容范围。证据见 `evidence/stage10_legacy_urg_layout/2026-11-15-v1/`。

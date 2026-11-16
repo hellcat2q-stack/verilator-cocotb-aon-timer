@@ -40,4 +40,13 @@
 
 `stage10_full_simulation_preflight/2026-11-16-v1/` 是只读启动门禁报告。它核对 4,507-bin catalog、160 个 array reference partitions、640 个源码/Python 边界 probes、Stage 09 replay audit 和 v2 分类 hash；同时明确记录 Stage 06 exact matrix、legacy identity bridge、sample-site mapping、Stage 07 scheduler 和 UVM/VCS sampling comparison 仍未准备好。`full_simulation_started` 为 false；该工具不启动仿真。
 
+`stage10_sample_site_audit/2026-11-16-v1/` 是新增的 raw-trace 结构审计。它检查 326 条公开 trace、17,743 个样本、7 个 AON covergroup 的字段键、same-sample cross、事件名、trace 计数元数据和 count-event RTL/cadence 字段；结果显示 AON capture protocol complete。228 个 shared/non-AON definitions 仍明确标记为当前 AON trace adapter 不可用，count-event timing 仍没有独立 UVM/VCS 对照；该审计授予 0 个 coverage credit，不把 unknown 当作 miss。报告和 sidecar：[sample-site-audit.json](stage10_sample_site_audit/2026-11-16-v1/sample-site-audit.json)、[sidecar](stage10_sample_site_audit/2026-11-16-v1/sample-site-audit.json.sha256)。
+
+运行命令：
+
+```bash
+python3 tools/audit_sample_site_mapping.py
+python3 tools/stage10_full_simulation_preflight.py
+```
+
 `stage10_final_review/2026-11-14-v1/review.json` 是 Stage 09 结果口径的独立审查记录，包含复核状态、输入 hashes、canonical/URG 计数区分和 coverage 限制。它明确记录 full coverage rate 为不可报告；175/4,507（3.8828%）只表示已确认正向 identity 占 canonical 目录比例。

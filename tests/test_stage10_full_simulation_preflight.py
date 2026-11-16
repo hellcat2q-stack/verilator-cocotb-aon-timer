@@ -25,6 +25,9 @@ class Stage10FullSimulationPreflightTests(unittest.TestCase):
         self.assertEqual(report["summary"]["identity_bridge_ambiguous_candidate_count"], 2064)
         self.assertFalse(report["checks"]["stage06_exact_matrix_is_available"])
         self.assertFalse(report["checks"]["legacy_identity_bridge_is_complete"])
+        self.assertTrue(report["checks"]["aon_capture_protocol_is_complete"])
+        self.assertFalse(report["checks"]["shared_scope_mapping_is_complete"])
+        self.assertTrue(report["checks"]["count_event_cadence_model_is_present"])
         self.assertGreater(len(report["blockers"]), 0)
 
     def test_stale_classification_hash_sidecar_is_rejected(self):
