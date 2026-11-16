@@ -1,0 +1,79 @@
+{
+  "schema": "aon-timer-paired-cocotb-run-v1",
+  "source_revision": "9f20940d494a223cc950a5b98f748fb28109d458",
+  "source_clean": true,
+  "source_hashes": {
+    "hw/ip/aon_timer/rtl/aon_timer.sv": "46cd4ab123862c2c296a5ba7ea6216db1285a4fcdc5ce917b2c7fab2ac8c4fce",
+    "hw/ip/aon_timer/rtl/aon_timer_core.sv": "226ed77228b49c3d9231027410b5572ae7812bb0ed76dc6679c18ef028895d2b",
+    "hw/ip/aon_timer/dv/env/aon_timer_scoreboard.sv": "b6534a47a116206144cdb332fcff9a58e49ef64eea965d9ddd8497f0b4d26d65"
+  },
+  "tools_sha256": {
+    "tools/test_uvm_sample_replay.py": "93ca52876bf0c8325df0a8f33a7f81cec12c450df20d02c1531700766ba39990",
+    "tools/cocotb_coverage_adapter.py": "39c60ea3f6579acdeff2ab5add5c0abb45280b898ed5293003866b3328c97113",
+    "tools/coverage_model.py": "8943147088600c1099dbd80bbfb5331ac72911976e42387b41292994768a02fb",
+    "tools/aon_timer_tb.sv": "8b9f34aaa6fec73d0e3cc4940bfd8a601ab4447c908d6a50007ebd4f429f83ca",
+    "tools/AonMakefile": "f17d518d2ac290a9e43a363b98bc5d99dbcf7156ffe08cbfb31337cbfa571f5a",
+    "configs/stage10-paired-short-v1.json": "33cf03686eba31a87fdcca8b80a88a7d29ec9b1885d355c59befd5f27946fd69"
+  },
+  "seed": 1,
+  "coverage_vector": null,
+  "coverage_credit_granted": 0,
+  "full_simulation_started": false,
+  "cases": [
+    {
+      "case": 0,
+      "testcase": "replay_uvm_accepted_stimulus",
+      "seed": 1,
+      "process_exit_code": 0,
+      "tests_run": 1,
+      "xml_passed": true,
+      "run_status": "PASS",
+      "files_sha256": {
+        "results.xml": "85c37b6a5dd5fe4a0c0f2802e4606516a6d120d5075def895e1c674d69162889",
+        "simulation.log": "9a6fe503d29dd7b524be07876620db904c94b4665b79f8095a84946fdfad2a5b",
+        "process.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+        "replay.json": "166adbd317f068f5601b2b9b22dc48915575827a270eff1755efe95f7bca324a",
+        "traces/stage10-paired-v1-case-0__paired_case_0__seed1.json": "b298eca36c1f9074ef1ade888a2aea570bdf449486f4534046e93062946c2bb7"
+      }
+    },
+    {
+      "case": 1,
+      "testcase": "replay_uvm_accepted_stimulus",
+      "seed": 1,
+      "process_exit_code": 0,
+      "tests_run": 1,
+      "xml_passed": true,
+      "run_status": "PASS",
+      "files_sha256": {
+        "results.xml": "f91f809e02012a04b2574173bb53dad3f8bea58a8d3c05e048a0285b29f70317",
+        "simulation.log": "e6fa1849de5563406c649564a73d0a10602dd09679d045e57881d6146c34212b",
+        "process.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+        "replay.json": "8e07a1b06a6d7150eeedb6a5ed220f98ebdceef00655513b8e1620b3b6f4c902",
+        "traces/stage10-paired-v1-case-1__paired_case_1__seed1.json": "68474b0193470f78922b5281c310e077bf7d393f79092f1ecf625bd5e2b2be9c"
+      }
+    },
+    {
+      "case": 2,
+      "testcase": "replay_uvm_accepted_stimulus",
+      "seed": 1,
+      "process_exit_code": 0,
+      "tests_run": 1,
+      "xml_passed": true,
+      "run_status": "PASS",
+      "files_sha256": {
+        "results.xml": "d430de951fb125aaed3279aa6277b44a7c785152c0be673a51ebfeea7c9bdf53",
+        "simulation.log": "f788db11cfa810092a8d51456c836d485a5111779d96d5345a39e772ced97bb9",
+        "process.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+        "replay.json": "68931a7c98230fee829b185b58a4e83759a933ecd8c461248e94138c092036e6",
+        "traces/stage10-paired-v1-case-2__paired_case_2__seed1.json": "091fe137ab27483652548ecb5c5e800c17fcb3f0be251f217a6aea3600c1f30b"
+      }
+    }
+  ],
+  "toolchain": {
+    "python": "3.12.3",
+    "cocotb": "1.9.2",
+    "fusesoc": "0.5.dev0",
+    "edalize": "0.4.0",
+    "verilator": "Verilator 5.020 2024-01-01 rev (Debian 5.020-1)"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "schema": "aon-timer-paired-short-protocol-v1",
+  "source_revision": "9f20940d494a223cc950a5b98f748fb28109d458",
+  "purpose": "Independent actual UVM sample capture and accepted-TL-stimulus replay on Cocotb RTL",
+  "seed": 1,
+  "aon_period_ps": 5000000,
+  "fast_period_ps": 20000,
+  "sleep": 0,
+  "lc_escalate": 0,
+  "cdc_random_delay": false,
+  "coverage_enabled": true,
+  "cases": [
+    {"id": 0, "name": "wakeup", "wkup_threshold": 3, "bark_threshold": 3, "bite_threshold": 6, "enable_address": 4},
+    {"id": 1, "name": "bark", "wkup_threshold": 3, "bark_threshold": 3, "bite_threshold": 6, "enable_address": 28},
+    {"id": 2, "name": "bite", "wkup_threshold": 3, "bark_threshold": 6, "bite_threshold": 3, "enable_address": 28}
+  ],
+  "sequence": "Explicit disabled configuration, zero counters, enable one timer, wait 12 AON edges, disable both, settle 5 edges",
+  "pairing": "Replay UVM accepted address-channel writes at the same fast/AON phase after a declared constant time translation. Compare actual response callback times; never assume they coincide.",
+  "sample_logging": "Immediately before each original scoreboard covergroup invocation, without waits or additional RTL reads",
+  "reference_logic_fixes": [],
+  "full_simulation_started": false,
+  "coverage_credit_granted": 0,
+  "scope_limit": "Three deterministic diagnostics; not complete parity, no shared-group completeness or full experiment"
+}

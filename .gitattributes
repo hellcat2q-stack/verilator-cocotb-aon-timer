@@ -6,3 +6,16 @@
 evidence/stage10_uvm_vcs_timing/**/*.log text eol=lf
 tools/audit_uvm_vcs_timing.py text eol=lf
 tools/coverage_model.py text eol=lf
+
+# Preserve byte hashes and executable shell syntax in the independent capture.
+.gitattributes text eol=lf
+/tools/stage10_sample_parity/** text eol=lf
+/tools/test_uvm_sample_replay.py text eol=lf
+/tools/cocotb_coverage_adapter.py text eol=lf
+/tools/coverage_model.py text eol=lf
+/tools/aon_timer_tb.sv text eol=lf
+/tools/AonMakefile text eol=lf
+/configs/stage10-paired-short-v1.json text eol=lf
+/evidence/stage10_independent_sample_parity/** text eol=lf
+# Unified patches must retain the single-space prefix on blank context lines.
+/evidence/stage10_independent_sample_parity/**/*.patch -whitespace

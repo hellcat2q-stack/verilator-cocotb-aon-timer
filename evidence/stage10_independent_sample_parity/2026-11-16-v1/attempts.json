@@ -1,0 +1,170 @@
+{
+  "schema": "aon-timer-paired-short-attempts-v1",
+  "seed": 1,
+  "full_simulation_started": false,
+  "attempts": [
+    {
+      "attempt": 1,
+      "reason": "DVSIM requires a Git commit; archive-only source has no Git metadata.",
+      "runner_exit_code": 1,
+      "testcase": "aon_timer_smoke_vseq",
+      "seed": 1,
+      "inputs_sha256": {
+        "instrument.py": "87c220ca412949d0883b8ebcd324b270b4b42c9bb3af138d8f7fd2c536ce0156",
+        "aon_timer_smoke_vseq.sv": "b7cdad41c69ae4cb98329a3354b7dbf26c5b0b2197a2521af61f0d72e69c702d",
+        "stage10-paired-short-v1.json": "33cf03686eba31a87fdcca8b80a88a7d29ec9b1885d355c59befd5f27946fd69",
+        "run_vcs.sh": "717b0bc9085e705d3581713204c87aaca8d8ee718e89ca459bb225af2440d934"
+      },
+      "private_logs_sha256": {
+        "runner.private.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "build.private.log": "7c9f5f5b9229ddaeb10cbc6e58578da7cffe12764e1e590bdd4692a3ca892cbe"
+      },
+      "source_attestation": {
+        "schema": "aon-timer-pinned-export-attestation-v1",
+        "revision": "9f20940d494a223cc950a5b98f748fb28109d458",
+        "git_tree_sha256": "2be73711e5ae156cce187e7581b335aac2eab8936200349c84590c2d22932bf6",
+        "verified_blobs": 10514,
+        "all_exported_git_blobs_match": true,
+        "verification_before_instrumentation": true
+      },
+      "tests": []
+    },
+    {
+      "attempt": 2,
+      "reason": "Legacy Git refuses fetching from the existing shallow repository.",
+      "runner_exit_code": 128,
+      "testcase": "aon_timer_smoke_vseq",
+      "seed": 1,
+      "inputs_sha256": {
+        "instrument.py": "385e31a5637a4593f2e4ff80625a8faae2e93101b7fae662b5c92750b8f3354d",
+        "run_vcs.sh": "8296477723726996ba114bd6c29af77d53f0455689530d3aa55e3d6909b86c6b",
+        "aon_timer_smoke_vseq.sv": "b7cdad41c69ae4cb98329a3354b7dbf26c5b0b2197a2521af61f0d72e69c702d",
+        "stage10-paired-short-v1.json": "33cf03686eba31a87fdcca8b80a88a7d29ec9b1885d355c59befd5f27946fd69"
+      },
+      "private_logs_sha256": {
+        "runner.private.log": "81ace31bbea6790f53b2df0891f881df164a73c957ef3091ad0377cf479bbbb8"
+      },
+      "source_attestation": {
+        "schema": "aon-timer-pinned-export-attestation-v1",
+        "revision": "9f20940d494a223cc950a5b98f748fb28109d458",
+        "git_tree_sha256": "2be73711e5ae156cce187e7581b335aac2eab8936200349c84590c2d22932bf6",
+        "verified_blobs": 10514,
+        "all_exported_git_blobs_match": true,
+        "verification_before_instrumentation": true
+      },
+      "tests": []
+    },
+    {
+      "attempt": 3,
+      "reason": "Three simulations pass, but randomized fast clock period is 10417 ps; rejected for frozen 20000 ps pairing protocol.",
+      "runner_exit_code": 0,
+      "testcase": "aon_timer_smoke_vseq",
+      "seed": 1,
+      "inputs_sha256": {
+        "instrument.py": "385e31a5637a4593f2e4ff80625a8faae2e93101b7fae662b5c92750b8f3354d",
+        "run_vcs.sh": "16069c208f02779214cf0e613d8f9bc92ba4c7988c47206c4021c513654d679d",
+        "collect_vcs.py": "0880415ab53066c6ceaa0fbc280239782f8f43571d25e105854996387d63391f",
+        "aon_timer_smoke_vseq.sv": "b7cdad41c69ae4cb98329a3354b7dbf26c5b0b2197a2521af61f0d72e69c702d",
+        "stage10-paired-short-v1.json": "33cf03686eba31a87fdcca8b80a88a7d29ec9b1885d355c59befd5f27946fd69"
+      },
+      "private_logs_sha256": {
+        "runner.private.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "build.private.log": "f482fe72966bc183a7f6e50cc40321ee6f1d78d4fd2577178f9b32849a548206",
+        "vcs-argv.private.log": "bad570253f8e0ecc3e03883c9ca24c07867fd0f9575c7738c9c10fc9ac352f46"
+      },
+      "source_attestation": {
+        "schema": "aon-timer-pinned-export-attestation-v1",
+        "revision": "9f20940d494a223cc950a5b98f748fb28109d458",
+        "git_tree_sha256": "2be73711e5ae156cce187e7581b335aac2eab8936200349c84590c2d22932bf6",
+        "verified_blobs": 10514,
+        "all_exported_git_blobs_match": true,
+        "verification_before_instrumentation": true
+      },
+      "tests": [
+        {
+          "case": 0,
+          "testcase": "aon_timer_smoke_vseq",
+          "seed": 1,
+          "process_exit_code": 0,
+          "run_status": "PASS",
+          "sample_invocations": 22,
+          "full_log_sha256": "2c3d3078bbdecfff2d6d5fab2d5492255c7fef50c8d5a289c9251e7a05e85e15"
+        },
+        {
+          "case": 1,
+          "testcase": "aon_timer_smoke_vseq",
+          "seed": 1,
+          "process_exit_code": 0,
+          "run_status": "PASS",
+          "sample_invocations": 28,
+          "full_log_sha256": "db108eb5f79ed7342085e59ea88ee98f6d16c28dc804fc473a1a1c42bcdf4b6a"
+        },
+        {
+          "case": 2,
+          "testcase": "aon_timer_smoke_vseq",
+          "seed": 1,
+          "process_exit_code": 0,
+          "run_status": "PASS",
+          "sample_invocations": 28,
+          "full_log_sha256": "42fceabac708ed4b9b779c91585a169125a3d6ad004eb98d8b32d4241e01dbd5"
+        }
+      ]
+    },
+    {
+      "attempt": 4,
+      "reason": "Fixed 50 MHz diagnostic test configuration; three independent pinned VCS tests pass.",
+      "runner_exit_code": 0,
+      "testcase": "aon_timer_smoke_vseq",
+      "seed": 1,
+      "inputs_sha256": {
+        "instrument.py": "d4fbca3ffd041fbb6c789eb893e0f7ad5ffd77bf569a571884a42cc026529324",
+        "run_vcs.sh": "16069c208f02779214cf0e613d8f9bc92ba4c7988c47206c4021c513654d679d",
+        "collect_vcs.py": "0880415ab53066c6ceaa0fbc280239782f8f43571d25e105854996387d63391f",
+        "aon_timer_smoke_vseq.sv": "b7cdad41c69ae4cb98329a3354b7dbf26c5b0b2197a2521af61f0d72e69c702d",
+        "stage10-paired-short-v1.json": "33cf03686eba31a87fdcca8b80a88a7d29ec9b1885d355c59befd5f27946fd69"
+      },
+      "private_logs_sha256": {
+        "runner.private.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "build.private.log": "38709aaafda2a9ef76858ad2d0c3ac769f477903ade10b71c5b83e700c6664c2",
+        "vcs-argv.private.log": "6ecad3ec30d35c04307b7536f70687fcdebbb56d17c27eb5783797492bf22c90"
+      },
+      "source_attestation": {
+        "schema": "aon-timer-pinned-export-attestation-v1",
+        "revision": "9f20940d494a223cc950a5b98f748fb28109d458",
+        "git_tree_sha256": "2be73711e5ae156cce187e7581b335aac2eab8936200349c84590c2d22932bf6",
+        "verified_blobs": 10514,
+        "all_exported_git_blobs_match": true,
+        "verification_before_instrumentation": true
+      },
+      "tests": [
+        {
+          "case": 0,
+          "testcase": "aon_timer_smoke_vseq",
+          "seed": 1,
+          "process_exit_code": 0,
+          "run_status": "PASS",
+          "sample_invocations": 22,
+          "full_log_sha256": "446bb659ced2485834f8c475e8cc75c6c0d6955b805d4b3773c139942b078653"
+        },
+        {
+          "case": 1,
+          "testcase": "aon_timer_smoke_vseq",
+          "seed": 1,
+          "process_exit_code": 0,
+          "run_status": "PASS",
+          "sample_invocations": 28,
+          "full_log_sha256": "70c0e75427027b3a57de9945cf44d547603dd785e6de000a70ef1d2d8aea3972"
+        },
+        {
+          "case": 2,
+          "testcase": "aon_timer_smoke_vseq",
+          "seed": 1,
+          "process_exit_code": 0,
+          "run_status": "PASS",
+          "sample_invocations": 28,
+          "full_log_sha256": "2bd7d7be024d42949c22f64de1196c38e155129ed012cf7a158cd1a3ad4123a5"
+        }
+      ]
+    }
+  ]
+}

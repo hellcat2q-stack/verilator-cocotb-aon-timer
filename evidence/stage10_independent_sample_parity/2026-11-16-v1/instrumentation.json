@@ -1,0 +1,165 @@
+{
+  "schema": "aon-timer-pinned-sample-instrumentation-v1",
+  "files": [
+    {
+      "path": "hw/ip/aon_timer/dv/env/aon_timer_scoreboard.sv",
+      "before_sha256": "b6534a47a116206144cdb332fcff9a58e49ef64eea965d9ddd8497f0b4d26d65",
+      "after_sha256": "ba4db47f522e3532c06140d6e099967af394c97ca54f7da2b8b5767d0e833993"
+    },
+    {
+      "path": "hw/ip/aon_timer/dv/tb.sv",
+      "before_sha256": "d966b464a0792264df0178833b7d8046eca4a0fb78d6c60608c0c9888fae731b",
+      "after_sha256": "71bb4db2c6755b8f75afcd1af2d52202ec0b145232708f1bb740cee71191b233"
+    },
+    {
+      "path": "hw/ip/aon_timer/dv/tests/aon_timer_base_test.sv",
+      "before_sha256": "e6b4698e2687760c55108fcb36eb76d294794436885b91cc97ab54c80c9d14df",
+      "after_sha256": "685624f073746bede3953538640af5c09fe6bf104be2e17c28ab1f531daf39d3"
+    },
+    {
+      "path": "hw/ip/aon_timer/dv/env/seq_lib/aon_timer_smoke_vseq.sv",
+      "before_sha256": "b9c127945f25013bdaaf3f17ac4d0608ececae552e206972b2221d915cd90dbe",
+      "after_sha256": "b7cdad41c69ae4cb98329a3354b7dbf26c5b0b2197a2521af61f0d72e69c702d"
+    }
+  ],
+  "actual_sample_sites": [
+    {
+      "group": "intr_pins_cg",
+      "fields": [
+        "intr_pin",
+        "intr_pin_value"
+      ],
+      "original_arguments": [
+        "i",
+        "cfg.aon_intr_vif.sample_pin(.idx(i))"
+      ],
+      "original_line": 70
+    },
+    {
+      "group": "timer_cfg_cg",
+      "fields": [
+        "prescale",
+        "bark_thold",
+        "bite_thold",
+        "wkup_thold",
+        "wdog_regwen",
+        "pause_in_sleep",
+        "wkup_cause"
+      ],
+      "original_arguments": [
+        "prescaler",
+        "bark_thold",
+        "bite_thold",
+        "wkup_thold",
+        "wdog_regwen",
+        "wdog_pause_in_sleep",
+        "wkup_cause"
+      ],
+      "original_line": 101
+    },
+    {
+      "group": "intr_cg",
+      "fields": [
+        "intr",
+        "intr_en",
+        "intr_state"
+      ],
+      "original_arguments": [
+        "WKUP",
+        "wkup_en",
+        "item.d_data[WKUP]"
+      ],
+      "original_line": 121
+    },
+    {
+      "group": "intr_cg",
+      "fields": [
+        "intr",
+        "intr_en",
+        "intr_state"
+      ],
+      "original_arguments": [
+        "WDOG",
+        "wdog_en",
+        "item.d_data[WDOG]"
+      ],
+      "original_line": 122
+    },
+    {
+      "group": "intr_test_cg",
+      "fields": [
+        "intr",
+        "intr_test",
+        "intr_en",
+        "intr_state"
+      ],
+      "original_arguments": [
+        "WKUP",
+        "intr_test_val[WKUP]",
+        "wkup_en",
+        "intr_status_exp[WKUP]"
+      ],
+      "original_line": 174
+    },
+    {
+      "group": "intr_test_cg",
+      "fields": [
+        "intr",
+        "intr_test",
+        "intr_en",
+        "intr_state"
+      ],
+      "original_arguments": [
+        "WDOG",
+        "intr_test_val[WDOG]",
+        "wdog_en",
+        "intr_status_exp[WDOG]"
+      ],
+      "original_line": 176
+    },
+    {
+      "group": "wake_up_timer_thold_hit_cg",
+      "fields": [
+        "wkup_int",
+        "wkup_thold",
+        "wkup_count"
+      ],
+      "original_arguments": [
+        "intr_status_exp[WKUP]",
+        "wkup_thold",
+        "rtl_count"
+      ],
+      "original_line": 270
+    },
+    {
+      "group": "watchdog_timer_bark_thold_hit_cg",
+      "fields": [
+        "wdog_bark_int",
+        "wdog_thold",
+        "wdog_count"
+      ],
+      "original_arguments": [
+        "intr_status_exp[WDOG]",
+        "bark_thold",
+        "rtl_count"
+      ],
+      "original_line": 333
+    },
+    {
+      "group": "watchdog_timer_bite_thold_hit_cg",
+      "fields": [
+        "wdog_bite_rst",
+        "wdog_thold",
+        "wdog_count"
+      ],
+      "original_arguments": [
+        "wdog_rst_req_exp",
+        "bite_thold",
+        "rtl_count"
+      ],
+      "original_line": 396
+    }
+  ],
+  "reference_logic_fixes": [],
+  "wakeup_low_word_double_read_preserved": true
+}

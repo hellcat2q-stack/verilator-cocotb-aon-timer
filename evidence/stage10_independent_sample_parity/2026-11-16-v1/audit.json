@@ -1,0 +1,884 @@
+{
+  "schema": "aon-timer-independent-actual-sample-audit-v1",
+  "source_revision": "9f20940d494a223cc950a5b98f748fb28109d458",
+  "audit_tool_sha256": "14e94c1da71be0e417f7e71a571c8440436cb3b39f295a40fa73a80d74533d20",
+  "source_export_verified_before_declared_instrumentation": true,
+  "post_build_source_matches_declared_variant": true,
+  "valid_independent_short_pairs": true,
+  "status": "DIFFERENCES_OBSERVED",
+  "complete_parity_verified": false,
+  "full_simulation_started": false,
+  "coverage_credit_granted": 0,
+  "full_coverage_rate": null,
+  "alignment": "Absolute ps timeline replay, translation 0; same AON and fast clock phase and accepted TL timestamps. RTL probes are observed after settling; UVM samples retain their original simulator region.",
+  "scope": "Three explicit short cases with original reference logic, all nine AON scoreboard sample sites instrumented; shared covergroups and update/sleep/prescaler matrix remain outside this diagnostic.",
+  "inputs_sha256": {
+    "cocotb-manifest.json": "83d1803631673321b85d50478d7d942fb93166ff79837c1e4a3b11350f9196f4",
+    "cocotb-export.json": "a47325df669b3e105ce10e4f3bfdc6a9396ff9c5faf95bd457462ae607c158d6",
+    "attempts.json": "95b4961fe0c36aafd27b81589fd32d3fdf69a75af69aabf4c802f31aee40a570",
+    "instrumentation.json": "b1c8471d78f28003e0cbd2c65efc42035050cbcdf980ffe754a2e9ed441c8c09",
+    "instrumentation.patch": "dd308e3b39b512e0843f51cb49076dd265c9d3280a54af364b2343d58c2aee76",
+    "source-attestation.json": "fc96c31d1f64e853e8a22d8322566b24608e97a53689eab72ffdf4d1c30020a7",
+    "simv.sha256": "7595d9c92f0108961459a624c88849035466564698e91c8f5d5d8362341697ea",
+    "toolchain.json": "5ba8a7a44312a5b282f434c2de556c2f4fdc02ced192b9b11917828d5088a38d",
+    "post-build-source.json": "428dd804ab630330b6f0192ada1f79c44068605ee7beb45e0e86b9cd02b2d923",
+    "vcs-case-0.json": "06844ec905c82c4a92acb9a35b3febba20c4797623a2f37e823927739d599220",
+    "cocotb-case-0/replay.json": "166adbd317f068f5601b2b9b22dc48915575827a270eff1755efe95f7bca324a",
+    "cocotb-case-0/stage10-paired-v1-case-0__paired_case_0__seed1.json": "b298eca36c1f9074ef1ade888a2aea570bdf449486f4534046e93062946c2bb7",
+    "cocotb-case-0/results.xml": "8cc1ac1760be7ac902509c4c212b80b004d2ea4f1a04cc8bf412ac2bcb9118bb",
+    "vcs-case-1.json": "83a885ca6c7e27a4a0a2533713a9940303e1e5939e304141474741dd69e68c89",
+    "cocotb-case-1/replay.json": "8e07a1b06a6d7150eeedb6a5ed220f98ebdceef00655513b8e1620b3b6f4c902",
+    "cocotb-case-1/stage10-paired-v1-case-1__paired_case_1__seed1.json": "68474b0193470f78922b5281c310e077bf7d393f79092f1ecf625bd5e2b2be9c",
+    "cocotb-case-1/results.xml": "0ad6719e355b209169ca041a09dfedb689013e91023ac1a9bfd8d0a8970ffa19",
+    "vcs-case-2.json": "545e094d2c05759a4e96c38f115011eaab3e9a1b33be234286d2b244c1b64f3c",
+    "cocotb-case-2/replay.json": "68931a7c98230fee829b185b58a4e83759a933ecd8c461248e94138c092036e6",
+    "cocotb-case-2/stage10-paired-v1-case-2__paired_case_2__seed1.json": "091fe137ab27483652548ecb5c5e800c17fcb3f0be251f217a6aea3600c1f30b",
+    "cocotb-case-2/results.xml": "0fb29da53e05e6a7ee69444ed8122ca9a81698bf16d1bd9cb630e03b1b63c641"
+  },
+  "cases": [
+    {
+      "case": 0,
+      "reference_status": "PASS",
+      "uvm_sample_count_in_body": 20,
+      "cocotb_sample_count_in_body": 23,
+      "accepted_tl_inputs_and_times_equal": true,
+      "tl_response_callbacks_and_read_values_equal": true,
+      "edge_observation_count": 29,
+      "aon_edge_timestamps_equal": true,
+      "rtl_counters_and_output_pins_at_aon_edges_equal": true,
+      "edge_differences": [],
+      "simultaneous_count_expiry": [
+        {
+          "label": "WKUP",
+          "time_ps": 441707766,
+          "control_events": [
+            "count",
+            "expiry",
+            "count",
+            "expiry"
+          ],
+          "actual_sample_invocations": 0
+        }
+      ],
+      "samples": {
+        "groups": {
+          "intr_cg": {
+            "uvm_count": 2,
+            "cocotb_count": 2,
+            "ordered_tuples_and_times_equal": true,
+            "same_time_multisets_equal": true,
+            "only_uvm_times_ps": [],
+            "only_cocotb_times_ps": [],
+            "matched_time_field_differences": []
+          },
+          "intr_pins_cg": {
+            "uvm_count": 2,
+            "cocotb_count": 2,
+            "ordered_tuples_and_times_equal": false,
+            "same_time_multisets_equal": true,
+            "only_uvm_times_ps": [],
+            "only_cocotb_times_ps": [],
+            "matched_time_field_differences": [
+              {
+                "time_ps": 436707766,
+                "same_time_index": 0,
+                "fields": {
+                  "intr_pin": {
+                    "uvm": 1,
+                    "cocotb": 0
+                  },
+                  "intr_pin_value": {
+                    "uvm": 1,
+                    "cocotb": 0
+                  }
+                }
+              },
+              {
+                "time_ps": 436707766,
+                "same_time_index": 1,
+                "fields": {
+                  "intr_pin": {
+                    "uvm": 0,
+                    "cocotb": 1
+                  },
+                  "intr_pin_value": {
+                    "uvm": 0,
+                    "cocotb": 1
+                  }
+                }
+              }
+            ]
+          },
+          "timer_cfg_cg": {
+            "uvm_count": 14,
+            "cocotb_count": 14,
+            "ordered_tuples_and_times_equal": false,
+            "same_time_multisets_equal": false,
+            "only_uvm_times_ps": [],
+            "only_cocotb_times_ps": [],
+            "matched_time_field_differences": [
+              {
+                "time_ps": 349344354,
+                "same_time_index": 0,
+                "fields": {
+                  "wdog_regwen": {
+                    "uvm": 0,
+                    "cocotb": 1
+                  }
+                }
+              },
+              {
+                "time_ps": 354344354,
+                "same_time_index": 0,
+                "fields": {
+                  "wdog_regwen": {
+                    "uvm": 0,
+                    "cocotb": 1
+                  }
+                }
+              },
+              {
+                "time_ps": 359484354,
+                "same_time_index": 0,
+                "fields": {
+                  "wdog_regwen": {
+                    "uvm": 0,
+                    "cocotb": 1
+                  }
+                }
+              },
+              {
+                "time_ps": 364364354,
+                "same_time_index": 0,
+                "fields": {
+                  "wdog_regwen": {
+                    "uvm": 0,
+                    "cocotb": 1
+                  }
+                }
+              },
+              {
+                "time_ps": 369524354,
+                "same_time_index": 0,
+                "fields": {
+                  "wdog_regwen": {
+                    "uvm": 0,
+                    "cocotb": 1
+                  }
+                }
+              },
+              {
+                "time_ps": 374504354,
+                "same_time_index": 0,
+                "fields": {
+                  "wdog_regwen": {
+                    "uvm": 0,
+                    "cocotb": 1
+                  }
+                }
+              },
+              {
+                "time_ps": 379504354,
+                "same_time_index": 0,
+                "fields": {
+                  "wdog_regwen": {
+                    "uvm": 0,
+                    "cocotb": 1
+                  }
+                }
+              },
+              {
+                "time_ps": 384524354,
+                "same_time_index": 0,
+                "fields": {
+                  "wdog_regwen": {
+                    "uvm": 0,
+                    "cocotb": 1
+                  }
+                }
+              },
+              {
+                "time_ps": 389444354,
+                "same_time_index": 0,
+                "fields": {
+                  "wdog_regwen": {
+                    "uvm": 0,
+                    "cocotb": 1
+                  }
+                }
+              },
+              {
+                "time_ps": 394504354,
+                "same_time_index": 0,
+                "fields": {
+                  "wdog_regwen": {
+                    "uvm": 0,
+                    "cocotb": 1
+                  }
+                }
+              },
+              {
+                "time_ps": 399444354,
+                "same_time_index": 0,
+                "fields": {
+                  "wdog_regwen": {
+                    "uvm": 0,
+                    "cocotb": 1
+                  }
+                }
+              },
+              {
+                "time_ps": 404524354,
+                "same_time_index": 0,
+                "fields": {
+                  "wdog_regwen": {
+                    "uvm": 0,
+                    "cocotb": 1
+                  }
+                }
+              },
+              {
+                "time_ps": 464484354,
+                "same_time_index": 0,
+                "fields": {
+                  "wdog_regwen": {
+                    "uvm": 0,
+                    "cocotb": 1
+                  }
+                }
+              },
+              {
+                "time_ps": 469464354,
+                "same_time_index": 0,
+                "fields": {
+                  "wdog_regwen": {
+                    "uvm": 0,
+                    "cocotb": 1
+                  }
+                }
+              }
+            ]
+          },
+          "wake_up_timer_thold_hit_cg": {
+            "uvm_count": 2,
+            "cocotb_count": 5,
+            "ordered_tuples_and_times_equal": false,
+            "same_time_multisets_equal": false,
+            "only_uvm_times_ps": [
+              426707766
+            ],
+            "only_cocotb_times_ps": [
+              431707766,
+              436707766,
+              441707766,
+              441707766
+            ],
+            "matched_time_field_differences": [
+              {
+                "time_ps": 426707766,
+                "same_time_index": 0,
+                "fields": {
+                  "wkup_count": {
+                    "uvm": 8589934594,
+                    "cocotb": 2
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "global_invocation_order_equal": false,
+        "same_time_multisets_equal": false
+      },
+      "cocotb_status": "PASS"
+    },
+    {
+      "case": 1,
+      "reference_status": "PASS",
+      "uvm_sample_count_in_body": 26,
+      "cocotb_sample_count_in_body": 32,
+      "accepted_tl_inputs_and_times_equal": true,
+      "tl_response_callbacks_and_read_values_equal": true,
+      "edge_observation_count": 29,
+      "aon_edge_timestamps_equal": true,
+      "rtl_counters_and_output_pins_at_aon_edges_equal": true,
+      "edge_differences": [],
+      "simultaneous_count_expiry": [
+        {
+          "label": "WDOG Bark",
+          "time_ps": 436707766,
+          "control_events": [
+            "count",
+            "expiry",
+            "count",
+            "expiry"
+          ],
+          "actual_sample_invocations": 0
+        },
+        {
+          "label": "WDOG Bite",
+          "time_ps": 451707766,
+          "control_events": [
+            "count",
+            "expiry",
+            "count",
+            "expiry"
+          ],
+          "actual_sample_invocations": 0
+        }
+      ],
+      "samples": {
+        "groups": {
+          "intr_cg": {
+            "uvm_count": 2,
+            "cocotb_count": 2,
+            "ordered_tuples_and_times_equal": true,
+            "same_time_multisets_equal": true,
+            "only_uvm_times_ps": [],
+            "only_cocotb_times_ps": [],
+            "matched_time_field_differences": []
+          },
+          "intr_pins_cg": {
+            "uvm_count": 4,
+            "cocotb_count": 4,
+            "ordered_tuples_and_times_equal": false,
+            "same_time_multisets_equal": true,
+            "only_uvm_times_ps": [],
+            "only_cocotb_times_ps": [],
+            "matched_time_field_differences": [
+              {
+                "time_ps": 436707766,
+                "same_time_index": 0,
+                "fields": {
+                  "intr_pin": {
+                    "uvm": 1,
+                    "cocotb": 0
+                  },
+                  "intr_pin_value": {
+                    "uvm": 1,
+                    "cocotb": 0
+                  }
+                }
+              },
+              {
+                "time_ps": 436707766,
+                "same_time_index": 1,
+                "fields": {
+                  "intr_pin": {
+                    "uvm": 0,
+                    "cocotb": 1
+                  },
+                  "intr_pin_value": {
+                    "uvm": 0,
+                    "cocotb": 1
+                  }
+                }
+              },
+              {
+                "time_ps": 451707766,
+                "same_time_index": 0,
+                "fields": {
+                  "intr_pin": {
+                    "uvm": 1,
+                    "cocotb": 0
+                  }
+                }
+              },
+              {
+                "time_ps": 451707766,
+                "same_time_index": 1,
+                "fields": {
+                  "intr_pin": {
+                    "uvm": 0,
+                    "cocotb": 1
+                  }
+                }
+              }
+            ]
+          },
+          "timer_cfg_cg": {
+            "uvm_count": 14,
+            "cocotb_count": 14,
+            "ordered_tuples_and_times_equal": false,
+            "same_time_multisets_equal": false,
+            "only_uvm_times_ps": [],
+            "only_cocotb_times_ps": [],
+            "matched_time_field_differences": [
+              {
+                "time_ps": 349344354,
+                "same_time_index": 0,
+                "fields": {
+                  "wdog_regwen": {
+                    "uvm": 0,
+                    "cocotb": 1
+                  }
+                }
+              },
+              {
+                "time_ps": 354344354,
+                "same_time_index": 0,
+                "fields": {
+                  "wdog_regwen": {
+                    "uvm": 0,
+                    "cocotb": 1
+                  }
+                }
+              },
+              {
+                "time_ps": 359484354,
+                "same_time_index": 0,
+                "fields": {
+                  "wdog_regwen": {
+                    "uvm": 0,
+                    "cocotb": 1
+                  }
+                }
+              },
+              {
+                "time_ps": 364364354,
+                "same_time_index": 0,
+                "fields": {
+                  "wdog_regwen": {
+                    "uvm": 0,
+                    "cocotb": 1
+                  }
+                }
+              },
+              {
+                "time_ps": 369524354,
+                "same_time_index": 0,
+                "fields": {
+                  "wdog_regwen": {
+                    "uvm": 0,
+                    "cocotb": 1
+                  }
+                }
+              },
+              {
+                "time_ps": 374504354,
+                "same_time_index": 0,
+                "fields": {
+                  "wdog_regwen": {
+                    "uvm": 0,
+                    "cocotb": 1
+                  }
+                }
+              },
+              {
+                "time_ps": 379504354,
+                "same_time_index": 0,
+                "fields": {
+                  "wdog_regwen": {
+                    "uvm": 0,
+                    "cocotb": 1
+                  }
+                }
+              },
+              {
+                "time_ps": 384524354,
+                "same_time_index": 0,
+                "fields": {
+                  "wdog_regwen": {
+                    "uvm": 0,
+                    "cocotb": 1
+                  }
+                }
+              },
+              {
+                "time_ps": 389444354,
+                "same_time_index": 0,
+                "fields": {
+                  "wdog_regwen": {
+                    "uvm": 0,
+                    "cocotb": 1
+                  }
+                }
+              },
+              {
+                "time_ps": 394504354,
+                "same_time_index": 0,
+                "fields": {
+                  "wdog_regwen": {
+                    "uvm": 0,
+                    "cocotb": 1
+                  }
+                }
+              },
+              {
+                "time_ps": 399444354,
+                "same_time_index": 0,
+                "fields": {
+                  "wdog_regwen": {
+                    "uvm": 0,
+                    "cocotb": 1
+                  }
+                }
+              },
+              {
+                "time_ps": 404524354,
+                "same_time_index": 0,
+                "fields": {
+                  "wdog_regwen": {
+                    "uvm": 0,
+                    "cocotb": 1
+                  }
+                }
+              },
+              {
+                "time_ps": 464484354,
+                "same_time_index": 0,
+                "fields": {
+                  "wdog_regwen": {
+                    "uvm": 0,
+                    "cocotb": 1
+                  }
+                }
+              },
+              {
+                "time_ps": 469464354,
+                "same_time_index": 0,
+                "fields": {
+                  "wdog_regwen": {
+                    "uvm": 0,
+                    "cocotb": 1
+                  }
+                }
+              }
+            ]
+          },
+          "watchdog_timer_bark_thold_hit_cg": {
+            "uvm_count": 4,
+            "cocotb_count": 5,
+            "ordered_tuples_and_times_equal": false,
+            "same_time_multisets_equal": false,
+            "only_uvm_times_ps": [
+              426707766,
+              466707766
+            ],
+            "only_cocotb_times_ps": [
+              431707766,
+              436707766,
+              436707766
+            ],
+            "matched_time_field_differences": []
+          },
+          "watchdog_timer_bite_thold_hit_cg": {
+            "uvm_count": 2,
+            "cocotb_count": 7,
+            "ordered_tuples_and_times_equal": false,
+            "same_time_multisets_equal": false,
+            "only_uvm_times_ps": [
+              426707766
+            ],
+            "only_cocotb_times_ps": [
+              431707766,
+              436707766,
+              441707766,
+              446707766,
+              451707766,
+              451707766
+            ],
+            "matched_time_field_differences": []
+          }
+        },
+        "global_invocation_order_equal": false,
+        "same_time_multisets_equal": false
+      },
+      "cocotb_status": "PASS"
+    },
+    {
+      "case": 2,
+      "reference_status": "PASS",
+      "uvm_sample_count_in_body": 26,
+      "cocotb_sample_count_in_body": 32,
+      "accepted_tl_inputs_and_times_equal": true,
+      "tl_response_callbacks_and_read_values_equal": true,
+      "edge_observation_count": 29,
+      "aon_edge_timestamps_equal": true,
+      "rtl_counters_and_output_pins_at_aon_edges_equal": true,
+      "edge_differences": [],
+      "simultaneous_count_expiry": [
+        {
+          "label": "WDOG Bite",
+          "time_ps": 436707766,
+          "control_events": [
+            "count",
+            "expiry",
+            "count",
+            "expiry"
+          ],
+          "actual_sample_invocations": 0
+        },
+        {
+          "label": "WDOG Bark",
+          "time_ps": 451707766,
+          "control_events": [
+            "count",
+            "expiry",
+            "count",
+            "expiry"
+          ],
+          "actual_sample_invocations": 0
+        }
+      ],
+      "samples": {
+        "groups": {
+          "intr_cg": {
+            "uvm_count": 2,
+            "cocotb_count": 2,
+            "ordered_tuples_and_times_equal": true,
+            "same_time_multisets_equal": true,
+            "only_uvm_times_ps": [],
+            "only_cocotb_times_ps": [],
+            "matched_time_field_differences": []
+          },
+          "intr_pins_cg": {
+            "uvm_count": 4,
+            "cocotb_count": 4,
+            "ordered_tuples_and_times_equal": false,
+            "same_time_multisets_equal": true,
+            "only_uvm_times_ps": [],
+            "only_cocotb_times_ps": [],
+            "matched_time_field_differences": [
+              {
+                "time_ps": 436707766,
+                "same_time_index": 0,
+                "fields": {
+                  "intr_pin": {
+                    "uvm": 1,
+                    "cocotb": 0
+                  },
+                  "intr_pin_value": {
+                    "uvm": 0,
+                    "cocotb": 1
+                  }
+                }
+              },
+              {
+                "time_ps": 436707766,
+                "same_time_index": 1,
+                "fields": {
+                  "intr_pin": {
+                    "uvm": 0,
+                    "cocotb": 1
+                  },
+                  "intr_pin_value": {
+                    "uvm": 1,
+                    "cocotb": 0
+                  }
+                }
+              },
+              {
+                "time_ps": 451707766,
+                "same_time_index": 0,
+                "fields": {
+                  "intr_pin": {
+                    "uvm": 1,
+                    "cocotb": 0
+                  }
+                }
+              },
+              {
+                "time_ps": 451707766,
+                "same_time_index": 1,
+                "fields": {
+                  "intr_pin": {
+                    "uvm": 0,
+                    "cocotb": 1
+                  }
+                }
+              }
+            ]
+          },
+          "timer_cfg_cg": {
+            "uvm_count": 14,
+            "cocotb_count": 14,
+            "ordered_tuples_and_times_equal": false,
+            "same_time_multisets_equal": false,
+            "only_uvm_times_ps": [],
+            "only_cocotb_times_ps": [],
+            "matched_time_field_differences": [
+              {
+                "time_ps": 349344354,
+                "same_time_index": 0,
+                "fields": {
+                  "wdog_regwen": {
+                    "uvm": 0,
+                    "cocotb": 1
+                  }
+                }
+              },
+              {
+                "time_ps": 354344354,
+                "same_time_index": 0,
+                "fields": {
+                  "wdog_regwen": {
+                    "uvm": 0,
+                    "cocotb": 1
+                  }
+                }
+              },
+              {
+                "time_ps": 359484354,
+                "same_time_index": 0,
+                "fields": {
+                  "wdog_regwen": {
+                    "uvm": 0,
+                    "cocotb": 1
+                  }
+                }
+              },
+              {
+                "time_ps": 364364354,
+                "same_time_index": 0,
+                "fields": {
+                  "wdog_regwen": {
+                    "uvm": 0,
+                    "cocotb": 1
+                  }
+                }
+              },
+              {
+                "time_ps": 369524354,
+                "same_time_index": 0,
+                "fields": {
+                  "wdog_regwen": {
+                    "uvm": 0,
+                    "cocotb": 1
+                  }
+                }
+              },
+              {
+                "time_ps": 374504354,
+                "same_time_index": 0,
+                "fields": {
+                  "wdog_regwen": {
+                    "uvm": 0,
+                    "cocotb": 1
+                  }
+                }
+              },
+              {
+                "time_ps": 379504354,
+                "same_time_index": 0,
+                "fields": {
+                  "wdog_regwen": {
+                    "uvm": 0,
+                    "cocotb": 1
+                  }
+                }
+              },
+              {
+                "time_ps": 384524354,
+                "same_time_index": 0,
+                "fields": {
+                  "wdog_regwen": {
+                    "uvm": 0,
+                    "cocotb": 1
+                  }
+                }
+              },
+              {
+                "time_ps": 389444354,
+                "same_time_index": 0,
+                "fields": {
+                  "wdog_regwen": {
+                    "uvm": 0,
+                    "cocotb": 1
+                  }
+                }
+              },
+              {
+                "time_ps": 394504354,
+                "same_time_index": 0,
+                "fields": {
+                  "wdog_regwen": {
+                    "uvm": 0,
+                    "cocotb": 1
+                  }
+                }
+              },
+              {
+                "time_ps": 399444354,
+                "same_time_index": 0,
+                "fields": {
+                  "wdog_regwen": {
+                    "uvm": 0,
+                    "cocotb": 1
+                  }
+                }
+              },
+              {
+                "time_ps": 404524354,
+                "same_time_index": 0,
+                "fields": {
+                  "wdog_regwen": {
+                    "uvm": 0,
+                    "cocotb": 1
+                  }
+                }
+              },
+              {
+                "time_ps": 464484354,
+                "same_time_index": 0,
+                "fields": {
+                  "wdog_regwen": {
+                    "uvm": 0,
+                    "cocotb": 1
+                  }
+                }
+              },
+              {
+                "time_ps": 469464354,
+                "same_time_index": 0,
+                "fields": {
+                  "wdog_regwen": {
+                    "uvm": 0,
+                    "cocotb": 1
+                  }
+                }
+              }
+            ]
+          },
+          "watchdog_timer_bark_thold_hit_cg": {
+            "uvm_count": 2,
+            "cocotb_count": 7,
+            "ordered_tuples_and_times_equal": false,
+            "same_time_multisets_equal": false,
+            "only_uvm_times_ps": [
+              426707766
+            ],
+            "only_cocotb_times_ps": [
+              431707766,
+              436707766,
+              441707766,
+              446707766,
+              451707766,
+              451707766
+            ],
+            "matched_time_field_differences": []
+          },
+          "watchdog_timer_bite_thold_hit_cg": {
+            "uvm_count": 4,
+            "cocotb_count": 5,
+            "ordered_tuples_and_times_equal": false,
+            "same_time_multisets_equal": false,
+            "only_uvm_times_ps": [
+              426707766,
+              466707766
+            ],
+            "only_cocotb_times_ps": [
+              431707766,
+              436707766,
+              436707766
+            ],
+            "matched_time_field_differences": []
+          }
+        },
+        "global_invocation_order_equal": false,
+        "same_time_multisets_equal": false
+      },
+      "cocotb_status": "PASS"
+    }
+  ]
+}

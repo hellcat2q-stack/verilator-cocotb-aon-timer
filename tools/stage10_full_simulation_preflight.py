@@ -67,9 +67,13 @@ DEFAULT_UVM_TIMING_SHAPE_AUDIT = (
     ROOT / "evidence" / "stage10_uvm_vcs_timing"
     / "2026-11-16-v2" / "audit.json"
 )
+DEFAULT_ACTUAL_SAMPLE_AUDIT = (
+    ROOT / "evidence" / "stage10_independent_sample_parity"
+    / "2026-11-16-v1" / "audit.json"
+)
 DEFAULT_OUTPUT = (
     ROOT / "evidence" / "stage10_full_simulation_preflight"
-    / "2026-11-16-v4" / "preflight.json"
+    / "2026-11-16-v5" / "preflight.json"
 )
 
 
@@ -103,6 +107,7 @@ def build_preflight(
     legacy_vector_header_audit_path: Path = DEFAULT_LEGACY_VECTOR_HEADER_AUDIT,
     array_vcs_boundary_audit_path: Path = DEFAULT_ARRAY_VCS_BOUNDARY_AUDIT,
     uvm_timing_shape_audit_path: Path = DEFAULT_UVM_TIMING_SHAPE_AUDIT,
+    actual_sample_audit_path: Path = DEFAULT_ACTUAL_SAMPLE_AUDIT,
 ) -> dict[str, Any]:
     catalog, catalog_hash = load_catalog(CATALOG_PATH)
     array_definitions, array_reference = load_array_reference(catalog)
@@ -116,6 +121,19 @@ def build_preflight(
     identity_bridge = read_json(identity_bridge_path)
     sample_site_audit = read_json(sample_site_audit_path)
     timing_shape = read_json(uvm_timing_shape_audit_path)
+    actual_samples = read_json(actual_sample_audit_path)
+    actual_samples_hash = sha256_file(actual_sample_audit_path)
+    actual_sidecar = Path(str(actual_sample_audit_path) + ".sha256").read_text(encoding="ascii").split()
+    if actual_sidecar != [actual_samples_hash, Path(actual_sample_audit_path).name]:
+        raise ValueError("Actual sample audit SHA-256 sidecar mismatch")
+    try:
+        from tools.stage10_sample_parity.audit import audit_evidence as replay_actual_samples
+    except ModuleNotFoundError:
+        from stage10_sample_parity.audit import audit_evidence as replay_actual_samples
+    if actual_samples != replay_actual_samples(Path(actual_sample_audit_path).parent):
+        raise ValueError("Actual sample audit does not replay from independently captured evidence")
+    if not actual_samples["valid_independent_short_pairs"] or actual_samples["complete_parity_verified"]:
+        raise ValueError("Three short diagnostic pairs cannot establish complete sampling parity")
     timing_shape_hash = sha256_file(uvm_timing_shape_audit_path)
     timing_sidecar = Path(str(uvm_timing_shape_audit_path) + ".sha256").read_text(encoding="ascii").split()
     if timing_sidecar != [timing_shape_hash, Path(uvm_timing_shape_audit_path).name]:
@@ -316,7 +334,7 @@ def build_preflight(
     if not timing_parity_complete:
         blockers.append(
             "Count-event sampling cadence lacks source-locked testcase/sample-level UVM/VCS timing parity; "
-            "any compact shape evidence remains diagnostic only."
+            "three independent actual-sample pairs now show differences; complete semantics remain unresolved."
         )
     if not replay.get("status") == "PASS" or replay.get("attempts_replayed") != 288:
         blockers.append("Stage 09 replay audit is not a verified 288/288 PASS.")
@@ -374,6 +392,7 @@ def build_preflight(
             sample_site_audit.get("count_event_timing", {}).get("cadence_model_present") is True
         ),
         "uvm_control_event_shape_diagnostic_is_replayed": timing_shape_verified,
+        "independent_actual_sample_diagnostic_is_replayed": True,
         "stage06_exact_matrix_is_available": stage06_exact,
         "legacy_identity_bridge_is_complete": mapping == canonical_count,
         "sample_site_mapping_is_complete": sample_site_complete,
@@ -445,6 +464,11 @@ def build_preflight(
             "sample_sites_complete": sample_site_complete,
             "uvm_control_event_shape_diagnostic_complete": timing_shape_verified,
             "uvm_control_event_run_count": len(timing_shape.get("runs", [])),
+            "independent_pinned_actual_sample_run_pairs": len(actual_samples["cases"]),
+            "independent_pinned_actual_sample_diagnostic_status": actual_samples["status"],
+            "independent_pinned_actual_sample_body_count": sum(c["uvm_sample_count_in_body"] for c in actual_samples["cases"]),
+            "independent_cocotb_sample_body_count": sum(c["cocotb_sample_count_in_body"] for c in actual_samples["cases"]),
+            "independent_source_export_and_declared_patch_verified": actual_samples["post_build_source_matches_declared_variant"],
             "uvm_control_message_count": sum(row["event_count"] for row in timing_shape["runs"]),
             "uvm_covergroup_sample_invocations_observed": False,
             "uvm_build_source_revision_verified": timing_shape.get("build_source_revision_verified"),
@@ -514,6 +538,11 @@ def build_preflight(
                 "sha256": timing_shape_hash,
                 "scope": "Count/expiry producer control messages only; cannot satisfy the sampling parity gate.",
             },
+            "independent_actual_sample_diagnostic": {
+                "path": _relative(actual_sample_audit_path),
+                "sha256": actual_samples_hash,
+                "scope": "Three pinned actual-sample pairs; preserves observed differences and does not satisfy complete parity.",
+            },
             "trace_root": _relative(trace_root),
         },
     }
@@ -531,6 +560,7 @@ def main() -> int:
     parser.add_argument("--legacy-vector-header-audit", type=Path, default=DEFAULT_LEGACY_VECTOR_HEADER_AUDIT)
     parser.add_argument("--array-vcs-boundary-audit", type=Path, default=DEFAULT_ARRAY_VCS_BOUNDARY_AUDIT)
     parser.add_argument("--uvm-timing-shape-audit", type=Path, default=DEFAULT_UVM_TIMING_SHAPE_AUDIT)
+    parser.add_argument("--actual-sample-audit", type=Path, default=DEFAULT_ACTUAL_SAMPLE_AUDIT)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument("--require-ready", action="store_true",
                         help="Return exit code 2 when the full-simulation start gate is blocked.")
@@ -547,6 +577,7 @@ def main() -> int:
             legacy_vector_header_audit_path=args.legacy_vector_header_audit,
             array_vcs_boundary_audit_path=args.array_vcs_boundary_audit,
             uvm_timing_shape_audit_path=args.uvm_timing_shape_audit,
+            actual_sample_audit_path=args.actual_sample_audit,
         )
     except (OSError, UnicodeError, ValueError, KeyError, json.JSONDecodeError) as exc:
         parser.error(str(exc))

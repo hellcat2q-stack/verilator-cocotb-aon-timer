@@ -14,7 +14,7 @@
 
 ## 固定参考
 
-**UVM 对照复核修正：**当前采用 [timing 证据 v2](evidence/stage10_uvm_vcs_timing/2026-11-16-v2/README.md)，v1 已标为 superseded。新版审计实际调用 Python scheduler，明确区分“控制事件形状通过”和“完整采样等价未完成”：wakeup 间隔为 5 μs；bark/bite 各只有一个主 count，无法测量间隔。UVM_HIGH 行没有记录实际 covergroup 调用，且现成 simv 所在源码树的 scoreboard 与固定 revision 不同，因此完整时序标志保持 false。下一项是[从独立 pinned build 做逐采样对照](configs/stage10-uvm-sample-parity-plan.json)；full 仿真没有启动，5 项阻塞仍在。
+**独立实际采样对照已实跑（2026-11-16）：**从固定版本重新导出并核验 10,514 个源码 blobs，声明日志与确定性测试配置 patch，独立构建 VCS；三组短测试及三个 Verilator/Cocotb 配对回放全部 PASS。TL 输入、响应时刻与逐 AON 边沿 RTL 计数器/引脚均一致，但 body 内实际 UVM/Cocotb samples 分别为 **20/23、26/32、26/32**。已复现配置镜像 `wdog_regwen` 初值、wakeup 低字重复读取、timer 调用次数等差异；pin 同时间多重集合相同而顺序不同。见[完整证据与差异](evidence/stage10_independent_sample_parity/2026-11-16-v1/README.md)。此前 [timing 证据 v2](evidence/stage10_uvm_vcs_timing/2026-11-16-v2/README.md)只检查 producer 控制消息，仍保留作历史诊断。新 [v5 preflight](evidence/stage10_full_simulation_preflight/2026-11-16-v5/preflight.json)已离线重放实际采样对照；完整 parity 仍为 false，5 项门禁未解除，full 未启动，coverage credit 增量为 0。
 
 | 项目 | 值 |
 | --- | --- |
@@ -42,7 +42,7 @@
 | 07 | 接入聚类、信息评分与 UCB 调度 | 4,507 identities → 78 clusters 已回放；论文信息评分与 cluster UCB 待补；另有 Stage 08 testcase UCB pilot 已运行 |
 | 08 | 在线仿真和 coverage feedback 闭环 | action-boundary pilot 完成 18 次真实仿真与逐轮反馈，18/18 PASS、330 样本、20 positives；完整论文闭环尚未完成 |
 | 09 | Random、Full 和消融对照 | 工程范围 288 次 RTL 对照及独立 replay audit 完成；完整论文方法对照仍待完成 |
-| 10 | 独立复核与最终报告 | Stage 09 replay audit、source-definition 分类 v2、sample-site audit、历史表头审计、VCS/Python 数组边界和局部 UVM/VCS count-event shape 对照完成；5 项 blocker 仍在，未启动 full 仿真 |
+| 10 | 独立复核与最终报告 | 独立 pinned UVM/Cocotb 三组实际采样对照完成，RTL 一致但采样存在实质差异；先前定义/身份/边界审计保留，5 项 blocker 仍在，未启动 full 仿真 |
 
 ## 文件管理
 

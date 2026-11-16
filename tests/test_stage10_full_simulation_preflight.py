@@ -10,11 +10,37 @@ from tools.stage10_full_simulation_preflight import (
     DEFAULT_CLASSIFICATION,
     DEFAULT_LEGACY_VECTOR_HEADER_AUDIT,
     DEFAULT_UVM_TIMING_SHAPE_AUDIT,
+    DEFAULT_ACTUAL_SAMPLE_AUDIT,
     build_preflight,
 )
 
 
 class Stage10FullSimulationPreflightTests(unittest.TestCase):
+    def test_passing_rtl_pairs_with_sampling_differences_do_not_clear_gate(self):
+        report = build_preflight()
+        self.assertTrue(report["checks"]["independent_actual_sample_diagnostic_is_replayed"])
+        self.assertEqual(report["summary"]["independent_pinned_actual_sample_run_pairs"], 3)
+        self.assertEqual(report["summary"]["independent_pinned_actual_sample_body_count"], 72)
+        self.assertEqual(report["summary"]["independent_cocotb_sample_body_count"], 87)
+        self.assertEqual(report["full_simulation_start_gate"], "BLOCKED")
+        self.assertFalse(report["checks"]["independent_uvm_vcs_timing_comparison_complete"])
+
+    def test_rehashed_actual_sample_parity_promotion_is_rejected(self):
+        import hashlib
+
+        with tempfile.TemporaryDirectory() as directory:
+            copied = Path(directory) / "actual"
+            shutil.copytree(DEFAULT_ACTUAL_SAMPLE_AUDIT.parent, copied)
+            path = copied / "audit.json"
+            report = json.loads(path.read_text(encoding="utf-8"))
+            report["complete_parity_verified"] = True
+            path.write_text(json.dumps(report), encoding="utf-8")
+            Path(str(path) + ".sha256").write_text(
+                f"{hashlib.sha256(path.read_bytes()).hexdigest()}  audit.json\n", encoding="ascii"
+            )
+            with self.assertRaisesRegex(ValueError, "does not replay from independently"):
+                build_preflight(actual_sample_audit_path=path)
+
     def test_report_confirms_simulation_is_not_ready_or_started(self):
         report = build_preflight()
         self.assertEqual(report["status"], "BLOCKED_BEFORE_FULL_SIMULATION")

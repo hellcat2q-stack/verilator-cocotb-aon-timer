@@ -1,12 +1,14 @@
 # 阶段 10：最终复核与报告
 
-状态（2026-11-16）：**Stage 09 工程结果已独立复核；source-definition 分类 v2、identity bridge、sample-site、历史 vector header、VCS/Python 数组边界与局部 UVM/VCS count-event shape 对照均完成；full 仿真启动门禁仍 blocked，full coverage 仍不可报告。**
+状态（2026-11-16）：**独立 pinned UVM/VCS 三组实际采样及 Cocotb 配对回放已完成，6/6 PASS；总线和逐 AON 边沿 RTL 行为一致，采样存在实质差异。Stage 09、source-definition、identity、sample-site 等既有审计保留；full 启动门禁仍 blocked，full coverage 不可报告。**
 
 ## 复核结论
 
-UVM 对照证据已更新为 [v2](../evidence/stage10_uvm_vcs_timing/2026-11-16-v2/README.md)。v1 曾把局部 shape 误标为完整 timing comparison，现已标为 superseded。新版实际调用 `TimerSampleScheduler`，但只比较从首个 count 对齐的控制事件；不验证 startup delay、实际 `.sample()` 次数或实参。wakeup 间隔为 5 μs；bark/bite 各一个主 count，无法测量 cadence。现成 simv 所在源码树的 scoreboard 与 pinned 文件哈希不同，完整二进制编译来源也尚未重建。这些限制已进入 [v4 preflight](../evidence/stage10_full_simulation_preflight/2026-11-16-v4/preflight.json)，只新增诊断完成项，完整 timing gate 仍为 false。
+新增[独立实际采样对照](../evidence/stage10_independent_sample_parity/2026-11-16-v1/README.md)：构建前后核验固定源码，独立 VCS 构建仅有声明的日志、确定性序列和快时钟配置 patch。三组 UVM/VCS 测试与三个 Cocotb 回放全部通过；body 内 UVM/Cocotb 实际 samples 分别为 20/23、26/32、26/32，共 72/87。TL 输入/响应及逐 AON 边沿 RTL 状态一致，但采样次数、配置局部镜像初值和 wakeup 双低字读取存在差异。pin 样本同时间多重集合一致、遍历顺序不同，interrupt 读回样本逐项一致。[v5 preflight](../evidence/stage10_full_simulation_preflight/2026-11-16-v5/preflight.json)已校验并离线重放新证据，完整 timing gate 保持 false。
 
-本次可报告的数值是 Stage 09 UCB（selection seed 1）确认观察到的 175/4,507 个 canonical identities，即目录比例 3.8828%。这只是已确认正向 identity 占目录的比例，不是 full coverage rate。新增的 UVM/VCS 证据只统计 21 条短运行 count/expiry 事件，不能转化为 canonical bin 命中数。剩余 4,332 个 identities 是 unknown，不能据此当作 miss 或未覆盖 bins。
+此前 [timing v2](../evidence/stage10_uvm_vcs_timing/2026-11-16-v2/README.md)仍是控制消息诊断：它实际调用 scheduler，但没有观察 covergroup 实际调用，旧 simv 的完整来源未核验。v1 曾过度声明完整 timing，已标为 superseded。新的独立构建解决了本轮诊断的来源问题；没有追溯性地证明旧 simv 的来源。
+
+本次可报告的数值是 Stage 09 UCB（selection seed 1）确认观察到的 175/4,507 个 canonical identities，即目录比例 3.8828%。这只是已确认正向 identity 占目录的比例，不是 full coverage rate。新的实际采样诊断以及先前 21 条控制消息都不增加 canonical coverage credit。剩余 4,332 个 identities 是 unknown，不能据此当作 miss 或未覆盖 bins。
 
 4,507 canonical identities 和 4,525 URG dashboard reference 是两个不同统计口径，不能互换。Stage 09 的 160 个数组 identity 来自已登记的 VCS 分区参考；目前没有证明 Verilator/Cocotb 的采样与原生 UVM/VCS 等价。
 
@@ -54,7 +56,7 @@ python3 tools/audit_stage09_comparison.py \
 
 已从服务器 `stage06_conversion_20261101T_v10` 恢复 `original_g0/g1/g10/g20/g30` 的 80 份 `grp*.html`，逐文件核验服务器 SHA-256。VCS compiler/runtime 为 `P-2019.06-SP1_Full64`，URG 为 `P-2019.06-SP1`。首份报告能准确重建 4,507 个冻结列；对另外四份报告，旧转换器的按位置对齐分别出现 126、114、83、236 处可确认的语义冲突，合计 559 处（不是 559 个去重 bin）。例如首份报告的 `wdog_regwen_cp` 行序为值 1、值 0，`original_g1` 为值 0、值 1；旧逻辑仍按原位置写入，造成两列互换。即便 bin 总数和总命中数相同，也不能证明逐列身份一致。
 
-新增审计器 `tools/audit_legacy_urg_layouts.py` 按明确 bin 名或 singleton 值对齐，可在每份对照报告中匹配 345 个明确变量 identity，拒绝压缩区间、wildcard cross、重复名字及缺失身份；这不是采样等价或完整映射。压缩行仍不暴露逐 bin 次序，因此 v2 顺序候选继续不获 credit。可公开重放的标签布局、来源哈希、恢复记录和错误反例见 [新证据目录](../evidence/stage10_legacy_urg_layout/2026-11-15-v1/README.md)。本轮没有启动 VCS 或 RTL 仿真，没有导出历史 hit counts；Stage 09 的 175 个正向观察来源于本仓库 Cocotb traces，结果不因此增加。
+新增审计器 `tools/audit_legacy_urg_layouts.py` 按明确 bin 名或 singleton 值对齐，可在每份对照报告中匹配 345 个明确变量 identity，拒绝压缩区间、wildcard cross、重复名字及缺失身份；这不是采样等价或完整映射。压缩行仍不暴露逐 bin 次序，因此 v2 顺序候选继续不获 credit。可公开重放的标签布局、来源哈希、恢复记录和错误反例见 [新证据目录](../evidence/stage10_legacy_urg_layout/2026-11-15-v1/README.md)。该历史布局审计未启动 VCS 或 RTL 仿真，也未导出历史 hit counts；Stage 09 的 175 个正向观察来源于本仓库 Cocotb traces，结果不因此增加。
 
 ### Source-definition 分类（2026-11-16）
 

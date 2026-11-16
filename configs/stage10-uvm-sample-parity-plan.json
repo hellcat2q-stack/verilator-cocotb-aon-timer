@@ -1,10 +1,25 @@
 {
   "schema": "aon-timer-uvm-sample-parity-plan-v1",
-  "status": "NOT_STARTED",
+  "status": "SHORT_ACTUAL_SAMPLE_COMPARISON_COMPLETED_WITH_DIFFERENCES",
   "source_revision": "9f20940d494a223cc950a5b98f748fb28109d458",
   "full_simulation_started": false,
   "coverage_credit_granted": 0,
   "current_diagnostic_evidence": "evidence/stage10_uvm_vcs_timing/2026-11-16-v2/audit.json",
+  "independent_actual_sample_evidence": "evidence/stage10_independent_sample_parity/2026-11-16-v1/audit.json",
+  "short_diagnostic_progress": {
+    "source_export_blobs_verified": 10514,
+    "pinned_vcs_cases_passed": 3,
+    "paired_cocotb_cases_passed": 3,
+    "accepted_tl_inputs_responses_and_aon_edge_rtl_states_match": true,
+    "uvm_actual_sample_invocations_in_test_bodies": 72,
+    "cocotb_sample_invocations_in_test_bodies": 87,
+    "complete_parity_verified": false,
+    "next_actions": [
+      "In a new adapter/schema variant, separate original source mirror initialization and pin order from RTL reset values; retain both raw RTL and original wakeup double-low-word sample values.",
+      "Investigate duplicate timer producers and missing later sample invocations in the original scoreboard. Any reference fixes must use a separate declared source variant with its own patch, build and regression evidence.",
+      "Extend independent tests to update/restart/prescale/sleep/reset and shared sampling before considering complete timing parity."
+    ]
+  },
   "source_policy": {
     "use_new_isolated_source_and_build": true,
     "preserve_existing_server_checkout_and_results": true,
