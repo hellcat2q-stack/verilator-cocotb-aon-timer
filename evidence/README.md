@@ -40,7 +40,7 @@
 
 `stage10_full_simulation_preflight/2026-11-16-v1/` 是只读启动门禁报告。它核对 4,507-bin catalog、160 个 array reference partitions、640 个源码/Python 边界 probes、Stage 09 replay audit 和 v2 分类 hash；同时明确记录 Stage 06 exact matrix、legacy identity bridge、sample-site mapping、Stage 07 scheduler 和 UVM/VCS sampling comparison 仍未准备好。`full_simulation_started` 为 false；该工具不启动仿真。
 
-`stage10_sample_site_audit/2026-11-16-v1/` 是新增的 raw-trace 结构审计。它检查 326 条公开 trace、17,743 个样本、7 个 AON covergroup 的字段键、same-sample cross、事件名、trace 计数元数据和 count-event RTL/cadence 字段；结果显示 AON capture protocol complete。228 个 shared/non-AON definitions 仍明确标记为当前 AON trace adapter 不可用，count-event timing 仍没有独立 UVM/VCS 对照；该审计授予 0 个 coverage credit，不把 unknown 当作 miss。报告和 sidecar：[sample-site-audit.json](stage10_sample_site_audit/2026-11-16-v1/sample-site-audit.json)、[sidecar](stage10_sample_site_audit/2026-11-16-v1/sample-site-audit.json.sha256)。
+`stage10_sample_site_audit/2026-11-16-v1/` 是新增的 raw-trace 结构审计。它检查 326 条公开 trace、17,743 个样本、7 个 AON covergroup 的字段键、same-sample cross、事件名、trace 计数元数据和 count-event RTL/cadence 字段；结果显示 AON capture protocol complete。228 个 shared/non-AON definitions 仍明确标记为当前 AON trace adapter 不可用，count-event timing 当时尚无完整独立 UVM/VCS 对照；该审计授予 0 个 coverage credit，不把 unknown 当作 miss。报告和 sidecar：[sample-site-audit.json](stage10_sample_site_audit/2026-11-16-v1/sample-site-audit.json)、[sidecar](stage10_sample_site_audit/2026-11-16-v1/sample-site-audit.json.sha256)。
 
 运行命令：
 
@@ -50,3 +50,5 @@ python3 tools/stage10_full_simulation_preflight.py
 ```
 
 `stage10_final_review/2026-11-14-v1/review.json` 是 Stage 09 结果口径的独立审查记录，包含复核状态、输入 hashes、canonical/URG 计数区分和 coverage 限制。它明确记录 full coverage rate 为不可报告；175/4,507（3.8828%）只表示已确认正向 identity 占 canonical 目录比例。
+
+`stage10_uvm_vcs_timing/2026-11-16-v1/` 保存四个短 VCS/UVM_HIGH 运行的 21 条过滤 count/expiry 事件、完整远程日志 SHA-256 和 VCS `simv` SHA-256。wakeup smoke/jump、watchdog bark、watchdog bite 的主事件组均通过 cadence shape 审计；bark/bite 中的伴随 watchdog count 保留为 incidental diagnostic event。证据只建立局部 count-event timing shape，不导入 VCS/URG hit counts，不授予 coverage credit，也不证明 testcase-by-testcase waveform、shared/non-AON 或完整 UVM/VCS 采样等价。报告、来源登记和 sidecar：[audit.json](stage10_uvm_vcs_timing/2026-11-16-v1/audit.json)、[provenance.json](stage10_uvm_vcs_timing/2026-11-16-v1/provenance.json)、[audit sidecar](stage10_uvm_vcs_timing/2026-11-16-v1/audit.json.sha256)。

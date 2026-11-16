@@ -291,7 +291,10 @@ def build_preflight(
             "Array boundaries lack a verified native VCS/Python classifier comparison."
         )
     if not timing_parity_complete:
-        blockers.append("Count-event sampling cadence has no independent UVM/VCS timing comparison.")
+        blockers.append(
+            "Count-event sampling cadence lacks complete testcase/sample-level UVM/VCS timing parity; "
+            "any compact shape evidence remains diagnostic only."
+        )
     if not replay.get("status") == "PASS" or replay.get("attempts_replayed") != 288:
         blockers.append("Stage 09 replay audit is not a verified 288/288 PASS.")
     if (classification.get("trace_count") != 288

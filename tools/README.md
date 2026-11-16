@@ -28,7 +28,7 @@ audit_canonical_identity_candidates.py --output <new-report.json> 按冻结的 c
 ## 2026-11-16 新增：source-definition v2 与 full 仿真前门禁
 
 - `classify_source_definitions.py` 将固定的 160 个 VCS 参考数组分区映射到单条 trace sample，解析完整 interrupt-cross bin label，并将 interrupt pin value/transition bins 分开分类。数组和 cross 结果只属于 source-definition/reference match，不增加旧 canonical coverage credit；illegal `intr_test=1 && intr_state=0` cross 会排除。
-- `stage10_full_simulation_preflight.py` 校验 catalog、数组来源/Python 边界审计、Stage 09 replay audit、source-classification hashes、identity bridge、Stage 06 exact matrix 和 sample-site readiness，写出只读的 preflight JSON。工具不会启动仿真。当前结果在 `evidence/stage10_full_simulation_preflight/2026-11-16-v2/preflight.json`，full 仿真门禁为 blocked。
+- `stage10_full_simulation_preflight.py` 校验 catalog、数组来源/Python 边界审计、Stage 09 replay audit、source-classification hashes、identity bridge、Stage 06 exact matrix 和 sample-site readiness，写出只读的 preflight JSON。工具不会启动仿真。当前结果在 `evidence/stage10_full_simulation_preflight/2026-11-16-v3/preflight.json`，full 仿真门禁为 blocked；若已有局部 timing shape 证据，blocker 仍要求完整 testcase/sample-level parity。
 - 重放：`python3 tools/classify_source_definitions.py --trace-root evidence/stage09_comparison/2026-11-14-v1 --expected-trace-count 288 --output evidence/stage10_source_definition_classification/2026-11-16-v2/classification.json`，然后运行 `python3 tools/stage10_full_simulation_preflight.py`。分类报告和预检报告均生成 SHA-256 sidecar。
 
 ## 2026-11-16 新增：历史 vector header 与 native VCS 数组边界审计
@@ -48,6 +48,28 @@ audit_canonical_identity_candidates.py --output <new-report.json> 按冻结的 c
 - `audit_sample_site_mapping.py` 读取 `configs/coverage_schema.json`，递归审计公开 raw traces 的 7 个 AON covergroup：字段键、同次采样 cross、事件名、trace sample counts、interrupt-test illegal 条件，以及三个 count-event group 的 RTL counter/cadence 元数据。它同时登记 228 个 shared/non-AON definitions 的未接入范围，并固定 `coverage_credit_granted=0`、`unknowns_are_misses=false`。
 - 运行：`python3 tools/audit_sample_site_mapping.py`，结果写入 `evidence/stage10_sample_site_audit/2026-11-16-v1/` 并生成 SHA-256 sidecar。报告可以把 AON capture protocol 标为 complete，但不会把 shared scope 或 count-event UVM/VCS timing parity 误报为 complete。
 - `stage10_full_simulation_preflight.py` 现在校验该审计的 sidecar 和工具 hash，并将 blocker 拆为 AON capture protocol、shared/non-AON scope、count-event timing parity 三类。full gate 仍必须保持 BLOCKED，直到 exact identity/vector 和独立 parity 证据齐全。
+
+## 2026-11-16 新增：UVM/VCS count-event timing shape 对照
+
+- `audit_uvm_vcs_timing.py` 只解析 UVM_HIGH scoreboard 的 `count`/`expiry` 行，检查计数顺序、5 ns 等间隔和最后一个 count 与 expiry 是否同边沿，并与 `TimerSampleScheduler` 的事件形状对照。`--expected-group LOG_NAME=GROUP` 允许保留 bark/bite 运行中的伴随 watchdog 事件，同时只按该运行的主事件组判定；`--source-hashes` 可把 compact event excerpt 与完整远程日志 SHA-256 分开登记。
+- 当前证据包含四个短 VCS/UVM 运行、21 条过滤事件，覆盖 wakeup smoke/jump、watchdog bark 和 watchdog bite 三个主 group。它不导入 VCS/URG hit counts，不读取 VDB，不创建 canonical coverage credit，也不解除 full gate。
+- 重放命令：
+
+  ```bash
+  python3 tools/audit_uvm_vcs_timing.py \
+    --log evidence/stage10_uvm_vcs_timing/2026-11-16-v1/event-excerpts/vcs_smoke.log \
+    --log evidence/stage10_uvm_vcs_timing/2026-11-16-v1/event-excerpts/vcs_jump.log \
+    --log evidence/stage10_uvm_vcs_timing/2026-11-16-v1/event-excerpts/vcs_bark.log \
+    --log evidence/stage10_uvm_vcs_timing/2026-11-16-v1/event-excerpts/vcs_bite.log \
+    --expected-group vcs_smoke.log=wake_up_timer_thold_hit_cg \
+    --expected-group vcs_jump.log=wake_up_timer_thold_hit_cg \
+    --expected-group vcs_bark.log=watchdog_timer_bark_thold_hit_cg \
+    --expected-group vcs_bite.log=watchdog_timer_bite_thold_hit_cg \
+    --source-hashes evidence/stage10_uvm_vcs_timing/2026-11-16-v1/source-hashes.json \
+    --output build/stage10-uvm-vcs-timing-audit.json
+  ```
+
+  该对照只代表 cadence shape；完整 testcase、采样值、interrupt pin、shared/non-AON covergroups 和 waveform parity 仍需独立证据。
 
 ## 原有阶段工具
 

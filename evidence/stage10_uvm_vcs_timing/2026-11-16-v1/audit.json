@@ -1,0 +1,269 @@
+{
+  "coverage_credit_granted": 0,
+  "expected_group_count": 3,
+  "full_simulation_started": false,
+  "independent_uvm_vcs_timing_comparison_complete": true,
+  "limitations": [
+    "This is a compact UVM_HIGH scoreboard event-shape comparison; it does not import VCS/URG hit counts.",
+    "The VCS and Cocotb runs use separate test stimuli; this audit establishes cadence shape, not testcase-by-testcase waveform equivalence.",
+    "Shared/non-AON covergroups and interrupt pin timing are outside this count-event audit."
+  ],
+  "observed_group_count": 3,
+  "observed_groups": [
+    "wake_up_timer_thold_hit_cg",
+    "watchdog_timer_bark_thold_hit_cg",
+    "watchdog_timer_bite_thold_hit_cg"
+  ],
+  "runs": [
+    {
+      "checked_groups": [
+        "wake_up_timer_thold_hit_cg"
+      ],
+      "event_count": 9,
+      "event_excerpt_sha256": "473b7f8d6da19723d1db5918fb814807a3386290fffd36212ace32eeecce4edd",
+      "expected_group": "wake_up_timer_thold_hit_cg",
+      "groups": {
+        "wake_up_timer_thold_hit_cg": {
+          "count_event_count": 8,
+          "count_intervals_ps": [
+            5000000,
+            5000000,
+            5000000,
+            5000000,
+            5000000,
+            5000000,
+            5000000
+          ],
+          "count_timestamps_ps": [
+            401707766,
+            406707766,
+            411707766,
+            416707766,
+            421707766,
+            426707766,
+            431707766,
+            436707766
+          ],
+          "count_values": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "expiry_event_count": 1,
+          "expiry_timestamps_ps": [
+            436707766
+          ],
+          "group": "wake_up_timer_thold_hit_cg",
+          "passed": true,
+          "python_scheduler_shape": {
+            "count_values": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8
+            ],
+            "expiry_shares_final_count_edge": true,
+            "startup_cycles": 4
+          },
+          "same_edge_count_expiry": true
+        }
+      },
+      "incidental_groups": [],
+      "log_name": "vcs_smoke.log",
+      "log_sha256": "85501fb2fcca57d59b685c163b5ca570d530904600db6e2ffd2dc94b7252fe91",
+      "status": "PASS"
+    },
+    {
+      "checked_groups": [
+        "wake_up_timer_thold_hit_cg"
+      ],
+      "event_count": 6,
+      "event_excerpt_sha256": "25913e8d3f8bf503e07a66e8378bca06586aa5d1125a2da513e0a7caa3e60260",
+      "expected_group": "wake_up_timer_thold_hit_cg",
+      "groups": {
+        "wake_up_timer_thold_hit_cg": {
+          "count_event_count": 5,
+          "count_intervals_ps": [
+            5000000,
+            5000000,
+            5000000,
+            5000000
+          ],
+          "count_timestamps_ps": [
+            421707766,
+            426707766,
+            431707766,
+            436707766,
+            441707766
+          ],
+          "count_values": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "expiry_event_count": 1,
+          "expiry_timestamps_ps": [
+            441707766
+          ],
+          "group": "wake_up_timer_thold_hit_cg",
+          "passed": true,
+          "python_scheduler_shape": {
+            "count_values": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "expiry_shares_final_count_edge": true,
+            "startup_cycles": 4
+          },
+          "same_edge_count_expiry": true
+        }
+      },
+      "incidental_groups": [],
+      "log_name": "vcs_jump.log",
+      "log_sha256": "da9cba8961b5b2242e3f6f0260133ac3c2188cdd183b0e797a3695fac92a3839",
+      "status": "PASS"
+    },
+    {
+      "checked_groups": [
+        "watchdog_timer_bark_thold_hit_cg"
+      ],
+      "event_count": 3,
+      "event_excerpt_sha256": "0bf71c23198b41d565e14581938d3e79ef3b91aef6e8d24e4ac4ba89bbb4e93f",
+      "expected_group": "watchdog_timer_bark_thold_hit_cg",
+      "groups": {
+        "watchdog_timer_bark_thold_hit_cg": {
+          "count_event_count": 1,
+          "count_intervals_ps": [],
+          "count_timestamps_ps": [
+            421707766
+          ],
+          "count_values": [
+            1
+          ],
+          "expiry_event_count": 1,
+          "expiry_timestamps_ps": [
+            421707766
+          ],
+          "group": "watchdog_timer_bark_thold_hit_cg",
+          "passed": true,
+          "python_scheduler_shape": {
+            "count_values": [
+              1
+            ],
+            "expiry_shares_final_count_edge": true,
+            "startup_cycles": 4
+          },
+          "same_edge_count_expiry": true
+        },
+        "watchdog_timer_bite_thold_hit_cg": {
+          "count_event_count": 1,
+          "count_intervals_ps": [],
+          "count_timestamps_ps": [
+            421707766
+          ],
+          "count_values": [
+            1
+          ],
+          "expiry_event_count": 0,
+          "expiry_timestamps_ps": [],
+          "group": "watchdog_timer_bite_thold_hit_cg",
+          "passed": false,
+          "python_scheduler_shape": {
+            "count_values": [
+              1
+            ],
+            "expiry_shares_final_count_edge": true,
+            "startup_cycles": 4
+          },
+          "same_edge_count_expiry": false
+        }
+      },
+      "incidental_groups": [
+        "watchdog_timer_bite_thold_hit_cg"
+      ],
+      "log_name": "vcs_bark.log",
+      "log_sha256": "b8442b30c27d828efc3357f177322ef856d103b62367dee528381c715702e462",
+      "status": "PASS"
+    },
+    {
+      "checked_groups": [
+        "watchdog_timer_bite_thold_hit_cg"
+      ],
+      "event_count": 3,
+      "event_excerpt_sha256": "b04cd2642dd8bc0e1721d5dbd5383387f746b2c39def6b3f85e2bbbddc58c8c9",
+      "expected_group": "watchdog_timer_bite_thold_hit_cg",
+      "groups": {
+        "watchdog_timer_bark_thold_hit_cg": {
+          "count_event_count": 1,
+          "count_intervals_ps": [],
+          "count_timestamps_ps": [
+            421707766
+          ],
+          "count_values": [
+            1
+          ],
+          "expiry_event_count": 0,
+          "expiry_timestamps_ps": [],
+          "group": "watchdog_timer_bark_thold_hit_cg",
+          "passed": false,
+          "python_scheduler_shape": {
+            "count_values": [
+              1
+            ],
+            "expiry_shares_final_count_edge": true,
+            "startup_cycles": 4
+          },
+          "same_edge_count_expiry": false
+        },
+        "watchdog_timer_bite_thold_hit_cg": {
+          "count_event_count": 1,
+          "count_intervals_ps": [],
+          "count_timestamps_ps": [
+            421707766
+          ],
+          "count_values": [
+            1
+          ],
+          "expiry_event_count": 1,
+          "expiry_timestamps_ps": [
+            421707766
+          ],
+          "group": "watchdog_timer_bite_thold_hit_cg",
+          "passed": true,
+          "python_scheduler_shape": {
+            "count_values": [
+              1
+            ],
+            "expiry_shares_final_count_edge": true,
+            "startup_cycles": 4
+          },
+          "same_edge_count_expiry": true
+        }
+      },
+      "incidental_groups": [
+        "watchdog_timer_bark_thold_hit_cg"
+      ],
+      "log_name": "vcs_bite.log",
+      "log_sha256": "8ce730983b42a372753b71003efef98838ab5d9b08110e7456c56c25ffdae340",
+      "status": "PASS"
+    }
+  ],
+  "schema": "aon-timer-uvm-vcs-timing-audit-v1",
+  "source_revision": "9f20940d494a223cc950a5b98f748fb28109d458",
+  "status": "PASS",
+  "unknowns_are_misses": false
+}

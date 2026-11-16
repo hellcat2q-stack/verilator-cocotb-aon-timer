@@ -98,7 +98,7 @@
     "Stage 06 does not contain a complete exact run matrix.",
     "Stage 07 paper scheduler has not been enabled.",
     "Shared/non-AON scope mapping is unavailable for 228 definitions; the AON trace adapter does not sample those groups.",
-    "Count-event sampling cadence has no independent UVM/VCS timing comparison."
+    "Count-event sampling cadence lacks complete testcase/sample-level UVM/VCS timing parity; any compact shape evidence remains diagnostic only."
   ],
   "next_gate": "Resolve the exact legacy identity bridge, complete sample-site and shared-group mapping, validate sampling/timing equivalence against independent UVM/VCS evidence, and rebuild the exact Stage 06 matrix. Re-run this preflight before starting the full simulation.",
   "inputs": {

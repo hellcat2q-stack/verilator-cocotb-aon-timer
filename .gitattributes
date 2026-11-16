@@ -3,3 +3,4 @@
 *.sha256 text eol=lf
 *.xml text eol=lf
 *.csv text eol=lf
+evidence/stage10_uvm_vcs_timing/**/*.log text eol=lf
