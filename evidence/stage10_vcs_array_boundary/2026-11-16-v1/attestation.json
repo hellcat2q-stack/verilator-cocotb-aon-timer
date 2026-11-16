@@ -1,0 +1,27 @@
+{
+  "schema": "aon-timer-vcs-array-probe-attestation-v1",
+  "vcs_compiler_version": "P-2019.06-SP1_Full64",
+  "vcs_runtime_version": "P-2019.06-SP1_Full64",
+  "successful_attempt_id": "codex_array_boundary_20261116_v2",
+  "compile_exit_code": 0,
+  "simulation_exit_code": 0,
+  "observations_sha256": "ba35233f9d84666cb5e1bc83b14b25c5a6ee43a3db247f489ff98b108ddd45b6",
+  "plan_sha256": "8088861d10c22cf3faef789bb9fbe09e30e8e0f03e694a7d9e00044c083f0315",
+  "probe_source_sha256": "48bf5ade09a87ad3c7c5944c6c77a75474ec72dda030d1ed76361bb19f6dfd60",
+  "runner_sha256": "2bfcefcc675521677d12881b420c15392695fa79471a4f8629b9f5130fe54443",
+  "compile_log_sha256": "f8951f3443341899c5672280d5900ff3ef86cb5ce5ee15d607a76b9412b4a8cb",
+  "simulation_log_sha256": "a7104df1f554ca59a954ee0b46273dc80d96235b07da02e15337b02ffd746030",
+  "earlier_attempts": [
+    {
+      "attempt_id": "codex_array_boundary_20261116_v1",
+      "compile_exit_code": 0,
+      "simulation_exit_code": 1,
+      "error_code": "FCPCAC",
+      "reason": "VCS requires per_instance in the declaration, not a procedural assignment",
+      "observations_sha256": "7e2f08d3d7c93719d1a0acbdf419dffb4a30de42310d0f4ac0a9799abd8612a9"
+    }
+  ],
+  "historical_hit_counts_imported": false,
+  "rtl_simulation_started": false,
+  "full_simulation_started": false
+}

@@ -18,13 +18,18 @@ from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any, Iterable
 
+try:
+    from tools.coverage_model import SUPPORTED_COVERAGE_SCHEMA_IDS
+except ModuleNotFoundError:
+    from coverage_model import SUPPORTED_COVERAGE_SCHEMA_IDS
+
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_SCHEMA = ROOT / "configs" / "coverage_schema.json"
 DEFAULT_DEFINITIONS = ROOT / "references" / "bin_definitions.v1.json"
 DEFAULT_TRACE_ROOT = ROOT / "evidence"
 DEFAULT_OUTPUT = (
-    ROOT / "evidence" / "stage10_sample_site_audit" / "2026-11-16-v1"
+    ROOT / "evidence" / "stage10_sample_site_audit" / "2026-11-16-v2"
     / "sample-site-audit.json"
 )
 
@@ -107,6 +112,8 @@ def _cross_field_names(group: dict[str, Any], cross: dict[str, Any]) -> set[str]
 
 def _is_illegal_intr_test(sample: dict[str, Any]) -> bool:
     fields = sample.get("fields") or {}
+    if not isinstance(fields, dict):
+        return False
     return (
         fields.get("intr_test") == 1
         and fields.get("intr_state") == 0
@@ -179,7 +186,12 @@ def build_audit(
         valid_trace_count += 1
         trace_schema_id = str(trace.get("schema_id", ""))
         schema_counts[trace_schema_id] += 1
-        source_revision_counts[str(trace.get("source_revision", ""))] += 1
+        if trace_schema_id not in SUPPORTED_COVERAGE_SCHEMA_IDS:
+            trace_errors.append({"path": relative, "error": "unsupported_trace_schema"})
+        source_revision = str(trace.get("source_revision", ""))
+        source_revision_counts[source_revision] += 1
+        if source_revision != schema.get("source_revision"):
+            trace_errors.append({"path": relative, "error": "source_revision_mismatch"})
         samples = trace.get("samples")
         if not isinstance(samples, list):
             trace_errors.append({"path": relative, "error": "samples_is_not_a_list"})
@@ -190,8 +202,8 @@ def build_audit(
                 audit["trace_sample_count_mismatch_count"] += 1
             trace_errors.append({"path": relative, "error": "sample_count_mismatch"})
         declared_counts = trace.get("sample_counts_by_covergroup") or {}
-        actual_counts = Counter(str(sample.get("covergroup", "")) for sample in samples)
-        if dict(declared_counts) != dict(actual_counts):
+        actual_counts = Counter(str(sample.get("covergroup", "")) for sample in samples if isinstance(sample, dict))
+        if not isinstance(declared_counts, dict) or declared_counts != dict(actual_counts):
             for audit in group_audits.values():
                 audit["trace_covergroup_count_mismatch_count"] += 1
             trace_errors.append({"path": relative, "error": "sample_counts_by_covergroup_mismatch"})
@@ -220,6 +232,10 @@ def build_audit(
                 _add_error(audit, f"{relative}: unexpected capture event {event!r}")
 
             observed_crosses = sample.get("same_sample_cross_observations") or {}
+            if not isinstance(observed_crosses, dict):
+                audit["cross_key_mismatch_count"] += 1
+                _add_error(audit, f"{relative}: same-sample cross observations are not an object")
+                observed_crosses = {}
             expected_crosses = {
                 str(cross.get("name")): cross
                 for cross in group_by_name[group_name].get("crosses", [])
@@ -230,6 +246,8 @@ def build_audit(
             for cross_name, cross_value in observed_crosses.items():
                 cross_definition = expected_crosses.get(cross_name)
                 if not isinstance(cross_value, dict) or cross_definition is None:
+                    audit["cross_key_mismatch_count"] += 1
+                    _add_error(audit, f"{relative}: cross {cross_name!r} is not an object or is unknown")
                     continue
                 expected_cross_fields = _cross_field_names(group_by_name[group_name], cross_definition)
                 if set(cross_value) != expected_cross_fields:
@@ -253,7 +271,9 @@ def build_audit(
 
             count_config = COUNT_EVENT_GROUPS.get(group_name)
             if count_config is not None:
-                count_capture = trace.get("capture_adapter", {}).get("count_event_capture", {})
+                adapter = trace.get("capture_adapter")
+                count_capture = adapter.get("count_event_capture") if isinstance(adapter, dict) else None
+                count_capture = count_capture if isinstance(count_capture, dict) else {}
                 status = str(count_capture.get("status", "missing"))
                 count_metadata_statuses[status] += 1
                 metadata_ok = (
@@ -289,12 +309,15 @@ def build_audit(
                 "trace_sample_count_mismatch_count",
                 "trace_covergroup_count_mismatch_count",
             )
-        ) and audit["expected_capture_events_observed"]
+        ) and audit["expected_capture_events_observed"] and not audit["errors"]
 
     observed_groups = [name for name, audit in group_audits.items() if audit["sample_count"]]
     aon_capture_protocol_complete = (
         set(observed_groups) == set(aon_group_names)
         and all(audit["structural_checks_passed"] for audit in group_audits.values())
+        and not trace_errors
+        and unknown_group_samples == 0
+        and valid_trace_count == len(trace_paths)
     )
     shared_count = int(definitions.get("shared_or_other_definition_count", 0))
     aon_count = int(definitions.get("aon_timer_definition_count", 0))

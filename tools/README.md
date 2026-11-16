@@ -31,6 +31,12 @@ audit_canonical_identity_candidates.py --output <new-report.json> 按冻结的 c
 - `stage10_full_simulation_preflight.py` 校验 catalog、数组来源/Python 边界审计、Stage 09 replay audit、source-classification hashes、identity bridge、Stage 06 exact matrix 和 sample-site readiness，写出只读的 preflight JSON。工具不会启动仿真。当前结果在 `evidence/stage10_full_simulation_preflight/2026-11-16-v2/preflight.json`，full 仿真门禁为 blocked。
 - 重放：`python3 tools/classify_source_definitions.py --trace-root evidence/stage09_comparison/2026-11-14-v1 --expected-trace-count 288 --output evidence/stage10_source_definition_classification/2026-11-16-v2/classification.json`，然后运行 `python3 tools/stage10_full_simulation_preflight.py`。分类报告和预检报告均生成 SHA-256 sidecar。
 
+## 2026-11-16 新增：历史 vector header 与 native VCS 数组边界审计
+
+- `audit_legacy_vector_headers.py` 只读取两个历史 `vectors.csv` 的表头，将 4,507 个列名分类为 exact semantic、range、array-range 和 cross candidate。它不读取 hit-count 行，不导入历史命中数，所有 candidate 的 `coverage_credit_granted` 固定为 0，`promotion_allowed` 固定为 false。
+- `vcs_array_boundary_probe.py` / `run_vcs_array_boundary_probe.py` 在学校服务器的 VCS `P-2019.06-SP1` 上运行独立的 636-case timer_cfg array boundary probe，并记录 4 个越界拒绝。`audit.json` 逐项比较 Python reference interval 与 native VCS bin interval；该审计只覆盖数组边界，不证明 UVM/VCS 与 Cocotb 的 sample timing parity。
+- 当前证据：`evidence/stage10_legacy_vector_header_bridge/2026-11-16-v1/`、`evidence/stage10_vcs_array_boundary/2026-11-16-v1/`。`stage10_full_simulation_preflight.py` 会校验两类 sidecar，并保持 full gate 为 `BLOCKED`；最新 blocker 数量为 5。
+
 ## 2026-11-16 新增：完整 legacy identity bridge 审计
 
 - `audit_source_identity_bridge.py` 对冻结的 4,507 个 canonical identities 与 pinned 4,507 条 source definitions 做完整候选审计。变量项支持 `name:`、singleton、sized-hex/decimal `values:{[...]}`、source `auto[...]` 和连续 range-order candidate；cross 项支持 source member 解析、wildcard、压缩 range、instance index，并对旧 catalog 中 interrupt cross 的错误分割使用 `bin_name` 回退解析。

@@ -53,11 +53,19 @@ DEFAULT_IDENTITY_BRIDGE = (
 )
 DEFAULT_SAMPLE_SITE_AUDIT = (
     ROOT / "evidence" / "stage10_sample_site_audit"
-    / "2026-11-16-v1" / "sample-site-audit.json"
+    / "2026-11-16-v2" / "sample-site-audit.json"
+)
+DEFAULT_LEGACY_VECTOR_HEADER_AUDIT = (
+    ROOT / "evidence" / "stage10_legacy_vector_header_bridge"
+    / "2026-11-16-v1" / "audit.json"
+)
+DEFAULT_ARRAY_VCS_BOUNDARY_AUDIT = (
+    ROOT / "evidence" / "stage10_vcs_array_boundary"
+    / "2026-11-16-v1" / "audit.json"
 )
 DEFAULT_OUTPUT = (
     ROOT / "evidence" / "stage10_full_simulation_preflight"
-    / "2026-11-16-v2" / "preflight.json"
+    / "2026-11-16-v3" / "preflight.json"
 )
 
 
@@ -88,6 +96,8 @@ def build_preflight(
     classification_path: Path = DEFAULT_CLASSIFICATION,
     identity_bridge_path: Path = DEFAULT_IDENTITY_BRIDGE,
     sample_site_audit_path: Path = DEFAULT_SAMPLE_SITE_AUDIT,
+    legacy_vector_header_audit_path: Path = DEFAULT_LEGACY_VECTOR_HEADER_AUDIT,
+    array_vcs_boundary_audit_path: Path = DEFAULT_ARRAY_VCS_BOUNDARY_AUDIT,
 ) -> dict[str, Any]:
     catalog, catalog_hash = load_catalog(CATALOG_PATH)
     array_definitions, array_reference = load_array_reference(catalog)
@@ -100,6 +110,59 @@ def build_preflight(
     classification = read_json(classification_path)
     identity_bridge = read_json(identity_bridge_path)
     sample_site_audit = read_json(sample_site_audit_path)
+    legacy_headers = read_json(legacy_vector_header_audit_path)
+    array_boundary = read_json(array_vcs_boundary_audit_path)
+    boundary_hash = sha256_file(array_vcs_boundary_audit_path)
+    boundary_sidecar = Path(str(array_vcs_boundary_audit_path) + ".sha256").read_text(encoding="ascii").split()
+    if boundary_sidecar != [boundary_hash, Path(array_vcs_boundary_audit_path).name]:
+        raise ValueError("VCS array boundary audit SHA-256 sidecar is inconsistent")
+    try:
+        from tools.vcs_array_boundary_probe import audit as replay_array_boundary
+    except ModuleNotFoundError:
+        from vcs_array_boundary_probe import audit as replay_array_boundary
+    boundary_dir = Path(array_vcs_boundary_audit_path).parent
+    boundary_replay = replay_array_boundary(boundary_dir / "plan.json", boundary_dir / "observations.json")
+    # JSON serializes semantic tuples as lists; compare normalized objects.
+    if array_boundary != json.loads(json.dumps(boundary_replay)):
+        raise ValueError("VCS array boundary audit does not replay from native observations")
+    array_vcs_python_parity_verified = (
+        array_boundary.get("status") == "PASS"
+        and array_boundary.get("vcs_python_array_boundary_parity_verified") is True
+        and array_boundary.get("vcs_run_provenance_verified") is True
+        and array_boundary.get("cases_passed") == 636
+        and array_boundary.get("unrepresentable_cases_rejected_without_truncation") == 4
+        and array_boundary.get("coverage_credit_granted") == 0
+    )
+    legacy_headers_hash = sha256_file(legacy_vector_header_audit_path)
+    header_sidecar = Path(str(legacy_vector_header_audit_path) + ".sha256").read_text(encoding="ascii").split()
+    if header_sidecar != [legacy_headers_hash, Path(legacy_vector_header_audit_path).name]:
+        raise ValueError("legacy vector header audit SHA-256 sidecar is missing or inconsistent")
+    legacy_headers_valid = (
+        legacy_headers.get("schema") == "aon-timer-legacy-vector-header-bridge-audit-v1"
+        and legacy_headers.get("source_revision") == catalog.get("source_revision")
+        and legacy_headers.get("canonical_identity_count") == len(canonical_ids)
+        and legacy_headers.get("source_definition_count") == len(catalog["definitions"])
+        and legacy_headers.get("coverage_credit_granted") == 0
+        and legacy_headers.get("unknowns_inferred_as_misses") == 0
+        and legacy_headers.get("promotion_allowed") is False
+        and legacy_headers.get("audit_tool_sha256") == sha256_file(ROOT / "tools" / "audit_legacy_vector_headers.py")
+        and legacy_headers.get("input_sha256") == {
+            "catalog": catalog_hash,
+            "canonical_bin_ids": sha256_file(CANONICAL_IDS_PATH),
+            "array_reference": sha256_file(ARRAY_RANGE_PATH),
+        }
+        and len(legacy_headers.get("vectors", [])) > 0
+        and legacy_headers.get("vector_header_count") == len(legacy_headers.get("vectors", []))
+        and all(
+            row.get("historical_identity_count") == 4507
+            and row.get("unique_historical_identity_count") == 4507
+            and row.get("coverage_credit_granted") == 0
+            and row.get("promotion_allowed") is False
+            for row in legacy_headers.get("vectors", [])
+        )
+    )
+    if not legacy_headers_valid:
+        raise ValueError("legacy vector header audit is stale or is not diagnostic-only")
     classification_hash = sha256_file(classification_path)
     sidecar_path = Path(str(classification_path) + ".sha256")
     sidecar = sidecar_path.read_text(encoding="ascii").split()
@@ -176,6 +239,8 @@ def build_preflight(
         and sample_site_audit.get("coverage_schema_id") == read_json(SCHEMA_PATH).get("schema_id")
         and sample_site_audit.get("coverage_credit_granted") == 0
         and sample_site_audit.get("unknowns_are_misses") is False
+        and sample_site_audit.get("trace_errors") == []
+        and sample_site_audit.get("unknown_group_sample_count") == 0
         and sample_site_tool_hash_matches
     )
     aon_capture_protocol_complete = (
@@ -221,10 +286,9 @@ def build_preflight(
             f"Shared/non-AON scope mapping is unavailable for {sample_site_audit.get('shared_scope', {}).get('definition_count', 228)} definitions; "
             "the AON trace adapter does not sample those groups."
         )
-    if stage08.get("array_bin_verilator_equivalence_verified") is not True:
+    if not array_vcs_python_parity_verified:
         blockers.append(
-            "Array reference partitions are validated for source/Python classification only; "
-            "native Verilator/UVM/VCS equivalence remains unverified."
+            "Array boundaries lack a verified native VCS/Python classifier comparison."
         )
     if not timing_parity_complete:
         blockers.append("Count-event sampling cadence has no independent UVM/VCS timing comparison.")
@@ -276,6 +340,8 @@ def build_preflight(
         "identity_bridge_audit_is_complete_as_audit": bridge_audit_valid,
         "sample_site_audit_is_sidecar_verified": True,
         "sample_site_audit_uses_current_tool": sample_site_tool_hash_matches,
+        "legacy_vector_header_audit_is_current_and_diagnostic_only": legacy_headers_valid,
+        "array_vcs_python_boundary_parity_verified": array_vcs_python_parity_verified,
         "aon_capture_protocol_is_complete": aon_capture_protocol_complete,
         "shared_scope_mapping_is_complete": shared_scope_mapping_complete,
         "count_event_cadence_model_is_present": (
@@ -311,6 +377,8 @@ def build_preflight(
             "canonical_identity_catalog_file_count": len(canonical_ids),
             "array_reference_partition_count": array_bin_count,
             "array_source_python_endpoint_probes_passed": endpoint_pass_count,
+            "array_vcs_python_boundary_probes_passed": array_boundary.get("cases_passed"),
+            "array_vcs_python_boundary_parity_verified": array_vcs_python_parity_verified,
             "stage09_traces_replayed": replay.get("attempts_replayed"),
             "stage09_passed_attempts": replay.get("real_tests_passed"),
             "classified_traces": classification.get("trace_count"),
@@ -332,6 +400,16 @@ def build_preflight(
                 "ambiguous_candidate_count"
             ),
             "identity_bridge_unresolved_count": identity_bridge.get("unresolved_count"),
+            "legacy_vector_header_diagnostics": [
+                {
+                    "source": row["path"],
+                    "canonical_identity_overlap_count": row["canonical_identity_overlap_count"],
+                    "classification_counts": row["classification_counts"],
+                    "unresolved_count": row["unresolved_count"],
+                    "promotion_allowed": False,
+                }
+                for row in legacy_headers["vectors"]
+            ],
             "exact_stage06_matrix_available": stage06_exact,
             "aon_capture_protocol_complete": aon_capture_protocol_complete,
             "shared_definition_count": sample_site_audit.get("shared_scope", {}).get("definition_count"),
@@ -386,12 +464,22 @@ def build_preflight(
                 "path": _relative(sample_site_audit_path),
                 "sha256": sample_site_audit_hash,
             },
+            "legacy_vector_header_audit": {
+                "path": _relative(legacy_vector_header_audit_path),
+                "sha256": legacy_headers_hash,
+                "purpose": "Diagnostic source-definition candidates only; does not satisfy the legacy identity gate.",
+            },
+            "array_vcs_boundary_audit": {
+                "path": _relative(array_vcs_boundary_audit_path),
+                "sha256": boundary_hash,
+                "scope": "Official timer_cfg_cg array bin boundaries; excludes RTL/UVM sample timing.",
+            },
             "trace_root": _relative(trace_root),
         },
     }
 
 
-def main() -> None:
+def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--trace-root", type=Path, default=DEFAULT_TRACE_ROOT)
     parser.add_argument("--replay-audit", type=Path, default=DEFAULT_REPLAY_AUDIT)
@@ -400,7 +488,11 @@ def main() -> None:
     parser.add_argument("--classification", type=Path, default=DEFAULT_CLASSIFICATION)
     parser.add_argument("--identity-bridge", type=Path, default=DEFAULT_IDENTITY_BRIDGE)
     parser.add_argument("--sample-site-audit", type=Path, default=DEFAULT_SAMPLE_SITE_AUDIT)
+    parser.add_argument("--legacy-vector-header-audit", type=Path, default=DEFAULT_LEGACY_VECTOR_HEADER_AUDIT)
+    parser.add_argument("--array-vcs-boundary-audit", type=Path, default=DEFAULT_ARRAY_VCS_BOUNDARY_AUDIT)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
+    parser.add_argument("--require-ready", action="store_true",
+                        help="Return exit code 2 when the full-simulation start gate is blocked.")
     args = parser.parse_args()
     try:
         result = build_preflight(
@@ -411,6 +503,8 @@ def main() -> None:
             classification_path=args.classification,
             identity_bridge_path=args.identity_bridge,
             sample_site_audit_path=args.sample_site_audit,
+            legacy_vector_header_audit_path=args.legacy_vector_header_audit,
+            array_vcs_boundary_audit_path=args.array_vcs_boundary_audit,
         )
     except (OSError, UnicodeError, ValueError, KeyError, json.JSONDecodeError) as exc:
         parser.error(str(exc))
@@ -427,7 +521,8 @@ def main() -> None:
         "full_simulation_start_gate": result["full_simulation_start_gate"],
         "blocker_count": len(result["blockers"]),
     }, ensure_ascii=False))
+    return 2 if args.require_ready and result["full_simulation_start_gate"] != "READY" else 0
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

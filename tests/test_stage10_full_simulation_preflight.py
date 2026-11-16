@@ -1,10 +1,14 @@
+import json
 import shutil
+import subprocess
+import sys
 import tempfile
 import unittest
 from pathlib import Path
 
 from tools.stage10_full_simulation_preflight import (
     DEFAULT_CLASSIFICATION,
+    DEFAULT_LEGACY_VECTOR_HEADER_AUDIT,
     build_preflight,
 )
 
@@ -19,6 +23,8 @@ class Stage10FullSimulationPreflightTests(unittest.TestCase):
         self.assertIsNone(report["full_coverage_rate_percent"])
         self.assertFalse(report["unknowns_are_misses"])
         self.assertTrue(report["checks"]["array_source_python_partition_audit_passed"])
+        self.assertTrue(report["checks"]["array_vcs_python_boundary_parity_verified"])
+        self.assertEqual(report["summary"]["array_vcs_python_boundary_probes_passed"], 636)
         self.assertTrue(report["checks"]["stage09_replay_audit_is_288_of_288"])
         self.assertTrue(report["checks"]["identity_bridge_audit_is_complete_as_audit"])
         self.assertEqual(report["summary"]["identity_bridge_deterministic_candidate_count"], 2102)
@@ -28,6 +34,7 @@ class Stage10FullSimulationPreflightTests(unittest.TestCase):
         self.assertTrue(report["checks"]["aon_capture_protocol_is_complete"])
         self.assertFalse(report["checks"]["shared_scope_mapping_is_complete"])
         self.assertTrue(report["checks"]["count_event_cadence_model_is_present"])
+        self.assertTrue(report["checks"]["legacy_vector_header_audit_is_current_and_diagnostic_only"])
         self.assertGreater(len(report["blockers"]), 0)
 
     def test_stale_classification_hash_sidecar_is_rejected(self):
@@ -39,6 +46,34 @@ class Stage10FullSimulationPreflightTests(unittest.TestCase):
             )
             with self.assertRaisesRegex(ValueError, "SHA-256 sidecar"):
                 build_preflight(classification_path=copied_report)
+
+    def test_candidate_promotion_in_diagnostic_is_rejected_even_with_valid_sidecar(self):
+        import hashlib
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            copied = Path(temp_dir) / "audit.json"
+            report = json.loads(DEFAULT_LEGACY_VECTOR_HEADER_AUDIT.read_text(encoding="utf-8"))
+            report["promotion_allowed"] = True
+            copied.write_text(json.dumps(report), encoding="utf-8")
+            copied.with_suffix(".json.sha256").write_text(
+                f"{hashlib.sha256(copied.read_bytes()).hexdigest()}  audit.json\n", encoding="ascii"
+            )
+            with self.assertRaisesRegex(ValueError, "diagnostic-only"):
+                build_preflight(legacy_vector_header_audit_path=copied)
+
+    def test_require_ready_exits_nonzero_and_writes_blocker_report(self):
+        root = Path(__file__).resolve().parents[1]
+        with tempfile.TemporaryDirectory() as temp_dir:
+            output = Path(temp_dir) / "preflight.json"
+            result = subprocess.run(
+                [sys.executable, str(root / "tools/stage10_full_simulation_preflight.py"),
+                 "--require-ready", "--output", str(output)],
+                cwd=root, capture_output=True, text=True,
+            )
+            self.assertEqual(result.returncode, 2, result.stderr)
+            report = json.loads(output.read_text(encoding="utf-8"))
+            self.assertEqual(report["full_simulation_start_gate"], "BLOCKED")
+            self.assertFalse(report["full_simulation_started"])
 
 
 if __name__ == "__main__":

@@ -1,6 +1,6 @@
 # 阶段 10：最终复核与报告
 
-状态（2026-11-16）：**Stage 09 工程结果已独立复核；source-definition 分类 v2、identity bridge 审计与 full 仿真前预检完成；full 仿真启动门禁仍 blocked，full coverage 仍不可报告。**
+状态（2026-11-16）：**Stage 09 工程结果已独立复核；source-definition 分类 v2、identity bridge、sample-site、历史 vector header 与 VCS/Python 数组边界审计均完成；full 仿真启动门禁仍 blocked，full coverage 仍不可报告。**
 
 ## 复核结论
 
@@ -8,7 +8,7 @@
 
 4,507 canonical identities 和 4,525 URG dashboard reference 是两个不同统计口径，不能互换。Stage 09 的 160 个数组 identity 来自已登记的 VCS 分区参考；目前没有证明 Verilator/Cocotb 的采样与原生 UVM/VCS 等价。
 
-Stage 09 独立 replay audit 通过，288/288 个 RTL testcase PASS，证据目录的 1,443 个文件均通过 SHA-256 ledger 校验。最新 full-simulation preflight 记录为 `BLOCKED_BEFORE_FULL_SIMULATION`：4,507 个 legacy identities 已全部进入 bridge 审计，其中 341 个是 exact source-definition match，2,074 个是 range-order candidate，16 个是单候选 cross candidate，2,064 个仍是非唯一 cross/instance candidate；这些候选均不产生 coverage credit。新增 sample-site audit 已证明 7 个 AON covergroup 的 capture protocol、字段、same-sample cross 和 count-event trace 结构完整，但 228 个 shared/non-AON definitions 仍无 adapter 映射，count-event 也没有独立 UVM/VCS timing parity。exact vector matrix 不可用，Stage 07 paper scheduler 未允许，数组参考分区仍未证明 Verilator/UVM/VCS 等价。本轮没有启动 full 仿真。
+Stage 09 独立 replay audit 通过，288/288 个 RTL testcase PASS，证据目录的 1,443 个文件均通过 SHA-256 ledger 校验。最新 full-simulation preflight 记录为 `BLOCKED_BEFORE_FULL_SIMULATION`：4,507 个 legacy identities 已全部进入 bridge 审计，其中 341 个是 exact source-definition match，2,074 个是 range-order candidate，16 个是单候选 cross candidate，2,064 个仍是非唯一 cross/instance candidate；这些候选均不产生 coverage credit。新增 sample-site audit 已证明 7 个 AON covergroup 的 capture protocol、字段、same-sample cross 和 count-event trace 结构完整，但 228 个 shared/non-AON definitions 仍无 adapter 映射，count-event 也没有独立 UVM/VCS timing parity。两个历史 `vectors.csv` 表头已完成 4,507 列候选语义分类，但仍是 diagnostic only。学校服务器上的 native VCS 数组边界探针完成 636/636 个可表示 cases，4 个越界值明确拒绝且无截断；它验证了 Python 与 VCS 的数组区间边界一致性，不验证 RTL/UVM sample timing。exact vector matrix 不可用，Stage 07 paper scheduler 未允许，数组参考分区的 timing equivalence 仍未证明。本轮没有启动 full 仿真；blocker 从 6 项降为 5 项。
 
 机器可读审查记录及其 SHA-256 sidecar：[review.json](../evidence/stage10_final_review/2026-11-14-v1/review.json)、[review.json.sha256](../evidence/stage10_final_review/2026-11-14-v1/review.json.sha256)。Stage 09 的逐次运行结果见[汇总](../evidence/stage09_comparison/2026-11-14-v1/summary.json)与[对照表](../evidence/stage09_comparison/2026-11-14-v1/comparison.csv)。
 
@@ -31,7 +31,7 @@ python3 tools/audit_source_identity_bridge.py \
 
 报告仍不代表原生 Verilator covergroup 或 UVM/VCS 命中；canonical coverage credit 增量为 0，175/4,507 个既有 positive identities 和 4,332 个 unknown 均未改变，full coverage rate 仍为 `null`。分类结果与 SHA-256 sidecar：[classification.json](../evidence/stage10_source_definition_classification/2026-11-16-v2/classification.json)、[sidecar](../evidence/stage10_source_definition_classification/2026-11-16-v2/classification.json.sha256)。
 
-新增预检检查定义目录、数组参考与 640 个 Python/source boundary probes、Stage 09 audit、分类 hash、bridge audit hash 和 sample-site audit hash；AON capture protocol 检查通过。启动 full 仿真的前置项仍未完成：4,507-bin exact Stage 06 matrix 缺失；legacy bridge 仍有非唯一 candidate，只有 341/4,507 可以直接按源码标签匹配；228 个 shared/non-AON identities 没有 AON adapter sample API；count-event UVM/VCS timing parity 未建立；Stage 07 paper scheduler 未启用；原生 Verilator/UVM/VCS array equivalence 未验证。预检明确记录 `full_simulation_started: false`、`full_simulation_start_gate: BLOCKED`，没有执行仿真：[sample-site audit](../evidence/stage10_sample_site_audit/2026-11-16-v1/sample-site-audit.json)、[preflight.json](../evidence/stage10_full_simulation_preflight/2026-11-16-v2/preflight.json)、[sidecar](../evidence/stage10_full_simulation_preflight/2026-11-16-v2/preflight.json.sha256)。
+新增预检检查定义目录、数组参考与 640 个 Python/source boundary probes、636 个 native VCS/Python boundary probes、Stage 09 audit、分类 hash、bridge audit hash、legacy vector header audit 和 sample-site audit hash；AON capture protocol 检查通过。启动 full 仿真的前置项仍未完成：4,507-bin exact Stage 06 matrix 缺失；legacy bridge 仍有非唯一 candidate，只有 341/4,507 可以直接按源码标签匹配；228 个 shared/non-AON identities 没有 AON adapter sample API；count-event UVM/VCS timing parity 未建立；Stage 07 paper scheduler 未启用。预检明确记录 `full_simulation_started: false`、`full_simulation_start_gate: BLOCKED`，没有执行仿真：[sample-site audit](../evidence/stage10_sample_site_audit/2026-11-16-v2/sample-site-audit.json)、[vector header audit](../evidence/stage10_legacy_vector_header_bridge/2026-11-16-v1/audit.json)、[VCS array boundary audit](../evidence/stage10_vcs_array_boundary/2026-11-16-v1/audit.json)、[preflight.json](../evidence/stage10_full_simulation_preflight/2026-11-16-v3/preflight.json)、[sidecar](../evidence/stage10_full_simulation_preflight/2026-11-16-v3/preflight.json.sha256)。
 
 在 WSL Ubuntu 项目虚拟环境 `build/stage10-python-env` 中，全仓单测 122/122 通过；Stage 09 replay audit 仍为 288/288 PASS。复核命令：
 

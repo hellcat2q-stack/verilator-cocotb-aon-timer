@@ -1,0 +1,162 @@
+{
+  "schema": "aon-timer-stage10-full-simulation-preflight-v1",
+  "status": "BLOCKED_BEFORE_FULL_SIMULATION",
+  "source_revision": "9f20940d494a223cc950a5b98f748fb28109d458",
+  "full_simulation_started": false,
+  "full_simulation_start_gate": "BLOCKED",
+  "full_coverage_rate_percent": null,
+  "coverage_credit_added": 0,
+  "unknowns_are_misses": false,
+  "checks": {
+    "definition_catalog_count_is_4507": true,
+    "canonical_identity_catalog_count_is_4507": true,
+    "array_reference_partition_count_is_160": true,
+    "array_source_python_partition_audit_passed": true,
+    "stage09_replay_audit_is_288_of_288": true,
+    "source_classification_is_288_traces_16515_samples": true,
+    "classification_hash_is_sidecar_verified": true,
+    "classification_uses_current_classifier": true,
+    "identity_bridge_audit_is_sidecar_verified": true,
+    "identity_bridge_uses_current_tool": true,
+    "identity_bridge_audit_is_complete_as_audit": true,
+    "sample_site_audit_is_sidecar_verified": true,
+    "sample_site_audit_uses_current_tool": true,
+    "legacy_vector_header_audit_is_current_and_diagnostic_only": true,
+    "array_vcs_python_boundary_parity_verified": true,
+    "aon_capture_protocol_is_complete": true,
+    "shared_scope_mapping_is_complete": false,
+    "count_event_cadence_model_is_present": true,
+    "stage06_exact_matrix_is_available": false,
+    "legacy_identity_bridge_is_complete": false,
+    "sample_site_mapping_is_complete": false,
+    "stage07_paper_scheduler_is_enabled": false,
+    "independent_uvm_vcs_timing_comparison_complete": false,
+    "native_verilator_uvm_equivalence_verified": false,
+    "full_coverage_rate_is_reportable": false
+  },
+  "summary": {
+    "definition_catalog_count": 4507,
+    "canonical_identity_count": 4507,
+    "canonical_identity_catalog_file_count": 4507,
+    "array_reference_partition_count": 160,
+    "array_source_python_endpoint_probes_passed": 640,
+    "array_vcs_python_boundary_probes_passed": 636,
+    "array_vcs_python_boundary_parity_verified": true,
+    "stage09_traces_replayed": 288,
+    "stage09_passed_attempts": 288,
+    "classified_traces": 288,
+    "classified_samples": 16515,
+    "array_reference_matches": 42480,
+    "array_unresolved_observations": 16940,
+    "direct_legacy_identity_matches": 341,
+    "identity_bridge_exact_source_definition_count": 341,
+    "identity_bridge_deterministic_candidate_count": 2102,
+    "identity_bridge_ambiguous_candidate_count": 2064,
+    "identity_bridge_unresolved_count": 0,
+    "legacy_vector_header_diagnostics": [
+      {
+        "source": {
+          "source_repository": "opentitan-aon-timer-paper-method-repro",
+          "relative_path": "09_对照与消融/evidence/stage09_v30_Full_full1000_20261111/vectors.csv"
+        },
+        "canonical_identity_overlap_count": 191,
+        "classification_counts": {
+          "ARRAY_RANGE_CANDIDATE": 160,
+          "CROSS_CANDIDATE": 32,
+          "CROSS_ORDINAL_CANDIDATE": 2048,
+          "EXACT_SEMANTIC_MATCH": 219,
+          "RANGE_CANDIDATE": 2048
+        },
+        "unresolved_count": 0,
+        "promotion_allowed": false
+      },
+      {
+        "source": {
+          "source_repository": "opentitan-aon-timer-paper-method-repro",
+          "relative_path": "08_两层UCB在线复现/evidence/stage08_vcs_full_20261104/vectors.csv"
+        },
+        "canonical_identity_overlap_count": 4507,
+        "classification_counts": {
+          "CROSS_CANDIDATE": 2080,
+          "EXACT_SEMANTIC_MATCH": 341,
+          "RANGE_CANDIDATE": 2086
+        },
+        "unresolved_count": 0,
+        "promotion_allowed": false
+      }
+    ],
+    "exact_stage06_matrix_available": false,
+    "aon_capture_protocol_complete": true,
+    "shared_definition_count": 228,
+    "shared_scope_mapping_complete": false,
+    "count_event_cadence_model_present": true,
+    "sample_sites_complete": false,
+    "native_verilator_uvm_equivalence_verified": false
+  },
+  "blockers": [
+    "Legacy identity bridge has only 341 direct matches; the remaining identities require candidate or independent expansion evidence (2102 deterministic candidates, 2064 ambiguous candidates).",
+    "Stage 06 does not contain a complete exact run matrix.",
+    "Stage 07 paper scheduler has not been enabled.",
+    "Shared/non-AON scope mapping is unavailable for 228 definitions; the AON trace adapter does not sample those groups.",
+    "Count-event sampling cadence has no independent UVM/VCS timing comparison."
+  ],
+  "next_gate": "Resolve the exact legacy identity bridge, complete sample-site and shared-group mapping, validate sampling/timing equivalence against independent UVM/VCS evidence, and rebuild the exact Stage 06 matrix. Re-run this preflight before starting the full simulation.",
+  "inputs": {
+    "definition_catalog": {
+      "path": "references/bin_definitions.v1.json",
+      "sha256": "3aa1bed296f7fa6ec7afeaa749cd95e1b4efd38509d6fdc00ad32516dc10ffd8"
+    },
+    "array_reference": {
+      "path": "references/array_bin_ranges.v1.json",
+      "sha256": "aa7acb62bfe5e49777250aa72695d29a92493a57fe1ec76b6f18f2dc051bba27",
+      "source_python_audit": {
+        "path": "evidence/stage03_array_bin_partition_audit.json",
+        "sha256": "08f26ccab76c461710086558970b6a904299982d4acedec35a5f0a56640b5c64"
+      },
+      "mapped_source_definitions": 160
+    },
+    "canonical_identity_catalog": {
+      "path": "references/canonical_bin_catalog.json",
+      "sha256": "dbcf02f06c121675401c8983dde65a9275239cefd3aff842712bdeef5da11355"
+    },
+    "coverage_schema": {
+      "path": "configs/coverage_schema.json",
+      "sha256": "91fbaa1f361357c1c448da2fb3585119520344276777630b42d60b99f78e4331"
+    },
+    "stage06_matrix_audit": {
+      "path": "evidence/stage06_count_event_v2_verified/matrix/coverage_matrix_audit.json",
+      "sha256": "ff08a4376c9342fe61b232dca73ef71d4172eaaf8921e64a5b76b7a7a0057801"
+    },
+    "stage08_readiness": {
+      "path": "evidence/stage08_preflight/2026-11-14-full-paper-scope/readiness.json",
+      "sha256": "02b11b7d0ce12d8fbf76dc56bdd9f46b485697a90288b79ad597f76d0c34367b"
+    },
+    "stage09_replay_audit": {
+      "path": "evidence/stage09_comparison/2026-11-14-v1/replay-audit.json",
+      "sha256": "bc9917a4a9b876c7f2173d85a49d8e696c8636f72280279c5a15f9bd7bb949b0"
+    },
+    "source_definition_classification": {
+      "path": "evidence/stage10_source_definition_classification/2026-11-16-v2/classification.json",
+      "sha256": "a38f8c4b5ca0c1e3317f25d71b729856b14983dc6bf1573d1f11a52b82eff183"
+    },
+    "source_identity_bridge_audit": {
+      "path": "evidence/stage10_identity_bridge/2026-11-16-v1/bridge.json",
+      "sha256": "d866637f6c496e1e4be57836d00723ab1ce0e7e27b036389c759a8b702d541ac"
+    },
+    "sample_site_audit": {
+      "path": "evidence/stage10_sample_site_audit/2026-11-16-v2/sample-site-audit.json",
+      "sha256": "ee3137484ed1732d8212d1adfa90add3c8dbadd409c617226061c72ad848d352"
+    },
+    "legacy_vector_header_audit": {
+      "path": "evidence/stage10_legacy_vector_header_bridge/2026-11-16-v1/audit.json",
+      "sha256": "334f2cea8564b8e2fa4cc311b8311d6e4ad51be878c1768d72b8bf4d30053966",
+      "purpose": "Diagnostic source-definition candidates only; does not satisfy the legacy identity gate."
+    },
+    "array_vcs_boundary_audit": {
+      "path": "evidence/stage10_vcs_array_boundary/2026-11-16-v1/audit.json",
+      "sha256": "2d5f20b05f6cdf69fd641afc20a6c605d2b7e4478d26eaa8e19fc038d4342eed",
+      "scope": "Official timer_cfg_cg array bin boundaries; excludes RTL/UVM sample timing."
+    },
+    "trace_root": "evidence/stage09_comparison/2026-11-14-v1"
+  }
+}

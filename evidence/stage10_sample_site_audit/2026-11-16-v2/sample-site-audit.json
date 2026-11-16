@@ -1,0 +1,309 @@
+{
+  "schema": "aon-timer-sample-site-mapping-audit-v1",
+  "audit_tool_sha256": "3e0fd758a6a92e0ea06a7ba892eb5748b1e95c8f0bc7eec932f7e767a1bbc46c",
+  "status": "AON_CAPTURE_PROTOCOL_COMPLETE_SHARED_SCOPE_UNAVAILABLE",
+  "source_revision": "9f20940d494a223cc950a5b98f748fb28109d458",
+  "coverage_schema_id": "aon_timer_uvm_source_trace_v2",
+  "trace_root": "evidence",
+  "trace_file_count": 326,
+  "valid_trace_file_count": 326,
+  "sample_count": 17743,
+  "trace_schema_counts": {
+    "aon_timer_uvm_source_trace_v1": 4,
+    "aon_timer_uvm_source_trace_v2": 322
+  },
+  "trace_source_revision_counts": {
+    "9f20940d494a223cc950a5b98f748fb28109d458": 326
+  },
+  "trace_errors": [],
+  "unknown_group_sample_count": 0,
+  "aon_covergroup_names": [
+    "timer_cfg_cg",
+    "wake_up_timer_thold_hit_cg",
+    "watchdog_timer_bite_thold_hit_cg",
+    "watchdog_timer_bark_thold_hit_cg",
+    "intr_cg",
+    "intr_test_cg",
+    "intr_pins_cg"
+  ],
+  "aon_capture_protocol_complete": true,
+  "shared_scope": {
+    "definition_count": 228,
+    "aon_definition_count": 4279,
+    "shared_scope_names": [
+      "alert_esc_agent_pkg::alert_handshake_complete_cg",
+      "cip_base_pkg::tl_errors_cg_wrap::tl_errors_cg",
+      "cip_base_pkg::tl_intg_err_cg_wrap::tl_intg_err_cg",
+      "dv_base_reg_pkg::dv_base_lockable_field_cov::regwen_val_when_new_value_written_cg",
+      "dv_lib_pkg::bit_toggle_cg_wrap::bit_toggle_cg",
+      "tb.dut.u_reg.u_prim_reg_we_check.u_prim_onehot_check.u_prim_onehot_check_if::prim_onehot_check_without_addr_fault_if_proxy::onehot_without_addr_fault_cg",
+      "tl_agent_pkg::max_outstanding_cg::SHAPE{max_outstanding=1}",
+      "tl_agent_pkg::pending_req_on_rst_cg",
+      "tl_agent_pkg::tl_a_chan_cov_cg::SHAPE{(2 << ((valid_source_width - 1) - 1))=128}"
+    ],
+    "trace_adapter_supports_shared_scope": false,
+    "status": "UNAVAILABLE_IN_AON_TRACE_SCOPE"
+  },
+  "count_event_timing": {
+    "metadata_status_counts": {
+      "SCOREBOARD_CADENCE_MODELED_RTL_COUNTERS_OBSERVED": 1810
+    },
+    "cadence_model_present": true,
+    "independent_uvm_vcs_comparison_complete": false,
+    "status": "MODELED_RTL_COUNTERS_NO_INDEPENDENT_UVM_VCS_PARITY"
+  },
+  "groups": [
+    {
+      "covergroup": "timer_cfg_cg",
+      "declared_sample_site": "aon_timer_scoreboard.process_tl_access",
+      "expected_field_names": [
+        "bark_thold",
+        "bite_thold",
+        "pause_in_sleep",
+        "prescale",
+        "wdog_regwen",
+        "wkup_cause",
+        "wkup_thold"
+      ],
+      "expected_cross_names": [],
+      "expected_capture_events": [
+        "tl_addr_phase"
+      ],
+      "trace_file_count": 326,
+      "sample_count": 15575,
+      "observed_capture_events": {
+        "tl_addr_phase": 15575
+      },
+      "field_key_mismatch_count": 0,
+      "cross_key_mismatch_count": 0,
+      "cross_value_mismatch_count": 0,
+      "illegal_cross_sample_count": 0,
+      "illegal_cross_encoding_mismatch_count": 0,
+      "count_event_metadata_missing_count": 0,
+      "count_event_rtl_value_mismatch_count": 0,
+      "trace_sample_count_mismatch_count": 0,
+      "trace_covergroup_count_mismatch_count": 0,
+      "errors": [],
+      "expected_capture_events_observed": true,
+      "structural_checks_passed": true
+    },
+    {
+      "covergroup": "wake_up_timer_thold_hit_cg",
+      "declared_sample_site": "aon_timer_scoreboard.run_wkup_timer.sample_coverage",
+      "expected_field_names": [
+        "wkup_count",
+        "wkup_int",
+        "wkup_thold"
+      ],
+      "expected_cross_names": [
+        "wkup_thold_cpXwkup_int_cp"
+      ],
+      "expected_capture_events": [
+        "aon_countdown_wakeup_count",
+        "aon_countdown_wakeup_expiry"
+      ],
+      "trace_file_count": 53,
+      "sample_count": 625,
+      "observed_capture_events": {
+        "aon_countdown_wakeup_count": 544,
+        "aon_countdown_wakeup_expiry": 81
+      },
+      "field_key_mismatch_count": 0,
+      "cross_key_mismatch_count": 0,
+      "cross_value_mismatch_count": 0,
+      "illegal_cross_sample_count": 0,
+      "illegal_cross_encoding_mismatch_count": 0,
+      "count_event_metadata_missing_count": 0,
+      "count_event_rtl_value_mismatch_count": 0,
+      "trace_sample_count_mismatch_count": 0,
+      "trace_covergroup_count_mismatch_count": 0,
+      "errors": [],
+      "expected_capture_events_observed": true,
+      "structural_checks_passed": true
+    },
+    {
+      "covergroup": "watchdog_timer_bite_thold_hit_cg",
+      "declared_sample_site": "aon_timer_scoreboard.run_wdog_bite_timer.sample_coverage",
+      "expected_field_names": [
+        "wdog_bite_rst",
+        "wdog_count",
+        "wdog_thold"
+      ],
+      "expected_cross_names": [
+        "wdog_thold_cpXwdog_bite_rst"
+      ],
+      "expected_capture_events": [
+        "aon_countdown_bite_count",
+        "aon_countdown_bite_expiry"
+      ],
+      "trace_file_count": 49,
+      "sample_count": 654,
+      "observed_capture_events": {
+        "aon_countdown_bite_count": 605,
+        "aon_countdown_bite_expiry": 49
+      },
+      "field_key_mismatch_count": 0,
+      "cross_key_mismatch_count": 0,
+      "cross_value_mismatch_count": 0,
+      "illegal_cross_sample_count": 0,
+      "illegal_cross_encoding_mismatch_count": 0,
+      "count_event_metadata_missing_count": 0,
+      "count_event_rtl_value_mismatch_count": 0,
+      "trace_sample_count_mismatch_count": 0,
+      "trace_covergroup_count_mismatch_count": 0,
+      "errors": [],
+      "expected_capture_events_observed": true,
+      "structural_checks_passed": true
+    },
+    {
+      "covergroup": "watchdog_timer_bark_thold_hit_cg",
+      "declared_sample_site": "aon_timer_scoreboard.run_wdog_bark_timer.sample_coverage",
+      "expected_field_names": [
+        "wdog_bark_int",
+        "wdog_count",
+        "wdog_thold"
+      ],
+      "expected_cross_names": [
+        "wdog_thold_cpXwdog_bark_rst"
+      ],
+      "expected_capture_events": [
+        "aon_countdown_bark_count",
+        "aon_countdown_bark_expiry"
+      ],
+      "trace_file_count": 49,
+      "sample_count": 531,
+      "observed_capture_events": {
+        "aon_countdown_bark_count": 458,
+        "aon_countdown_bark_expiry": 73
+      },
+      "field_key_mismatch_count": 0,
+      "cross_key_mismatch_count": 0,
+      "cross_value_mismatch_count": 0,
+      "illegal_cross_sample_count": 0,
+      "illegal_cross_encoding_mismatch_count": 0,
+      "count_event_metadata_missing_count": 0,
+      "count_event_rtl_value_mismatch_count": 0,
+      "trace_sample_count_mismatch_count": 0,
+      "trace_covergroup_count_mismatch_count": 0,
+      "errors": [],
+      "expected_capture_events_observed": true,
+      "structural_checks_passed": true
+    },
+    {
+      "covergroup": "intr_cg",
+      "declared_sample_site": "aon_timer_scoreboard.process_tl_access on intr_state data-phase reads",
+      "expected_field_names": [
+        "intr",
+        "intr_en",
+        "intr_state"
+      ],
+      "expected_cross_names": [
+        "cross_cp_intr_cp_intr_en_cp_intr_state"
+      ],
+      "expected_capture_events": [
+        "tl_data_phase_intr_state_read"
+      ],
+      "trace_file_count": 36,
+      "sample_count": 92,
+      "observed_capture_events": {
+        "tl_data_phase_intr_state_read": 92
+      },
+      "field_key_mismatch_count": 0,
+      "cross_key_mismatch_count": 0,
+      "cross_value_mismatch_count": 0,
+      "illegal_cross_sample_count": 0,
+      "illegal_cross_encoding_mismatch_count": 0,
+      "count_event_metadata_missing_count": 0,
+      "count_event_rtl_value_mismatch_count": 0,
+      "trace_sample_count_mismatch_count": 0,
+      "trace_covergroup_count_mismatch_count": 0,
+      "errors": [],
+      "expected_capture_events_observed": true,
+      "structural_checks_passed": true
+    },
+    {
+      "covergroup": "intr_test_cg",
+      "declared_sample_site": "aon_timer_scoreboard.process_tl_access on intr_test writes",
+      "expected_field_names": [
+        "intr",
+        "intr_en",
+        "intr_state",
+        "intr_test"
+      ],
+      "expected_cross_names": [
+        "cross_cp_intr_cp_intr_test_cp_intr_en_cp_intr_state"
+      ],
+      "expected_capture_events": [
+        "tl_addr_phase_intr_test",
+        "tl_data_phase_intr_test"
+      ],
+      "trace_file_count": 5,
+      "sample_count": 20,
+      "observed_capture_events": {
+        "tl_addr_phase_intr_test": 10,
+        "tl_data_phase_intr_test": 10
+      },
+      "field_key_mismatch_count": 0,
+      "cross_key_mismatch_count": 0,
+      "cross_value_mismatch_count": 0,
+      "illegal_cross_sample_count": 0,
+      "illegal_cross_encoding_mismatch_count": 0,
+      "count_event_metadata_missing_count": 0,
+      "count_event_rtl_value_mismatch_count": 0,
+      "trace_sample_count_mismatch_count": 0,
+      "trace_covergroup_count_mismatch_count": 0,
+      "errors": [],
+      "expected_capture_events_observed": true,
+      "structural_checks_passed": true
+    },
+    {
+      "covergroup": "intr_pins_cg",
+      "declared_sample_site": "aon_timer_scoreboard.monitor_interrupts on aon_intr_vif.pins change",
+      "expected_field_names": [
+        "intr_pin",
+        "intr_pin_value"
+      ],
+      "expected_cross_names": [
+        "cp_intr_pins_all_values"
+      ],
+      "expected_capture_events": [
+        "aon_intr_pins_change"
+      ],
+      "trace_file_count": 58,
+      "sample_count": 246,
+      "observed_capture_events": {
+        "aon_intr_pins_change": 246
+      },
+      "field_key_mismatch_count": 0,
+      "cross_key_mismatch_count": 0,
+      "cross_value_mismatch_count": 0,
+      "illegal_cross_sample_count": 0,
+      "illegal_cross_encoding_mismatch_count": 0,
+      "count_event_metadata_missing_count": 0,
+      "count_event_rtl_value_mismatch_count": 0,
+      "trace_sample_count_mismatch_count": 0,
+      "trace_covergroup_count_mismatch_count": 0,
+      "errors": [],
+      "expected_capture_events_observed": true,
+      "structural_checks_passed": true
+    }
+  ],
+  "mapping_gates": {
+    "aon_capture_protocol_complete": true,
+    "shared_scope_mapping_complete": false,
+    "timing_parity_complete": false,
+    "exact_identity_mapping_complete": false
+  },
+  "coverage_credit_granted": 0,
+  "unknowns_are_misses": false,
+  "inputs": {
+    "coverage_schema": {
+      "path": "configs/coverage_schema.json",
+      "sha256": "91fbaa1f361357c1c448da2fb3585119520344276777630b42d60b99f78e4331"
+    },
+    "definition_catalog": {
+      "path": "references/bin_definitions.v1.json",
+      "sha256": "3aa1bed296f7fa6ec7afeaa749cd95e1b4efd38509d6fdc00ad32516dc10ffd8"
+    }
+  }
+}
