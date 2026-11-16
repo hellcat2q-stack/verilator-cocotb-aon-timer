@@ -1,0 +1,8 @@
+{
+  "schema": "aon-timer-pinned-export-attestation-v1",
+  "revision": "9f20940d494a223cc950a5b98f748fb28109d458",
+  "git_tree_sha256": "2be73711e5ae156cce187e7581b335aac2eab8936200349c84590c2d22932bf6",
+  "verified_blobs": 10514,
+  "all_exported_git_blobs_match": true,
+  "verification_before_instrumentation": true
+}

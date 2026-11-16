@@ -11,11 +11,25 @@ from tools.stage10_full_simulation_preflight import (
     DEFAULT_LEGACY_VECTOR_HEADER_AUDIT,
     DEFAULT_UVM_TIMING_SHAPE_AUDIT,
     DEFAULT_ACTUAL_SAMPLE_AUDIT,
+    DEFAULT_SAMPLE_MATRIX_AUDIT,
+    FULL_SIMULATION_REQUIRED_CHECKS,
     build_preflight,
+    resolve_full_simulation_gate,
 )
 
 
 class Stage10FullSimulationPreflightTests(unittest.TestCase):
+    def test_full_start_gate_is_dynamic_and_requires_every_check(self):
+        complete = {name: True for name in FULL_SIMULATION_REQUIRED_CHECKS}
+        self.assertEqual(resolve_full_simulation_gate(complete, []), ("READY", []))
+
+        incomplete = dict(complete)
+        incomplete["shared_scope_mapping_is_complete"] = False
+        gate, blockers = resolve_full_simulation_gate(incomplete, [])
+        self.assertEqual(gate, "BLOCKED")
+        self.assertEqual(len(blockers), 1)
+        self.assertIn("shared_scope_mapping_is_complete", blockers[0])
+
     def test_passing_rtl_pairs_with_sampling_differences_do_not_clear_gate(self):
         report = build_preflight()
         self.assertTrue(report["checks"]["independent_actual_sample_diagnostic_is_replayed"])
@@ -23,7 +37,16 @@ class Stage10FullSimulationPreflightTests(unittest.TestCase):
         self.assertEqual(report["summary"]["independent_pinned_actual_sample_body_count"], 72)
         self.assertEqual(report["summary"]["independent_cocotb_sample_body_count"], 87)
         self.assertEqual(report["full_simulation_start_gate"], "BLOCKED")
+        self.assertEqual(report["status"], "BLOCKED_BEFORE_FULL_SIMULATION")
+        self.assertFalse(report["checks"]["native_verilator_uvm_equivalence_verified"])
         self.assertFalse(report["checks"]["independent_uvm_vcs_timing_comparison_complete"])
+        self.assertTrue(report["checks"]["bounded_sample_matrix_audit_is_replayed"])
+        self.assertTrue(report["checks"]["bounded_sample_matrix_eight_cases_match"])
+        self.assertTrue(report["checks"]["bounded_sample_matrix_remains_diagnostic_only"])
+        self.assertEqual(report["summary"]["bounded_sample_matrix_cases_passed"], 8)
+        self.assertEqual(report["summary"]["bounded_sample_matrix_cases_total"], 8)
+        self.assertFalse(report["summary"]["bounded_sample_matrix_is_complete_parity"])
+        self.assertEqual(report["summary"]["bounded_sample_matrix_coverage_credit"], 0)
 
     def test_rehashed_actual_sample_parity_promotion_is_rejected(self):
         import hashlib
@@ -68,6 +91,7 @@ class Stage10FullSimulationPreflightTests(unittest.TestCase):
         self.assertFalse(report["summary"]["uvm_build_tree_scoreboard_matches_pinned"])
         self.assertEqual(report["summary"]["uvm_control_event_run_count"], 4)
         self.assertTrue(report["checks"]["legacy_vector_header_audit_is_current_and_diagnostic_only"])
+        self.assertTrue(any("Verilator" in blocker for blocker in report["blockers"]))
         self.assertGreater(len(report["blockers"]), 0)
 
     def test_stale_classification_hash_sidecar_is_rejected(self):
@@ -123,6 +147,22 @@ class Stage10FullSimulationPreflightTests(unittest.TestCase):
             )
             with self.assertRaisesRegex(ValueError, "does not replay from diagnostic"):
                 build_preflight(uvm_timing_shape_audit_path=path)
+
+    def test_bounded_matrix_evidence_cannot_be_promoted_with_a_rehashed_report(self):
+        import hashlib
+
+        with tempfile.TemporaryDirectory() as directory:
+            copied = Path(directory) / "matrix"
+            shutil.copytree(DEFAULT_SAMPLE_MATRIX_AUDIT.parent, copied)
+            path = copied / "audit.json"
+            report = json.loads(path.read_text(encoding="utf-8"))
+            report["complete_parity_verified"] = True
+            path.write_text(json.dumps(report), encoding="utf-8")
+            Path(str(path) + ".sha256").write_text(
+                f"{hashlib.sha256(path.read_bytes()).hexdigest()}  audit.json\n", encoding="ascii"
+            )
+            with self.assertRaisesRegex(ValueError, "does not replay from captured evidence"):
+                build_preflight(sample_matrix_audit_path=path)
 
 
 if __name__ == "__main__":

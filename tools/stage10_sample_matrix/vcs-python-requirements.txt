@@ -1,0 +1,3 @@
+edalize @ https://github.com/lowRISC/edalize/archive/refs/tags/v0.4.0.zip#sha256=da816ef1040d8063d4aa7377ef1fea33f0bffeca1f79a68b7a8930ef9d90c7c8
+fusesoc @ https://github.com/lowRISC/fusesoc/archive/refs/tags/ot-0.5.dev0.zip#sha256=6d1d9b202748d160bc6da70ea8cf7a700ca80e1e7e4a78cbc1ec039bde595c65
+importlib-resources==5.13.0

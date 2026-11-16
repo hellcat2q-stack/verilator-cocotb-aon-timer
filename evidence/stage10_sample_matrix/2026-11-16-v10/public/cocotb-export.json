@@ -1,0 +1,53 @@
+{
+  "schema": "aon-timer-paired-cocotb-export-v1",
+  "cases": [
+    {
+      "case": 0,
+      "xml_transform": "Source file attribute normalized to repo-relative tools path; all result fields retained",
+      "original_xml_sha256": "74afbea4ed2e89a764d46eb9b46f84c8bbd09a914111f9c4d2d907f91a44aea7",
+      "public_xml_sha256": "eb419b22dfceead0258d149663a60fddcd49ac0c1da423223e10ba2c00ebbd4c"
+    },
+    {
+      "case": 1,
+      "xml_transform": "Source file attribute normalized to repo-relative tools path; all result fields retained",
+      "original_xml_sha256": "b81aa4c61277900dcbffa4551f41cba353686f1c3b5983f711945c1c8822ad29",
+      "public_xml_sha256": "d2cf7d04bcfcb4c5c5976d1ac363bb66a740de47bd24ea916c6e944aff404b38"
+    },
+    {
+      "case": 2,
+      "xml_transform": "Source file attribute normalized to repo-relative tools path; all result fields retained",
+      "original_xml_sha256": "962573ca06edf1b1e2f19fed770a7fb7c716047ec1ebe69e6009ae9f1f7028b8",
+      "public_xml_sha256": "f616fa2a7478463f923390a19d59e6ad2703e465c0ad1193ba64f1800983fcc6"
+    },
+    {
+      "case": 3,
+      "xml_transform": "Source file attribute normalized to repo-relative tools path; all result fields retained",
+      "original_xml_sha256": "27536dbc1ff3c6ca2d8c594a7011148668514cecd81168f354838cb255807615",
+      "public_xml_sha256": "75048bba84e711cff70c1fb399f796014a30f12ebfd408b58572a23ac8490a54"
+    },
+    {
+      "case": 4,
+      "xml_transform": "Source file attribute normalized to repo-relative tools path; all result fields retained",
+      "original_xml_sha256": "13cedab91c5272206cf0f3889c0983ade46f2e75a1d163fd1be4ba52b4130359",
+      "public_xml_sha256": "bf2b2675fb459327c6370c4038b742f87525a3012fdf52943e4a23109de0db99"
+    },
+    {
+      "case": 5,
+      "xml_transform": "Source file attribute normalized to repo-relative tools path; all result fields retained",
+      "original_xml_sha256": "6e23d508dd39ae116d636e90c47da276e9354826d6d5a9aaebb716622b1af2d1",
+      "public_xml_sha256": "9c061e986de196ef36d6d751712ebc11929c23c8731bab3c9d44854f236838b6"
+    },
+    {
+      "case": 6,
+      "xml_transform": "Source file attribute normalized to repo-relative tools path; all result fields retained",
+      "original_xml_sha256": "a9bf158b564b4db4fc306e5703653e2a11fe40b87b4dff403856514f272c35f6",
+      "public_xml_sha256": "a313bc00c01a88a6706a628b89cbea6254744ea4e757181884d0b45c4a012851"
+    },
+    {
+      "case": 7,
+      "xml_transform": "Source file attribute normalized to repo-relative tools path; all result fields retained",
+      "original_xml_sha256": "63bc55ee8cd677a58ceead50c7c26162b82a9603e6adeba57d234b1ca23de0f1",
+      "public_xml_sha256": "9b1858505f81254643772a18ebd1c63e8c2063ba2f3364bfb36533ab0bf0c62c"
+    }
+  ]
+}

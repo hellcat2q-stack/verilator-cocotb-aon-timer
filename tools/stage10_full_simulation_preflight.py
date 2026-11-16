@@ -74,9 +74,45 @@ DEFAULT_ACTUAL_SAMPLE_AUDIT = (
 DEFAULT_SAMPLE_FIX_AUDIT = (
     ROOT / "evidence" / "stage10_sample_fix" / "2026-11-16-v1" / "audit.json"
 )
+DEFAULT_SAMPLE_MATRIX_AUDIT = (
+    ROOT / "evidence" / "stage10_sample_matrix" / "2026-11-16-v11"
+    / "public" / "audit.json"
+)
 DEFAULT_OUTPUT = (
     ROOT / "evidence" / "stage10_full_simulation_preflight"
-    / "2026-11-16-v6" / "preflight.json"
+    / "2026-11-16-v10" / "preflight.json"
+)
+FULL_SIMULATION_REQUIRED_CHECKS = (
+    "definition_catalog_count_is_4507",
+    "canonical_identity_catalog_count_is_4507",
+    "array_reference_partition_count_is_160",
+    "array_source_python_partition_audit_passed",
+    "stage09_replay_audit_is_288_of_288",
+    "source_classification_is_288_traces_16515_samples",
+    "classification_hash_is_sidecar_verified",
+    "classification_uses_current_classifier",
+    "identity_bridge_audit_is_sidecar_verified",
+    "identity_bridge_uses_current_tool",
+    "identity_bridge_audit_is_complete_as_audit",
+    "sample_site_audit_is_sidecar_verified",
+    "sample_site_audit_uses_current_tool",
+    "array_vcs_python_boundary_parity_verified",
+    "aon_capture_protocol_is_complete",
+    "shared_scope_mapping_is_complete",
+    "count_event_cadence_model_is_present",
+    "uvm_control_event_shape_diagnostic_is_replayed",
+    "independent_actual_sample_diagnostic_is_replayed",
+    "fixed_reference_sample_diagnostic_is_replayed",
+    "fixed_reference_three_short_cases_match",
+    "bounded_sample_matrix_audit_is_replayed",
+    "bounded_sample_matrix_eight_cases_match",
+    "bounded_sample_matrix_remains_diagnostic_only",
+    "stage06_exact_matrix_is_available",
+    "legacy_identity_bridge_is_complete",
+    "sample_site_mapping_is_complete",
+    "stage07_paper_scheduler_is_enabled",
+    "independent_uvm_vcs_timing_comparison_complete",
+    "native_verilator_uvm_equivalence_verified",
 )
 
 
@@ -89,6 +125,19 @@ def read_json(path: Path) -> dict[str, Any]:
     if not isinstance(value, dict):
         raise ValueError(f"expected a JSON object: {path.name}")
     return value
+
+
+def resolve_full_simulation_gate(
+    checks: dict[str, bool], blockers: list[str]
+) -> tuple[str, list[str]]:
+    """Open the start gate only when every declared pre-run check passes."""
+    failed_checks = [name for name in FULL_SIMULATION_REQUIRED_CHECKS if checks.get(name) is not True]
+    resolved_blockers = list(blockers)
+    if failed_checks:
+        resolved_blockers.append(
+            "Required full-simulation checks are incomplete: " + ", ".join(failed_checks) + "."
+        )
+    return ("READY" if not resolved_blockers else "BLOCKED"), resolved_blockers
 
 
 def _relative(path: Path) -> str:
@@ -112,6 +161,7 @@ def build_preflight(
     uvm_timing_shape_audit_path: Path = DEFAULT_UVM_TIMING_SHAPE_AUDIT,
     actual_sample_audit_path: Path = DEFAULT_ACTUAL_SAMPLE_AUDIT,
     sample_fix_audit_path: Path = DEFAULT_SAMPLE_FIX_AUDIT,
+    sample_matrix_audit_path: Path = DEFAULT_SAMPLE_MATRIX_AUDIT,
 ) -> dict[str, Any]:
     catalog, catalog_hash = load_catalog(CATALOG_PATH)
     array_definitions, array_reference = load_array_reference(catalog)
@@ -151,6 +201,36 @@ def build_preflight(
         raise ValueError("Fixed-reference sample audit does not replay from captured evidence")
     if sample_fix["original_reference_parity_verified"] or sample_fix["complete_parity_verified"]:
         raise ValueError("A repaired reference and three short cases do not establish original/full parity")
+    sample_matrix = read_json(sample_matrix_audit_path)
+    sample_matrix_hash = sha256_file(sample_matrix_audit_path)
+    matrix_sidecar = Path(str(sample_matrix_audit_path) + ".sha256").read_text(encoding="ascii").split()
+    if matrix_sidecar != [sample_matrix_hash, Path(sample_matrix_audit_path).name]:
+        raise ValueError("Bounded sample matrix audit SHA-256 sidecar mismatch")
+    try:
+        from tools.stage10_sample_matrix.audit import audit_evidence as replay_sample_matrix
+    except ModuleNotFoundError:
+        import sys
+        if str(ROOT) not in sys.path:
+            sys.path.insert(0, str(ROOT))
+        from tools.stage10_sample_matrix.audit import audit_evidence as replay_sample_matrix
+    if sample_matrix != replay_sample_matrix(Path(sample_matrix_audit_path).parent):
+        raise ValueError("Bounded sample matrix audit does not replay from captured evidence")
+    sample_matrix_diagnostic_valid = (
+        sample_matrix.get("schema") == "aon-timer-fixed-sample-matrix-audit-v1"
+        and sample_matrix.get("source_revision") == catalog.get("source_revision")
+        and sample_matrix.get("reference_variant") == "pinned-sampling-fixes-v2"
+        and sample_matrix.get("status") == "BOUNDED_SAMPLE_MATRIX_MATCH"
+        and sample_matrix.get("matrix_cases_passed") == 8
+        and sample_matrix.get("matrix_cases_total") == 8
+        and sample_matrix.get("complete_parity_verified") is False
+        and sample_matrix.get("original_reference_parity_verified") is False
+        and sample_matrix.get("full_simulation_started") is False
+        and sample_matrix.get("coverage_credit_granted") == 0
+        and sample_matrix.get("full_coverage_rate") is None
+        and all(case.get("expected_matrix_case_passed") is True for case in sample_matrix.get("cases", []))
+    )
+    if not sample_matrix_diagnostic_valid:
+        raise ValueError("Bounded sample matrix audit is stale or does not remain diagnostic-only")
     timing_shape_hash = sha256_file(uvm_timing_shape_audit_path)
     timing_sidecar = Path(str(uvm_timing_shape_audit_path) + ".sha256").read_text(encoding="ascii").split()
     if timing_sidecar != [timing_shape_hash, Path(uvm_timing_shape_audit_path).name]:
@@ -348,6 +428,10 @@ def build_preflight(
         blockers.append(
             "Array boundaries lack a verified native VCS/Python classifier comparison."
         )
+    if stage08.get("array_bin_verilator_equivalence_verified") is not True:
+        blockers.append(
+            "Stage 08 has not verified that the 160 source-defined array bins map equivalently in Verilator."
+        )
     if not timing_parity_complete:
         blockers.append(
             "Count-event sampling cadence lacks source-locked testcase/sample-level UVM/VCS timing parity; "
@@ -412,6 +496,13 @@ def build_preflight(
         "independent_actual_sample_diagnostic_is_replayed": True,
         "fixed_reference_sample_diagnostic_is_replayed": True,
         "fixed_reference_three_short_cases_match": sample_fix["fixed_reference_short_cases_match"],
+        "bounded_sample_matrix_audit_is_replayed": True,
+        "bounded_sample_matrix_eight_cases_match": sample_matrix_diagnostic_valid,
+        "bounded_sample_matrix_remains_diagnostic_only": (
+            sample_matrix.get("complete_parity_verified") is False
+            and sample_matrix.get("original_reference_parity_verified") is False
+            and sample_matrix.get("coverage_credit_granted") == 0
+        ),
         "stage06_exact_matrix_is_available": stage06_exact,
         "legacy_identity_bridge_is_complete": mapping == canonical_count,
         "sample_site_mapping_is_complete": sample_site_complete,
@@ -426,12 +517,18 @@ def build_preflight(
         ),
         "full_coverage_rate_is_reportable": False,
     }
+    full_simulation_start_gate, blockers = resolve_full_simulation_gate(checks, blockers)
+    preflight_status = (
+        "READY_TO_START_FULL_SIMULATION"
+        if full_simulation_start_gate == "READY"
+        else "BLOCKED_BEFORE_FULL_SIMULATION"
+    )
     return {
-        "schema": "aon-timer-stage10-full-simulation-preflight-v2",
-        "status": "BLOCKED_BEFORE_FULL_SIMULATION",
+        "schema": "aon-timer-stage10-full-simulation-preflight-v3",
+        "status": preflight_status,
         "source_revision": catalog.get("source_revision"),
         "full_simulation_started": False,
-        "full_simulation_start_gate": "BLOCKED",
+        "full_simulation_start_gate": full_simulation_start_gate,
         "full_coverage_rate_percent": None,
         "coverage_credit_added": 0,
         "unknowns_are_misses": False,
@@ -493,6 +590,11 @@ def build_preflight(
             "fixed_reference_actual_sample_body_count": sum(c["uvm_sample_count_in_body"] for c in sample_fix["cases"]),
             "fixed_adapter_sample_body_count": sum(c["cocotb_sample_count_in_body"] for c in sample_fix["cases"]),
             "fixed_reference_is_original_reference_parity": False,
+            "bounded_sample_matrix_cases_passed": sample_matrix.get("matrix_cases_passed"),
+            "bounded_sample_matrix_cases_total": sample_matrix.get("matrix_cases_total"),
+            "bounded_sample_matrix_status": sample_matrix.get("status"),
+            "bounded_sample_matrix_is_complete_parity": sample_matrix.get("complete_parity_verified"),
+            "bounded_sample_matrix_coverage_credit": sample_matrix.get("coverage_credit_granted"),
             "uvm_control_message_count": sum(row["event_count"] for row in timing_shape["runs"]),
             "uvm_covergroup_sample_invocations_observed": False,
             "uvm_build_source_revision_verified": timing_shape.get("build_source_revision_verified"),
@@ -503,9 +605,9 @@ def build_preflight(
         },
         "blockers": blockers,
         "next_gate": (
-            "Resolve the exact legacy identity bridge, complete sample-site and shared-group mapping, "
-            "validate sampling/timing equivalence against independent UVM/VCS evidence, and rebuild "
-            "the exact Stage 06 matrix. Re-run this preflight before starting the full simulation."
+            "All required pre-run checks passed; this preflight does not start the full simulation."
+            if full_simulation_start_gate == "READY"
+            else "Resolve the reported blockers, then rerun this preflight before starting the full simulation."
         ),
         "inputs": {
             "definition_catalog": {"path": _relative(CATALOG_PATH), "sha256": catalog_hash},
@@ -571,6 +673,11 @@ def build_preflight(
                 "path": _relative(sample_fix_audit_path), "sha256": sample_fix_hash,
                 "scope": "Declared reference repairs and separate adapter match three short cases; no original/full parity credit.",
             },
+            "bounded_sample_matrix_diagnostic": {
+                "path": _relative(sample_matrix_audit_path),
+                "sha256": sample_matrix_hash,
+                "scope": "Eight repaired-reference short cases only; does not establish complete/original parity or add coverage credit.",
+            },
             "trace_root": _relative(trace_root),
         },
     }
@@ -590,6 +697,7 @@ def main() -> int:
     parser.add_argument("--uvm-timing-shape-audit", type=Path, default=DEFAULT_UVM_TIMING_SHAPE_AUDIT)
     parser.add_argument("--actual-sample-audit", type=Path, default=DEFAULT_ACTUAL_SAMPLE_AUDIT)
     parser.add_argument("--sample-fix-audit", type=Path, default=DEFAULT_SAMPLE_FIX_AUDIT)
+    parser.add_argument("--sample-matrix-audit", type=Path, default=DEFAULT_SAMPLE_MATRIX_AUDIT)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument("--require-ready", action="store_true",
                         help="Return exit code 2 when the full-simulation start gate is blocked.")
@@ -608,6 +716,7 @@ def main() -> int:
             uvm_timing_shape_audit_path=args.uvm_timing_shape_audit,
             actual_sample_audit_path=args.actual_sample_audit,
             sample_fix_audit_path=args.sample_fix_audit,
+            sample_matrix_audit_path=args.sample_matrix_audit,
         )
     except (OSError, UnicodeError, ValueError, KeyError, json.JSONDecodeError) as exc:
         parser.error(str(exc))

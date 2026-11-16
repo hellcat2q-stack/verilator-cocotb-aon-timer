@@ -1,0 +1,125 @@
+{
+  "schema": "aon-timer-sample-matrix-execution-v1",
+  "reference_variant": "pinned-sampling-fixes-v2",
+  "seed": 1,
+  "build_exit_code": 0,
+  "runner_exit_code": 0,
+  "eda_overlay_archive_sha256": "5f3745c38261a77e8c6c41b00b8c9d1aee7aa30c7637151bf3b1cde92b96a1cf",
+  "vcs_compatibility": {
+    "wrapper_sha256": "5e014d10e9f88a7bf3fbb1a3e12374015eec6609b69dfb6dbc6c096f1f83a34f",
+    "logged_invocation_count": 2,
+    "xprop_mmsopt_flags_removed": 1,
+    "gcc_version": "gcc (GCC) 9.3.1 20200408 (Red Hat 9.3.1-2)",
+    "gxx_version": "g++ (GCC) 9.3.1 20200408 (Red Hat 9.3.1-2)"
+  },
+  "eda_python_toolchain": {
+    "python": "3.11.7",
+    "fusesoc": "0.5.dev0",
+    "edalize": "0.4.0",
+    "fusesoc_cli": "0.5.dev0"
+  },
+  "toolchain_versions": {
+    "Compiler": "P-2019.06-SP1_Full64",
+    "Runtime": "P-2019.06-SP1_Full64"
+  },
+  "cases": [
+    {
+      "case": 0,
+      "testcase": "aon_timer_smoke_vseq",
+      "seed": 1,
+      "process_exit_code": 0,
+      "run_status": "PASS",
+      "sample_invocations": 24,
+      "full_log_sha256": "d62c20c8a401732788635c8cc8eff9df576085b78997cbea55458fa12b403cfd"
+    },
+    {
+      "case": 1,
+      "testcase": "aon_timer_smoke_vseq",
+      "seed": 1,
+      "process_exit_code": 0,
+      "run_status": "PASS",
+      "sample_invocations": 32,
+      "full_log_sha256": "7f98201d85397e887b048a744ad4b430f480db786089dfe0b5069c6205c18113"
+    },
+    {
+      "case": 2,
+      "testcase": "aon_timer_smoke_vseq",
+      "seed": 1,
+      "process_exit_code": 0,
+      "run_status": "PASS",
+      "sample_invocations": 32,
+      "full_log_sha256": "10b87d414601d7932b07386c368dab22b23c3481b6855c9f1e685e6f4cbafa85"
+    },
+    {
+      "case": 3,
+      "testcase": "aon_timer_smoke_vseq",
+      "seed": 1,
+      "process_exit_code": 0,
+      "run_status": "PASS",
+      "sample_invocations": 27,
+      "full_log_sha256": "a761f1d0ee72a93395546411ccc3b976ff998b711b2fac61a9ac60a2ab2e6d19"
+    },
+    {
+      "case": 4,
+      "testcase": "aon_timer_smoke_vseq",
+      "seed": 1,
+      "process_exit_code": 0,
+      "run_status": "PASS",
+      "sample_invocations": 33,
+      "full_log_sha256": "5b92d90c3c97cbf9a147ea1e8517c97a79d15c1f2c30bbc2c84b4648ff039373"
+    },
+    {
+      "case": 5,
+      "testcase": "aon_timer_smoke_vseq",
+      "seed": 1,
+      "process_exit_code": 0,
+      "run_status": "FAIL",
+      "sample_invocations": 22,
+      "full_log_sha256": "255c5b465937c2ef6743c0142cfc61a0b79317aa694068bd6ab905bbd16ded21"
+    },
+    {
+      "case": 6,
+      "testcase": "aon_timer_smoke_vseq",
+      "seed": 1,
+      "process_exit_code": 0,
+      "run_status": "PASS",
+      "sample_invocations": 43,
+      "full_log_sha256": "f2e34af8aef178c535f8447e7d0be6724935b56ce745f4b15894ce2b170e564b"
+    },
+    {
+      "case": 7,
+      "testcase": "aon_timer_smoke_vseq",
+      "seed": 1,
+      "process_exit_code": 0,
+      "run_status": "PASS",
+      "sample_invocations": 28,
+      "full_log_sha256": "bf3d1fc58d18abdc9dc74a64be4b53517655ded587ace935bbba947db4d46f1f"
+    }
+  ],
+  "inputs_sha256": {
+    "aon_timer_smoke_vseq.sv": "b7c4df5771292df69250691f4299d2dc78751556f22dc67380f5c0dbac9d652a",
+    "collect_matrix.py": "82c78397769a00cc1c5eac32e66c93af59a5df44c3b3142bb194e8ec0f03b8ac",
+    "collect_vcs.py": "0880415ab53066c6ceaa0fbc280239782f8f43571d25e105854996387d63391f",
+    "event_wait_probe.sv": "4ae74d1d015297103d92b9b279d8a4d82a97a6044e1dd4b88a9019c42e812aff",
+    "fork_cleanup_probe.sv": "972c2e2a6623e6341cdb6fde1c73cc21432508b3f41b2c42175d1185f61219c2",
+    "git": "4430c547b4979b2fe3965cda129ee44c345ccb568ec05f36bedcbae689beae6e",
+    "instrument.py": "04ce9d1a860c62b5bd4620e2b0ab0e846174e63199a277ae608a6601f6b307af",
+    "instrument_base.py": "d4fbca3ffd041fbb6c789eb893e0f7ad5ffd77bf569a571884a42cc026529324",
+    "legacy-eda-overlay-v1.tar.gz": "5f3745c38261a77e8c6c41b00b8c9d1aee7aa30c7637151bf3b1cde92b96a1cf",
+    "run_vcs.sh": "1be4427d4a7d11e9c0c7fe99f41f950f9b1706c0844c0e108b5d0ba7e6559801",
+    "sample-matrix.json": "bc4a3824eb9fc9fef1c2b4c0f8d02dca157f78dd75b774da1674b9980eb4e66b",
+    "sample_fix_base.py": "b036e61c431af84521c5b9fbb61f31327ff638e3f39e759674be755a04002702",
+    "stage10-paired-short-v1.json": "33cf03686eba31a87fdcca8b80a88a7d29ec9b1885d355c59befd5f27946fd69",
+    "stage10-sample-fix-v1.json": "a17fb0116bb5b94828ce07e48826ee223341c05e449394b49716623694877b64",
+    "vcs-python-requirements.txt": "4d3e33c6ec036e2bf63f08e4f34c086017fcc4ef7111c3188e7b7ba76ca95ea9",
+    "vcs_p2019_compat.sh": "5e014d10e9f88a7bf3fbb1a3e12374015eec6609b69dfb6dbc6c096f1f83a34f",
+    "verify_source.py": "c6ce5a44f316875bff9c00bb3aaa9fbec17652c69f3d15db6a86a7f2ddf080cd"
+  },
+  "private_logs_sha256": {
+    "build.private.log": "f78dbf75946c03b6f7a4b0158f05e522fa0178346156a25571a8de1f4c49dc67",
+    "runner.private.log": "3985b2265e213954ce3d387307fbf7d15c372d974b8966f82c274fe45835059a",
+    "vcs-argv.private.log": "ca51b6e33a021201d466c40b513c2643e5c0f819fa39b789881042c6f220b8e4"
+  },
+  "full_simulation_started": false,
+  "coverage_credit_granted": 0
+}

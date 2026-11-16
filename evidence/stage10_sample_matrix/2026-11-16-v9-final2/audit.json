@@ -1,0 +1,1283 @@
+{
+  "schema": "aon-timer-fixed-sample-matrix-audit-v1",
+  "source_revision": "9f20940d494a223cc950a5b98f748fb28109d458",
+  "reference_variant": "pinned-sampling-fixes-v2",
+  "reference_logic_fixes": [
+    "reset-fork-isolation",
+    "wakeup-high-word-read",
+    "named-event-wait",
+    "reset-local-scoreboard-state"
+  ],
+  "audit_tool_sha256": "b746ea85422d4ecfae4171641efde3c20187d206699309b02c1343f6f504cd2b",
+  "source_export_verified": true,
+  "post_build_source_verified": true,
+  "status": "MATRIX_CASE_DIFFERENCES",
+  "matrix_cases_passed": 5,
+  "matrix_cases_total": 8,
+  "complete_parity_verified": false,
+  "original_reference_parity_verified": false,
+  "full_simulation_started": false,
+  "coverage_credit_granted": 0,
+  "full_coverage_rate": null,
+  "scope": "Eight short repaired-reference cases only. Intr_test/update/restart/prescale/sleep/reset included; shared sample groups and exact legacy identity/vector matrix remain out of scope.",
+  "global_same_time_cross_group_order_by_case": [
+    false,
+    false,
+    false,
+    true,
+    false,
+    true,
+    false,
+    false
+  ],
+  "inputs_sha256": {
+    "vcs-case-0.json": "40457cc5e9a33a21323e25dceab726cca28328825694d531ebe516ec13039a07",
+    "cocotb-case-0/replay.json": "8fc830d26f03bf027e6ecf94e238347288d58065400e5eb95a7f24579e0ca96d",
+    "cocotb-case-0/stage10-sample-matrix-v1-case-0__paired_case_0__seed1.json": "67912472e12fea3e94119d3a18da4b6ef7ee003d18cf06d024d82c20cbe94966",
+    "cocotb-case-0/results.xml": "cf323931b1788c689887e4af4d09b6c9d5b6faf3b052d1578eb43f8d0cf8e213",
+    "vcs-case-1.json": "9dcfdb09013730eb07fbfbeb90838d2eeeaa817a84e3f29e636afa8f28d53fe5",
+    "cocotb-case-1/replay.json": "1cee8d32d567523d8de03a3fa9177a87583ebb9330ae5a2120389932c9d5b6f7",
+    "cocotb-case-1/stage10-sample-matrix-v1-case-1__paired_case_1__seed1.json": "5b688643b2d6d803194faed6935e1a151f40d43a1af57477e935698378f75ac5",
+    "cocotb-case-1/results.xml": "7791eb331174b89e99d34ebfef0d91c09661b36a92ae0781aa3f82d856cf6592",
+    "vcs-case-2.json": "3ec55d52b41cc17afbc15429e8f26c1d20cac3514167973b8ed4d93717bb00be",
+    "cocotb-case-2/replay.json": "7afcd757135b02d8f46963235bd65b27cc02262f18fe8170ea124d5bbbe7c01d",
+    "cocotb-case-2/stage10-sample-matrix-v1-case-2__paired_case_2__seed1.json": "a87d4c8ce3f25f14f9ae4af6f462f2384ee7df5989500b19ea9441378a6ccfa3",
+    "cocotb-case-2/results.xml": "4d44c78e1684670ccc29f55ffc9d4aaf9e3f795d435f4362e6d23b58bac0e126",
+    "vcs-case-3.json": "03956871789ea5f23bb967f3bc0927d5313488f5a7c29cca26b8f2c6754a0ea9",
+    "cocotb-case-3/replay.json": "fbc3431f0f5480972b39f25cbf7401f4aa6a1eeff33c25ca9120e2d8f73f68e3",
+    "cocotb-case-3/stage10-sample-matrix-v1-case-3__paired_case_3__seed1.json": "8fa3e3e082ae8e56815ed59392c1536edcc3c21bdfdab8f8d56203568a397272",
+    "cocotb-case-3/results.xml": "21ba2891653018193111dd75a817e2c0ad87a06b17815dcbba2ac3bcdcb57ca2",
+    "vcs-case-4.json": "c8f4ae33db34f140c948bb1dd32ee4db163f3bf606494c306a69a642f7b5e771",
+    "cocotb-case-4/replay.json": "2c2842e299059571dfdfc98d2f6f99835c60f15c271d5bdc549a2685c74a9934",
+    "cocotb-case-4/stage10-sample-matrix-v1-case-4__paired_case_4__seed1.json": "6251f01777434b1026eaca34b83ea89e915d6e6d596c6a098237335699044767",
+    "cocotb-case-4/results.xml": "cd06cf195762534e7bde4d3d23c58414956fa8a5c819c0916a7b639dcc975b50",
+    "vcs-case-5.json": "975e275f7e7263ff2ead18ede6e57eed2d7d1ad5efba3fa689c72c2855ef31d0",
+    "cocotb-case-5/replay.json": "5e6b088ca139db47e08fd651f0249515e2e094ea69a4f0212b9eb24e755a4897",
+    "cocotb-case-5/stage10-sample-matrix-v1-case-5__paired_case_5__seed1.json": "89b778f733f51f9cf8cc12fcaf274f98b2a61aa0b395a1bd2df6e4d6bdb62e5c",
+    "cocotb-case-5/results.xml": "cc1f9a7be61b0ac88be6a5fce745943f96b45af5b6d3097473a2304e4261f1af",
+    "vcs-case-6.json": "4b03464d2b71cec6beaaeaf1c9b5340181b6974c87728f2ff86b0fb54ed7edb9",
+    "cocotb-case-6/replay.json": "e6e8fd3a4f13ce83606e31aaf85d0170dcfb5f0199a4562c46ac98cfab5d84c3",
+    "cocotb-case-6/stage10-sample-matrix-v1-case-6__paired_case_6__seed1.json": "38295cddb821e9be6e70c43c26f9563a75a6a1a24e5ab5bbaea63c249eccf433",
+    "cocotb-case-6/results.xml": "c88bb380c7016d0c1e34503993dbab5157335c290e4b6a62f2eafd967f419d3c",
+    "vcs-case-7.json": "7dc85bc71e9332e6b802c019f8744add6b784bf8bd593826fc8ab8914f348ad4",
+    "cocotb-case-7/replay.json": "62cb5e21283ab989327b21610a0e431c36692a1497eebc738cabe0d3df87b42a",
+    "cocotb-case-7/stage10-sample-matrix-v1-case-7__paired_case_7__seed1.json": "c7db73c0eace0c7bef12f9b1fcefb3a06fc117c38e032dee8066808dde925bf9",
+    "cocotb-case-7/results.xml": "958f0b6e7f3c7a038fbc306c6c6f49234d8cd1193e389864563b5f9d881127e0"
+  },
+  "cases": [
+    {
+      "case": 0,
+      "reference_status": "PASS",
+      "uvm_sample_count_in_body": 22,
+      "cocotb_sample_count_in_body": 22,
+      "accepted_tl_inputs_and_times_equal": true,
+      "tl_response_callbacks_and_read_values_equal": true,
+      "edge_observation_count": 29,
+      "aon_edge_timestamps_equal": true,
+      "rtl_counters_and_output_pins_at_aon_edges_equal": true,
+      "edge_differences": [],
+      "simultaneous_count_expiry": [
+        {
+          "label": "WKUP",
+          "time_ps": 441707766,
+          "control_events": [
+            "count",
+            "expiry"
+          ],
+          "actual_sample_invocations": 1
+        }
+      ],
+      "samples": {
+        "groups": {
+          "intr_cg": {
+            "uvm_count": 2,
+            "cocotb_count": 2,
+            "ordered_tuples_and_times_equal": true,
+            "same_time_multisets_equal": true,
+            "only_uvm_times_ps": [],
+            "only_cocotb_times_ps": [],
+            "matched_time_field_differences": []
+          },
+          "intr_pins_cg": {
+            "uvm_count": 2,
+            "cocotb_count": 2,
+            "ordered_tuples_and_times_equal": true,
+            "same_time_multisets_equal": true,
+            "only_uvm_times_ps": [],
+            "only_cocotb_times_ps": [],
+            "matched_time_field_differences": []
+          },
+          "timer_cfg_cg": {
+            "uvm_count": 14,
+            "cocotb_count": 14,
+            "ordered_tuples_and_times_equal": true,
+            "same_time_multisets_equal": true,
+            "only_uvm_times_ps": [],
+            "only_cocotb_times_ps": [],
+            "matched_time_field_differences": []
+          },
+          "wake_up_timer_thold_hit_cg": {
+            "uvm_count": 4,
+            "cocotb_count": 4,
+            "ordered_tuples_and_times_equal": true,
+            "same_time_multisets_equal": true,
+            "only_uvm_times_ps": [],
+            "only_cocotb_times_ps": [],
+            "matched_time_field_differences": []
+          }
+        },
+        "global_invocation_order_equal": false,
+        "same_time_multisets_equal": true
+      },
+      "cocotb_status": "PASS",
+      "producer_events_are_unique": true,
+      "producer_events": [
+        {
+          "time_ps": 426707766,
+          "label": "WKUP",
+          "kind": "count",
+          "count": 1
+        },
+        {
+          "time_ps": 431707766,
+          "label": "WKUP",
+          "kind": "count",
+          "count": 2
+        },
+        {
+          "time_ps": 436707766,
+          "label": "WKUP",
+          "kind": "count",
+          "count": 3
+        },
+        {
+          "time_ps": 441707766,
+          "label": "WKUP",
+          "kind": "count",
+          "count": 4
+        },
+        {
+          "time_ps": 441707766,
+          "label": "WKUP",
+          "kind": "expiry"
+        }
+      ],
+      "required_groups": [
+        "intr_cg",
+        "intr_pins_cg",
+        "timer_cfg_cg",
+        "wake_up_timer_thold_hit_cg"
+      ],
+      "expected_matrix_case_passed": true
+    },
+    {
+      "case": 1,
+      "reference_status": "PASS",
+      "uvm_sample_count_in_body": 30,
+      "cocotb_sample_count_in_body": 30,
+      "accepted_tl_inputs_and_times_equal": true,
+      "tl_response_callbacks_and_read_values_equal": true,
+      "edge_observation_count": 29,
+      "aon_edge_timestamps_equal": true,
+      "rtl_counters_and_output_pins_at_aon_edges_equal": true,
+      "edge_differences": [],
+      "simultaneous_count_expiry": [
+        {
+          "label": "WDOG Bark",
+          "time_ps": 436707766,
+          "control_events": [
+            "count",
+            "expiry"
+          ],
+          "actual_sample_invocations": 1
+        },
+        {
+          "label": "WDOG Bite",
+          "time_ps": 451707766,
+          "control_events": [
+            "count",
+            "expiry"
+          ],
+          "actual_sample_invocations": 1
+        }
+      ],
+      "samples": {
+        "groups": {
+          "intr_cg": {
+            "uvm_count": 2,
+            "cocotb_count": 2,
+            "ordered_tuples_and_times_equal": true,
+            "same_time_multisets_equal": true,
+            "only_uvm_times_ps": [],
+            "only_cocotb_times_ps": [],
+            "matched_time_field_differences": []
+          },
+          "intr_pins_cg": {
+            "uvm_count": 4,
+            "cocotb_count": 4,
+            "ordered_tuples_and_times_equal": true,
+            "same_time_multisets_equal": true,
+            "only_uvm_times_ps": [],
+            "only_cocotb_times_ps": [],
+            "matched_time_field_differences": []
+          },
+          "timer_cfg_cg": {
+            "uvm_count": 14,
+            "cocotb_count": 14,
+            "ordered_tuples_and_times_equal": true,
+            "same_time_multisets_equal": true,
+            "only_uvm_times_ps": [],
+            "only_cocotb_times_ps": [],
+            "matched_time_field_differences": []
+          },
+          "watchdog_timer_bark_thold_hit_cg": {
+            "uvm_count": 4,
+            "cocotb_count": 4,
+            "ordered_tuples_and_times_equal": true,
+            "same_time_multisets_equal": true,
+            "only_uvm_times_ps": [],
+            "only_cocotb_times_ps": [],
+            "matched_time_field_differences": []
+          },
+          "watchdog_timer_bite_thold_hit_cg": {
+            "uvm_count": 6,
+            "cocotb_count": 6,
+            "ordered_tuples_and_times_equal": true,
+            "same_time_multisets_equal": true,
+            "only_uvm_times_ps": [],
+            "only_cocotb_times_ps": [],
+            "matched_time_field_differences": []
+          }
+        },
+        "global_invocation_order_equal": false,
+        "same_time_multisets_equal": true
+      },
+      "cocotb_status": "PASS",
+      "producer_events_are_unique": true,
+      "producer_events": [
+        {
+          "time_ps": 426707766,
+          "label": "WDOG Bark",
+          "kind": "count",
+          "count": 1
+        },
+        {
+          "time_ps": 426707766,
+          "label": "WDOG Bite",
+          "kind": "count",
+          "count": 1
+        },
+        {
+          "time_ps": 431707766,
+          "label": "WDOG Bark",
+          "kind": "count",
+          "count": 2
+        },
+        {
+          "time_ps": 431707766,
+          "label": "WDOG Bite",
+          "kind": "count",
+          "count": 2
+        },
+        {
+          "time_ps": 436707766,
+          "label": "WDOG Bark",
+          "kind": "count",
+          "count": 3
+        },
+        {
+          "time_ps": 436707766,
+          "label": "WDOG Bark",
+          "kind": "expiry"
+        },
+        {
+          "time_ps": 436707766,
+          "label": "WDOG Bite",
+          "kind": "count",
+          "count": 3
+        },
+        {
+          "time_ps": 441707766,
+          "label": "WDOG Bite",
+          "kind": "count",
+          "count": 4
+        },
+        {
+          "time_ps": 446707766,
+          "label": "WDOG Bite",
+          "kind": "count",
+          "count": 5
+        },
+        {
+          "time_ps": 451707766,
+          "label": "WDOG Bite",
+          "kind": "count",
+          "count": 6
+        },
+        {
+          "time_ps": 451707766,
+          "label": "WDOG Bite",
+          "kind": "expiry"
+        },
+        {
+          "time_ps": 466707766,
+          "label": "WDOG Bark",
+          "kind": "count",
+          "count": 1
+        }
+      ],
+      "required_groups": [
+        "intr_cg",
+        "intr_pins_cg",
+        "timer_cfg_cg",
+        "watchdog_timer_bark_thold_hit_cg",
+        "watchdog_timer_bite_thold_hit_cg"
+      ],
+      "expected_matrix_case_passed": true
+    },
+    {
+      "case": 2,
+      "reference_status": "PASS",
+      "uvm_sample_count_in_body": 30,
+      "cocotb_sample_count_in_body": 30,
+      "accepted_tl_inputs_and_times_equal": true,
+      "tl_response_callbacks_and_read_values_equal": true,
+      "edge_observation_count": 29,
+      "aon_edge_timestamps_equal": true,
+      "rtl_counters_and_output_pins_at_aon_edges_equal": true,
+      "edge_differences": [],
+      "simultaneous_count_expiry": [
+        {
+          "label": "WDOG Bite",
+          "time_ps": 436707766,
+          "control_events": [
+            "count",
+            "expiry"
+          ],
+          "actual_sample_invocations": 1
+        },
+        {
+          "label": "WDOG Bark",
+          "time_ps": 451707766,
+          "control_events": [
+            "count",
+            "expiry"
+          ],
+          "actual_sample_invocations": 1
+        }
+      ],
+      "samples": {
+        "groups": {
+          "intr_cg": {
+            "uvm_count": 2,
+            "cocotb_count": 2,
+            "ordered_tuples_and_times_equal": true,
+            "same_time_multisets_equal": true,
+            "only_uvm_times_ps": [],
+            "only_cocotb_times_ps": [],
+            "matched_time_field_differences": []
+          },
+          "intr_pins_cg": {
+            "uvm_count": 4,
+            "cocotb_count": 4,
+            "ordered_tuples_and_times_equal": true,
+            "same_time_multisets_equal": true,
+            "only_uvm_times_ps": [],
+            "only_cocotb_times_ps": [],
+            "matched_time_field_differences": []
+          },
+          "timer_cfg_cg": {
+            "uvm_count": 14,
+            "cocotb_count": 14,
+            "ordered_tuples_and_times_equal": true,
+            "same_time_multisets_equal": true,
+            "only_uvm_times_ps": [],
+            "only_cocotb_times_ps": [],
+            "matched_time_field_differences": []
+          },
+          "watchdog_timer_bark_thold_hit_cg": {
+            "uvm_count": 6,
+            "cocotb_count": 6,
+            "ordered_tuples_and_times_equal": true,
+            "same_time_multisets_equal": true,
+            "only_uvm_times_ps": [],
+            "only_cocotb_times_ps": [],
+            "matched_time_field_differences": []
+          },
+          "watchdog_timer_bite_thold_hit_cg": {
+            "uvm_count": 4,
+            "cocotb_count": 4,
+            "ordered_tuples_and_times_equal": true,
+            "same_time_multisets_equal": true,
+            "only_uvm_times_ps": [],
+            "only_cocotb_times_ps": [],
+            "matched_time_field_differences": []
+          }
+        },
+        "global_invocation_order_equal": false,
+        "same_time_multisets_equal": true
+      },
+      "cocotb_status": "PASS",
+      "producer_events_are_unique": true,
+      "producer_events": [
+        {
+          "time_ps": 426707766,
+          "label": "WDOG Bark",
+          "kind": "count",
+          "count": 1
+        },
+        {
+          "time_ps": 426707766,
+          "label": "WDOG Bite",
+          "kind": "count",
+          "count": 1
+        },
+        {
+          "time_ps": 431707766,
+          "label": "WDOG Bark",
+          "kind": "count",
+          "count": 2
+        },
+        {
+          "time_ps": 431707766,
+          "label": "WDOG Bite",
+          "kind": "count",
+          "count": 2
+        },
+        {
+          "time_ps": 436707766,
+          "label": "WDOG Bark",
+          "kind": "count",
+          "count": 3
+        },
+        {
+          "time_ps": 436707766,
+          "label": "WDOG Bite",
+          "kind": "count",
+          "count": 3
+        },
+        {
+          "time_ps": 436707766,
+          "label": "WDOG Bite",
+          "kind": "expiry"
+        },
+        {
+          "time_ps": 441707766,
+          "label": "WDOG Bark",
+          "kind": "count",
+          "count": 4
+        },
+        {
+          "time_ps": 446707766,
+          "label": "WDOG Bark",
+          "kind": "count",
+          "count": 5
+        },
+        {
+          "time_ps": 451707766,
+          "label": "WDOG Bark",
+          "kind": "count",
+          "count": 6
+        },
+        {
+          "time_ps": 451707766,
+          "label": "WDOG Bark",
+          "kind": "expiry"
+        },
+        {
+          "time_ps": 466707766,
+          "label": "WDOG Bite",
+          "kind": "count",
+          "count": 1
+        }
+      ],
+      "required_groups": [
+        "intr_cg",
+        "intr_pins_cg",
+        "timer_cfg_cg",
+        "watchdog_timer_bark_thold_hit_cg",
+        "watchdog_timer_bite_thold_hit_cg"
+      ],
+      "expected_matrix_case_passed": true
+    },
+    {
+      "case": 3,
+      "reference_status": "PASS",
+      "uvm_sample_count_in_body": 25,
+      "cocotb_sample_count_in_body": 25,
+      "accepted_tl_inputs_and_times_equal": true,
+      "tl_response_callbacks_and_read_values_equal": true,
+      "edge_observation_count": 19,
+      "aon_edge_timestamps_equal": true,
+      "rtl_counters_and_output_pins_at_aon_edges_equal": true,
+      "edge_differences": [],
+      "simultaneous_count_expiry": [],
+      "samples": {
+        "groups": {
+          "intr_cg": {
+            "uvm_count": 6,
+            "cocotb_count": 6,
+            "ordered_tuples_and_times_equal": true,
+            "same_time_multisets_equal": true,
+            "only_uvm_times_ps": [],
+            "only_cocotb_times_ps": [],
+            "matched_time_field_differences": []
+          },
+          "intr_test_cg": {
+            "uvm_count": 4,
+            "cocotb_count": 4,
+            "ordered_tuples_and_times_equal": true,
+            "same_time_multisets_equal": true,
+            "only_uvm_times_ps": [],
+            "only_cocotb_times_ps": [],
+            "matched_time_field_differences": []
+          },
+          "timer_cfg_cg": {
+            "uvm_count": 15,
+            "cocotb_count": 15,
+            "ordered_tuples_and_times_equal": true,
+            "same_time_multisets_equal": true,
+            "only_uvm_times_ps": [],
+            "only_cocotb_times_ps": [],
+            "matched_time_field_differences": []
+          }
+        },
+        "global_invocation_order_equal": true,
+        "same_time_multisets_equal": true
+      },
+      "cocotb_status": "PASS",
+      "producer_events_are_unique": true,
+      "producer_events": [],
+      "required_groups": [
+        "intr_cg",
+        "intr_pins_cg",
+        "intr_test_cg",
+        "timer_cfg_cg"
+      ],
+      "expected_matrix_case_passed": false
+    },
+    {
+      "case": 4,
+      "reference_status": "PASS",
+      "uvm_sample_count_in_body": 31,
+      "cocotb_sample_count_in_body": 31,
+      "accepted_tl_inputs_and_times_equal": true,
+      "tl_response_callbacks_and_read_values_equal": true,
+      "edge_observation_count": 41,
+      "aon_edge_timestamps_equal": true,
+      "rtl_counters_and_output_pins_at_aon_edges_equal": true,
+      "edge_differences": [],
+      "simultaneous_count_expiry": [
+        {
+          "label": "WKUP",
+          "time_ps": 466707766,
+          "control_events": [
+            "count",
+            "expiry"
+          ],
+          "actual_sample_invocations": 1
+        }
+      ],
+      "samples": {
+        "groups": {
+          "intr_cg": {
+            "uvm_count": 2,
+            "cocotb_count": 2,
+            "ordered_tuples_and_times_equal": true,
+            "same_time_multisets_equal": true,
+            "only_uvm_times_ps": [],
+            "only_cocotb_times_ps": [],
+            "matched_time_field_differences": []
+          },
+          "intr_pins_cg": {
+            "uvm_count": 2,
+            "cocotb_count": 2,
+            "ordered_tuples_and_times_equal": true,
+            "same_time_multisets_equal": true,
+            "only_uvm_times_ps": [],
+            "only_cocotb_times_ps": [],
+            "matched_time_field_differences": []
+          },
+          "timer_cfg_cg": {
+            "uvm_count": 14,
+            "cocotb_count": 14,
+            "ordered_tuples_and_times_equal": true,
+            "same_time_multisets_equal": true,
+            "only_uvm_times_ps": [],
+            "only_cocotb_times_ps": [],
+            "matched_time_field_differences": []
+          },
+          "wake_up_timer_thold_hit_cg": {
+            "uvm_count": 13,
+            "cocotb_count": 13,
+            "ordered_tuples_and_times_equal": true,
+            "same_time_multisets_equal": true,
+            "only_uvm_times_ps": [],
+            "only_cocotb_times_ps": [],
+            "matched_time_field_differences": []
+          }
+        },
+        "global_invocation_order_equal": false,
+        "same_time_multisets_equal": true
+      },
+      "cocotb_status": "PASS",
+      "producer_events_are_unique": true,
+      "producer_events": [
+        {
+          "time_ps": 426707766,
+          "label": "WKUP",
+          "kind": "count",
+          "count": 1
+        },
+        {
+          "time_ps": 431707766,
+          "label": "WKUP",
+          "kind": "count",
+          "count": 2
+        },
+        {
+          "time_ps": 436707766,
+          "label": "WKUP",
+          "kind": "count",
+          "count": 3
+        },
+        {
+          "time_ps": 441707766,
+          "label": "WKUP",
+          "kind": "count",
+          "count": 4
+        },
+        {
+          "time_ps": 446707766,
+          "label": "WKUP",
+          "kind": "count",
+          "count": 5
+        },
+        {
+          "time_ps": 451707766,
+          "label": "WKUP",
+          "kind": "count",
+          "count": 6
+        },
+        {
+          "time_ps": 456707766,
+          "label": "WKUP",
+          "kind": "count",
+          "count": 7
+        },
+        {
+          "time_ps": 461707766,
+          "label": "WKUP",
+          "kind": "count",
+          "count": 8
+        },
+        {
+          "time_ps": 466707766,
+          "label": "WKUP",
+          "kind": "count",
+          "count": 9
+        },
+        {
+          "time_ps": 466707766,
+          "label": "WKUP",
+          "kind": "expiry"
+        },
+        {
+          "time_ps": 506707766,
+          "label": "WKUP",
+          "kind": "count",
+          "count": 1
+        },
+        {
+          "time_ps": 511707766,
+          "label": "WKUP",
+          "kind": "count",
+          "count": 2
+        },
+        {
+          "time_ps": 516707766,
+          "label": "WKUP",
+          "kind": "count",
+          "count": 3
+        },
+        {
+          "time_ps": 521707766,
+          "label": "WKUP",
+          "kind": "count",
+          "count": 4
+        }
+      ],
+      "required_groups": [
+        "intr_cg",
+        "intr_pins_cg",
+        "timer_cfg_cg",
+        "wake_up_timer_thold_hit_cg"
+      ],
+      "expected_matrix_case_passed": true
+    },
+    {
+      "case": 5,
+      "reference_status": "PASS",
+      "uvm_sample_count_in_body": 38,
+      "cocotb_sample_count_in_body": 38,
+      "accepted_tl_inputs_and_times_equal": true,
+      "tl_response_callbacks_and_read_values_equal": true,
+      "edge_observation_count": 46,
+      "aon_edge_timestamps_equal": true,
+      "rtl_counters_and_output_pins_at_aon_edges_equal": true,
+      "edge_differences": [],
+      "simultaneous_count_expiry": [
+        {
+          "label": "WKUP",
+          "time_ps": 526707766,
+          "control_events": [
+            "count",
+            "expiry"
+          ],
+          "actual_sample_invocations": 1
+        }
+      ],
+      "samples": {
+        "groups": {
+          "intr_cg": {
+            "uvm_count": 2,
+            "cocotb_count": 2,
+            "ordered_tuples_and_times_equal": true,
+            "same_time_multisets_equal": true,
+            "only_uvm_times_ps": [],
+            "only_cocotb_times_ps": [],
+            "matched_time_field_differences": []
+          },
+          "intr_pins_cg": {
+            "uvm_count": 2,
+            "cocotb_count": 2,
+            "ordered_tuples_and_times_equal": true,
+            "same_time_multisets_equal": true,
+            "only_uvm_times_ps": [],
+            "only_cocotb_times_ps": [],
+            "matched_time_field_differences": []
+          },
+          "timer_cfg_cg": {
+            "uvm_count": 22,
+            "cocotb_count": 22,
+            "ordered_tuples_and_times_equal": true,
+            "same_time_multisets_equal": true,
+            "only_uvm_times_ps": [],
+            "only_cocotb_times_ps": [],
+            "matched_time_field_differences": []
+          },
+          "wake_up_timer_thold_hit_cg": {
+            "uvm_count": 12,
+            "cocotb_count": 12,
+            "ordered_tuples_and_times_equal": true,
+            "same_time_multisets_equal": true,
+            "only_uvm_times_ps": [],
+            "only_cocotb_times_ps": [],
+            "matched_time_field_differences": []
+          }
+        },
+        "global_invocation_order_equal": true,
+        "same_time_multisets_equal": true
+      },
+      "cocotb_status": "PASS",
+      "producer_events_are_unique": true,
+      "producer_events": [
+        {
+          "time_ps": 431707766,
+          "label": "WKUP",
+          "kind": "count",
+          "count": 1
+        },
+        {
+          "time_ps": 436707766,
+          "label": "WKUP",
+          "kind": "count",
+          "count": 2
+        },
+        {
+          "time_ps": 441707766,
+          "label": "WKUP",
+          "kind": "count",
+          "count": 3
+        },
+        {
+          "time_ps": 446707766,
+          "label": "WKUP",
+          "kind": "count",
+          "count": 4
+        },
+        {
+          "time_ps": 451707766,
+          "label": "WKUP",
+          "kind": "count",
+          "count": 5
+        },
+        {
+          "time_ps": 456707766,
+          "label": "WKUP",
+          "kind": "count",
+          "count": 6
+        },
+        {
+          "time_ps": 461707766,
+          "label": "WKUP",
+          "kind": "count",
+          "count": 7
+        },
+        {
+          "time_ps": 466707766,
+          "label": "WKUP",
+          "kind": "count",
+          "count": 8
+        },
+        {
+          "time_ps": 511707766,
+          "label": "WKUP",
+          "kind": "count",
+          "count": 1
+        },
+        {
+          "time_ps": 516707766,
+          "label": "WKUP",
+          "kind": "count",
+          "count": 2
+        },
+        {
+          "time_ps": 521707766,
+          "label": "WKUP",
+          "kind": "count",
+          "count": 3
+        },
+        {
+          "time_ps": 526707766,
+          "label": "WKUP",
+          "kind": "count",
+          "count": 4
+        },
+        {
+          "time_ps": 526707766,
+          "label": "WKUP",
+          "kind": "expiry"
+        }
+      ],
+      "required_groups": [
+        "intr_cg",
+        "intr_pins_cg",
+        "timer_cfg_cg",
+        "wake_up_timer_thold_hit_cg"
+      ],
+      "expected_matrix_case_passed": true
+    },
+    {
+      "case": 6,
+      "reference_status": "PASS",
+      "uvm_sample_count_in_body": 41,
+      "cocotb_sample_count_in_body": 40,
+      "accepted_tl_inputs_and_times_equal": true,
+      "tl_response_callbacks_and_read_values_equal": true,
+      "edge_observation_count": 118,
+      "aon_edge_timestamps_equal": true,
+      "rtl_counters_and_output_pins_at_aon_edges_equal": true,
+      "edge_differences": [],
+      "simultaneous_count_expiry": [
+        {
+          "label": "WKUP",
+          "time_ps": 861707766,
+          "control_events": [
+            "count",
+            "expiry"
+          ],
+          "actual_sample_invocations": 1
+        },
+        {
+          "label": "WKUP",
+          "time_ps": 901707766,
+          "control_events": [
+            "count",
+            "expiry"
+          ],
+          "actual_sample_invocations": 1
+        }
+      ],
+      "samples": {
+        "groups": {
+          "intr_cg": {
+            "uvm_count": 2,
+            "cocotb_count": 2,
+            "ordered_tuples_and_times_equal": true,
+            "same_time_multisets_equal": true,
+            "only_uvm_times_ps": [],
+            "only_cocotb_times_ps": [],
+            "matched_time_field_differences": []
+          },
+          "intr_pins_cg": {
+            "uvm_count": 2,
+            "cocotb_count": 2,
+            "ordered_tuples_and_times_equal": true,
+            "same_time_multisets_equal": true,
+            "only_uvm_times_ps": [],
+            "only_cocotb_times_ps": [],
+            "matched_time_field_differences": []
+          },
+          "timer_cfg_cg": {
+            "uvm_count": 28,
+            "cocotb_count": 28,
+            "ordered_tuples_and_times_equal": true,
+            "same_time_multisets_equal": true,
+            "only_uvm_times_ps": [],
+            "only_cocotb_times_ps": [],
+            "matched_time_field_differences": []
+          },
+          "wake_up_timer_thold_hit_cg": {
+            "uvm_count": 9,
+            "cocotb_count": 8,
+            "ordered_tuples_and_times_equal": false,
+            "same_time_multisets_equal": false,
+            "only_uvm_times_ps": [
+              441707766
+            ],
+            "only_cocotb_times_ps": [],
+            "matched_time_field_differences": []
+          }
+        },
+        "global_invocation_order_equal": false,
+        "same_time_multisets_equal": false
+      },
+      "cocotb_status": "PASS",
+      "producer_events_are_unique": true,
+      "producer_events": [
+        {
+          "time_ps": 431707766,
+          "label": "WKUP",
+          "kind": "count",
+          "count": 1
+        },
+        {
+          "time_ps": 436707766,
+          "label": "WKUP",
+          "kind": "count",
+          "count": 2
+        },
+        {
+          "time_ps": 441707766,
+          "label": "WKUP",
+          "kind": "count",
+          "count": 3
+        },
+        {
+          "time_ps": 851707766,
+          "label": "WKUP",
+          "kind": "count",
+          "count": 1
+        },
+        {
+          "time_ps": 856707766,
+          "label": "WKUP",
+          "kind": "count",
+          "count": 2
+        },
+        {
+          "time_ps": 861707766,
+          "label": "WKUP",
+          "kind": "count",
+          "count": 3
+        },
+        {
+          "time_ps": 861707766,
+          "label": "WKUP",
+          "kind": "expiry"
+        },
+        {
+          "time_ps": 891707766,
+          "label": "WKUP",
+          "kind": "count",
+          "count": 1
+        },
+        {
+          "time_ps": 896707766,
+          "label": "WKUP",
+          "kind": "count",
+          "count": 2
+        },
+        {
+          "time_ps": 901707766,
+          "label": "WKUP",
+          "kind": "count",
+          "count": 3
+        },
+        {
+          "time_ps": 901707766,
+          "label": "WKUP",
+          "kind": "expiry"
+        }
+      ],
+      "required_groups": [
+        "intr_cg",
+        "intr_pins_cg",
+        "timer_cfg_cg",
+        "wake_up_timer_thold_hit_cg"
+      ],
+      "expected_matrix_case_passed": false
+    },
+    {
+      "case": 7,
+      "reference_status": "PASS",
+      "uvm_sample_count_in_body": 26,
+      "cocotb_sample_count_in_body": 50,
+      "accepted_tl_inputs_and_times_equal": true,
+      "tl_response_callbacks_and_read_values_equal": true,
+      "edge_observation_count": 50,
+      "aon_edge_timestamps_equal": true,
+      "rtl_counters_and_output_pins_at_aon_edges_equal": false,
+      "edge_differences": [
+        {
+          "time_ps": 456707766,
+          "fields": {
+            "wdog_count": {
+              "uvm": 6,
+              "cocotb": 5
+            }
+          }
+        },
+        {
+          "time_ps": 461707766,
+          "fields": {
+            "wdog_count": {
+              "uvm": 6,
+              "cocotb": 5
+            }
+          }
+        },
+        {
+          "time_ps": 466707766,
+          "fields": {
+            "wdog_count": {
+              "uvm": 6,
+              "cocotb": 5
+            }
+          }
+        },
+        {
+          "time_ps": 471707766,
+          "fields": {
+            "wdog_count": {
+              "uvm": 6,
+              "cocotb": 5
+            }
+          }
+        },
+        {
+          "time_ps": 476707766,
+          "fields": {
+            "wdog_count": {
+              "uvm": 6,
+              "cocotb": 5
+            }
+          }
+        },
+        {
+          "time_ps": 481707766,
+          "fields": {
+            "wdog_count": {
+              "uvm": 6,
+              "cocotb": 5
+            }
+          }
+        },
+        {
+          "time_ps": 486707766,
+          "fields": {
+            "wdog_count": {
+              "uvm": 6,
+              "cocotb": 5
+            }
+          }
+        },
+        {
+          "time_ps": 491707766,
+          "fields": {
+            "wdog_count": {
+              "uvm": 6,
+              "cocotb": 5
+            }
+          }
+        },
+        {
+          "time_ps": 496707766,
+          "fields": {
+            "wdog_count": {
+              "uvm": 6,
+              "cocotb": 5
+            }
+          }
+        },
+        {
+          "time_ps": 501707766,
+          "fields": {
+            "wdog_count": {
+              "uvm": 6,
+              "cocotb": 5
+            }
+          }
+        },
+        {
+          "time_ps": 506707766,
+          "fields": {
+            "wdog_count": {
+              "uvm": 6,
+              "cocotb": 5
+            }
+          }
+        },
+        {
+          "time_ps": 511707766,
+          "fields": {
+            "wdog_count": {
+              "uvm": 6,
+              "cocotb": 5
+            }
+          }
+        }
+      ],
+      "simultaneous_count_expiry": [],
+      "samples": {
+        "groups": {
+          "intr_cg": {
+            "uvm_count": 2,
+            "cocotb_count": 2,
+            "ordered_tuples_and_times_equal": true,
+            "same_time_multisets_equal": true,
+            "only_uvm_times_ps": [],
+            "only_cocotb_times_ps": [],
+            "matched_time_field_differences": []
+          },
+          "timer_cfg_cg": {
+            "uvm_count": 16,
+            "cocotb_count": 16,
+            "ordered_tuples_and_times_equal": true,
+            "same_time_multisets_equal": true,
+            "only_uvm_times_ps": [],
+            "only_cocotb_times_ps": [],
+            "matched_time_field_differences": []
+          },
+          "watchdog_timer_bark_thold_hit_cg": {
+            "uvm_count": 4,
+            "cocotb_count": 16,
+            "ordered_tuples_and_times_equal": false,
+            "same_time_multisets_equal": false,
+            "only_uvm_times_ps": [
+              446707766,
+              451707766
+            ],
+            "only_cocotb_times_ps": [
+              506707766,
+              511707766,
+              516707766,
+              521707766,
+              526707766,
+              531707766,
+              536707766,
+              541707766,
+              546707766,
+              551707766,
+              556707766,
+              561707766,
+              566707766,
+              571707766
+            ],
+            "matched_time_field_differences": []
+          },
+          "watchdog_timer_bite_thold_hit_cg": {
+            "uvm_count": 4,
+            "cocotb_count": 16,
+            "ordered_tuples_and_times_equal": false,
+            "same_time_multisets_equal": false,
+            "only_uvm_times_ps": [
+              446707766,
+              451707766
+            ],
+            "only_cocotb_times_ps": [
+              506707766,
+              511707766,
+              516707766,
+              521707766,
+              526707766,
+              531707766,
+              536707766,
+              541707766,
+              546707766,
+              551707766,
+              556707766,
+              561707766,
+              566707766,
+              571707766
+            ],
+            "matched_time_field_differences": []
+          }
+        },
+        "global_invocation_order_equal": false,
+        "same_time_multisets_equal": false
+      },
+      "cocotb_status": "PASS",
+      "producer_events_are_unique": true,
+      "producer_events": [
+        {
+          "time_ps": 436707766,
+          "label": "WDOG Bark",
+          "kind": "count",
+          "count": 1
+        },
+        {
+          "time_ps": 436707766,
+          "label": "WDOG Bite",
+          "kind": "count",
+          "count": 1
+        },
+        {
+          "time_ps": 441707766,
+          "label": "WDOG Bark",
+          "kind": "count",
+          "count": 2
+        },
+        {
+          "time_ps": 441707766,
+          "label": "WDOG Bite",
+          "kind": "count",
+          "count": 2
+        },
+        {
+          "time_ps": 446707766,
+          "label": "WDOG Bark",
+          "kind": "count",
+          "count": 3
+        },
+        {
+          "time_ps": 446707766,
+          "label": "WDOG Bite",
+          "kind": "count",
+          "count": 3
+        },
+        {
+          "time_ps": 451707766,
+          "label": "WDOG Bark",
+          "kind": "count",
+          "count": 4
+        },
+        {
+          "time_ps": 451707766,
+          "label": "WDOG Bite",
+          "kind": "count",
+          "count": 4
+        }
+      ],
+      "required_groups": [
+        "intr_cg",
+        "intr_pins_cg",
+        "timer_cfg_cg",
+        "watchdog_timer_bark_thold_hit_cg",
+        "watchdog_timer_bite_thold_hit_cg"
+      ],
+      "expected_matrix_case_passed": false
+    }
+  ]
+}

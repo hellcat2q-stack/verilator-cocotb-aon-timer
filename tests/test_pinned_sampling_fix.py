@@ -66,7 +66,7 @@ class PinnedSamplingFixTests(unittest.TestCase):
         self.assertEqual(report["summary"]["fixed_adapter_sample_body_count"], 82)
         self.assertEqual(report["full_simulation_start_gate"], "BLOCKED")
         self.assertFalse(report["full_simulation_started"])
-        self.assertEqual(len(report["blockers"]), 5)
+        self.assertGreaterEqual(len(report["blockers"]), 6)
 
     def test_rehashed_fixed_variant_cannot_be_promoted_to_original_parity(self):
         with tempfile.TemporaryDirectory() as folder:

@@ -1,0 +1,2490 @@
+{
+  "schema": "aon-timer-vcs-actual-samples-v1",
+  "case": 7,
+  "testcase": "aon_timer_smoke_vseq",
+  "seed": 1,
+  "process_exit_code": 0,
+  "uvm_error_count": 0,
+  "uvm_fatal_count": 0,
+  "test_passed_checks": true,
+  "records": [
+    {
+      "kind": "reset",
+      "time_ps": 0,
+      "rst_n": null,
+      "rst_aon_n": 0
+    },
+    {
+      "kind": "sample",
+      "time_ps": 0,
+      "seq": 0,
+      "group": "intr_pins_cg",
+      "intr_pin": 1,
+      "intr_pin_value": 0
+    },
+    {
+      "kind": "sample",
+      "time_ps": 0,
+      "seq": 1,
+      "group": "intr_pins_cg",
+      "intr_pin": 0,
+      "intr_pin_value": 0
+    },
+    {
+      "kind": "reset",
+      "time_ps": 12556,
+      "rst_n": 0,
+      "rst_aon_n": 0
+    },
+    {
+      "kind": "fast_edge",
+      "time_ps": 44354
+    },
+    {
+      "kind": "fast_edge",
+      "time_ps": 64354
+    },
+    {
+      "kind": "reset",
+      "time_ps": 1644354,
+      "rst_n": 1,
+      "rst_aon_n": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 11707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 16707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 21707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 26707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 31707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 36707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 41707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 46707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 51707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 56707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 61707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 66707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 71707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 76707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 81707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 86707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 91707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 96707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 101707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 106707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 111707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 116707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 121707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 126707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 131707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 136707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 141707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 146707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 151707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 156707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 161707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 166707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 171707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 176707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 181707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 186707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 191707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 196707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 201707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 206707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 211707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 216707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 221707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 226707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 231707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 236707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 241707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 246707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 251707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 256707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 261707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 266707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 271707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 276707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 281707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 286707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 291707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 296707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 301707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 306707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 311707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 316707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 321707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 326707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 331707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 336707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 341707766,
+      "rst_n": 1,
+      "rst_aon_n": 0,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "reset",
+      "time_ps": 346707766,
+      "rst_n": 1,
+      "rst_aon_n": 1
+    },
+    {
+      "kind": "edge",
+      "time_ps": 346707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "sleep",
+      "time_ps": 346707768,
+      "value": 0
+    },
+    {
+      "kind": "begin",
+      "time_ps": 346707768,
+      "case": 7
+    },
+    {
+      "kind": "tl",
+      "time_ps": 349344354,
+      "channel": 0,
+      "write": 1,
+      "address": 1644397764,
+      "data": 0,
+      "response": 0
+    },
+    {
+      "kind": "sample",
+      "time_ps": 349344354,
+      "seq": 2,
+      "group": "timer_cfg_cg",
+      "prescale": 0,
+      "bark_thold": 0,
+      "bite_thold": 0,
+      "wkup_thold": 0,
+      "wdog_regwen": 1,
+      "pause_in_sleep": 0,
+      "wkup_cause": 0
+    },
+    {
+      "kind": "tl",
+      "time_ps": 349364354,
+      "channel": 1,
+      "write": 1,
+      "address": 1644397764,
+      "data": 0,
+      "response": 4294967295
+    },
+    {
+      "kind": "edge",
+      "time_ps": 351707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "tl",
+      "time_ps": 354344354,
+      "channel": 0,
+      "write": 1,
+      "address": 1644397788,
+      "data": 0,
+      "response": 0
+    },
+    {
+      "kind": "sample",
+      "time_ps": 354344354,
+      "seq": 3,
+      "group": "timer_cfg_cg",
+      "prescale": 0,
+      "bark_thold": 0,
+      "bite_thold": 0,
+      "wkup_thold": 0,
+      "wdog_regwen": 1,
+      "pause_in_sleep": 0,
+      "wkup_cause": 0
+    },
+    {
+      "kind": "tl",
+      "time_ps": 354364354,
+      "channel": 1,
+      "write": 1,
+      "address": 1644397788,
+      "data": 0,
+      "response": 4294967295
+    },
+    {
+      "kind": "edge",
+      "time_ps": 356707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "tl",
+      "time_ps": 359484354,
+      "channel": 0,
+      "write": 1,
+      "address": 1644397804,
+      "data": 3,
+      "response": 0
+    },
+    {
+      "kind": "sample",
+      "time_ps": 359484354,
+      "seq": 4,
+      "group": "timer_cfg_cg",
+      "prescale": 0,
+      "bark_thold": 0,
+      "bite_thold": 0,
+      "wkup_thold": 0,
+      "wdog_regwen": 1,
+      "pause_in_sleep": 0,
+      "wkup_cause": 0
+    },
+    {
+      "kind": "tl",
+      "time_ps": 359504354,
+      "channel": 1,
+      "write": 1,
+      "address": 1644397804,
+      "data": 3,
+      "response": 4294967295
+    },
+    {
+      "kind": "edge",
+      "time_ps": 361707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "tl",
+      "time_ps": 364364354,
+      "channel": 0,
+      "write": 1,
+      "address": 1644397812,
+      "data": 0,
+      "response": 0
+    },
+    {
+      "kind": "sample",
+      "time_ps": 364364354,
+      "seq": 5,
+      "group": "timer_cfg_cg",
+      "prescale": 0,
+      "bark_thold": 0,
+      "bite_thold": 0,
+      "wkup_thold": 0,
+      "wdog_regwen": 1,
+      "pause_in_sleep": 0,
+      "wkup_cause": 0
+    },
+    {
+      "kind": "tl",
+      "time_ps": 364384354,
+      "channel": 1,
+      "write": 1,
+      "address": 1644397812,
+      "data": 0,
+      "response": 4294967295
+    },
+    {
+      "kind": "edge",
+      "time_ps": 366707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "tl",
+      "time_ps": 369524354,
+      "channel": 0,
+      "write": 1,
+      "address": 1644397780,
+      "data": 0,
+      "response": 0
+    },
+    {
+      "kind": "sample",
+      "time_ps": 369524354,
+      "seq": 6,
+      "group": "timer_cfg_cg",
+      "prescale": 0,
+      "bark_thold": 0,
+      "bite_thold": 0,
+      "wkup_thold": 0,
+      "wdog_regwen": 1,
+      "pause_in_sleep": 0,
+      "wkup_cause": 0
+    },
+    {
+      "kind": "tl",
+      "time_ps": 369544354,
+      "channel": 1,
+      "write": 1,
+      "address": 1644397780,
+      "data": 0,
+      "response": 4294967295
+    },
+    {
+      "kind": "edge",
+      "time_ps": 371707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "tl",
+      "time_ps": 374504354,
+      "channel": 0,
+      "write": 1,
+      "address": 1644397776,
+      "data": 0,
+      "response": 0
+    },
+    {
+      "kind": "sample",
+      "time_ps": 374504354,
+      "seq": 7,
+      "group": "timer_cfg_cg",
+      "prescale": 0,
+      "bark_thold": 0,
+      "bite_thold": 0,
+      "wkup_thold": 0,
+      "wdog_regwen": 1,
+      "pause_in_sleep": 0,
+      "wkup_cause": 0
+    },
+    {
+      "kind": "tl",
+      "time_ps": 374524354,
+      "channel": 1,
+      "write": 1,
+      "address": 1644397776,
+      "data": 0,
+      "response": 4294967295
+    },
+    {
+      "kind": "edge",
+      "time_ps": 376707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "tl",
+      "time_ps": 379504354,
+      "channel": 0,
+      "write": 1,
+      "address": 1644397800,
+      "data": 0,
+      "response": 0
+    },
+    {
+      "kind": "sample",
+      "time_ps": 379504354,
+      "seq": 8,
+      "group": "timer_cfg_cg",
+      "prescale": 0,
+      "bark_thold": 0,
+      "bite_thold": 0,
+      "wkup_thold": 0,
+      "wdog_regwen": 1,
+      "pause_in_sleep": 0,
+      "wkup_cause": 0
+    },
+    {
+      "kind": "tl",
+      "time_ps": 379524354,
+      "channel": 1,
+      "write": 1,
+      "address": 1644397800,
+      "data": 0,
+      "response": 4294967295
+    },
+    {
+      "kind": "edge",
+      "time_ps": 381707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "tl",
+      "time_ps": 384524354,
+      "channel": 0,
+      "write": 1,
+      "address": 1644397772,
+      "data": 3,
+      "response": 0
+    },
+    {
+      "kind": "sample",
+      "time_ps": 384524354,
+      "seq": 9,
+      "group": "timer_cfg_cg",
+      "prescale": 0,
+      "bark_thold": 0,
+      "bite_thold": 0,
+      "wkup_thold": 0,
+      "wdog_regwen": 1,
+      "pause_in_sleep": 0,
+      "wkup_cause": 0
+    },
+    {
+      "kind": "tl",
+      "time_ps": 384544354,
+      "channel": 1,
+      "write": 1,
+      "address": 1644397772,
+      "data": 3,
+      "response": 4294967295
+    },
+    {
+      "kind": "edge",
+      "time_ps": 386707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "tl",
+      "time_ps": 389444354,
+      "channel": 0,
+      "write": 1,
+      "address": 1644397768,
+      "data": 0,
+      "response": 0
+    },
+    {
+      "kind": "sample",
+      "time_ps": 389444354,
+      "seq": 10,
+      "group": "timer_cfg_cg",
+      "prescale": 0,
+      "bark_thold": 0,
+      "bite_thold": 0,
+      "wkup_thold": 3,
+      "wdog_regwen": 1,
+      "pause_in_sleep": 0,
+      "wkup_cause": 0
+    },
+    {
+      "kind": "tl",
+      "time_ps": 389464354,
+      "channel": 1,
+      "write": 1,
+      "address": 1644397768,
+      "data": 0,
+      "response": 4294967295
+    },
+    {
+      "kind": "edge",
+      "time_ps": 391707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "tl",
+      "time_ps": 394504354,
+      "channel": 0,
+      "write": 1,
+      "address": 1644397792,
+      "data": 3,
+      "response": 0
+    },
+    {
+      "kind": "sample",
+      "time_ps": 394504354,
+      "seq": 11,
+      "group": "timer_cfg_cg",
+      "prescale": 0,
+      "bark_thold": 0,
+      "bite_thold": 0,
+      "wkup_thold": 3,
+      "wdog_regwen": 1,
+      "pause_in_sleep": 0,
+      "wkup_cause": 0
+    },
+    {
+      "kind": "tl",
+      "time_ps": 394524354,
+      "channel": 1,
+      "write": 1,
+      "address": 1644397792,
+      "data": 3,
+      "response": 4294967295
+    },
+    {
+      "kind": "edge",
+      "time_ps": 396707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "tl",
+      "time_ps": 399444354,
+      "channel": 0,
+      "write": 1,
+      "address": 1644397796,
+      "data": 6,
+      "response": 0
+    },
+    {
+      "kind": "sample",
+      "time_ps": 399444354,
+      "seq": 12,
+      "group": "timer_cfg_cg",
+      "prescale": 0,
+      "bark_thold": 3,
+      "bite_thold": 0,
+      "wkup_thold": 3,
+      "wdog_regwen": 1,
+      "pause_in_sleep": 0,
+      "wkup_cause": 0
+    },
+    {
+      "kind": "tl",
+      "time_ps": 399464354,
+      "channel": 1,
+      "write": 1,
+      "address": 1644397796,
+      "data": 6,
+      "response": 4294967295
+    },
+    {
+      "kind": "edge",
+      "time_ps": 401707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 406707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "tl",
+      "time_ps": 406784354,
+      "channel": 0,
+      "write": 1,
+      "address": 1644397792,
+      "data": 20,
+      "response": 0
+    },
+    {
+      "kind": "sample",
+      "time_ps": 406784354,
+      "seq": 13,
+      "group": "timer_cfg_cg",
+      "prescale": 0,
+      "bark_thold": 3,
+      "bite_thold": 6,
+      "wkup_thold": 3,
+      "wdog_regwen": 1,
+      "pause_in_sleep": 0,
+      "wkup_cause": 0
+    },
+    {
+      "kind": "tl",
+      "time_ps": 406804354,
+      "channel": 1,
+      "write": 1,
+      "address": 1644397792,
+      "data": 20,
+      "response": 4294967295
+    },
+    {
+      "kind": "edge",
+      "time_ps": 411707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "tl",
+      "time_ps": 411784354,
+      "channel": 0,
+      "write": 1,
+      "address": 1644397796,
+      "data": 30,
+      "response": 0
+    },
+    {
+      "kind": "sample",
+      "time_ps": 411784354,
+      "seq": 14,
+      "group": "timer_cfg_cg",
+      "prescale": 0,
+      "bark_thold": 20,
+      "bite_thold": 6,
+      "wkup_thold": 3,
+      "wdog_regwen": 1,
+      "pause_in_sleep": 0,
+      "wkup_cause": 0
+    },
+    {
+      "kind": "tl",
+      "time_ps": 411804354,
+      "channel": 1,
+      "write": 1,
+      "address": 1644397796,
+      "data": 30,
+      "response": 4294967295
+    },
+    {
+      "kind": "tl",
+      "time_ps": 414404354,
+      "channel": 0,
+      "write": 1,
+      "address": 1644397788,
+      "data": 3,
+      "response": 0
+    },
+    {
+      "kind": "sample",
+      "time_ps": 414404354,
+      "seq": 15,
+      "group": "timer_cfg_cg",
+      "prescale": 0,
+      "bark_thold": 20,
+      "bite_thold": 30,
+      "wkup_thold": 3,
+      "wdog_regwen": 1,
+      "pause_in_sleep": 0,
+      "wkup_cause": 0
+    },
+    {
+      "kind": "tl",
+      "time_ps": 414424354,
+      "channel": 1,
+      "write": 1,
+      "address": 1644397788,
+      "data": 3,
+      "response": 4294967295
+    },
+    {
+      "kind": "edge",
+      "time_ps": 416707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 421707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 426707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 431707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 1,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "sample",
+      "time_ps": 436707766,
+      "seq": 16,
+      "group": "watchdog_timer_bark_thold_hit_cg",
+      "wdog_bark_int": 0,
+      "wdog_thold": 20,
+      "wdog_count": 2
+    },
+    {
+      "kind": "sample",
+      "time_ps": 436707766,
+      "seq": 17,
+      "group": "watchdog_timer_bite_thold_hit_cg",
+      "wdog_bite_rst": 0,
+      "wdog_thold": 30,
+      "wdog_count": 2
+    },
+    {
+      "kind": "edge",
+      "time_ps": 436707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 2,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "sample",
+      "time_ps": 441707766,
+      "seq": 18,
+      "group": "watchdog_timer_bark_thold_hit_cg",
+      "wdog_bark_int": 0,
+      "wdog_thold": 20,
+      "wdog_count": 3
+    },
+    {
+      "kind": "sample",
+      "time_ps": 441707766,
+      "seq": 19,
+      "group": "watchdog_timer_bite_thold_hit_cg",
+      "wdog_bite_rst": 0,
+      "wdog_thold": 30,
+      "wdog_count": 3
+    },
+    {
+      "kind": "edge",
+      "time_ps": 441707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 3,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "sample",
+      "time_ps": 446707766,
+      "seq": 20,
+      "group": "watchdog_timer_bark_thold_hit_cg",
+      "wdog_bark_int": 0,
+      "wdog_thold": 20,
+      "wdog_count": 4
+    },
+    {
+      "kind": "sample",
+      "time_ps": 446707766,
+      "seq": 21,
+      "group": "watchdog_timer_bite_thold_hit_cg",
+      "wdog_bite_rst": 0,
+      "wdog_thold": 30,
+      "wdog_count": 4
+    },
+    {
+      "kind": "edge",
+      "time_ps": 446707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 4,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "sleep",
+      "time_ps": 446707767,
+      "value": 1
+    },
+    {
+      "kind": "sample",
+      "time_ps": 451707766,
+      "seq": 22,
+      "group": "watchdog_timer_bark_thold_hit_cg",
+      "wdog_bark_int": 0,
+      "wdog_thold": 20,
+      "wdog_count": 5
+    },
+    {
+      "kind": "sample",
+      "time_ps": 451707766,
+      "seq": 23,
+      "group": "watchdog_timer_bite_thold_hit_cg",
+      "wdog_bite_rst": 0,
+      "wdog_thold": 30,
+      "wdog_count": 5
+    },
+    {
+      "kind": "edge",
+      "time_ps": 451707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 5,
+      "sleep": 1,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 456707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 6,
+      "sleep": 1,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 461707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 6,
+      "sleep": 1,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 466707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 6,
+      "sleep": 1,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 471707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 6,
+      "sleep": 1,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 476707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 6,
+      "sleep": 1,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 481707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 6,
+      "sleep": 1,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 486707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 6,
+      "sleep": 1,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "tl",
+      "time_ps": 489424354,
+      "channel": 0,
+      "write": 1,
+      "address": 1644397788,
+      "data": 0,
+      "response": 0
+    },
+    {
+      "kind": "sample",
+      "time_ps": 489424354,
+      "seq": 24,
+      "group": "timer_cfg_cg",
+      "prescale": 0,
+      "bark_thold": 20,
+      "bite_thold": 30,
+      "wkup_thold": 3,
+      "wdog_regwen": 1,
+      "pause_in_sleep": 1,
+      "wkup_cause": 0
+    },
+    {
+      "kind": "tl",
+      "time_ps": 489444354,
+      "channel": 1,
+      "write": 1,
+      "address": 1644397788,
+      "data": 0,
+      "response": 4294967295
+    },
+    {
+      "kind": "edge",
+      "time_ps": 491707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 6,
+      "sleep": 1,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 496707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 6,
+      "sleep": 1,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 501707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 6,
+      "sleep": 1,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 506707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 6,
+      "sleep": 1,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "sleep",
+      "time_ps": 506707767,
+      "value": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 511707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 6,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 516707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 6,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 521707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 6,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 526707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 6,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "tl",
+      "time_ps": 529364354,
+      "channel": 0,
+      "write": 1,
+      "address": 1644397800,
+      "data": 0,
+      "response": 0
+    },
+    {
+      "kind": "sample",
+      "time_ps": 529364354,
+      "seq": 25,
+      "group": "timer_cfg_cg",
+      "prescale": 0,
+      "bark_thold": 20,
+      "bite_thold": 30,
+      "wkup_thold": 3,
+      "wdog_regwen": 1,
+      "pause_in_sleep": 0,
+      "wkup_cause": 0
+    },
+    {
+      "kind": "tl",
+      "time_ps": 529384354,
+      "channel": 1,
+      "write": 1,
+      "address": 1644397800,
+      "data": 0,
+      "response": 4294967295
+    },
+    {
+      "kind": "edge",
+      "time_ps": 531707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 6,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "tl",
+      "time_ps": 534464354,
+      "channel": 0,
+      "write": 1,
+      "address": 1644397792,
+      "data": 3,
+      "response": 0
+    },
+    {
+      "kind": "sample",
+      "time_ps": 534464354,
+      "seq": 26,
+      "group": "timer_cfg_cg",
+      "prescale": 0,
+      "bark_thold": 20,
+      "bite_thold": 30,
+      "wkup_thold": 3,
+      "wdog_regwen": 1,
+      "pause_in_sleep": 0,
+      "wkup_cause": 0
+    },
+    {
+      "kind": "tl",
+      "time_ps": 534484354,
+      "channel": 1,
+      "write": 1,
+      "address": 1644397792,
+      "data": 3,
+      "response": 4294967295
+    },
+    {
+      "kind": "edge",
+      "time_ps": 536707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 6,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "tl",
+      "time_ps": 539364354,
+      "channel": 0,
+      "write": 1,
+      "address": 1644397796,
+      "data": 6,
+      "response": 0
+    },
+    {
+      "kind": "sample",
+      "time_ps": 539364354,
+      "seq": 27,
+      "group": "timer_cfg_cg",
+      "prescale": 0,
+      "bark_thold": 3,
+      "bite_thold": 30,
+      "wkup_thold": 3,
+      "wdog_regwen": 1,
+      "pause_in_sleep": 0,
+      "wkup_cause": 0
+    },
+    {
+      "kind": "tl",
+      "time_ps": 539384354,
+      "channel": 1,
+      "write": 1,
+      "address": 1644397796,
+      "data": 6,
+      "response": 4294967295
+    },
+    {
+      "kind": "edge",
+      "time_ps": 541707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "tl",
+      "time_ps": 544524354,
+      "channel": 0,
+      "write": 1,
+      "address": 1644397788,
+      "data": 3,
+      "response": 0
+    },
+    {
+      "kind": "sample",
+      "time_ps": 544524354,
+      "seq": 28,
+      "group": "timer_cfg_cg",
+      "prescale": 0,
+      "bark_thold": 3,
+      "bite_thold": 6,
+      "wkup_thold": 3,
+      "wdog_regwen": 1,
+      "pause_in_sleep": 0,
+      "wkup_cause": 0
+    },
+    {
+      "kind": "tl",
+      "time_ps": 544544354,
+      "channel": 1,
+      "write": 1,
+      "address": 1644397788,
+      "data": 3,
+      "response": 4294967295
+    },
+    {
+      "kind": "edge",
+      "time_ps": 546707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 551707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 556707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 0,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "edge",
+      "time_ps": 561707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 1,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "sample",
+      "time_ps": 566707766,
+      "seq": 29,
+      "group": "watchdog_timer_bark_thold_hit_cg",
+      "wdog_bark_int": 0,
+      "wdog_thold": 3,
+      "wdog_count": 2
+    },
+    {
+      "kind": "sample",
+      "time_ps": 566707766,
+      "seq": 30,
+      "group": "watchdog_timer_bite_thold_hit_cg",
+      "wdog_bite_rst": 0,
+      "wdog_thold": 6,
+      "wdog_count": 2
+    },
+    {
+      "kind": "edge",
+      "time_ps": 566707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 2,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "sample",
+      "time_ps": 571707766,
+      "seq": 31,
+      "group": "watchdog_timer_bark_thold_hit_cg",
+      "wdog_bark_int": 0,
+      "wdog_thold": 3,
+      "wdog_count": 3
+    },
+    {
+      "kind": "sample",
+      "time_ps": 571707766,
+      "seq": 32,
+      "group": "watchdog_timer_bite_thold_hit_cg",
+      "wdog_bite_rst": 0,
+      "wdog_thold": 6,
+      "wdog_count": 3
+    },
+    {
+      "kind": "edge",
+      "time_ps": 571707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 3,
+      "sleep": 0,
+      "wake_pin": 0,
+      "reset_pin": 0
+    },
+    {
+      "kind": "sample",
+      "time_ps": 576707766,
+      "seq": 33,
+      "group": "intr_pins_cg",
+      "intr_pin": 1,
+      "intr_pin_value": 1
+    },
+    {
+      "kind": "sample",
+      "time_ps": 576707766,
+      "seq": 34,
+      "group": "intr_pins_cg",
+      "intr_pin": 0,
+      "intr_pin_value": 0
+    },
+    {
+      "kind": "sample",
+      "time_ps": 576707766,
+      "seq": 35,
+      "group": "watchdog_timer_bark_thold_hit_cg",
+      "wdog_bark_int": 1,
+      "wdog_thold": 3,
+      "wdog_count": 4
+    },
+    {
+      "kind": "sample",
+      "time_ps": 576707766,
+      "seq": 36,
+      "group": "watchdog_timer_bite_thold_hit_cg",
+      "wdog_bite_rst": 0,
+      "wdog_thold": 6,
+      "wdog_count": 4
+    },
+    {
+      "kind": "edge",
+      "time_ps": 576707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 4,
+      "sleep": 0,
+      "wake_pin": 1,
+      "reset_pin": 0
+    },
+    {
+      "kind": "sample",
+      "time_ps": 581707766,
+      "seq": 37,
+      "group": "watchdog_timer_bite_thold_hit_cg",
+      "wdog_bite_rst": 0,
+      "wdog_thold": 6,
+      "wdog_count": 5
+    },
+    {
+      "kind": "edge",
+      "time_ps": 581707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 5,
+      "sleep": 0,
+      "wake_pin": 1,
+      "reset_pin": 0
+    },
+    {
+      "kind": "sample",
+      "time_ps": 586707766,
+      "seq": 38,
+      "group": "watchdog_timer_bite_thold_hit_cg",
+      "wdog_bite_rst": 0,
+      "wdog_thold": 6,
+      "wdog_count": 6
+    },
+    {
+      "kind": "edge",
+      "time_ps": 586707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 6,
+      "sleep": 0,
+      "wake_pin": 1,
+      "reset_pin": 0
+    },
+    {
+      "kind": "sample",
+      "time_ps": 591707766,
+      "seq": 39,
+      "group": "intr_pins_cg",
+      "intr_pin": 1,
+      "intr_pin_value": 1
+    },
+    {
+      "kind": "sample",
+      "time_ps": 591707766,
+      "seq": 40,
+      "group": "intr_pins_cg",
+      "intr_pin": 0,
+      "intr_pin_value": 1
+    },
+    {
+      "kind": "sample",
+      "time_ps": 591707766,
+      "seq": 41,
+      "group": "watchdog_timer_bite_thold_hit_cg",
+      "wdog_bite_rst": 1,
+      "wdog_thold": 6,
+      "wdog_count": 7
+    },
+    {
+      "kind": "edge",
+      "time_ps": 591707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 7,
+      "sleep": 0,
+      "wake_pin": 1,
+      "reset_pin": 1
+    },
+    {
+      "kind": "edge",
+      "time_ps": 596707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 8,
+      "sleep": 0,
+      "wake_pin": 1,
+      "reset_pin": 1
+    },
+    {
+      "kind": "edge",
+      "time_ps": 601707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 9,
+      "sleep": 0,
+      "wake_pin": 1,
+      "reset_pin": 1
+    },
+    {
+      "kind": "tl",
+      "time_ps": 604464354,
+      "channel": 0,
+      "write": 1,
+      "address": 1644397764,
+      "data": 0,
+      "response": 0
+    },
+    {
+      "kind": "sample",
+      "time_ps": 604464354,
+      "seq": 42,
+      "group": "timer_cfg_cg",
+      "prescale": 0,
+      "bark_thold": 3,
+      "bite_thold": 6,
+      "wkup_thold": 3,
+      "wdog_regwen": 1,
+      "pause_in_sleep": 1,
+      "wkup_cause": 0
+    },
+    {
+      "kind": "tl",
+      "time_ps": 604484354,
+      "channel": 1,
+      "write": 1,
+      "address": 1644397764,
+      "data": 0,
+      "response": 4294967295
+    },
+    {
+      "kind": "sample",
+      "time_ps": 606707766,
+      "seq": 43,
+      "group": "watchdog_timer_bark_thold_hit_cg",
+      "wdog_bark_int": 1,
+      "wdog_thold": 3,
+      "wdog_count": 10
+    },
+    {
+      "kind": "edge",
+      "time_ps": 606707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 10,
+      "sleep": 0,
+      "wake_pin": 1,
+      "reset_pin": 1
+    },
+    {
+      "kind": "tl",
+      "time_ps": 609484354,
+      "channel": 0,
+      "write": 1,
+      "address": 1644397788,
+      "data": 0,
+      "response": 0
+    },
+    {
+      "kind": "sample",
+      "time_ps": 609484354,
+      "seq": 44,
+      "group": "timer_cfg_cg",
+      "prescale": 0,
+      "bark_thold": 3,
+      "bite_thold": 6,
+      "wkup_thold": 3,
+      "wdog_regwen": 1,
+      "pause_in_sleep": 1,
+      "wkup_cause": 0
+    },
+    {
+      "kind": "tl",
+      "time_ps": 609504354,
+      "channel": 1,
+      "write": 1,
+      "address": 1644397788,
+      "data": 0,
+      "response": 4294967295
+    },
+    {
+      "kind": "edge",
+      "time_ps": 611707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 11,
+      "sleep": 0,
+      "wake_pin": 1,
+      "reset_pin": 1
+    },
+    {
+      "kind": "edge",
+      "time_ps": 616707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 12,
+      "sleep": 0,
+      "wake_pin": 1,
+      "reset_pin": 1
+    },
+    {
+      "kind": "edge",
+      "time_ps": 621707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 13,
+      "sleep": 0,
+      "wake_pin": 1,
+      "reset_pin": 1
+    },
+    {
+      "kind": "edge",
+      "time_ps": 626707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 13,
+      "sleep": 0,
+      "wake_pin": 1,
+      "reset_pin": 1
+    },
+    {
+      "kind": "edge",
+      "time_ps": 631707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 13,
+      "sleep": 0,
+      "wake_pin": 1,
+      "reset_pin": 1
+    },
+    {
+      "kind": "tl",
+      "time_ps": 631824354,
+      "channel": 0,
+      "write": 0,
+      "address": 1644397804,
+      "data": 3187149371,
+      "response": 0
+    },
+    {
+      "kind": "tl",
+      "time_ps": 631844354,
+      "channel": 1,
+      "write": 0,
+      "address": 1644397804,
+      "data": 3187149371,
+      "response": 2
+    },
+    {
+      "kind": "sample",
+      "time_ps": 631844354,
+      "seq": 45,
+      "group": "intr_cg",
+      "intr": 0,
+      "intr_en": 0,
+      "intr_state": 0
+    },
+    {
+      "kind": "sample",
+      "time_ps": 631844354,
+      "seq": 46,
+      "group": "intr_cg",
+      "intr": 1,
+      "intr_en": 0,
+      "intr_state": 1
+    },
+    {
+      "kind": "end",
+      "time_ps": 631844354,
+      "case": 7,
+      "intr_state": 2
+    },
+    {
+      "kind": "edge",
+      "time_ps": 636707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 13,
+      "sleep": 0,
+      "wake_pin": 1,
+      "reset_pin": 1
+    },
+    {
+      "kind": "edge",
+      "time_ps": 641707766,
+      "rst_n": 1,
+      "rst_aon_n": 1,
+      "wkup_count": 0,
+      "wdog_count": 13,
+      "sleep": 0,
+      "wake_pin": 1,
+      "reset_pin": 1
+    }
+  ],
+  "control_events": [
+    {
+      "time_ps": 436707766,
+      "label": "WDOG Bark",
+      "kind": "count",
+      "count": 1
+    },
+    {
+      "time_ps": 436707766,
+      "label": "WDOG Bite",
+      "kind": "count",
+      "count": 1
+    },
+    {
+      "time_ps": 441707766,
+      "label": "WDOG Bark",
+      "kind": "count",
+      "count": 2
+    },
+    {
+      "time_ps": 441707766,
+      "label": "WDOG Bite",
+      "kind": "count",
+      "count": 2
+    },
+    {
+      "time_ps": 446707766,
+      "label": "WDOG Bark",
+      "kind": "count",
+      "count": 3
+    },
+    {
+      "time_ps": 446707766,
+      "label": "WDOG Bite",
+      "kind": "count",
+      "count": 3
+    },
+    {
+      "time_ps": 451707766,
+      "label": "WDOG Bark",
+      "kind": "count",
+      "count": 4
+    },
+    {
+      "time_ps": 451707766,
+      "label": "WDOG Bite",
+      "kind": "count",
+      "count": 4
+    },
+    {
+      "time_ps": 566707766,
+      "label": "WDOG Bark",
+      "kind": "count",
+      "count": 1
+    },
+    {
+      "time_ps": 566707766,
+      "label": "WDOG Bite",
+      "kind": "count",
+      "count": 1
+    },
+    {
+      "time_ps": 571707766,
+      "label": "WDOG Bark",
+      "kind": "count",
+      "count": 2
+    },
+    {
+      "time_ps": 571707766,
+      "label": "WDOG Bite",
+      "kind": "count",
+      "count": 2
+    },
+    {
+      "time_ps": 576707766,
+      "label": "WDOG Bark",
+      "kind": "count",
+      "count": 3
+    },
+    {
+      "time_ps": 576707766,
+      "label": "WDOG Bark",
+      "kind": "expiry"
+    },
+    {
+      "time_ps": 576707766,
+      "label": "WDOG Bite",
+      "kind": "count",
+      "count": 3
+    },
+    {
+      "time_ps": 581707766,
+      "label": "WDOG Bite",
+      "kind": "count",
+      "count": 4
+    },
+    {
+      "time_ps": 586707766,
+      "label": "WDOG Bite",
+      "kind": "count",
+      "count": 5
+    },
+    {
+      "time_ps": 591707766,
+      "label": "WDOG Bite",
+      "kind": "count",
+      "count": 6
+    },
+    {
+      "time_ps": 591707766,
+      "label": "WDOG Bite",
+      "kind": "expiry"
+    },
+    {
+      "time_ps": 606707766,
+      "label": "WDOG Bark",
+      "kind": "count",
+      "count": 1
+    }
+  ],
+  "invalid_markers": [],
+  "sample_invocations": 47,
+  "coverage_vector": null,
+  "coverage_credit_granted": 0,
+  "full_log_sha256": "19537c67b57e80a671ec61d71f23bd9d78aa8992f100574deaa19cc129e1ea30",
+  "run_status": "PASS"
+}

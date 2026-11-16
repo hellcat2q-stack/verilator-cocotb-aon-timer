@@ -1,0 +1,26 @@
+{
+  "schema": "aon-timer-pinned-sample-matrix-v1",
+  "reference_revision": "9f20940d494a223cc950a5b98f748fb28109d458",
+  "reference_variant": "pinned-sampling-fixes-v2",
+  "adapter_schema": "aon_timer_pinned_sampling_matrix_trace_v1",
+  "inherits_parameters_from": "configs/stage10-paired-short-v1.json",
+  "seed": 1,
+  "case_ids": [0, 1, 2, 3, 4, 5, 6, 7],
+  "cases": [
+    {"id": 0, "name": "wakeup", "scenario": "baseline wakeup threshold and expiry"},
+    {"id": 1, "name": "bark", "scenario": "baseline watchdog bark and later bite"},
+    {"id": 2, "name": "bite", "scenario": "baseline watchdog bite and later bark"},
+    {"id": 3, "name": "intr_test", "scenario": "write both INTR_TEST bits, read and clear interrupt state"},
+    {"id": 4, "name": "prescale", "scenario": "wakeup prescaler 2 with a bounded threshold"},
+    {"id": 5, "name": "update_restart", "scenario": "raise wakeup threshold and reload count while enabled, then disable, clear, and restart to expiry"},
+    {"id": 6, "name": "reset_restart", "scenario": "hard reset while wakeup is active, then reconfigure and restart"},
+    {"id": 7, "name": "sleep_pause", "scenario": "watchdog pause_in_sleep during an explicitly timed sleep interval, then disable and restart from a known count after wake"}
+  ],
+  "source_fixes": ["reset-fork-isolation", "wakeup-high-word-read", "named-event-wait", "reset-local-scoreboard-state"],
+  "fixed_clock_ps": {"fast": 20000, "aon": 5000000},
+  "sleep_and_lc_initial": 0,
+  "cdc_random_delay": false,
+  "full_simulation_started": false,
+  "coverage_credit_granted": 0,
+  "complete_parity_verified": false
+}

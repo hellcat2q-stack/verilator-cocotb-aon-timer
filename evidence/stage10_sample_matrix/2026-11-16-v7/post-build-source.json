@@ -1,0 +1,28 @@
+{
+  "schema": "aon-timer-pinned-post-build-verification-v1",
+  "verification_tool_sha256": "c6ce5a44f316875bff9c00bb3aaa9fbec17652c69f3d15db6a86a7f2ddf080cd",
+  "source_blob_count": 10514,
+  "all_source_blobs_match_except_declared_patch": true,
+  "declared_changed_files": [
+    {
+      "path": "hw/ip/aon_timer/dv/env/aon_timer_scoreboard.sv",
+      "before_sha256": "b6534a47a116206144cdb332fcff9a58e49ef64eea965d9ddd8497f0b4d26d65",
+      "after_sha256": "815977b97b006a9091164d761f687d63cc86d087dd786a125a8cb5dad06c3d8b"
+    },
+    {
+      "path": "hw/ip/aon_timer/dv/tb.sv",
+      "before_sha256": "d966b464a0792264df0178833b7d8046eca4a0fb78d6c60608c0c9888fae731b",
+      "after_sha256": "71bb4db2c6755b8f75afcd1af2d52202ec0b145232708f1bb740cee71191b233"
+    },
+    {
+      "path": "hw/ip/aon_timer/dv/tests/aon_timer_base_test.sv",
+      "before_sha256": "e6b4698e2687760c55108fcb36eb76d294794436885b91cc97ab54c80c9d14df",
+      "after_sha256": "685624f073746bede3953538640af5c09fe6bf104be2e17c28ab1f531daf39d3"
+    },
+    {
+      "path": "hw/ip/aon_timer/dv/env/seq_lib/aon_timer_smoke_vseq.sv",
+      "before_sha256": "b9c127945f25013bdaaf3f17ac4d0608ececae552e206972b2221d915cd90dbe",
+      "after_sha256": "b7c4df5771292df69250691f4299d2dc78751556f22dc67380f5c0dbac9d652a"
+    }
+  ]
+}

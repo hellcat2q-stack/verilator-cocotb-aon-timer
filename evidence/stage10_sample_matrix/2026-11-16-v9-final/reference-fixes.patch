@@ -1,0 +1,28 @@
+--- before/hw/ip/aon_timer/dv/env/aon_timer_scoreboard.sv
++++ matrix/hw/ip/aon_timer/dv/env/aon_timer_scoreboard.sv
+@@ -454,7 +454,24 @@
+ 
+   virtual function void reset(string kind = "HARD");
+     super.reset(kind);
+-    // reset local fifos queues and variables
++    wkup_en = 0;
++    wkup_num_update_due = 0;
++    wkup_count = 0;
++    prescaler = 0;
++    wkup_thold = 0;
++    wdog_en = 0;
++    wdog_regwen = 1;
++    wdog_pause_in_sleep = 0;
++    wdog_num_update_due = 0;
++    wdog_count = 0;
++    bark_thold = 0;
++    bite_thold = 0;
++    wkup_cause = 0;
++    wkup_num = 0;
++    wdog_bark_num = 0;
++    wdog_bite_num = 0;
++    foreach (intr_status_exp[i]) intr_status_exp[i] = 0;
++    wdog_rst_req_exp = 0;
+   endfunction
+ 
+   function void check_phase(uvm_phase phase);

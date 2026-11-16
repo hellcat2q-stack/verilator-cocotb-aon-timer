@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1" />
+    <testcase name="replay_uvm_accepted_stimulus" classname="test_uvm_sample_matrix_replay" file="tools/test_uvm_sample_matrix_replay.py" lineno="30" time="0.6954965591430664" sim_time_ns="491944.355" ratio_time="707328.2369737865" />
+  </testsuite>
+</testsuites>

@@ -1,0 +1,358 @@
+--- a/hw/ip/aon_timer/dv/env/aon_timer_scoreboard.sv
++++ b/hw/ip/aon_timer/dv/env/aon_timer_scoreboard.sv
+@@ -8,6 +8,8 @@
+     .COV_T(aon_timer_env_cov)
+   );
+   `uvm_component_utils(aon_timer_scoreboard)
++
++  longint unsigned parity_sample_seq = 0;
+ 
+   // local variables
+   local bit  wkup_en;
+@@ -67,6 +69,7 @@
+       // Sample interrupt pin coverage for interrupt pins
+       if (cfg.en_cov) begin
+         foreach (cfg.aon_intr_vif.pins[i]) begin
++          $display("AON_PARITY {\"kind\":\"sample\",\"time_ps\":%0.0f,\"seq\":%0d,\"group\":\"%0s\",\"intr_pin\":%0d,\"intr_pin_value\":%0d}", $realtime / 1ps, parity_sample_seq++, "intr_pins_cg", i, cfg.aon_intr_vif.sample_pin(.idx(i)));
+           cov.intr_pins_cg.sample(i, cfg.aon_intr_vif.sample_pin(.idx(i)));
+         end
+       end
+@@ -84,6 +87,8 @@
+     bit data_phase_read   = (!write && channel == DataChannel);
+     bit data_phase_write  = (write && channel == DataChannel);
+ 
++    $display("AON_PARITY {\"kind\":\"tl\",\"time_ps\":%0.0f,\"channel\":%0d,\"write\":%0d,\"address\":%0d,\"data\":%0d,\"response\":%0d}", $realtime / 1ps, channel, write, csr_addr, item.a_data, item.d_data);
++
+     // if access was to a valid csr, get the csr handle
+     if (csr_addr inside {cfg.ral_models[ral_name].csr_addrs}) begin
+       csr = cfg.ral_models[ral_name].default_map.get_reg_by_offset(csr_addr);
+@@ -98,6 +103,7 @@
+       void'(csr.predict(.value(item.a_data), .kind(UVM_PREDICT_WRITE), .be(item.a_mask)));
+       if (cfg.en_cov) begin
+         //Sample configuration coverage
++        $display("AON_PARITY {\"kind\":\"sample\",\"time_ps\":%0.0f,\"seq\":%0d,\"group\":\"%0s\",\"prescale\":%0d,\"bark_thold\":%0d,\"bite_thold\":%0d,\"wkup_thold\":%0d,\"wdog_regwen\":%0d,\"pause_in_sleep\":%0d,\"wkup_cause\":%0d}", $realtime / 1ps, parity_sample_seq++, "timer_cfg_cg", prescaler, bark_thold, bite_thold, wkup_thold, wdog_regwen, wdog_pause_in_sleep, wkup_cause);
+         cov.timer_cfg_cg.sample(prescaler, bark_thold, bite_thold,
+                                 wkup_thold, wdog_regwen, wdog_pause_in_sleep, wkup_cause);
+       end
+@@ -118,7 +124,9 @@
+         // INTR_EN register does not exists in AON timer because the interrupts are
+         // enabled as long as timers are enabled.
+         if (cfg.en_cov && data_phase_read) begin
++          $display("AON_PARITY {\"kind\":\"sample\",\"time_ps\":%0.0f,\"seq\":%0d,\"group\":\"%0s\",\"intr\":%0d,\"intr_en\":%0d,\"intr_state\":%0d}", $realtime / 1ps, parity_sample_seq++, "intr_cg", WKUP, wkup_en, item.d_data[WKUP]);
+           cov.intr_cg.sample(WKUP, wkup_en, item.d_data[WKUP]);
++          $display("AON_PARITY {\"kind\":\"sample\",\"time_ps\":%0.0f,\"seq\":%0d,\"group\":\"%0s\",\"intr\":%0d,\"intr_en\":%0d,\"intr_state\":%0d}", $realtime / 1ps, parity_sample_seq++, "intr_cg", WDOG, wdog_en, item.d_data[WDOG]);
+           cov.intr_cg.sample(WDOG, wdog_en, item.d_data[WDOG]);
+         end
+       end
+@@ -171,8 +179,10 @@
+         if (intr_test_val[WKUP]) intr_status_exp[WKUP] = 1'b1;
+         if (intr_test_val[WDOG]) intr_status_exp[WDOG] = 1'b1;
+         if (cfg.en_cov) begin
++          $display("AON_PARITY {\"kind\":\"sample\",\"time_ps\":%0.0f,\"seq\":%0d,\"group\":\"%0s\",\"intr\":%0d,\"intr_test\":%0d,\"intr_en\":%0d,\"intr_state\":%0d}", $realtime / 1ps, parity_sample_seq++, "intr_test_cg", WKUP, intr_test_val[WKUP], wkup_en, intr_status_exp[WKUP]);
+           cov.intr_test_cg.sample(WKUP, intr_test_val[WKUP],
+                                   wkup_en, intr_status_exp[WKUP]);
++          $display("AON_PARITY {\"kind\":\"sample\",\"time_ps\":%0.0f,\"seq\":%0d,\"group\":\"%0s\",\"intr\":%0d,\"intr_test\":%0d,\"intr_en\":%0d,\"intr_state\":%0d}", $realtime / 1ps, parity_sample_seq++, "intr_test_cg", WDOG, intr_test_val[WDOG], wdog_en, intr_status_exp[WDOG]);
+           cov.intr_test_cg.sample(WDOG, intr_test_val[WDOG],
+                                   wdog_en, intr_status_exp[WDOG]);
+         end
+@@ -197,19 +207,17 @@
+   virtual task check_interrupt();
+     forever begin
+       wait (!under_reset);
+-
+-      fork : isolation_fork
+-        fork
+-          wait (under_reset);
+-          run_wkup_timer();
+-          run_wdog_bark_timer();
+-          run_wdog_bite_timer();
+-        join_any
+-
+-        // run_wkup_timer and run_wdog_timer never return so if we've got here then we've gone into
+-        // reset. Kill the two timer processes then go around and wait until we come out of reset
+-        // again.
+-        disable fork;
++      fork
++        begin : isolation_fork
++          fork
++            wait (under_reset);
++            run_wkup_timer();
++            run_wdog_bark_timer();
++            run_wdog_bite_timer();
++          join_any
++          // Only this child's timer descendants are killed on reset.
++          disable fork;
++        end
+       join
+     end
+   endtask : check_interrupt
+@@ -261,12 +269,13 @@
+       fork
+         begin
+           forever begin
+-            @(sample_coverage.triggered);
++            @(sample_coverage);
+             if (cfg.en_cov) begin
+               bit [63:0] rtl_count;
+               //reading RTL value since TB doesn't keep track of count
+               csr_rd(.ptr(ral.wkup_count_lo), .value(rtl_count[31:0]), .backdoor(1));
+-              csr_rd(.ptr(ral.wkup_count_lo), .value(rtl_count[63:32]), .backdoor(1));
++              csr_rd(.ptr(ral.wkup_count_hi), .value(rtl_count[63:32]), .backdoor(1));
++              $display("AON_PARITY {\"kind\":\"sample\",\"time_ps\":%0.0f,\"seq\":%0d,\"group\":\"%0s\",\"wkup_int\":%0d,\"wkup_thold\":%0d,\"wkup_count\":%0d}", $realtime / 1ps, parity_sample_seq++, "wake_up_timer_thold_hit_cg", intr_status_exp[WKUP], wkup_thold, rtl_count);
+               cov.wake_up_timer_thold_hit_cg.sample(intr_status_exp[WKUP],
+                                                     wkup_thold,
+                                                     rtl_count);
+@@ -325,11 +334,12 @@
+       fork
+         begin
+           forever begin
+-            @(sample_coverage.triggered);
++            @(sample_coverage);
+             if (cfg.en_cov) begin
+               bit [31:0] rtl_count;
+               //reading RTL value since TB doesn't keep track of count
+               csr_rd(.ptr(ral.wdog_count), .value(rtl_count), .backdoor(1));
++              $display("AON_PARITY {\"kind\":\"sample\",\"time_ps\":%0.0f,\"seq\":%0d,\"group\":\"%0s\",\"wdog_bark_int\":%0d,\"wdog_thold\":%0d,\"wdog_count\":%0d}", $realtime / 1ps, parity_sample_seq++, "watchdog_timer_bark_thold_hit_cg", intr_status_exp[WDOG], bark_thold, rtl_count);
+               cov.watchdog_timer_bark_thold_hit_cg.sample(intr_status_exp[WDOG],
+                                                           bark_thold,
+                                                           rtl_count);
+@@ -388,11 +398,12 @@
+       fork
+         begin
+           forever begin
+-            @(sample_coverage.triggered);
++            @(sample_coverage);
+             if (cfg.en_cov) begin
+               bit [31:0] rtl_count;
+               //reading RTL value since TB doesn't keep track of count
+               csr_rd(.ptr(ral.wdog_count), .value(rtl_count), .backdoor(1));
++              $display("AON_PARITY {\"kind\":\"sample\",\"time_ps\":%0.0f,\"seq\":%0d,\"group\":\"%0s\",\"wdog_bite_rst\":%0d,\"wdog_thold\":%0d,\"wdog_count\":%0d}", $realtime / 1ps, parity_sample_seq++, "watchdog_timer_bite_thold_hit_cg", wdog_rst_req_exp, bite_thold, rtl_count);
+               cov.watchdog_timer_bite_thold_hit_cg.sample(wdog_rst_req_exp,
+                                                           bite_thold,
+                                                           rtl_count);
+@@ -443,7 +454,24 @@
+ 
+   virtual function void reset(string kind = "HARD");
+     super.reset(kind);
+-    // reset local fifos queues and variables
++    wkup_en = 0;
++    wkup_num_update_due = 0;
++    wkup_count = 0;
++    prescaler = 0;
++    wkup_thold = 0;
++    wdog_en = 0;
++    wdog_regwen = 1;
++    wdog_pause_in_sleep = 0;
++    wdog_num_update_due = 0;
++    wdog_count = 0;
++    bark_thold = 0;
++    bite_thold = 0;
++    wkup_cause = 0;
++    wkup_num = 0;
++    wdog_bark_num = 0;
++    wdog_bite_num = 0;
++    foreach (intr_status_exp[i]) intr_status_exp[i] = 0;
++    wdog_rst_req_exp = 0;
+   endfunction
+ 
+   function void check_phase(uvm_phase phase);
+--- a/hw/ip/aon_timer/dv/tb.sv
++++ b/hw/ip/aon_timer/dv/tb.sv
+@@ -89,4 +89,20 @@
+     run_test();
+   end
+ 
++  initial begin
++    repeat (2) begin
++      @(posedge clk);
++      $display("AON_PARITY {\"kind\":\"fast_edge\",\"time_ps\":%0.0f}", $realtime / 1ps);
++    end
++  end
++  always @(posedge clk_aon) begin
++    $strobe("AON_PARITY {\"kind\":\"edge\",\"time_ps\":%0.0f,\"rst_n\":%0d,\"rst_aon_n\":%0d,\"wkup_count\":%0d,\"wdog_count\":%0d,\"sleep\":%0d,\"wake_pin\":%0d,\"reset_pin\":%0d}",
++            $realtime / 1ps, rst_n, rst_aon_n, dut.u_core.wkup_count,
++            dut.u_core.reg2hw_i.wdog_count.q, sleep, wkup_req, rst_req);
++  end
++  always @(rst_n or rst_aon_n) begin
++    $display("AON_PARITY {\"kind\":\"reset\",\"time_ps\":%0.0f,\"rst_n\":%0b,\"rst_aon_n\":%0b}",
++             $realtime / 1ps, rst_n, rst_aon_n);
++  end
++
+ endmodule
+--- a/hw/ip/aon_timer/dv/tests/aon_timer_base_test.sv
++++ b/hw/ip/aon_timer/dv/tests/aon_timer_base_test.sv
+@@ -9,6 +9,13 @@
+ 
+   `uvm_component_utils(aon_timer_base_test)
+   `uvm_component_new
++
++  // Freeze the diagnostic fast clock after base cfg randomization, before env build.
++  virtual function void build_phase(uvm_phase phase);
++    super.build_phase(phase);
++    cfg.clk_freq_mhz = 50;
++    foreach (cfg.clk_freqs_mhz[name]) cfg.clk_freqs_mhz[name] = 50;
++  endfunction
+ 
+   // the base class dv_base_test creates the following instances:
+   // aon_timer_env_cfg: cfg
+--- a/hw/ip/aon_timer/dv/env/seq_lib/aon_timer_smoke_vseq.sv
++++ b/hw/ip/aon_timer/dv/env/seq_lib/aon_timer_smoke_vseq.sv
+@@ -1,31 +1,140 @@
+ // Copyright lowRISC contributors (OpenTitan project).
+ // Licensed under the Apache License, Version 2.0, see LICENSE for details.
+ // SPDX-License-Identifier: Apache-2.0
+-
+-// smoke test vseq
++// This replacement is installed only in the isolated stage10 matrix source tree.
+ class aon_timer_smoke_vseq extends aon_timer_base_vseq;
+   `uvm_object_utils(aon_timer_smoke_vseq)
+   `uvm_object_new
+ 
+-  task body();
++  constraint parity_initial_c {
++    initial_lc_escalate_en == 0;
++    initial_sleep_mode == 0;
++    wdog_regwen == 1;
++  }
+ 
+-    aon_timer_init();
+-    smoke_configure();
+-    wait_for_interrupt();
+-    aon_timer_shutdown();
++  task parity_write(uvm_reg reg_handle, uvm_reg_data_t value);
++    @(negedge cfg.aon_clk_rst_vif.clk);
++    cfg.clk_rst_vif.wait_clks(5);
++    csr_utils_pkg::csr_wr(reg_handle, value);
++  endtask
+ 
+-  endtask : body
++  task parity_sleep(bit value);
++    // Drive after the current AON edge, matching the sequence's clocking-block
++    // return semantics and making the synchronizer's first sample unambiguous.
++    #1ps;
++    cfg.sleep_vif.drive(value);
++    $display("AON_PARITY {\"kind\":\"sleep\",\"time_ps\":%0.0f,\"value\":%0d}",
++             $realtime / 1ps, value);
++  endtask
+ 
+-  task smoke_configure();
++  task parity_initialize(int parity_case);
++    parity_write(ral.wkup_ctrl, 0);
++    parity_write(ral.wdog_ctrl, 0);
++    parity_write(ral.intr_state, 3);
++    parity_write(ral.wkup_cause, 0);
++    parity_write(ral.wkup_count_lo, 0);
++    parity_write(ral.wkup_count_hi, 0);
++    parity_write(ral.wdog_count, 0);
++    parity_write(ral.wkup_thold_lo, (parity_case == 4) ? 2 : 3);
++    parity_write(ral.wkup_thold_hi, 0);
++    parity_write(ral.wdog_bark_thold, (parity_case == 2) ? 6 : 3);
++    parity_write(ral.wdog_bite_thold, (parity_case == 2) ? 3 : 6);
++  endtask
+ 
+-    `uvm_info(`gfn, "Enabling AON Timer. Writing 1 to WKUP_CTRL and WDOG_CTRL", UVM_HIGH)
+-    csr_utils_pkg::csr_wr(ral.wkup_ctrl.enable, 1'b1);
+-    wdog_ctrl_pause_in_sleep = $urandom_range(0, 1);
+-    ral.wdog_ctrl.enable.set(1);
+-    ral.wdog_ctrl.pause_in_sleep.set(wdog_ctrl_pause_in_sleep);
+-    csr_update(ral.wdog_ctrl);
+-    `uvm_info(`gfn, "\n\t Waiting for AON Timer to finish (interrupt)", UVM_HIGH)
+-  endtask : smoke_configure
++  virtual task body();
++    int parity_case = 0;
++    uvm_reg_data_t intr_value;
++    void'($value$plusargs("aon_parity_case=%d", parity_case));
++    `DV_CHECK_FATAL(parity_case inside {[0:7]})
++    cfg.lc_escalate_en_vif.drive(0);
++    parity_sleep(0);
++    $display("AON_PARITY {\"kind\":\"begin\",\"time_ps\":%0.0f,\"case\":%0d}",
++             $realtime / 1ps, parity_case);
++    parity_initialize(parity_case);
+ 
++    case (parity_case)
++      0: begin
++        parity_write(ral.wkup_ctrl, 1);
++        cfg.aon_clk_rst_vif.wait_clks(12);
++      end
++      1: begin
++        parity_write(ral.wdog_ctrl, 1);
++        cfg.aon_clk_rst_vif.wait_clks(12);
++      end
++      2: begin
++        parity_write(ral.wdog_ctrl, 1);
++        cfg.aon_clk_rst_vif.wait_clks(12);
++      end
++      3: begin
++        parity_write(ral.intr_test, 3);
++        csr_utils_pkg::csr_rd(ral.intr_state, intr_value);
++        `DV_CHECK_EQ(intr_value[1:0], 2'b11)
++        parity_write(ral.intr_state, 3);
++        csr_utils_pkg::csr_rd(ral.intr_state, intr_value);
++        `DV_CHECK_EQ(intr_value[1:0], 2'b00)
++      end
++      4: begin
++        parity_write(ral.wkup_ctrl, 5);
++        cfg.aon_clk_rst_vif.wait_clks(24);
++      end
++      5: begin
++        parity_write(ral.wkup_thold_lo, 10);
++        parity_write(ral.wkup_ctrl, 1);
++        cfg.aon_clk_rst_vif.wait_clks(7);
++        // Exercise live threshold/count updates without moving the threshold
++        // behind the current count (which makes the reference scoreboard's
++        // expiry prediction race the interrupt pin).
++        parity_write(ral.wkup_thold_lo, 20);
++        parity_write(ral.wkup_count_lo, 0);
++        cfg.aon_clk_rst_vif.wait_clks(4);
++        parity_write(ral.wkup_ctrl, 0);
++        parity_write(ral.intr_state, 3);
++        parity_write(ral.wkup_thold_lo, 3);
++        parity_write(ral.wkup_count_lo, 0);
++        parity_write(ral.wkup_ctrl, 1);
++        cfg.aon_clk_rst_vif.wait_clks(12);
++      end
++      6: begin
++        parity_write(ral.wkup_thold_lo, 10);
++        parity_write(ral.wkup_ctrl, 1);
++        cfg.aon_clk_rst_vif.wait_clks(7);
++        // Avoid asserting asynchronous reset in the same time slot as the
++        // AON sampling edge; the reference scoreboard samples that edge first.
++        #1ps;
++        apply_reset("HARD");
++        parity_initialize(6);
++        parity_write(ral.wkup_thold_lo, 2);
++        parity_write(ral.wkup_ctrl, 1);
++        cfg.aon_clk_rst_vif.wait_clks(16);
++      end
++      7: begin
++        parity_write(ral.wdog_bark_thold, 20);
++        parity_write(ral.wdog_bite_thold, 30);
++        parity_write(ral.wdog_ctrl, 3);
++        cfg.aon_clk_rst_vif.wait_clks(7);
++        parity_sleep(1);
++        cfg.aon_clk_rst_vif.wait_clks(8);
++        // Stop the first scorekeeper while still asleep. Restart from a known
++        // count after wake so the post-sleep sample stream is bounded and
++        // reproducible across simulators.
++        parity_write(ral.wdog_ctrl, 0);
++        cfg.aon_clk_rst_vif.wait_clks(4);
++        parity_sleep(0);
++        cfg.aon_clk_rst_vif.wait_clks(4);
++        parity_write(ral.wdog_count, 0);
++        parity_write(ral.wdog_bark_thold, 3);
++        parity_write(ral.wdog_bite_thold, 6);
++        parity_write(ral.wdog_ctrl, 3);
++        cfg.aon_clk_rst_vif.wait_clks(12);
++      end
++      default: `DV_CHECK_FATAL(0)
++    endcase
+ 
+-endclass : aon_timer_smoke_vseq
++    parity_write(ral.wkup_ctrl, 0);
++    parity_write(ral.wdog_ctrl, 0);
++    cfg.aon_clk_rst_vif.wait_clks(5);
++    csr_utils_pkg::csr_rd(ral.intr_state, intr_value);
++    $display("AON_PARITY {\"kind\":\"end\",\"time_ps\":%0.0f,\"case\":%0d,\"intr_state\":%0d}",
++             $realtime / 1ps, parity_case, intr_value);
++  endtask
++endclass

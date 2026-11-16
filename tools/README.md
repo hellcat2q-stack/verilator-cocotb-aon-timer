@@ -28,14 +28,15 @@ audit_canonical_identity_candidates.py --output <new-report.json> 按冻结的 c
 ## 2026-11-16 新增：source-definition v2 与 full 仿真前门禁
 
 - `classify_source_definitions.py` 将固定的 160 个 VCS 参考数组分区映射到单条 trace sample，解析完整 interrupt-cross bin label，并将 interrupt pin value/transition bins 分开分类。数组和 cross 结果只属于 source-definition/reference match，不增加旧 canonical coverage credit；illegal `intr_test=1 && intr_state=0` cross 会排除。
-- `stage10_full_simulation_preflight.py` 校验 catalog、数组来源/Python 边界审计、Stage 09 replay audit、source-classification hashes、identity bridge、Stage 06 exact matrix 和 sample-site readiness，写出只读的 preflight JSON。工具不会启动仿真。当前结果在 `evidence/stage10_full_simulation_preflight/2026-11-16-v4/preflight.json`，full 仿真门禁为 blocked；若已有局部 timing shape 证据，blocker 仍要求完整 testcase/sample-level parity。
+- `stage10_full_simulation_preflight.py` 校验 catalog、数组来源/Python 边界审计、Stage 09 replay audit、source-classification hashes、identity bridge、Stage 06 exact matrix 和 sample-site readiness，写出只读的 preflight JSON。工具不会启动仿真；只有所有显式必需检查都为 true 且 blocker 为空时才会报告 `READY`。它还要求 Stage 08 明确验证 Verilator 对 160 个源数组 bins 的等价性。
+- 预检会验证 `stage10_sample_matrix` 八用例审计的 sidecar 并从原始采样证据重放，报告 8/8 有界修复版短测结果；该诊断不放宽完整 parity、bin identity、shared-scope 或 Stage 06/07 的门槛。最新结果见 `evidence/stage10_full_simulation_preflight/2026-11-16-v10/preflight.json`，当前仍为 blocked。默认输出使用新的 v10 目录，不覆盖旧预检。
 - 重放：`python3 tools/classify_source_definitions.py --trace-root evidence/stage09_comparison/2026-11-14-v1 --expected-trace-count 288 --output evidence/stage10_source_definition_classification/2026-11-16-v2/classification.json`，然后运行 `python3 tools/stage10_full_simulation_preflight.py`。分类报告和预检报告均生成 SHA-256 sidecar。
 
 ## 2026-11-16 新增：历史 vector header 与 native VCS 数组边界审计
 
 - `audit_legacy_vector_headers.py` 只读取两个历史 `vectors.csv` 的表头，将 4,507 个列名分类为 exact semantic、range、array-range 和 cross candidate。它不读取 hit-count 行，不导入历史命中数，所有 candidate 的 `coverage_credit_granted` 固定为 0，`promotion_allowed` 固定为 false。
 - `vcs_array_boundary_probe.py` / `run_vcs_array_boundary_probe.py` 在学校服务器的 VCS `P-2019.06-SP1` 上运行独立的 636-case timer_cfg array boundary probe，并记录 4 个越界拒绝。`audit.json` 逐项比较 Python reference interval 与 native VCS bin interval；该审计只覆盖数组边界，不证明 UVM/VCS 与 Cocotb 的 sample timing parity。
-- 当前证据：`evidence/stage10_legacy_vector_header_bridge/2026-11-16-v1/`、`evidence/stage10_vcs_array_boundary/2026-11-16-v1/`。`stage10_full_simulation_preflight.py` 会校验两类 sidecar，并保持 full gate 为 `BLOCKED`；最新 blocker 数量为 5。
+- 当前证据：`evidence/stage10_legacy_vector_header_bridge/2026-11-16-v1/`、`evidence/stage10_vcs_array_boundary/2026-11-16-v1/`。`stage10_full_simulation_preflight.py` 会校验两类 sidecar；v10 输出 6 个具体阻塞条件和一条未通过检查列表，full gate 为 `BLOCKED`。
 
 ## 2026-11-16 新增：完整 legacy identity bridge 审计
 
@@ -90,3 +91,7 @@ python3 tools/audit_uvm_vcs_timing.py \
 count-event trace v2 为固定 wrapper 增加只读 counter 观察口；`TimerSampleScheduler` 模拟 scoreboard 的 4 个 AON startup clocks、countdown 更新与 expiry sampling，runner 复核每条 count group 的 event shape 和 RTL counter 值。连续 expiry 后还会重入 startup 等待。该模型尚未完成与独立 VCS/UVM 实际采样调用及实参的比对，因此其时序属于实现验证状态，不代表 coverage parity；Stage 06 继续只转换 source-confirmed explicit named bins。
 
 阶段 04 runner 通过 `tools/cocotb_coverage_adapter.py` 在可观测的 TL CSR write/read、AON pin 变化及三个计数器 covergroup 上追加 raw trace JSON。计数器事件按 pinned scoreboard 的 4 周期启动延迟、倒计时长度和到期额外采样建模，计数值由仿真顶层只读输出观察；尚未与 UVM/VCS 仿真逐事件比对，所以不宣称时序等价。文件由 testcase `finally` 路径保存并在 run manifest 中记录哈希。trace schema v2 与旧版 v1 并存，阶段 05 runner 复核每个 trace 的 hash、样本总数、covergroup 分布和元数据。`tools/raw_trace_to_vectors.py` 只把 source-confirmed named explicit-bin hits 转成 `PARTIAL_VALIDATED` sparse vectors，不推断 miss；auto-bin/cross partition、条件 reset 适用性和共享 228 identities 仍未解决。
+
+## 2026-11-16 新增：八用例固定参考短矩阵
+
+`stage10_sample_matrix/` 将已修复的 pinned UVM 参考测试扩展到八组确定性短测，包含 `INTR_TEST`、prescale、运行中更新/重启、复位重启和 watchdog sleep/pause。它独立记录 VCS 实际 `.sample()` 参数和复位/sleep 时序，再由干净 pinned RTL 的 Cocotb runner 回放。结果必须经过 source、工具、XML、TL、RTL 边沿、逐组元组及 producer 去重审计；所有结果保持 0 个 coverage credit。该八用例矩阵仍不等于完整采样 parity，也不解除 full 仿真门禁。运行方式见 [`stage10_sample_matrix/README.md`](stage10_sample_matrix/README.md)。
