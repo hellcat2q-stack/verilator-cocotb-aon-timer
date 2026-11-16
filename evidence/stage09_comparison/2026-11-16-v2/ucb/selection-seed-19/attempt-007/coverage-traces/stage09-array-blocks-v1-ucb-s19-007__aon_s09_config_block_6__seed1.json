@@ -1,0 +1,2754 @@
+{
+  "canonical_bin_count": null,
+  "canonical_bin_identity_count": 4507,
+  "canonical_bin_identity_list_sha256": "dbcf02f06c121675401c8983dde65a9275239cefd3aff842712bdeef5da11355",
+  "canonical_bin_vector": null,
+  "capture_adapter": {
+    "canonical_vector_generated": false,
+    "count_event_capture": {
+      "canonical_bin_vector_generated": false,
+      "counter_source": "aon_timer_tb read-only debug outputs from pinned RTL internal counter state",
+      "sleep_mode": "fixed low by aon_timer_tb",
+      "startup_cycles": 4,
+      "status": "SCOREBOARD_CADENCE_MODELED_RTL_COUNTERS_OBSERVED"
+    },
+    "integrated_sample_sites": [
+      "timer_cfg_cg on accepted valid CSR write address phase",
+      "intr_test_cg on INTR_TEST address and data phase invocations",
+      "intr_cg on INTR_STATE read data phase",
+      "intr_pins_cg on AON reset-request or wakeup-request pin change",
+      "three timer count-event groups on AON clocks using source countdown lengths and RTL counts"
+    ],
+    "not_integrated": [
+      "conditional resets_cg and 228 shared/non-AON identities",
+      "canonical auto-bin and cross identity mapping for count-event samples"
+    ],
+    "reference_array_classifier": {
+      "native_verilator_equivalence_verified": false,
+      "source": "references/array_bin_ranges.v1.json",
+      "status": "LIVE_PYTHON_REFERENCE_PARTITION_CLASSIFIER"
+    },
+    "schema": "aon-timer-cocotb-raw-trace-v2",
+    "status": "PARTIAL_SOURCE_SAMPLE_TRACE",
+    "value_partition_status": "REFERENCE_ARRAY_CLASSIFIER_LIVE_PYTHON_NATIVE_EQUIVALENCE_UNVERIFIED"
+  },
+  "coverage_status": "SAMPLE_TRACE_WITH_COUNT_EVENTS_CANONICAL_IDENTITIES_AVAILABLE_VALUE_PARTITIONS_UNMAPPED",
+  "resolved_canonical_bin_identity_hit_counts": {
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[16]||0": 7,
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[17]||0": 7,
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[18]||0": 7,
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[19]||0": 7,
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[20]||0": 7,
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[21]||0": 7,
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[22]||0": 7,
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[23]||0": 4,
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_0||0": 14,
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[16]||0": 7,
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[17]||0": 7,
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[18]||0": 7,
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[19]||0": 7,
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[20]||0": 7,
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[21]||0": 7,
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[22]||0": 7,
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[23]||0": 3,
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_0||0": 15,
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[16]||0": 7,
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[17]||0": 7,
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[18]||0": 7,
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[19]||0": 7,
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[20]||0": 7,
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[21]||0": 7,
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[22]||0": 7,
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[23]||0": 2,
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_0||0": 16,
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0": 67,
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[0]||0": 1,
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[48]||0": 7,
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[49]||0": 7,
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[50]||0": 7,
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[51]||0": 7,
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[52]||0": 7,
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[53]||0": 7,
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[54]||0": 7,
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[55]||0": 5,
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_0||0": 12
+  },
+  "resolved_explicit_bin_hits": {
+    "timer_cfg_cg.bark_thold_cp.bark_0": 14,
+    "timer_cfg_cg.bite_thold_cp.bite_0": 15,
+    "timer_cfg_cg.prescale_cp.prescale_0": 16,
+    "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared": 67,
+    "timer_cfg_cg.wkup_thold_cp.wkup_0": 12
+  },
+  "run_id": "stage09-array-blocks-v1-ucb-s19-007",
+  "sample_count": 67,
+  "sample_counts_by_covergroup": {
+    "timer_cfg_cg": 67
+  },
+  "samples": [
+    {
+      "capture_event": "tl_addr_phase",
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 0,
+        "bite_thold": 0,
+        "pause_in_sleep": 0,
+        "prescale": 0,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 0
+      },
+      "group_sample_index": 0,
+      "reference_array_bin_memberships": [],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.prescale_cp.prescale_0",
+        "timer_cfg_cg.bark_thold_cp.bark_0",
+        "timer_cfg_cg.bite_thold_cp.bite_0",
+        "timer_cfg_cg.wkup_thold_cp.wkup_0",
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 0,
+      "simulation_time_ns": 530.0,
+      "unpartitioned_array_declarations": []
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 0,
+        "bite_thold": 0,
+        "pause_in_sleep": 0,
+        "prescale": 0,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 0
+      },
+      "group_sample_index": 1,
+      "reference_array_bin_memberships": [],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.prescale_cp.prescale_0",
+        "timer_cfg_cg.bark_thold_cp.bark_0",
+        "timer_cfg_cg.bite_thold_cp.bite_0",
+        "timer_cfg_cg.wkup_thold_cp.wkup_0",
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 1,
+      "simulation_time_ns": 550.0,
+      "unpartitioned_array_declarations": []
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 0,
+        "bite_thold": 0,
+        "pause_in_sleep": 0,
+        "prescale": 0,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 0
+      },
+      "group_sample_index": 2,
+      "reference_array_bin_memberships": [],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.prescale_cp.prescale_0",
+        "timer_cfg_cg.bark_thold_cp.bark_0",
+        "timer_cfg_cg.bite_thold_cp.bite_0",
+        "timer_cfg_cg.wkup_thold_cp.wkup_0",
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 2,
+      "simulation_time_ns": 570.0,
+      "unpartitioned_array_declarations": []
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 0,
+        "bite_thold": 0,
+        "pause_in_sleep": 0,
+        "prescale": 0,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 0
+      },
+      "group_sample_index": 3,
+      "reference_array_bin_memberships": [],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.prescale_cp.prescale_0",
+        "timer_cfg_cg.bark_thold_cp.bark_0",
+        "timer_cfg_cg.bite_thold_cp.bite_0",
+        "timer_cfg_cg.wkup_thold_cp.wkup_0",
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 3,
+      "simulation_time_ns": 590.0,
+      "unpartitioned_array_declarations": []
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 0,
+        "bite_thold": 0,
+        "pause_in_sleep": 0,
+        "prescale": 0,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 0
+      },
+      "group_sample_index": 4,
+      "reference_array_bin_memberships": [],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.prescale_cp.prescale_0",
+        "timer_cfg_cg.bark_thold_cp.bark_0",
+        "timer_cfg_cg.bite_thold_cp.bite_0",
+        "timer_cfg_cg.wkup_thold_cp.wkup_0",
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 4,
+      "simulation_time_ns": 610.0,
+      "unpartitioned_array_declarations": []
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 0,
+        "bite_thold": 0,
+        "pause_in_sleep": 0,
+        "prescale": 0,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 0
+      },
+      "group_sample_index": 5,
+      "reference_array_bin_memberships": [],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.prescale_cp.prescale_0",
+        "timer_cfg_cg.bark_thold_cp.bark_0",
+        "timer_cfg_cg.bite_thold_cp.bite_0",
+        "timer_cfg_cg.wkup_thold_cp.wkup_0",
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 5,
+      "simulation_time_ns": 630.0,
+      "unpartitioned_array_declarations": []
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 0,
+        "bite_thold": 0,
+        "pause_in_sleep": 0,
+        "prescale": 0,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 0
+      },
+      "group_sample_index": 6,
+      "reference_array_bin_memberships": [],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.prescale_cp.prescale_0",
+        "timer_cfg_cg.bark_thold_cp.bark_0",
+        "timer_cfg_cg.bite_thold_cp.bite_0",
+        "timer_cfg_cg.wkup_thold_cp.wkup_0",
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 6,
+      "simulation_time_ns": 650.0,
+      "unpartitioned_array_declarations": []
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 0,
+        "bite_thold": 0,
+        "pause_in_sleep": 0,
+        "prescale": 0,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 0
+      },
+      "group_sample_index": 7,
+      "reference_array_bin_memberships": [],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.prescale_cp.prescale_0",
+        "timer_cfg_cg.bark_thold_cp.bark_0",
+        "timer_cfg_cg.bite_thold_cp.bite_0",
+        "timer_cfg_cg.wkup_thold_cp.wkup_0",
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 7,
+      "simulation_time_ns": 670.0,
+      "unpartitioned_array_declarations": []
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 0,
+        "bite_thold": 0,
+        "pause_in_sleep": 0,
+        "prescale": 0,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 0
+      },
+      "group_sample_index": 8,
+      "reference_array_bin_memberships": [],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.prescale_cp.prescale_0",
+        "timer_cfg_cg.bark_thold_cp.bark_0",
+        "timer_cfg_cg.bite_thold_cp.bite_0",
+        "timer_cfg_cg.wkup_thold_cp.wkup_0",
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 8,
+      "simulation_time_ns": 690.0,
+      "unpartitioned_array_declarations": []
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 0,
+        "bite_thold": 0,
+        "pause_in_sleep": 0,
+        "prescale": 0,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 0
+      },
+      "group_sample_index": 9,
+      "reference_array_bin_memberships": [],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.prescale_cp.prescale_0",
+        "timer_cfg_cg.bark_thold_cp.bark_0",
+        "timer_cfg_cg.bite_thold_cp.bite_0",
+        "timer_cfg_cg.wkup_thold_cp.wkup_0",
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 9,
+      "simulation_time_ns": 710.0,
+      "unpartitioned_array_declarations": []
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 0,
+        "bite_thold": 0,
+        "pause_in_sleep": 0,
+        "prescale": 0,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 0
+      },
+      "group_sample_index": 10,
+      "reference_array_bin_memberships": [],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.prescale_cp.prescale_0",
+        "timer_cfg_cg.bark_thold_cp.bark_0",
+        "timer_cfg_cg.bite_thold_cp.bite_0",
+        "timer_cfg_cg.wkup_thold_cp.wkup_0",
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 10,
+      "simulation_time_ns": 730.0,
+      "unpartitioned_array_declarations": []
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 0,
+        "bite_thold": 0,
+        "pause_in_sleep": 0,
+        "prescale": 0,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 0
+      },
+      "group_sample_index": 11,
+      "reference_array_bin_memberships": [],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.prescale_cp.prescale_0",
+        "timer_cfg_cg.bark_thold_cp.bark_0",
+        "timer_cfg_cg.bite_thold_cp.bite_0",
+        "timer_cfg_cg.wkup_thold_cp.wkup_0",
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 11,
+      "simulation_time_ns": 940.0,
+      "unpartitioned_array_declarations": []
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 0,
+        "bite_thold": 0,
+        "pause_in_sleep": 0,
+        "prescale": 0,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 4294967247
+      },
+      "group_sample_index": 12,
+      "reference_array_bin_memberships": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[0]||0"
+      ],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[0]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.prescale_cp.prescale_0",
+        "timer_cfg_cg.bark_thold_cp.bark_0",
+        "timer_cfg_cg.bite_thold_cp.bite_0",
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 12,
+      "simulation_time_ns": 960.0,
+      "unpartitioned_array_declarations": [
+        "timer_cfg_cg.wkup_thold_cp.wkup[]"
+      ]
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 0,
+        "bite_thold": 0,
+        "pause_in_sleep": 0,
+        "prescale": 0,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 14123288431433875407
+      },
+      "group_sample_index": 13,
+      "reference_array_bin_memberships": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[48]||0"
+      ],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[48]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.prescale_cp.prescale_0",
+        "timer_cfg_cg.bark_thold_cp.bark_0",
+        "timer_cfg_cg.bite_thold_cp.bite_0",
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 13,
+      "simulation_time_ns": 1040.0,
+      "unpartitioned_array_declarations": [
+        "timer_cfg_cg.wkup_thold_cp.wkup[]"
+      ]
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 2281701359,
+        "bite_thold": 0,
+        "pause_in_sleep": 0,
+        "prescale": 0,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 14123288431433875407
+      },
+      "group_sample_index": 14,
+      "reference_array_bin_memberships": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[16]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[48]||0"
+      ],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[16]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[48]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.prescale_cp.prescale_0",
+        "timer_cfg_cg.bite_thold_cp.bite_0",
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 14,
+      "simulation_time_ns": 1060.0,
+      "unpartitioned_array_declarations": [
+        "timer_cfg_cg.bark_thold_cp.bark[]",
+        "timer_cfg_cg.wkup_thold_cp.wkup[]"
+      ]
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 2281701359,
+        "bite_thold": 2281701359,
+        "pause_in_sleep": 0,
+        "prescale": 0,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 14123288431433875407
+      },
+      "group_sample_index": 15,
+      "reference_array_bin_memberships": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[16]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[16]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[48]||0"
+      ],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale_0||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[16]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[16]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[48]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.prescale_cp.prescale_0",
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 15,
+      "simulation_time_ns": 1080.0,
+      "unpartitioned_array_declarations": [
+        "timer_cfg_cg.bark_thold_cp.bark[]",
+        "timer_cfg_cg.bite_thold_cp.bite[]",
+        "timer_cfg_cg.wkup_thold_cp.wkup[]"
+      ]
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 2281701359,
+        "bite_thold": 2281701359,
+        "pause_in_sleep": 0,
+        "prescale": 2159,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 14123288431433875407
+      },
+      "group_sample_index": 16,
+      "reference_array_bin_memberships": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[16]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[16]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[16]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[48]||0"
+      ],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[16]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[16]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[16]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[48]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 16,
+      "simulation_time_ns": 1100.0,
+      "unpartitioned_array_declarations": [
+        "timer_cfg_cg.prescale_cp.prescale[]",
+        "timer_cfg_cg.bark_thold_cp.bark[]",
+        "timer_cfg_cg.bite_thold_cp.bite[]",
+        "timer_cfg_cg.wkup_thold_cp.wkup[]"
+      ]
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "configuration_checkpoint": {
+        "expected": {
+          "bark_thold": 2281701359,
+          "bite_thold": 2281701359,
+          "pause_in_sleep": 0,
+          "prescale": 2159,
+          "wkup_thold": 14123288431433875407
+        },
+        "rtl_readback": {
+          "bark_thold": 2281701359,
+          "bite_thold": 2281701359,
+          "pause_in_sleep": 0,
+          "prescale": 2159,
+          "wkup_thold": 14123288431433875407
+        }
+      },
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 2281701359,
+        "bite_thold": 2281701359,
+        "pause_in_sleep": 0,
+        "prescale": 2159,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 14123288431433875407
+      },
+      "group_sample_index": 17,
+      "reference_array_bin_memberships": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[16]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[16]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[16]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[48]||0"
+      ],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[16]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[16]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[16]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[48]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 17,
+      "simulation_time_ns": 1460.0,
+      "unpartitioned_array_declarations": [
+        "timer_cfg_cg.prescale_cp.prescale[]",
+        "timer_cfg_cg.bark_thold_cp.bark[]",
+        "timer_cfg_cg.bite_thold_cp.bite[]",
+        "timer_cfg_cg.wkup_thold_cp.wkup[]"
+      ]
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 2281701359,
+        "bite_thold": 2281701359,
+        "pause_in_sleep": 0,
+        "prescale": 2159,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 14123288431433875407
+      },
+      "group_sample_index": 18,
+      "reference_array_bin_memberships": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[16]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[16]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[16]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[48]||0"
+      ],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[16]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[16]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[16]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[48]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 18,
+      "simulation_time_ns": 1480.0,
+      "unpartitioned_array_declarations": [
+        "timer_cfg_cg.prescale_cp.prescale[]",
+        "timer_cfg_cg.bark_thold_cp.bark[]",
+        "timer_cfg_cg.bite_thold_cp.bite[]",
+        "timer_cfg_cg.wkup_thold_cp.wkup[]"
+      ]
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 2281701359,
+        "bite_thold": 2281701359,
+        "pause_in_sleep": 0,
+        "prescale": 2159,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 14123288431433875406
+      },
+      "group_sample_index": 19,
+      "reference_array_bin_memberships": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[16]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[16]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[16]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[48]||0"
+      ],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[16]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[16]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[16]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[48]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 19,
+      "simulation_time_ns": 1500.0,
+      "unpartitioned_array_declarations": [
+        "timer_cfg_cg.prescale_cp.prescale[]",
+        "timer_cfg_cg.bark_thold_cp.bark[]",
+        "timer_cfg_cg.bite_thold_cp.bite[]",
+        "timer_cfg_cg.wkup_thold_cp.wkup[]"
+      ]
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 2281701359,
+        "bite_thold": 2281701359,
+        "pause_in_sleep": 0,
+        "prescale": 2159,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 14411518807585587150
+      },
+      "group_sample_index": 20,
+      "reference_array_bin_memberships": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[16]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[16]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[16]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[49]||0"
+      ],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[16]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[16]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[16]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[49]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 20,
+      "simulation_time_ns": 1520.0,
+      "unpartitioned_array_declarations": [
+        "timer_cfg_cg.prescale_cp.prescale[]",
+        "timer_cfg_cg.bark_thold_cp.bark[]",
+        "timer_cfg_cg.bite_thold_cp.bite[]",
+        "timer_cfg_cg.wkup_thold_cp.wkup[]"
+      ]
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 2415919086,
+        "bite_thold": 2281701359,
+        "pause_in_sleep": 0,
+        "prescale": 2159,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 14411518807585587150
+      },
+      "group_sample_index": 21,
+      "reference_array_bin_memberships": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[16]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[17]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[16]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[49]||0"
+      ],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[16]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[17]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[16]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[49]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 21,
+      "simulation_time_ns": 1540.0,
+      "unpartitioned_array_declarations": [
+        "timer_cfg_cg.prescale_cp.prescale[]",
+        "timer_cfg_cg.bark_thold_cp.bark[]",
+        "timer_cfg_cg.bite_thold_cp.bite[]",
+        "timer_cfg_cg.wkup_thold_cp.wkup[]"
+      ]
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 2415919086,
+        "bite_thold": 2415919086,
+        "pause_in_sleep": 0,
+        "prescale": 2159,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 14411518807585587150
+      },
+      "group_sample_index": 22,
+      "reference_array_bin_memberships": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[16]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[17]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[17]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[49]||0"
+      ],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[16]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[17]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[17]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[49]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 22,
+      "simulation_time_ns": 1560.0,
+      "unpartitioned_array_declarations": [
+        "timer_cfg_cg.prescale_cp.prescale[]",
+        "timer_cfg_cg.bark_thold_cp.bark[]",
+        "timer_cfg_cg.bite_thold_cp.bite[]",
+        "timer_cfg_cg.wkup_thold_cp.wkup[]"
+      ]
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 2415919086,
+        "bite_thold": 2415919086,
+        "pause_in_sleep": 0,
+        "prescale": 2286,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 14411518807585587150
+      },
+      "group_sample_index": 23,
+      "reference_array_bin_memberships": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[17]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[17]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[17]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[49]||0"
+      ],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[17]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[17]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[17]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[49]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 23,
+      "simulation_time_ns": 1580.0,
+      "unpartitioned_array_declarations": [
+        "timer_cfg_cg.prescale_cp.prescale[]",
+        "timer_cfg_cg.bark_thold_cp.bark[]",
+        "timer_cfg_cg.bite_thold_cp.bite[]",
+        "timer_cfg_cg.wkup_thold_cp.wkup[]"
+      ]
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "configuration_checkpoint": {
+        "expected": {
+          "bark_thold": 2415919086,
+          "bite_thold": 2415919086,
+          "pause_in_sleep": 1,
+          "prescale": 2286,
+          "wkup_thold": 14411518807585587150
+        },
+        "rtl_readback": {
+          "bark_thold": 2415919086,
+          "bite_thold": 2415919086,
+          "pause_in_sleep": 1,
+          "prescale": 2286,
+          "wkup_thold": 14411518807585587150
+        }
+      },
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 2415919086,
+        "bite_thold": 2415919086,
+        "pause_in_sleep": 1,
+        "prescale": 2286,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 14411518807585587150
+      },
+      "group_sample_index": 24,
+      "reference_array_bin_memberships": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[17]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[17]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[17]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[49]||0"
+      ],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[17]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[17]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[17]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[49]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 24,
+      "simulation_time_ns": 1940.0,
+      "unpartitioned_array_declarations": [
+        "timer_cfg_cg.prescale_cp.prescale[]",
+        "timer_cfg_cg.bark_thold_cp.bark[]",
+        "timer_cfg_cg.bite_thold_cp.bite[]",
+        "timer_cfg_cg.wkup_thold_cp.wkup[]"
+      ]
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 2415919086,
+        "bite_thold": 2415919086,
+        "pause_in_sleep": 1,
+        "prescale": 2286,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 14411518807585587150
+      },
+      "group_sample_index": 25,
+      "reference_array_bin_memberships": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[17]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[17]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[17]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[49]||0"
+      ],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[17]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[17]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[17]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[49]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 25,
+      "simulation_time_ns": 1960.0,
+      "unpartitioned_array_declarations": [
+        "timer_cfg_cg.prescale_cp.prescale[]",
+        "timer_cfg_cg.bark_thold_cp.bark[]",
+        "timer_cfg_cg.bite_thold_cp.bite[]",
+        "timer_cfg_cg.wkup_thold_cp.wkup[]"
+      ]
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 2415919086,
+        "bite_thold": 2415919086,
+        "pause_in_sleep": 1,
+        "prescale": 2286,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 14411518807585587149
+      },
+      "group_sample_index": 26,
+      "reference_array_bin_memberships": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[17]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[17]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[17]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[49]||0"
+      ],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[17]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[17]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[17]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[49]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 26,
+      "simulation_time_ns": 1980.0,
+      "unpartitioned_array_declarations": [
+        "timer_cfg_cg.prescale_cp.prescale[]",
+        "timer_cfg_cg.bark_thold_cp.bark[]",
+        "timer_cfg_cg.bite_thold_cp.bite[]",
+        "timer_cfg_cg.wkup_thold_cp.wkup[]"
+      ]
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 2415919086,
+        "bite_thold": 2415919086,
+        "pause_in_sleep": 1,
+        "prescale": 2286,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 14699749183737298893
+      },
+      "group_sample_index": 27,
+      "reference_array_bin_memberships": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[17]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[17]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[17]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[50]||0"
+      ],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[17]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[17]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[17]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[50]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 27,
+      "simulation_time_ns": 2000.0,
+      "unpartitioned_array_declarations": [
+        "timer_cfg_cg.prescale_cp.prescale[]",
+        "timer_cfg_cg.bark_thold_cp.bark[]",
+        "timer_cfg_cg.bite_thold_cp.bite[]",
+        "timer_cfg_cg.wkup_thold_cp.wkup[]"
+      ]
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 2550136813,
+        "bite_thold": 2415919086,
+        "pause_in_sleep": 1,
+        "prescale": 2286,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 14699749183737298893
+      },
+      "group_sample_index": 28,
+      "reference_array_bin_memberships": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[17]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[18]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[17]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[50]||0"
+      ],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[17]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[18]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[17]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[50]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 28,
+      "simulation_time_ns": 2020.0,
+      "unpartitioned_array_declarations": [
+        "timer_cfg_cg.prescale_cp.prescale[]",
+        "timer_cfg_cg.bark_thold_cp.bark[]",
+        "timer_cfg_cg.bite_thold_cp.bite[]",
+        "timer_cfg_cg.wkup_thold_cp.wkup[]"
+      ]
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 2550136813,
+        "bite_thold": 2550136813,
+        "pause_in_sleep": 1,
+        "prescale": 2286,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 14699749183737298893
+      },
+      "group_sample_index": 29,
+      "reference_array_bin_memberships": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[17]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[18]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[18]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[50]||0"
+      ],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[17]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[18]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[18]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[50]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 29,
+      "simulation_time_ns": 2040.0,
+      "unpartitioned_array_declarations": [
+        "timer_cfg_cg.prescale_cp.prescale[]",
+        "timer_cfg_cg.bark_thold_cp.bark[]",
+        "timer_cfg_cg.bite_thold_cp.bite[]",
+        "timer_cfg_cg.wkup_thold_cp.wkup[]"
+      ]
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 2550136813,
+        "bite_thold": 2550136813,
+        "pause_in_sleep": 1,
+        "prescale": 2413,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 14699749183737298893
+      },
+      "group_sample_index": 30,
+      "reference_array_bin_memberships": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[18]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[18]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[18]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[50]||0"
+      ],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[18]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[18]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[18]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[50]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 30,
+      "simulation_time_ns": 2060.0,
+      "unpartitioned_array_declarations": [
+        "timer_cfg_cg.prescale_cp.prescale[]",
+        "timer_cfg_cg.bark_thold_cp.bark[]",
+        "timer_cfg_cg.bite_thold_cp.bite[]",
+        "timer_cfg_cg.wkup_thold_cp.wkup[]"
+      ]
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "configuration_checkpoint": {
+        "expected": {
+          "bark_thold": 2550136813,
+          "bite_thold": 2550136813,
+          "pause_in_sleep": 0,
+          "prescale": 2413,
+          "wkup_thold": 14699749183737298893
+        },
+        "rtl_readback": {
+          "bark_thold": 2550136813,
+          "bite_thold": 2550136813,
+          "pause_in_sleep": 0,
+          "prescale": 2413,
+          "wkup_thold": 14699749183737298893
+        }
+      },
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 2550136813,
+        "bite_thold": 2550136813,
+        "pause_in_sleep": 0,
+        "prescale": 2413,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 14699749183737298893
+      },
+      "group_sample_index": 31,
+      "reference_array_bin_memberships": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[18]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[18]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[18]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[50]||0"
+      ],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[18]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[18]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[18]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[50]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 31,
+      "simulation_time_ns": 2420.0,
+      "unpartitioned_array_declarations": [
+        "timer_cfg_cg.prescale_cp.prescale[]",
+        "timer_cfg_cg.bark_thold_cp.bark[]",
+        "timer_cfg_cg.bite_thold_cp.bite[]",
+        "timer_cfg_cg.wkup_thold_cp.wkup[]"
+      ]
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 2550136813,
+        "bite_thold": 2550136813,
+        "pause_in_sleep": 0,
+        "prescale": 2413,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 14699749183737298893
+      },
+      "group_sample_index": 32,
+      "reference_array_bin_memberships": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[18]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[18]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[18]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[50]||0"
+      ],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[18]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[18]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[18]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[50]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 32,
+      "simulation_time_ns": 2440.0,
+      "unpartitioned_array_declarations": [
+        "timer_cfg_cg.prescale_cp.prescale[]",
+        "timer_cfg_cg.bark_thold_cp.bark[]",
+        "timer_cfg_cg.bite_thold_cp.bite[]",
+        "timer_cfg_cg.wkup_thold_cp.wkup[]"
+      ]
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 2550136813,
+        "bite_thold": 2550136813,
+        "pause_in_sleep": 0,
+        "prescale": 2413,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 14699749183737298892
+      },
+      "group_sample_index": 33,
+      "reference_array_bin_memberships": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[18]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[18]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[18]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[50]||0"
+      ],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[18]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[18]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[18]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[50]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 33,
+      "simulation_time_ns": 2460.0,
+      "unpartitioned_array_declarations": [
+        "timer_cfg_cg.prescale_cp.prescale[]",
+        "timer_cfg_cg.bark_thold_cp.bark[]",
+        "timer_cfg_cg.bite_thold_cp.bite[]",
+        "timer_cfg_cg.wkup_thold_cp.wkup[]"
+      ]
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 2550136813,
+        "bite_thold": 2550136813,
+        "pause_in_sleep": 0,
+        "prescale": 2413,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 14987979559889010636
+      },
+      "group_sample_index": 34,
+      "reference_array_bin_memberships": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[18]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[18]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[18]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[51]||0"
+      ],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[18]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[18]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[18]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[51]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 34,
+      "simulation_time_ns": 2480.0,
+      "unpartitioned_array_declarations": [
+        "timer_cfg_cg.prescale_cp.prescale[]",
+        "timer_cfg_cg.bark_thold_cp.bark[]",
+        "timer_cfg_cg.bite_thold_cp.bite[]",
+        "timer_cfg_cg.wkup_thold_cp.wkup[]"
+      ]
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 2684354540,
+        "bite_thold": 2550136813,
+        "pause_in_sleep": 0,
+        "prescale": 2413,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 14987979559889010636
+      },
+      "group_sample_index": 35,
+      "reference_array_bin_memberships": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[18]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[19]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[18]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[51]||0"
+      ],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[18]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[19]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[18]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[51]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 35,
+      "simulation_time_ns": 2500.0,
+      "unpartitioned_array_declarations": [
+        "timer_cfg_cg.prescale_cp.prescale[]",
+        "timer_cfg_cg.bark_thold_cp.bark[]",
+        "timer_cfg_cg.bite_thold_cp.bite[]",
+        "timer_cfg_cg.wkup_thold_cp.wkup[]"
+      ]
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 2684354540,
+        "bite_thold": 2684354540,
+        "pause_in_sleep": 0,
+        "prescale": 2413,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 14987979559889010636
+      },
+      "group_sample_index": 36,
+      "reference_array_bin_memberships": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[18]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[19]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[19]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[51]||0"
+      ],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[18]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[19]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[19]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[51]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 36,
+      "simulation_time_ns": 2520.0,
+      "unpartitioned_array_declarations": [
+        "timer_cfg_cg.prescale_cp.prescale[]",
+        "timer_cfg_cg.bark_thold_cp.bark[]",
+        "timer_cfg_cg.bite_thold_cp.bite[]",
+        "timer_cfg_cg.wkup_thold_cp.wkup[]"
+      ]
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 2684354540,
+        "bite_thold": 2684354540,
+        "pause_in_sleep": 0,
+        "prescale": 2540,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 14987979559889010636
+      },
+      "group_sample_index": 37,
+      "reference_array_bin_memberships": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[19]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[19]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[19]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[51]||0"
+      ],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[19]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[19]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[19]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[51]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 37,
+      "simulation_time_ns": 2540.0,
+      "unpartitioned_array_declarations": [
+        "timer_cfg_cg.prescale_cp.prescale[]",
+        "timer_cfg_cg.bark_thold_cp.bark[]",
+        "timer_cfg_cg.bite_thold_cp.bite[]",
+        "timer_cfg_cg.wkup_thold_cp.wkup[]"
+      ]
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "configuration_checkpoint": {
+        "expected": {
+          "bark_thold": 2684354540,
+          "bite_thold": 2684354540,
+          "pause_in_sleep": 1,
+          "prescale": 2540,
+          "wkup_thold": 14987979559889010636
+        },
+        "rtl_readback": {
+          "bark_thold": 2684354540,
+          "bite_thold": 2684354540,
+          "pause_in_sleep": 1,
+          "prescale": 2540,
+          "wkup_thold": 14987979559889010636
+        }
+      },
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 2684354540,
+        "bite_thold": 2684354540,
+        "pause_in_sleep": 1,
+        "prescale": 2540,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 14987979559889010636
+      },
+      "group_sample_index": 38,
+      "reference_array_bin_memberships": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[19]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[19]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[19]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[51]||0"
+      ],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[19]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[19]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[19]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[51]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 38,
+      "simulation_time_ns": 2900.0,
+      "unpartitioned_array_declarations": [
+        "timer_cfg_cg.prescale_cp.prescale[]",
+        "timer_cfg_cg.bark_thold_cp.bark[]",
+        "timer_cfg_cg.bite_thold_cp.bite[]",
+        "timer_cfg_cg.wkup_thold_cp.wkup[]"
+      ]
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 2684354540,
+        "bite_thold": 2684354540,
+        "pause_in_sleep": 1,
+        "prescale": 2540,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 14987979559889010636
+      },
+      "group_sample_index": 39,
+      "reference_array_bin_memberships": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[19]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[19]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[19]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[51]||0"
+      ],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[19]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[19]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[19]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[51]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 39,
+      "simulation_time_ns": 2920.0,
+      "unpartitioned_array_declarations": [
+        "timer_cfg_cg.prescale_cp.prescale[]",
+        "timer_cfg_cg.bark_thold_cp.bark[]",
+        "timer_cfg_cg.bite_thold_cp.bite[]",
+        "timer_cfg_cg.wkup_thold_cp.wkup[]"
+      ]
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 2684354540,
+        "bite_thold": 2684354540,
+        "pause_in_sleep": 1,
+        "prescale": 2540,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 14987979559889010635
+      },
+      "group_sample_index": 40,
+      "reference_array_bin_memberships": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[19]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[19]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[19]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[51]||0"
+      ],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[19]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[19]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[19]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[51]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 40,
+      "simulation_time_ns": 2940.0,
+      "unpartitioned_array_declarations": [
+        "timer_cfg_cg.prescale_cp.prescale[]",
+        "timer_cfg_cg.bark_thold_cp.bark[]",
+        "timer_cfg_cg.bite_thold_cp.bite[]",
+        "timer_cfg_cg.wkup_thold_cp.wkup[]"
+      ]
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 2684354540,
+        "bite_thold": 2684354540,
+        "pause_in_sleep": 1,
+        "prescale": 2540,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 15276209936040722379
+      },
+      "group_sample_index": 41,
+      "reference_array_bin_memberships": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[19]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[19]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[19]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[52]||0"
+      ],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[19]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[19]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[19]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[52]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 41,
+      "simulation_time_ns": 2960.0,
+      "unpartitioned_array_declarations": [
+        "timer_cfg_cg.prescale_cp.prescale[]",
+        "timer_cfg_cg.bark_thold_cp.bark[]",
+        "timer_cfg_cg.bite_thold_cp.bite[]",
+        "timer_cfg_cg.wkup_thold_cp.wkup[]"
+      ]
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 2818572267,
+        "bite_thold": 2684354540,
+        "pause_in_sleep": 1,
+        "prescale": 2540,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 15276209936040722379
+      },
+      "group_sample_index": 42,
+      "reference_array_bin_memberships": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[19]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[20]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[19]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[52]||0"
+      ],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[19]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[20]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[19]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[52]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 42,
+      "simulation_time_ns": 2980.0,
+      "unpartitioned_array_declarations": [
+        "timer_cfg_cg.prescale_cp.prescale[]",
+        "timer_cfg_cg.bark_thold_cp.bark[]",
+        "timer_cfg_cg.bite_thold_cp.bite[]",
+        "timer_cfg_cg.wkup_thold_cp.wkup[]"
+      ]
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 2818572267,
+        "bite_thold": 2818572267,
+        "pause_in_sleep": 1,
+        "prescale": 2540,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 15276209936040722379
+      },
+      "group_sample_index": 43,
+      "reference_array_bin_memberships": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[19]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[20]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[20]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[52]||0"
+      ],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[19]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[20]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[20]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[52]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 43,
+      "simulation_time_ns": 3000.0,
+      "unpartitioned_array_declarations": [
+        "timer_cfg_cg.prescale_cp.prescale[]",
+        "timer_cfg_cg.bark_thold_cp.bark[]",
+        "timer_cfg_cg.bite_thold_cp.bite[]",
+        "timer_cfg_cg.wkup_thold_cp.wkup[]"
+      ]
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 2818572267,
+        "bite_thold": 2818572267,
+        "pause_in_sleep": 1,
+        "prescale": 2667,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 15276209936040722379
+      },
+      "group_sample_index": 44,
+      "reference_array_bin_memberships": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[20]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[20]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[20]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[52]||0"
+      ],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[20]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[20]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[20]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[52]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 44,
+      "simulation_time_ns": 3020.0,
+      "unpartitioned_array_declarations": [
+        "timer_cfg_cg.prescale_cp.prescale[]",
+        "timer_cfg_cg.bark_thold_cp.bark[]",
+        "timer_cfg_cg.bite_thold_cp.bite[]",
+        "timer_cfg_cg.wkup_thold_cp.wkup[]"
+      ]
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "configuration_checkpoint": {
+        "expected": {
+          "bark_thold": 2818572267,
+          "bite_thold": 2818572267,
+          "pause_in_sleep": 0,
+          "prescale": 2667,
+          "wkup_thold": 15276209936040722379
+        },
+        "rtl_readback": {
+          "bark_thold": 2818572267,
+          "bite_thold": 2818572267,
+          "pause_in_sleep": 0,
+          "prescale": 2667,
+          "wkup_thold": 15276209936040722379
+        }
+      },
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 2818572267,
+        "bite_thold": 2818572267,
+        "pause_in_sleep": 0,
+        "prescale": 2667,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 15276209936040722379
+      },
+      "group_sample_index": 45,
+      "reference_array_bin_memberships": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[20]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[20]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[20]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[52]||0"
+      ],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[20]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[20]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[20]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[52]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 45,
+      "simulation_time_ns": 3380.0,
+      "unpartitioned_array_declarations": [
+        "timer_cfg_cg.prescale_cp.prescale[]",
+        "timer_cfg_cg.bark_thold_cp.bark[]",
+        "timer_cfg_cg.bite_thold_cp.bite[]",
+        "timer_cfg_cg.wkup_thold_cp.wkup[]"
+      ]
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 2818572267,
+        "bite_thold": 2818572267,
+        "pause_in_sleep": 0,
+        "prescale": 2667,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 15276209936040722379
+      },
+      "group_sample_index": 46,
+      "reference_array_bin_memberships": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[20]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[20]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[20]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[52]||0"
+      ],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[20]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[20]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[20]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[52]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 46,
+      "simulation_time_ns": 3400.0,
+      "unpartitioned_array_declarations": [
+        "timer_cfg_cg.prescale_cp.prescale[]",
+        "timer_cfg_cg.bark_thold_cp.bark[]",
+        "timer_cfg_cg.bite_thold_cp.bite[]",
+        "timer_cfg_cg.wkup_thold_cp.wkup[]"
+      ]
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 2818572267,
+        "bite_thold": 2818572267,
+        "pause_in_sleep": 0,
+        "prescale": 2667,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 15276209936040722378
+      },
+      "group_sample_index": 47,
+      "reference_array_bin_memberships": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[20]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[20]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[20]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[52]||0"
+      ],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[20]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[20]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[20]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[52]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 47,
+      "simulation_time_ns": 3420.0,
+      "unpartitioned_array_declarations": [
+        "timer_cfg_cg.prescale_cp.prescale[]",
+        "timer_cfg_cg.bark_thold_cp.bark[]",
+        "timer_cfg_cg.bite_thold_cp.bite[]",
+        "timer_cfg_cg.wkup_thold_cp.wkup[]"
+      ]
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 2818572267,
+        "bite_thold": 2818572267,
+        "pause_in_sleep": 0,
+        "prescale": 2667,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 15564440312192434122
+      },
+      "group_sample_index": 48,
+      "reference_array_bin_memberships": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[20]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[20]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[20]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[53]||0"
+      ],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[20]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[20]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[20]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[53]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 48,
+      "simulation_time_ns": 3440.0,
+      "unpartitioned_array_declarations": [
+        "timer_cfg_cg.prescale_cp.prescale[]",
+        "timer_cfg_cg.bark_thold_cp.bark[]",
+        "timer_cfg_cg.bite_thold_cp.bite[]",
+        "timer_cfg_cg.wkup_thold_cp.wkup[]"
+      ]
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 2952789994,
+        "bite_thold": 2818572267,
+        "pause_in_sleep": 0,
+        "prescale": 2667,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 15564440312192434122
+      },
+      "group_sample_index": 49,
+      "reference_array_bin_memberships": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[20]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[21]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[20]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[53]||0"
+      ],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[20]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[21]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[20]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[53]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 49,
+      "simulation_time_ns": 3460.0,
+      "unpartitioned_array_declarations": [
+        "timer_cfg_cg.prescale_cp.prescale[]",
+        "timer_cfg_cg.bark_thold_cp.bark[]",
+        "timer_cfg_cg.bite_thold_cp.bite[]",
+        "timer_cfg_cg.wkup_thold_cp.wkup[]"
+      ]
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 2952789994,
+        "bite_thold": 2952789994,
+        "pause_in_sleep": 0,
+        "prescale": 2667,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 15564440312192434122
+      },
+      "group_sample_index": 50,
+      "reference_array_bin_memberships": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[20]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[21]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[21]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[53]||0"
+      ],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[20]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[21]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[21]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[53]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 50,
+      "simulation_time_ns": 3480.0,
+      "unpartitioned_array_declarations": [
+        "timer_cfg_cg.prescale_cp.prescale[]",
+        "timer_cfg_cg.bark_thold_cp.bark[]",
+        "timer_cfg_cg.bite_thold_cp.bite[]",
+        "timer_cfg_cg.wkup_thold_cp.wkup[]"
+      ]
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 2952789994,
+        "bite_thold": 2952789994,
+        "pause_in_sleep": 0,
+        "prescale": 2794,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 15564440312192434122
+      },
+      "group_sample_index": 51,
+      "reference_array_bin_memberships": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[21]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[21]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[21]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[53]||0"
+      ],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[21]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[21]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[21]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[53]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 51,
+      "simulation_time_ns": 3500.0,
+      "unpartitioned_array_declarations": [
+        "timer_cfg_cg.prescale_cp.prescale[]",
+        "timer_cfg_cg.bark_thold_cp.bark[]",
+        "timer_cfg_cg.bite_thold_cp.bite[]",
+        "timer_cfg_cg.wkup_thold_cp.wkup[]"
+      ]
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "configuration_checkpoint": {
+        "expected": {
+          "bark_thold": 2952789994,
+          "bite_thold": 2952789994,
+          "pause_in_sleep": 1,
+          "prescale": 2794,
+          "wkup_thold": 15564440312192434122
+        },
+        "rtl_readback": {
+          "bark_thold": 2952789994,
+          "bite_thold": 2952789994,
+          "pause_in_sleep": 1,
+          "prescale": 2794,
+          "wkup_thold": 15564440312192434122
+        }
+      },
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 2952789994,
+        "bite_thold": 2952789994,
+        "pause_in_sleep": 1,
+        "prescale": 2794,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 15564440312192434122
+      },
+      "group_sample_index": 52,
+      "reference_array_bin_memberships": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[21]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[21]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[21]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[53]||0"
+      ],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[21]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[21]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[21]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[53]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 52,
+      "simulation_time_ns": 3860.0,
+      "unpartitioned_array_declarations": [
+        "timer_cfg_cg.prescale_cp.prescale[]",
+        "timer_cfg_cg.bark_thold_cp.bark[]",
+        "timer_cfg_cg.bite_thold_cp.bite[]",
+        "timer_cfg_cg.wkup_thold_cp.wkup[]"
+      ]
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 2952789994,
+        "bite_thold": 2952789994,
+        "pause_in_sleep": 1,
+        "prescale": 2794,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 15564440312192434122
+      },
+      "group_sample_index": 53,
+      "reference_array_bin_memberships": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[21]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[21]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[21]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[53]||0"
+      ],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[21]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[21]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[21]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[53]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 53,
+      "simulation_time_ns": 3880.0,
+      "unpartitioned_array_declarations": [
+        "timer_cfg_cg.prescale_cp.prescale[]",
+        "timer_cfg_cg.bark_thold_cp.bark[]",
+        "timer_cfg_cg.bite_thold_cp.bite[]",
+        "timer_cfg_cg.wkup_thold_cp.wkup[]"
+      ]
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 2952789994,
+        "bite_thold": 2952789994,
+        "pause_in_sleep": 1,
+        "prescale": 2794,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 15564440312192434121
+      },
+      "group_sample_index": 54,
+      "reference_array_bin_memberships": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[21]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[21]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[21]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[53]||0"
+      ],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[21]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[21]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[21]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[53]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 54,
+      "simulation_time_ns": 3900.0,
+      "unpartitioned_array_declarations": [
+        "timer_cfg_cg.prescale_cp.prescale[]",
+        "timer_cfg_cg.bark_thold_cp.bark[]",
+        "timer_cfg_cg.bite_thold_cp.bite[]",
+        "timer_cfg_cg.wkup_thold_cp.wkup[]"
+      ]
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 2952789994,
+        "bite_thold": 2952789994,
+        "pause_in_sleep": 1,
+        "prescale": 2794,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 15852670688344145865
+      },
+      "group_sample_index": 55,
+      "reference_array_bin_memberships": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[21]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[21]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[21]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[54]||0"
+      ],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[21]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[21]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[21]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[54]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 55,
+      "simulation_time_ns": 3920.0,
+      "unpartitioned_array_declarations": [
+        "timer_cfg_cg.prescale_cp.prescale[]",
+        "timer_cfg_cg.bark_thold_cp.bark[]",
+        "timer_cfg_cg.bite_thold_cp.bite[]",
+        "timer_cfg_cg.wkup_thold_cp.wkup[]"
+      ]
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 3087007721,
+        "bite_thold": 2952789994,
+        "pause_in_sleep": 1,
+        "prescale": 2794,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 15852670688344145865
+      },
+      "group_sample_index": 56,
+      "reference_array_bin_memberships": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[21]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[22]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[21]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[54]||0"
+      ],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[21]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[22]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[21]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[54]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 56,
+      "simulation_time_ns": 3940.0,
+      "unpartitioned_array_declarations": [
+        "timer_cfg_cg.prescale_cp.prescale[]",
+        "timer_cfg_cg.bark_thold_cp.bark[]",
+        "timer_cfg_cg.bite_thold_cp.bite[]",
+        "timer_cfg_cg.wkup_thold_cp.wkup[]"
+      ]
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 3087007721,
+        "bite_thold": 3087007721,
+        "pause_in_sleep": 1,
+        "prescale": 2794,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 15852670688344145865
+      },
+      "group_sample_index": 57,
+      "reference_array_bin_memberships": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[21]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[22]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[22]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[54]||0"
+      ],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[21]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[22]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[22]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[54]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 57,
+      "simulation_time_ns": 3960.0,
+      "unpartitioned_array_declarations": [
+        "timer_cfg_cg.prescale_cp.prescale[]",
+        "timer_cfg_cg.bark_thold_cp.bark[]",
+        "timer_cfg_cg.bite_thold_cp.bite[]",
+        "timer_cfg_cg.wkup_thold_cp.wkup[]"
+      ]
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 3087007721,
+        "bite_thold": 3087007721,
+        "pause_in_sleep": 1,
+        "prescale": 2921,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 15852670688344145865
+      },
+      "group_sample_index": 58,
+      "reference_array_bin_memberships": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[22]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[22]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[22]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[54]||0"
+      ],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[22]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[22]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[22]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[54]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 58,
+      "simulation_time_ns": 3980.0,
+      "unpartitioned_array_declarations": [
+        "timer_cfg_cg.prescale_cp.prescale[]",
+        "timer_cfg_cg.bark_thold_cp.bark[]",
+        "timer_cfg_cg.bite_thold_cp.bite[]",
+        "timer_cfg_cg.wkup_thold_cp.wkup[]"
+      ]
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "configuration_checkpoint": {
+        "expected": {
+          "bark_thold": 3087007721,
+          "bite_thold": 3087007721,
+          "pause_in_sleep": 0,
+          "prescale": 2921,
+          "wkup_thold": 15852670688344145865
+        },
+        "rtl_readback": {
+          "bark_thold": 3087007721,
+          "bite_thold": 3087007721,
+          "pause_in_sleep": 0,
+          "prescale": 2921,
+          "wkup_thold": 15852670688344145865
+        }
+      },
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 3087007721,
+        "bite_thold": 3087007721,
+        "pause_in_sleep": 0,
+        "prescale": 2921,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 15852670688344145865
+      },
+      "group_sample_index": 59,
+      "reference_array_bin_memberships": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[22]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[22]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[22]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[54]||0"
+      ],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[22]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[22]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[22]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[54]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 59,
+      "simulation_time_ns": 4340.0,
+      "unpartitioned_array_declarations": [
+        "timer_cfg_cg.prescale_cp.prescale[]",
+        "timer_cfg_cg.bark_thold_cp.bark[]",
+        "timer_cfg_cg.bite_thold_cp.bite[]",
+        "timer_cfg_cg.wkup_thold_cp.wkup[]"
+      ]
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 3087007721,
+        "bite_thold": 3087007721,
+        "pause_in_sleep": 0,
+        "prescale": 2921,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 15852670688344145865
+      },
+      "group_sample_index": 60,
+      "reference_array_bin_memberships": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[22]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[22]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[22]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[54]||0"
+      ],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[22]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[22]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[22]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[54]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 60,
+      "simulation_time_ns": 4360.0,
+      "unpartitioned_array_declarations": [
+        "timer_cfg_cg.prescale_cp.prescale[]",
+        "timer_cfg_cg.bark_thold_cp.bark[]",
+        "timer_cfg_cg.bite_thold_cp.bite[]",
+        "timer_cfg_cg.wkup_thold_cp.wkup[]"
+      ]
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 3087007721,
+        "bite_thold": 3087007721,
+        "pause_in_sleep": 0,
+        "prescale": 2921,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 15852670688344145864
+      },
+      "group_sample_index": 61,
+      "reference_array_bin_memberships": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[22]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[22]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[22]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[54]||0"
+      ],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[22]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[22]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[22]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[54]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 61,
+      "simulation_time_ns": 4380.0,
+      "unpartitioned_array_declarations": [
+        "timer_cfg_cg.prescale_cp.prescale[]",
+        "timer_cfg_cg.bark_thold_cp.bark[]",
+        "timer_cfg_cg.bite_thold_cp.bite[]",
+        "timer_cfg_cg.wkup_thold_cp.wkup[]"
+      ]
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 3087007721,
+        "bite_thold": 3087007721,
+        "pause_in_sleep": 0,
+        "prescale": 2921,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 16140901064495857608
+      },
+      "group_sample_index": 62,
+      "reference_array_bin_memberships": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[22]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[22]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[22]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[55]||0"
+      ],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[22]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[22]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[22]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[55]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 62,
+      "simulation_time_ns": 4400.0,
+      "unpartitioned_array_declarations": [
+        "timer_cfg_cg.prescale_cp.prescale[]",
+        "timer_cfg_cg.bark_thold_cp.bark[]",
+        "timer_cfg_cg.bite_thold_cp.bite[]",
+        "timer_cfg_cg.wkup_thold_cp.wkup[]"
+      ]
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 3221225448,
+        "bite_thold": 3087007721,
+        "pause_in_sleep": 0,
+        "prescale": 2921,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 16140901064495857608
+      },
+      "group_sample_index": 63,
+      "reference_array_bin_memberships": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[22]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[23]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[22]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[55]||0"
+      ],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[22]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[23]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[22]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[55]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 63,
+      "simulation_time_ns": 4420.0,
+      "unpartitioned_array_declarations": [
+        "timer_cfg_cg.prescale_cp.prescale[]",
+        "timer_cfg_cg.bark_thold_cp.bark[]",
+        "timer_cfg_cg.bite_thold_cp.bite[]",
+        "timer_cfg_cg.wkup_thold_cp.wkup[]"
+      ]
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 3221225448,
+        "bite_thold": 3221225448,
+        "pause_in_sleep": 0,
+        "prescale": 2921,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 16140901064495857608
+      },
+      "group_sample_index": 64,
+      "reference_array_bin_memberships": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[22]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[23]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[23]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[55]||0"
+      ],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[22]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[23]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[23]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[55]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 64,
+      "simulation_time_ns": 4440.0,
+      "unpartitioned_array_declarations": [
+        "timer_cfg_cg.prescale_cp.prescale[]",
+        "timer_cfg_cg.bark_thold_cp.bark[]",
+        "timer_cfg_cg.bite_thold_cp.bite[]",
+        "timer_cfg_cg.wkup_thold_cp.wkup[]"
+      ]
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 3221225448,
+        "bite_thold": 3221225448,
+        "pause_in_sleep": 0,
+        "prescale": 3048,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 16140901064495857608
+      },
+      "group_sample_index": 65,
+      "reference_array_bin_memberships": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[23]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[23]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[23]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[55]||0"
+      ],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[23]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[23]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[23]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[55]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 65,
+      "simulation_time_ns": 4460.0,
+      "unpartitioned_array_declarations": [
+        "timer_cfg_cg.prescale_cp.prescale[]",
+        "timer_cfg_cg.bark_thold_cp.bark[]",
+        "timer_cfg_cg.bite_thold_cp.bite[]",
+        "timer_cfg_cg.wkup_thold_cp.wkup[]"
+      ]
+    },
+    {
+      "capture_event": "tl_addr_phase",
+      "configuration_checkpoint": {
+        "expected": {
+          "bark_thold": 3221225448,
+          "bite_thold": 3221225448,
+          "pause_in_sleep": 1,
+          "prescale": 3048,
+          "wkup_thold": 16140901064495857608
+        },
+        "rtl_readback": {
+          "bark_thold": 3221225448,
+          "bite_thold": 3221225448,
+          "pause_in_sleep": 1,
+          "prescale": 3048,
+          "wkup_thold": 16140901064495857608
+        }
+      },
+      "covergroup": "timer_cfg_cg",
+      "fields": {
+        "bark_thold": 3221225448,
+        "bite_thold": 3221225448,
+        "pause_in_sleep": 1,
+        "prescale": 3048,
+        "wdog_regwen": 1,
+        "wkup_cause": 0,
+        "wkup_thold": 16140901064495857608
+      },
+      "group_sample_index": 66,
+      "reference_array_bin_memberships": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[23]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[23]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[23]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[55]||0"
+      ],
+      "resolved_canonical_bin_identity_hits": [
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||prescale_cp||name:prescale[23]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bark_thold_cp||name:bark[23]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||bite_thold_cp||name:bite[23]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[55]||0",
+        "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_cause_cp||name:wkup_cause_cleared||0"
+      ],
+      "resolved_explicit_bin_memberships": [
+        "timer_cfg_cg.wkup_cause_cp.wkup_cause_cleared"
+      ],
+      "same_sample_cross_observations": {},
+      "sample_index": 66,
+      "simulation_time_ns": 4820.0,
+      "unpartitioned_array_declarations": [
+        "timer_cfg_cg.prescale_cp.prescale[]",
+        "timer_cfg_cg.bark_thold_cp.bark[]",
+        "timer_cfg_cg.bite_thold_cp.bite[]",
+        "timer_cfg_cg.wkup_thold_cp.wkup[]"
+      ]
+    }
+  ],
+  "schema_id": "aon_timer_uvm_source_trace_v2",
+  "seed": 1,
+  "source_revision": "9f20940d494a223cc950a5b98f748fb28109d458",
+  "testcase": "aon_s09_config_block_6"
+}

@@ -1,6 +1,6 @@
 # 阶段 09：基线对照与消融
 
-状态（2026-11-14）：**工程范围对照已实跑并通过独立 replay audit；不是论文方法复现完成。**
+状态（2026-11-17）：**工程范围对照复跑并通过独立 replay audit，288/288 PASS；不是论文 full 仿真或论文方法复现完成。**
 
 ## 实测结果
 
@@ -12,7 +12,7 @@
 - 所有策略使用相同 attempt 数、选择种子集合、worker 数和 25,000 ns/attempt 仿真时间上限；实际消耗仿真时间按策略/种子分别记录，不作墙钟效率优劣结论。预编译一次，耗时约 13.9 秒，与仿真统计分开。
 - 独立 replay audit 重算了 testcase trace、正向 identity、数组分类、checkpoint、novelty reward、UCB 选择、输入哈希和结果链。288/288 条均通过；0 个 inferred misses。
 
-证据：[汇总](../evidence/stage09_comparison/2026-11-14-v1/summary.json)、[对照 CSV](../evidence/stage09_comparison/2026-11-14-v1/comparison.csv)、[replay audit](../evidence/stage09_comparison/2026-11-14-v1/replay-audit.json)、[文件哈希](../evidence/stage09_comparison/2026-11-14-v1/sha256.txt)。每次 attempt 的选择、XML、trace 和正向 vector 保存在对应策略目录。
+证据：[最新汇总](../evidence/stage09_comparison/2026-11-16-v2/summary.json)、[对照 CSV](../evidence/stage09_comparison/2026-11-16-v2/comparison.csv)、[replay audit](../evidence/stage09_comparison/2026-11-16-v2/replay-audit.json)、[文件哈希](../evidence/stage09_comparison/2026-11-16-v2/sha256.txt)。1,443 个受 ledger 管理的文件均通过哈希核验；每次 attempt 的选择、XML、trace 和正向 vector 保存在对应策略目录。
 
 ## 复现命令（WSL Ubuntu）
 

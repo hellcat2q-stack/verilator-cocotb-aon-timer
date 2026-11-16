@@ -52,9 +52,19 @@ class SampleSiteMappingAuditTests(unittest.TestCase):
     def test_pinned_trace_corpus_covers_all_aon_sites_structurally(self):
         root = Path(__file__).resolve().parents[1]
         report = build_audit(trace_root=root / "evidence")
-        self.assertEqual(report["trace_file_count"], 326)
-        self.assertEqual(report["valid_trace_file_count"], 326)
-        self.assertEqual(report["sample_count"], 17743)
+        trace_paths = _trace_files(root / "evidence")
+        sample_total = sum(
+            json.loads(path.read_text(encoding="utf-8"))["sample_count"]
+            for path in trace_paths
+        )
+        # Evidence grows as new independently audited runs are added. Keep the
+        # original corpus size as a lower bound, and verify the report against
+        # the actual checked-in trace set instead of freezing an obsolete total.
+        self.assertGreaterEqual(report["trace_file_count"], 326)
+        self.assertEqual(report["trace_file_count"], len(trace_paths))
+        self.assertEqual(report["valid_trace_file_count"], len(trace_paths))
+        self.assertGreaterEqual(report["sample_count"], 17743)
+        self.assertEqual(report["sample_count"], sample_total)
         self.assertTrue(report["aon_capture_protocol_complete"])
         self.assertEqual(report["shared_scope"]["definition_count"], 228)
         self.assertFalse(report["mapping_gates"]["shared_scope_mapping_complete"])

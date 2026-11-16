@@ -95,3 +95,18 @@ count-event trace v2 为固定 wrapper 增加只读 counter 观察口；`TimerSa
 ## 2026-11-16 新增：八用例固定参考短矩阵
 
 `stage10_sample_matrix/` 将已修复的 pinned UVM 参考测试扩展到八组确定性短测，包含 `INTR_TEST`、prescale、运行中更新/重启、复位重启和 watchdog sleep/pause。它独立记录 VCS 实际 `.sample()` 参数和复位/sleep 时序，再由干净 pinned RTL 的 Cocotb runner 回放。结果必须经过 source、工具、XML、TL、RTL 边沿、逐组元组及 producer 去重审计；所有结果保持 0 个 coverage credit。该八用例矩阵仍不等于完整采样 parity，也不解除 full 仿真门禁。运行方式见 [`stage10_sample_matrix/README.md`](stage10_sample_matrix/README.md)。
+
+## 2026-11-17 复跑记录
+
+Stage 09 工程矩阵的复跑与独立审计输出至 `evidence/stage09_comparison/2026-11-16-v2/`；source-definition 分类和 sample-site audit 输出至各自 `2026-11-17-v1/` 目录。重放最新 full 仿真门禁：
+
+```bash
+build/stage10-python-env/bin/python3 tools/stage10_full_simulation_preflight.py \
+  --trace-root evidence/stage09_comparison/2026-11-16-v2 \
+  --replay-audit evidence/stage09_comparison/2026-11-16-v2/replay-audit.json \
+  --classification evidence/stage10_source_definition_classification/2026-11-17-v1/classification.json \
+  --sample-site-audit evidence/stage10_sample_site_audit/2026-11-17-v1/sample-site-audit.json \
+  --output evidence/stage10_full_simulation_preflight/2026-11-17-v2/preflight.json
+```
+
+当前输出仍为 `BLOCKED_BEFORE_FULL_SIMULATION`；此工具只核对启动条件，不启动 full run。

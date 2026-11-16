@@ -1,6 +1,12 @@
 # 阶段 10：最终复核与报告
 
-状态（2026-11-16）：**独立参考修复版三组实际采样已与 Cocotb 逐组匹配：22/22、30/30、30/30，6/6 测试 PASS；两个原生原因探针和 162 项回归通过。原版采样差异与既有 Stage 09/identity/sample-site 审计保留；完整采样矩阵待扩展，full 门禁仍 blocked，full coverage 不可报告。**
+状态（2026-11-17）：**Stage 09 工程矩阵 288/288 PASS 并通过独立重放；source-definition 和 sample-site 最新审计已重跑。full 仿真门禁仍为 BLOCKED，本轮没有启动 full 仿真，full coverage 不可报告。**
+
+## 2026-11-17 最新复核
+
+Stage 09 新 run 使用固定 RTL revision 完成 288/288 次 Verilator/Cocotb 仿真，产生 16,515 个 samples；独立 replay audit 重验通过，1,443 个文件的 SHA-256 ledger 完整。新的 source-definition 分类核对 288 条 trace/16,515 个 samples；sample-site 审计核对证据库中的 614 条 trace/34,258 个 samples，AON capture protocol 结构检查通过。这些检查不增加 legacy coverage credit。
+
+最新 [full preflight](../evidence/stage10_full_simulation_preflight/2026-11-17-v2/preflight.json)仍记录 `BLOCKED_BEFORE_FULL_SIMULATION`、`full_simulation_started=false`、coverage credit 为 0、`full_coverage_rate_percent=null`。待解决项包括 exact Stage 06 run matrix、4,507-bin legacy identity mapping、Stage 07 论文 scheduler、228 个 shared/non-AON definition 的 sample-site mapping、完整逐 testcase UVM/VCS sample timing parity，以及 Verilator 上数组 bin 等价性。Stage 09 中的 round-robin `Full` 只是固定动作池工程基线，不能替代论文 full 仿真。
 
 ## 复核结论
 

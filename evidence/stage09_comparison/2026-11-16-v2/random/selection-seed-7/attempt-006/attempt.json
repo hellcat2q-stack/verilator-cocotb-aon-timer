@@ -1,0 +1,48 @@
+{
+  "run_id": "stage09-array-blocks-v1-random-s7-006",
+  "policy": "random",
+  "selection_seed": 7,
+  "simulation_seed": 1,
+  "testcase": "aon_s09_config_block_1",
+  "phase": "uniform_random",
+  "completed_attempts_before_selection": 5,
+  "positive_count_before_selection": 116,
+  "scores": {},
+  "prior_attempt_sha256": "54078d3aac1a95ae1867206ab5e49fb03b848b9b62346fb175985c2b46174b8a",
+  "global_order": 117,
+  "result": "PASS",
+  "exit_code": 0,
+  "timed_out": false,
+  "wall_seconds": 1.6864,
+  "simulation_time_ns": 4830.001,
+  "testcases": [
+    {
+      "name": "aon_s09_config_block_1",
+      "result": "PASS",
+      "simulation_time_ns": 4830.001
+    }
+  ],
+  "sample_count": 67,
+  "new_positive_count": 7,
+  "new_positive_identities": [
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[10]||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[11]||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[12]||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[13]||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[14]||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[8]||0",
+    "aon_timer_env_pkg::aon_timer_env_cov::timer_cfg_cg||variable||wkup_thold_cp||name:wkup[9]||0"
+  ],
+  "cumulative_positive_count": 123,
+  "source_named_positive_count": 11,
+  "reference_array_positive_count": 112,
+  "cumulative_unknown_count": 4384,
+  "reward": 0.0015531395606833815,
+  "validation_error": null,
+  "trace_sha256": "d27e61ce77a1b4fdda77aa9d2d9279dc8abab34bf98f2d54ad6f0e12cb1e98d1",
+  "raw_results_xml_sha256": "f742ed5ba3bebaa88c59dc149c0a21a6442697613686275a06e809553053d72c",
+  "public_results_xml_sha256": "914c7d6aae7aeff1ede4c19f4f5f2ba7e789ddd69584f73c1f2ad2bc4f2a552e",
+  "positive_vector_sha256": "7cc901cc9c0affd98c0fe9de83a3987fc8828ed2333e674d12366446f14d99a1",
+  "simulation_log_sha256": "46dee3ee9274f1b76301f54ffb1a36eb1a80db361922985a6edd222b14caa120",
+  "attempt_record_path": "random/selection-seed-7/attempt-006/attempt.json"
+}

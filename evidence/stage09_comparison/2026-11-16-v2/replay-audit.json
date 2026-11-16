@@ -1,0 +1,24 @@
+{
+  "schema": "aon-timer-stage09-comparison-replay-audit-v1",
+  "status": "PASS",
+  "summary_sha256": "4c9a14af7cbc37e8fa0227dfb109a3414583ffb595a37ffe5718fc1f33aa9574",
+  "attempts_replayed": 288,
+  "real_tests_passed": 288,
+  "known_positive_counts_by_policy_seed": [
+    175,
+    175,
+    175,
+    167,
+    160,
+    168,
+    175,
+    175,
+    175,
+    175,
+    175,
+    175
+  ],
+  "unknowns_never_inferred_as_misses": true,
+  "errors": [],
+  "note": "Integrity replay of an engineering comparison; no paper-algorithm or UVM/VCS coverage parity claim."
+}

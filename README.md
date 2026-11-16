@@ -4,7 +4,9 @@
 
 在固定 OpenTitan AON Timer RTL 上用 Verilator + Cocotb 运行测试，移植官方测试刺激、覆盖采样与反馈调度，建立可审计的开源实验链路。旧 VCS 命中数不会作为 Cocotb 结果复用。
 
-**阶段 09 工程对照已实跑并独立审计通过。** 固定 RTL 上完成 288 次 Verilator/Cocotb 仿真（UCB、Random、round-robin Full、关闭 reward 消融；三个选择种子），288/288 PASS、16,515 条 samples。UCB/Full/消融均确认 175 个正向 identity；Random 为 160–168。4,332–4,347 个 identity 仍为 unknown，未推断 miss。逐次 XML、trace、向量、决策与审计见 [Stage 09 证据](evidence/stage09_comparison/2026-11-14-v1/summary.json) 和 [replay audit](evidence/stage09_comparison/2026-11-14-v1/replay-audit.json)。这是动作池上的工程对照，不是完整论文调度，也不证明 VCS/UVM 覆盖等价。
+**2026-11-17 最新复核：**Stage 09 工程矩阵 288/288 次 Verilator/Cocotb 运行通过，独立重放审计通过；source-definition 分类和 sample-site 审计也已更新。full 仿真预检仍为 `BLOCKED`，`full_simulation_started=false`、coverage credit 为 0、完整覆盖率为 `null`，所以本轮没有启动论文 full 仿真。阻塞项涉及完整 Stage 06 矩阵、legacy identity 映射、Stage 07 论文调度、shared/non-AON definitions、UVM/VCS 逐采样时序和 Verilator 数组等价性。见[最新预检](evidence/stage10_full_simulation_preflight/2026-11-17-v2/preflight.json)。
+
+**阶段 09 工程对照已实跑并独立审计通过。** 固定 RTL 上完成 288 次 Verilator/Cocotb 仿真（UCB、Random、round-robin Full、关闭 reward 消融；三个选择种子），288/288 PASS、16,515 条 samples。UCB/Full/消融均确认 175 个正向 identity；Random 为 160–168。4,332–4,347 个 identity 仍为 unknown，未推断 miss。逐次 XML、trace、向量、决策与审计见 [最新 Stage 09 证据](evidence/stage09_comparison/2026-11-16-v2/summary.json) 和 [replay audit](evidence/stage09_comparison/2026-11-16-v2/replay-audit.json)。这是动作池上的工程对照，不是完整论文调度，也不证明 VCS/UVM 覆盖等价。
 
 **覆盖率口径：**目前不能报告 full coverage rate。Stage 09 UCB seed 1 有 175/4,507 个正向 identity（3.8828% 的目录比例），其余 4,332 个是 unknown，不是 miss。4,507 canonical identities 与 4,525 URG dashboard reference 分开统计。见[阶段 10 复核](10_最终复核与报告/README.md)。
 
