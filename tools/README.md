@@ -28,8 +28,14 @@ audit_canonical_identity_candidates.py --output <new-report.json> 按冻结的 c
 ## 2026-11-16 新增：source-definition v2 与 full 仿真前门禁
 
 - `classify_source_definitions.py` 将固定的 160 个 VCS 参考数组分区映射到单条 trace sample，解析完整 interrupt-cross bin label，并将 interrupt pin value/transition bins 分开分类。数组和 cross 结果只属于 source-definition/reference match，不增加旧 canonical coverage credit；illegal `intr_test=1 && intr_state=0` cross 会排除。
-- `stage10_full_simulation_preflight.py` 校验 catalog、数组来源/Python 边界审计、Stage 09 replay audit、source-classification hashes、Stage 06 exact matrix、identity bridge 和 sample-site readiness，写出只读的 preflight JSON。工具不会启动仿真。当前结果在 `evidence/stage10_full_simulation_preflight/2026-11-16-v1/preflight.json`，full 仿真门禁为 blocked。
+- `stage10_full_simulation_preflight.py` 校验 catalog、数组来源/Python 边界审计、Stage 09 replay audit、source-classification hashes、identity bridge、Stage 06 exact matrix 和 sample-site readiness，写出只读的 preflight JSON。工具不会启动仿真。当前结果在 `evidence/stage10_full_simulation_preflight/2026-11-16-v2/preflight.json`，full 仿真门禁为 blocked。
 - 重放：`python3 tools/classify_source_definitions.py --trace-root evidence/stage09_comparison/2026-11-14-v1 --expected-trace-count 288 --output evidence/stage10_source_definition_classification/2026-11-16-v2/classification.json`，然后运行 `python3 tools/stage10_full_simulation_preflight.py`。分类报告和预检报告均生成 SHA-256 sidecar。
+
+## 2026-11-16 新增：完整 legacy identity bridge 审计
+
+- `audit_source_identity_bridge.py` 对冻结的 4,507 个 canonical identities 与 pinned 4,507 条 source definitions 做完整候选审计。变量项支持 `name:`、singleton、sized-hex/decimal `values:{[...]}`、source `auto[...]` 和连续 range-order candidate；cross 项支持 source member 解析、wildcard、压缩 range、instance index，并对旧 catalog 中 interrupt cross 的错误分割使用 `bin_name` 回退解析。
+- 报告中的 `EXACT_SOURCE_DEFINITION`、`RANGE_ORDER_CANDIDATE` 和 `CROSS_*_CANDIDATE` 都是身份候选，`coverage_credit_granted` 固定为 0；非唯一候选不能用于推断命中或 miss。当前 pinned 结果为 341 exact、2,074 range-order candidate、16 单候选 cross、2,064 非唯一 cross candidate。
+- 运行：`python3 tools/audit_source_identity_bridge.py --output evidence/stage10_identity_bridge/2026-11-16-v1/bridge.json`。`stage10_full_simulation_preflight.py` 会校验该报告及其 sidecar/tool hash，但仍要求独立 URG/VCS expansion/order 证据后才能解除 full 仿真门禁。
 
 ## 原有阶段工具
 

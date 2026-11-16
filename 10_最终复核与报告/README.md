@@ -1,6 +1,6 @@
 # 阶段 10：最终复核与报告
 
-状态（2026-11-16）：**Stage 09 工程结果已独立复核；source-definition 分类 v2 与 full 仿真前预检完成；full 仿真启动门禁仍 blocked，full coverage 仍不可报告。**
+状态（2026-11-16）：**Stage 09 工程结果已独立复核；source-definition 分类 v2、identity bridge 审计与 full 仿真前预检完成；full 仿真启动门禁仍 blocked，full coverage 仍不可报告。**
 
 ## 复核结论
 
@@ -8,11 +8,18 @@
 
 4,507 canonical identities 和 4,525 URG dashboard reference 是两个不同统计口径，不能互换。Stage 09 的 160 个数组 identity 来自已登记的 VCS 分区参考；目前没有证明 Verilator/Cocotb 的采样与原生 UVM/VCS 等价。
 
-Stage 09 独立 replay audit 通过，288/288 个 RTL testcase PASS，证据目录的 1,443 个文件均通过 SHA-256 ledger 校验。最新 full-simulation preflight 记录为 `BLOCKED_BEFORE_FULL_SIMULATION`：仅 341/4,507 legacy identities 可按标签直接匹配，exact vector matrix 不可用，sample-site/shared-group mapping 未完整，Stage 07 paper scheduler 未允许，且数组参考分区仍未证明 Verilator/UVM/VCS 等价。本轮没有启动 full 仿真。
+Stage 09 独立 replay audit 通过，288/288 个 RTL testcase PASS，证据目录的 1,443 个文件均通过 SHA-256 ledger 校验。最新 full-simulation preflight 记录为 `BLOCKED_BEFORE_FULL_SIMULATION`：4,507 个 legacy identities 已全部进入 bridge 审计，其中 341 个是 exact source-definition match，2,074 个是 range-order candidate，16 个是单候选 cross candidate，2,064 个仍是非唯一 cross/instance candidate；这些候选均不产生 coverage credit。exact vector matrix 不可用，sample-site/shared-group mapping 未完整，Stage 07 paper scheduler 未允许，且数组参考分区仍未证明 Verilator/UVM/VCS 等价。本轮没有启动 full 仿真。
 
 机器可读审查记录及其 SHA-256 sidecar：[review.json](../evidence/stage10_final_review/2026-11-14-v1/review.json)、[review.json.sha256](../evidence/stage10_final_review/2026-11-14-v1/review.json.sha256)。Stage 09 的逐次运行结果见[汇总](../evidence/stage09_comparison/2026-11-14-v1/summary.json)与[对照表](../evidence/stage09_comparison/2026-11-14-v1/comparison.csv)。
 
-映射诊断入口为 tools/audit_canonical_identity_candidates.py。它报告 canonical labels 对 frozen source-definition 的 exact/range candidate 关系，不创建新的 coverage credit。运行命令：python3 tools/audit_canonical_identity_candidates.py --output evidence/stage10_final_review/2026-11-15-v1/identity-candidates.json。
+映射诊断入口为 `tools/audit_canonical_identity_candidates.py`。它报告 canonical labels 对 frozen source-definition 的初步 exact/range candidate 关系，不创建新的 coverage credit。新的完整 bridge 审计入口为 `tools/audit_source_identity_bridge.py`，会修复 sized-hex value range、数组 ordinal、压缩 cross、wildcard 和旧 catalog interrupt cross 结构的解析，并逐 identity 输出候选集合。运行命令：
+
+```bash
+python3 tools/audit_source_identity_bridge.py \
+  --output evidence/stage10_identity_bridge/2026-11-16-v1/bridge.json
+```
+
+该审计报告和 SHA-256 sidecar：[bridge.json](../evidence/stage10_identity_bridge/2026-11-16-v1/bridge.json)、[sidecar](../evidence/stage10_identity_bridge/2026-11-16-v1/bridge.json.sha256)。它证明候选分类覆盖了完整 4,507 identity universe，但没有把非唯一候选提升为 legacy identity mapping。
 
 2026-11-15 候选审计将 4,507 个 canonical labels 分类为：341 个直接类型标签匹配、2 个精确值区间候选、2,074 个组合值区间候选、2,080 个 cross/展开标签未决，以及 10 个其他值标签未决。精确/组合区间仍有 legacy occurrence index 未决；标签匹配也不证明 sample-site 或 UVM/VCS 采样等价。该审计授予 0 个 coverage credit，不把未知项推断为 miss，因此 175 个正向 identity、4,332 个 unknown 和 `full_coverage_rate_percent: null` 均保持不变。报告和 SHA-256 sidecar：[identity-candidates.json](../evidence/stage10_final_review/2026-11-15-v1/identity-candidates.json)、[identity-candidates.json.sha256](../evidence/stage10_final_review/2026-11-15-v1/identity-candidates.json.sha256)。
 
@@ -24,7 +31,7 @@ Stage 09 独立 replay audit 通过，288/288 个 RTL testcase PASS，证据目�
 
 报告仍不代表原生 Verilator covergroup 或 UVM/VCS 命中；canonical coverage credit 增量为 0，175/4,507 个既有 positive identities 和 4,332 个 unknown 均未改变，full coverage rate 仍为 `null`。分类结果与 SHA-256 sidecar：[classification.json](../evidence/stage10_source_definition_classification/2026-11-16-v2/classification.json)、[sidecar](../evidence/stage10_source_definition_classification/2026-11-16-v2/classification.json.sha256)。
 
-新增预检检查定义目录、数组参考与 640 个 Python/source boundary probes、Stage 09 audit 和分类 hash；所有已具备的检查通过。启动 full 仿真的前置项仍未完成：4,507-bin exact Stage 06 matrix 缺失；直接 legacy bridge 仍为 341/4,507；shared/non-AON sample sites 和 UVM/VCS timing parity 未建立；Stage 07 paper scheduler 未启用；原生 Verilator/UVM/VCS array equivalence 未验证。预检明确记录 `full_simulation_started: false`、`full_simulation_start_gate: BLOCKED`，没有执行仿真：[preflight.json](../evidence/stage10_full_simulation_preflight/2026-11-16-v1/preflight.json)、[sidecar](../evidence/stage10_full_simulation_preflight/2026-11-16-v1/preflight.json.sha256)。
+新增预检检查定义目录、数组参考与 640 个 Python/source boundary probes、Stage 09 audit、分类 hash 和 bridge audit hash；所有已具备的检查通过。启动 full 仿真的前置项仍未完成：4,507-bin exact Stage 06 matrix 缺失；legacy bridge 仍有非唯一 candidate，只有 341/4,507 可以直接按源码标签匹配；shared/non-AON sample sites 和 UVM/VCS timing parity 未建立；Stage 07 paper scheduler 未启用；原生 Verilator/UVM/VCS array equivalence 未验证。预检明确记录 `full_simulation_started: false`、`full_simulation_start_gate: BLOCKED`，没有执行仿真：[preflight.json](../evidence/stage10_full_simulation_preflight/2026-11-16-v2/preflight.json)、[sidecar](../evidence/stage10_full_simulation_preflight/2026-11-16-v2/preflight.json.sha256)。
 
 在 WSL Ubuntu 项目虚拟环境 `build/stage10-python-env` 中，全仓单测 122/122 通过；Stage 09 replay audit 仍为 288/288 PASS。复核命令：
 
@@ -34,6 +41,8 @@ python3 tools/classify_source_definitions.py \
   --expected-trace-count 288 \
   --output evidence/stage10_source_definition_classification/2026-11-16-v2/classification.json
 python3 tools/stage10_full_simulation_preflight.py
+python3 tools/audit_source_identity_bridge.py \
+  --output evidence/stage10_identity_bridge/2026-11-16-v1/bridge.json
 python3 -m unittest discover -s tests -q
 python3 tools/audit_stage09_comparison.py \
   --evidence-dir evidence/stage09_comparison/2026-11-14-v1

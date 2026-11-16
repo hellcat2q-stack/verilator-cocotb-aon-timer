@@ -47,9 +47,13 @@ DEFAULT_CLASSIFICATION = (
     ROOT / "evidence" / "stage10_source_definition_classification"
     / "2026-11-16-v2" / "classification.json"
 )
+DEFAULT_IDENTITY_BRIDGE = (
+    ROOT / "evidence" / "stage10_identity_bridge"
+    / "2026-11-16-v1" / "bridge.json"
+)
 DEFAULT_OUTPUT = (
     ROOT / "evidence" / "stage10_full_simulation_preflight"
-    / "2026-11-16-v1" / "preflight.json"
+    / "2026-11-16-v2" / "preflight.json"
 )
 
 
@@ -78,6 +82,7 @@ def build_preflight(
     stage06_matrix_audit_path: Path = DEFAULT_STAGE06_MATRIX_AUDIT,
     stage08_readiness_path: Path = DEFAULT_STAGE08_READINESS,
     classification_path: Path = DEFAULT_CLASSIFICATION,
+    identity_bridge_path: Path = DEFAULT_IDENTITY_BRIDGE,
 ) -> dict[str, Any]:
     catalog, catalog_hash = load_catalog(CATALOG_PATH)
     array_definitions, array_reference = load_array_reference(catalog)
@@ -88,6 +93,7 @@ def build_preflight(
     stage08 = read_json(stage08_readiness_path)
     replay = read_json(replay_audit_path)
     classification = read_json(classification_path)
+    identity_bridge = read_json(identity_bridge_path)
     classification_hash = sha256_file(classification_path)
     sidecar_path = Path(str(classification_path) + ".sha256")
     sidecar = sidecar_path.read_text(encoding="ascii").split()
@@ -95,6 +101,14 @@ def build_preflight(
         raise ValueError("classification SHA-256 sidecar is missing or inconsistent")
     if sidecar[1] != Path(classification_path).name:
         raise ValueError("classification SHA-256 sidecar names a different artifact")
+
+    bridge_hash = sha256_file(identity_bridge_path)
+    bridge_sidecar_path = Path(str(identity_bridge_path) + ".sha256")
+    bridge_sidecar = bridge_sidecar_path.read_text(encoding="ascii").split()
+    if len(bridge_sidecar) != 2 or bridge_sidecar[0] != bridge_hash:
+        raise ValueError("identity bridge SHA-256 sidecar is missing or inconsistent")
+    if bridge_sidecar[1] != Path(identity_bridge_path).name:
+        raise ValueError("identity bridge SHA-256 sidecar names a different artifact")
 
     stage08_sha_manifest = Path(stage08_readiness_path).with_name("sha256.txt")
     declared_readiness_hash = stage08_sha_manifest.read_text(encoding="ascii").split()[0]
@@ -110,8 +124,12 @@ def build_preflight(
     if replay.get("summary_sha256") != sha256_file(replay_summary_path):
         raise ValueError("Stage 09 replay audit does not match its summary")
     classifier_path = ROOT / "tools" / "classify_source_definitions.py"
+    bridge_tool_path = ROOT / "tools" / "audit_source_identity_bridge.py"
     classifier_hash_matches = classification.get("classifier_sha256") == sha256_file(
         classifier_path
+    )
+    bridge_tool_hash_matches = identity_bridge.get("audit_tool_sha256") == sha256_file(
+        bridge_tool_path
     )
 
     array_bin_count = sum(len(records) for records in array_catalog["arrays"].values())
@@ -142,7 +160,9 @@ def build_preflight(
     blockers = []
     if mapping != canonical_count:
         blockers.append(
-            f"Legacy identity bridge resolves only {mapping} of {canonical_count} canonical identities."
+            f"Legacy identity bridge has only {mapping} direct matches; the remaining identities "
+            f"require candidate or independent expansion evidence ({identity_bridge.get('deterministic_candidate_count', 0)} deterministic candidates, "
+            f"{identity_bridge.get('ambiguous_candidate_count', 0)} ambiguous candidates)."
         )
     if not stage06_exact:
         blockers.append("Stage 06 does not contain a complete exact run matrix.")
@@ -165,6 +185,17 @@ def build_preflight(
         blockers.append("Source-definition classification does not cover the expected 288 traces and 16,515 samples.")
     if classification.get("summary", {}).get("full_coverage_rate_percent") is not None:
         blockers.append("Classification unexpectedly reports a numeric full coverage rate.")
+    bridge_audit_valid = (
+        identity_bridge.get("schema") == "aon-timer-source-identity-bridge-audit-v1"
+        and identity_bridge.get("source_revision") == catalog.get("source_revision")
+        and identity_bridge.get("canonical_identity_count") == canonical_count
+        and identity_bridge.get("source_definition_count") == definition_total
+        and identity_bridge.get("coverage_credit_granted") == 0
+        and identity_bridge.get("promotion_allowed") is False
+        and bridge_tool_hash_matches
+    )
+    if not bridge_audit_valid:
+        blockers.append("Source identity bridge audit is missing, stale, or not fail-closed.")
 
     checks = {
         "definition_catalog_count_is_4507": definition_total == 4507,
@@ -189,6 +220,9 @@ def build_preflight(
         ),
         "classification_hash_is_sidecar_verified": True,
         "classification_uses_current_classifier": classifier_hash_matches,
+        "identity_bridge_audit_is_sidecar_verified": True,
+        "identity_bridge_uses_current_tool": bridge_tool_hash_matches,
+        "identity_bridge_audit_is_complete_as_audit": bridge_audit_valid,
         "stage06_exact_matrix_is_available": stage06_exact,
         "legacy_identity_bridge_is_complete": mapping == canonical_count,
         "sample_site_mapping_is_complete": sample_site_complete,
@@ -230,6 +264,16 @@ def build_preflight(
                 "array_partition_unresolved_observation_count"
             ),
             "direct_legacy_identity_matches": mapping,
+            "identity_bridge_exact_source_definition_count": identity_bridge.get(
+                "exact_source_definition_count"
+            ),
+            "identity_bridge_deterministic_candidate_count": identity_bridge.get(
+                "deterministic_candidate_count"
+            ),
+            "identity_bridge_ambiguous_candidate_count": identity_bridge.get(
+                "ambiguous_candidate_count"
+            ),
+            "identity_bridge_unresolved_count": identity_bridge.get("unresolved_count"),
             "exact_stage06_matrix_available": stage06_exact,
             "sample_sites_complete": sample_site_complete,
             "native_verilator_uvm_equivalence_verified": False,
@@ -272,6 +316,10 @@ def build_preflight(
                 "path": _relative(classification_path),
                 "sha256": classification_hash,
             },
+            "source_identity_bridge_audit": {
+                "path": _relative(identity_bridge_path),
+                "sha256": bridge_hash,
+            },
             "trace_root": _relative(trace_root),
         },
     }
@@ -284,6 +332,7 @@ def main() -> None:
     parser.add_argument("--stage06-matrix-audit", type=Path, default=DEFAULT_STAGE06_MATRIX_AUDIT)
     parser.add_argument("--stage08-readiness", type=Path, default=DEFAULT_STAGE08_READINESS)
     parser.add_argument("--classification", type=Path, default=DEFAULT_CLASSIFICATION)
+    parser.add_argument("--identity-bridge", type=Path, default=DEFAULT_IDENTITY_BRIDGE)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     args = parser.parse_args()
     try:
@@ -293,6 +342,7 @@ def main() -> None:
             stage06_matrix_audit_path=args.stage06_matrix_audit,
             stage08_readiness_path=args.stage08_readiness,
             classification_path=args.classification,
+            identity_bridge_path=args.identity_bridge,
         )
     except (OSError, UnicodeError, ValueError, KeyError, json.JSONDecodeError) as exc:
         parser.error(str(exc))
