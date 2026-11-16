@@ -18,6 +18,8 @@ identity 清单冻结了每个 canonical 列的完整 label。`references/bin_de
 
 `timer_cfg_cg` 的 160 个数组 bin 现已从兼容项目 VCS `vectors.csv` 的首行表头导入逐项区间，保存于 `references/array_bin_ranges.v1.json`。导入器只读取表头，不读 run rows 或 hit counts；preflight 重新核对每项源码索引、canonical identity、声明域、连续性及输入哈希。它们是固定源码定义下的 VCS 参考分区，当前尚未证明与 Verilator/Python coverage 实现等价。另一个独立审计将区间用于 Stage 05 已校验的 78 条 `timer_cfg_cg` 原始配置样本，识别出 40 次正向归属观察、涉及 6 个数组 identity；结果存放于 `evidence/stage03_array_bin_observations/`，没有合并进 Stage 06 vector。旧 Stage 06 canonical label 仍只有 341 列可按直接标签匹配；重复的 `*X*`、`values:{...}` 标签及 shared-group 实例需要建立、验证一对一映射。当前仍不生成完整 4,507 维 sample vector。
 
+2026-11-16 的 source-definition classifier v2 将这 160 个参考分区应用于 Stage 09 raw trace 中 42,480 个数组字段观察，并按完整 cross bin label 分类 interrupt cross。匹配标签只表示“观测值落入参考定义分区”；它不增加 canonical identity coverage credit，也不验证 Verilator 原生覆盖实现、UVM/VCS 采样时序或 full coverage。机器可读结果及其 start-gate 报告分别见 `evidence/stage10_source_definition_classification/2026-11-16-v2/` 和 `evidence/stage10_full_simulation_preflight/2026-11-16-v1/`。预检仍将精确 Stage 06 矩阵、完整 4,507 identity bridge、shared sample sites 和 UVM/VCS 对照列为 full 仿真前阻塞项。
+
 完成 exact sample mapping 后，需逐项验证 identity、covergroup/instance scope、coverpoint/cross、边界值、illegal/ignore/weight 规则和采样时机，再与 4,507 canonical 列一一对账。4,525 URG 汇总继续独立记录；计数相同也不作为语义等价的证据。
 
 ## 原 URG 行序审计（2026-11-15）

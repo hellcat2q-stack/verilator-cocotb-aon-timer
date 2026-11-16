@@ -36,4 +36,8 @@
 
 `stage09_comparison/2026-11-14-v1/` 保存 UCB、Random、动作池 round-robin Full 和无 reward 消融的 288 次真实 RTL 对照，含每次 attempt 的 XML、raw sample trace、正向 vector、选择与结果链、comparison CSV、独立 replay audit 和 SHA-256 ledger。288/288 PASS；UCB/Full/消融各确认 175 个正向 identity，Random 为 160–168；unknown 未推断为 misses。160 项数组命中属于 VCS 范围参考映射，Verilator/UVM 采样等价性未验证。
 
+`stage10_source_definition_classification/2026-11-16-v2/` 重新分类上述 288 份 PASS traces，记录每个 raw trace、attempt 与结果的哈希。42,480 次 timer array 参考区间映射和 247 次 interrupt cross 标签匹配只属于 source-definition/reference 层；16,940 个数组字段观察仍在参考域之外/无对应 bin。报告不增加 legacy coverage credit，native Verilator/UVM/VCS 等价字段为 false，full coverage rate 为 null。
+
+`stage10_full_simulation_preflight/2026-11-16-v1/` 是只读启动门禁报告。它核对 4,507-bin catalog、160 个 array reference partitions、640 个源码/Python 边界 probes、Stage 09 replay audit 和 v2 分类 hash；同时明确记录 Stage 06 exact matrix、legacy identity bridge、sample-site mapping、Stage 07 scheduler 和 UVM/VCS sampling comparison 仍未准备好。`full_simulation_started` 为 false；该工具不启动仿真。
+
 `stage10_final_review/2026-11-14-v1/review.json` 是 Stage 09 结果口径的独立审查记录，包含复核状态、输入 hashes、canonical/URG 计数区分和 coverage 限制。它明确记录 full coverage rate 为不可报告；175/4,507（3.8828%）只表示已确认正向 identity 占 canonical 目录比例。

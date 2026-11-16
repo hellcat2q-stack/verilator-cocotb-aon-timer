@@ -54,10 +54,48 @@ class SourceDefinitionClassifierTests(unittest.TestCase):
             "same_sample_cross_observations": {},
         }
         result = self.classifier.classify_sample(sample)
-        self.assertEqual(len(result["array_partition_unresolved"]), 4)
-        self.assertFalse(any("prescale[" in item["definition_id"]
-                             for item in result["variable_matches"]))
-        self.assertEqual(result["status"], "SOURCE_DEFINITION_PARTIAL_ARRAY_UNRESOLVED")
+        array_matches = [item for item in result["variable_matches"]
+                         if item["match_kind"] == "SOURCE_DEFINITION_ARRAY_REFERENCE_MATCH"]
+        self.assertEqual(len(array_matches), 4)
+        self.assertEqual({item["ordinal"] for item in array_matches}, {0})
+        self.assertTrue(all(item["legacy_identity_credit_granted"] is False
+                            for item in array_matches))
+        self.assertEqual(result["array_partition_unresolved"], [])
+
+    def test_timer_array_out_of_range_values_remain_unresolved(self):
+        sample = {
+            "covergroup": "timer_cfg_cg",
+            "fields": {"prescale": 0, "bark_thold": 1 << 32,
+                        "bite_thold": 1, "wkup_thold": 1,
+                        "wdog_regwen": 0, "pause_in_sleep": 0},
+            "resolved_explicit_bin_memberships": [],
+            "same_sample_cross_observations": {},
+        }
+        result = self.classifier.classify_sample(sample)
+        unresolved = {item["field"]: item["reason"]
+                      for item in result["array_partition_unresolved"]}
+        self.assertEqual(unresolved["prescale"], "ARRAY_REFERENCE_RANGE_NOT_FOUND")
+        self.assertEqual(unresolved["bark_thold"], "ARRAY_REFERENCE_RANGE_NOT_FOUND")
+        self.assertEqual(len(result["array_partition_unresolved"]), 2)
+
+    def test_timer_array_endpoint_maps_to_reference_identity_without_credit(self):
+        sample = {
+            "covergroup": "timer_cfg_cg",
+            "fields": {"prescale": 4095, "bark_thold": 0xffffffff,
+                        "bite_thold": 0xffffffff, "wkup_thold": 0xffffffffffffffff,
+                        "wdog_regwen": 0, "pause_in_sleep": 0},
+            "resolved_explicit_bin_memberships": [],
+            "same_sample_cross_observations": {},
+        }
+        result = self.classifier.classify_sample(sample)
+        mapped = [item for item in result["variable_matches"]
+                  if item["match_kind"] == "SOURCE_DEFINITION_ARRAY_REFERENCE_MATCH"]
+        self.assertEqual(len(mapped), 4)
+        self.assertEqual({item["array_name"]: item["ordinal"] for item in mapped}, {
+            "prescale": 31, "bark": 31, "bite": 31, "wkup": 63,
+        })
+        self.assertTrue(all(item["legacy_identity_reference"].endswith("||0")
+                            for item in mapped))
 
     def test_count_event_range_and_cross_are_matched_from_same_sample(self):
         sample = {
@@ -74,7 +112,7 @@ class SourceDefinitionClassifierTests(unittest.TestCase):
                               if item["match_kind"] == "SOURCE_DEFINITION_VALUE_RANGE_MATCH"]), 2)
         self.assertTrue(result["cross_matches"][0]["definition_id"].endswith("wdog_bark_int=auto[1]"))
 
-    def test_interrupt_scope_uses_shape_catalog_and_cross_stays_unresolved(self):
+    def test_interrupt_scope_and_complete_cross_label_are_matched(self):
         sample = {
             "covergroup": "intr_test_cg",
             "fields": {"intr": 1, "intr_test": 1, "intr_en": 0, "intr_state": 1},
@@ -89,8 +127,62 @@ class SourceDefinitionClassifierTests(unittest.TestCase):
         self.assertEqual(result["source_scope"],
                          "cip_base_pkg::intr_test_cg::SHAPE{(num_interrupts - 1)=1}")
         self.assertEqual(len(result["variable_matches"]), 4)
-        self.assertTrue(any(item["reason"] == "INTERRUPT_CROSS_SCHEMA_UNRESOLVED"
-                            for item in result["unresolved"]))
+        self.assertEqual(len(result["cross_matches"]), 1)
+        self.assertEqual(result["cross_matches"][0]["match_kind"],
+                         "SOURCE_DEFINITION_CROSS_LABEL_MATCH")
+        self.assertIn("cp_intr_test=auto[1]", result["cross_matches"][0]["bin_name"])
+
+    def test_illegal_interrupt_test_cross_is_excluded(self):
+        sample = {
+            "covergroup": "intr_test_cg",
+            "fields": {"intr": 1, "intr_test": 1, "intr_en": 1, "intr_state": 0},
+            "resolved_explicit_bin_memberships": [],
+            "same_sample_cross_observations": {
+                "cross_cp_intr_cp_intr_test_cp_intr_en_cp_intr_state": {
+                    "intr": 1, "intr_test": 1, "intr_en": 1, "intr_state": 0
+                }
+            },
+        }
+        result = self.classifier.classify_sample(sample)
+        self.assertEqual(result["cross_matches"], [])
+        self.assertIn("ILLEGAL_INTERRUPT_CROSS_EXCLUDED",
+                      {item["reason"] for item in result["unresolved"]})
+
+    def test_interrupt_cross_must_match_its_sample_fields(self):
+        sample = {
+            "covergroup": "intr_cg",
+            "fields": {"intr": 0, "intr_en": 1, "intr_state": 0},
+            "resolved_explicit_bin_memberships": [],
+            "same_sample_cross_observations": {
+                "cross_cp_intr_cp_intr_en_cp_intr_state": {
+                    "intr": 1, "intr_en": 1, "intr_state": 0
+                }
+            },
+        }
+        result = self.classifier.classify_sample(sample)
+        self.assertEqual(result["cross_matches"], [])
+        self.assertIn("INTERRUPT_CROSS_SAMPLE_FIELD_MISMATCH",
+                      {item["reason"] for item in result["unresolved"]})
+
+    def test_pin_cross_matches_value_and_transition_bins_separately(self):
+        sample = {
+            "covergroup": "intr_pins_cg",
+            "fields": {"intr_pin": 0, "intr_pin_value": 1},
+            "observed_transition": [0, 1],
+            "resolved_explicit_bin_memberships": [],
+            "same_sample_cross_observations": {
+                "cp_intr_pins_all_values": {"intr_pin": 0, "intr_pin_value": 1}
+            },
+        }
+        result = self.classifier.classify_sample(sample)
+        names = {item["bin_name"] for item in result["cross_matches"]}
+        self.assertEqual(names, {
+            "cp_intr_pin=all_pins[0] x cp_intr_pin_value=values[0x1]",
+            "cp_intr_pin=all_pins[0] x cp_intr_pin_value=transitions[0x0=>0x1]",
+        })
+        variable_names = {item["bin_name"] for item in result["variable_matches"]}
+        self.assertIn("values[0x1]", variable_names)
+        self.assertIn("transitions[0x0=>0x1]", variable_names)
 
     def test_missing_required_cross_sample_is_reported(self):
         sample = {

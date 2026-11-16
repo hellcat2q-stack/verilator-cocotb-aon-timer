@@ -1,6 +1,6 @@
 # 阶段 10：最终复核与报告
 
-状态（2026-11-16）：**Stage 09 工程结果已独立复核；旧 URG 行号映射错误已确认；Stage 09 raw traces 已完成 source-definition 分类；完整论文 full coverage 仍不可报告。**
+状态（2026-11-16）：**Stage 09 工程结果已独立复核；source-definition 分类 v2 与 full 仿真前预检完成；full 仿真启动门禁仍 blocked，full coverage 仍不可报告。**
 
 ## 复核结论
 
@@ -8,7 +8,7 @@
 
 4,507 canonical identities 和 4,525 URG dashboard reference 是两个不同统计口径，不能互换。Stage 09 的 160 个数组 identity 来自已登记的 VCS 分区参考；目前没有证明 Verilator/Cocotb 的采样与原生 UVM/VCS 等价。
 
-Stage 09 独立 replay audit 通过，288/288 个 RTL testcase PASS，证据目录的 1,443 个文件均通过 SHA-256 ledger 校验。full-paper preflight 仍为 `BLOCKED_PREREQUISITES_INCOMPLETE`：仅 341/4,507 legacy identities 可按标签直接匹配，exact vector matrix 不可用，sample-site mapping 未完整，Stage 07 paper scheduler 未允许。
+Stage 09 独立 replay audit 通过，288/288 个 RTL testcase PASS，证据目录的 1,443 个文件均通过 SHA-256 ledger 校验。最新 full-simulation preflight 记录为 `BLOCKED_BEFORE_FULL_SIMULATION`：仅 341/4,507 legacy identities 可按标签直接匹配，exact vector matrix 不可用，sample-site/shared-group mapping 未完整，Stage 07 paper scheduler 未允许，且数组参考分区仍未证明 Verilator/UVM/VCS 等价。本轮没有启动 full 仿真。
 
 机器可读审查记录及其 SHA-256 sidecar：[review.json](../evidence/stage10_final_review/2026-11-14-v1/review.json)、[review.json.sha256](../evidence/stage10_final_review/2026-11-14-v1/review.json.sha256)。Stage 09 的逐次运行结果见[汇总](../evidence/stage09_comparison/2026-11-14-v1/summary.json)与[对照表](../evidence/stage09_comparison/2026-11-14-v1/comparison.csv)。
 
@@ -16,7 +16,28 @@ Stage 09 独立 replay audit 通过，288/288 个 RTL testcase PASS，证据目�
 
 2026-11-15 候选审计将 4,507 个 canonical labels 分类为：341 个直接类型标签匹配、2 个精确值区间候选、2,074 个组合值区间候选、2,080 个 cross/展开标签未决，以及 10 个其他值标签未决。精确/组合区间仍有 legacy occurrence index 未决；标签匹配也不证明 sample-site 或 UVM/VCS 采样等价。该审计授予 0 个 coverage credit，不把未知项推断为 miss，因此 175 个正向 identity、4,332 个 unknown 和 `full_coverage_rate_percent: null` 均保持不变。报告和 SHA-256 sidecar：[identity-candidates.json](../evidence/stage10_final_review/2026-11-15-v1/identity-candidates.json)、[identity-candidates.json.sha256](../evidence/stage10_final_review/2026-11-15-v1/identity-candidates.json.sha256)。
 
-在 WSL Ubuntu 24.04 的现有项目虚拟环境中，最新全仓单测 105/105 通过。仿真工具链保持 Verilator 5.020、Cocotb 1.9.2、lowRISC FuseSoC 0.5.dev0、Edalize 0.4.0；新增 HTML 审计依赖另记在 `configs/stage10-requirements.txt`。full coverage 门禁继续保持 blocked。
+此前一轮在 WSL Ubuntu 24.04 的项目虚拟环境中完成 105/105 全仓单测。仿真工具链保持 Verilator 5.020、Cocotb 1.9.2、lowRISC FuseSoC 0.5.dev0、Edalize 0.4.0；新增 HTML 审计依赖另记在 `configs/stage10-requirements.txt`。full coverage 门禁继续保持 blocked。
+
+### Source-definition 分类 v2 与 full 仿真前预检（2026-11-16）
+
+分类器 v2 将四组数组字段接到 160 项 VCS 参考区间目录，按单条样本中的值计算 source-definition reference match，并将 legacy identity 仅作为参考字段记录。对 Stage 09 的 288 份 PASS traces、16,515 个 samples 重放后，观察到 209 个不同源码定义（195 variable、14 cross），包含 42,480 次数组参考区间匹配、247 次完整 interrupt-cross 标签匹配、64,340 次 named/singleton exact match、2,908 次 count-event value-range match 和 1,454 次 count-event cross member match。另有 16,940 个数组字段观察落在参考分区之外/无可匹配 bin，保留 unresolved；unknown 不作为 miss。Pin sample 的稳定 `values[...]` bin 与 transition bin 分别识别，illegal interrupt-test cross 会被排除。
+
+报告仍不代表原生 Verilator covergroup 或 UVM/VCS 命中；canonical coverage credit 增量为 0，175/4,507 个既有 positive identities 和 4,332 个 unknown 均未改变，full coverage rate 仍为 `null`。分类结果与 SHA-256 sidecar：[classification.json](../evidence/stage10_source_definition_classification/2026-11-16-v2/classification.json)、[sidecar](../evidence/stage10_source_definition_classification/2026-11-16-v2/classification.json.sha256)。
+
+新增预检检查定义目录、数组参考与 640 个 Python/source boundary probes、Stage 09 audit 和分类 hash；所有已具备的检查通过。启动 full 仿真的前置项仍未完成：4,507-bin exact Stage 06 matrix 缺失；直接 legacy bridge 仍为 341/4,507；shared/non-AON sample sites 和 UVM/VCS timing parity 未建立；Stage 07 paper scheduler 未启用；原生 Verilator/UVM/VCS array equivalence 未验证。预检明确记录 `full_simulation_started: false`、`full_simulation_start_gate: BLOCKED`，没有执行仿真：[preflight.json](../evidence/stage10_full_simulation_preflight/2026-11-16-v1/preflight.json)、[sidecar](../evidence/stage10_full_simulation_preflight/2026-11-16-v1/preflight.json.sha256)。
+
+在 WSL Ubuntu 项目虚拟环境 `build/stage10-python-env` 中，全仓单测 122/122 通过；Stage 09 replay audit 仍为 288/288 PASS。复核命令：
+
+```bash
+python3 tools/classify_source_definitions.py \
+  --trace-root evidence/stage09_comparison/2026-11-14-v1 \
+  --expected-trace-count 288 \
+  --output evidence/stage10_source_definition_classification/2026-11-16-v2/classification.json
+python3 tools/stage10_full_simulation_preflight.py
+python3 -m unittest discover -s tests -q
+python3 tools/audit_stage09_comparison.py \
+  --evidence-dir evidence/stage09_comparison/2026-11-14-v1
+```
 
 本机原论文仓库 Stage 06 转换器（旧仓库 commit `ff59c4a`，SHA-256 `31d9cf6e3c298409436be2888098ff7a9d888cd09b070bd27f0c3ddc12009506`）显示，legacy identity 最后一段由压缩 URG 行的 `offset` 产生，之后 CSV 列按 `bin_keys` 排序；`bin_manifest.json` 只登记最终列和计数，没有保存每列的展开 bin 名。该 manifest SHA-256 为 `cbc7e64a0004f0387f16f36e24edc2442a8225b3179fae6c673fe3ac84c28e3e`，其中登记的 CSV SHA-256 为 `71c02be6b80cb63973eeb96b26340f7e1d1ae2246674d148774c39c616ff1e94`。前一轮本机查找未找到对应 HTML，本轮已从学校服务器恢复。2,076 个 auto/value-range identities 的顺序候选保留为历史诊断，不允许直接提升为映射。其输入哈希见 [ordinal-range-candidates.json](../evidence/stage10_final_review/2026-11-15-v2/ordinal-range-candidates.json) 及其 [SHA-256 sidecar](../evidence/stage10_final_review/2026-11-15-v2/ordinal-range-candidates.json.sha256)。
 

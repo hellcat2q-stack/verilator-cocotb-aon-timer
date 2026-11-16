@@ -25,6 +25,12 @@ audit_canonical_identity_candidates.py --output <new-report.json> 按冻结的 c
 
 该审计还输出 ordinal range candidates：仅当 canonical occurrence 数与连续且唯一的源 value-range 数相等、offset 为 `0..N-1` 时，按值域顺序生成一对一候选。候选仍需原始 URG bin 行顺序或等价 VCS 证据确认；这一步不会生成完整向量或增加 coverage credit。若要把旧 Stage 06 header 绑定到证据，可同时传入 `--legacy-manifest`、`--legacy-matrix` 和 `--legacy-converter`；工具验证 manifest 声明的 CSV hash 和完整 header 次序，并在报告中记录三个输入的 SHA-256，不保存本机路径。
 
+## 2026-11-16 新增：source-definition v2 与 full 仿真前门禁
+
+- `classify_source_definitions.py` 将固定的 160 个 VCS 参考数组分区映射到单条 trace sample，解析完整 interrupt-cross bin label，并将 interrupt pin value/transition bins 分开分类。数组和 cross 结果只属于 source-definition/reference match，不增加旧 canonical coverage credit；illegal `intr_test=1 && intr_state=0` cross 会排除。
+- `stage10_full_simulation_preflight.py` 校验 catalog、数组来源/Python 边界审计、Stage 09 replay audit、source-classification hashes、Stage 06 exact matrix、identity bridge 和 sample-site readiness，写出只读的 preflight JSON。工具不会启动仿真。当前结果在 `evidence/stage10_full_simulation_preflight/2026-11-16-v1/preflight.json`，full 仿真门禁为 blocked。
+- 重放：`python3 tools/classify_source_definitions.py --trace-root evidence/stage09_comparison/2026-11-14-v1 --expected-trace-count 288 --output evidence/stage10_source_definition_classification/2026-11-16-v2/classification.json`，然后运行 `python3 tools/stage10_full_simulation_preflight.py`。分类报告和预检报告均生成 SHA-256 sidecar。
+
 ## 原有阶段工具
 
 `audit_legacy_urg_layouts.py` 恢复 URG `grp*.html` 的定义标签布局，验证首份报告与冻结 4,507 列一致，并检测不同报告的按位置对齐冲突。明确变量按 bin 名或 singleton 值匹配；压缩行和通配 cross 不猜测。HTML 导入依赖 `configs/stage10-requirements.txt`；使用 `--layouts <layouts.json>` 重放时仅需 Python 标准库。`tests/test_legacy_urg_layouts.py` 覆盖行序互换、singleton 包装、重复/压缩身份拒绝、公开布局重放和导出内容范围。证据见 `evidence/stage10_legacy_urg_layout/2026-11-15-v1/`。

@@ -1,10 +1,10 @@
 """Classify raw source samples against the pinned source-definition catalog.
 
-The classifier deliberately operates at the source-definition layer.  It does
-not assign legacy CSV/URG identities, infer misses, or claim VCS/URG
-equivalence.  A result may therefore contain exact named-bin matches, value
-range matches for count-event auto bins, and explicitly unresolved array or
-interrupt-cross observations.
+The classifier deliberately operates at the source-definition layer. It does
+not assign legacy CSV/URG coverage credit, infer misses, or claim VCS/URG
+equivalence. Results can include exact named-bin matches, count-event value
+ranges, checked array-reference partition matches, complete interrupt-cross
+label matches, and unresolved observations where no supported match exists.
 """
 
 from __future__ import annotations
@@ -20,8 +20,12 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG_PATH = ROOT / "references" / "bin_definitions.v1.json"
+ARRAY_RANGE_PATH = ROOT / "references" / "array_bin_ranges.v1.json"
+CANONICAL_CATALOG_PATH = ROOT / "references" / "canonical_bin_catalog.json"
+CANONICAL_IDS_PATH = ROOT / "references" / "canonical_bin_ids.txt"
 SCHEMA_PATH = ROOT / "configs" / "coverage_schema.json"
-CLASSIFIER_SCHEMA = "aon-timer-source-definition-classification-v1"
+ARRAY_PARTITION_AUDIT_PATH = ROOT / "evidence" / "stage03_array_bin_partition_audit.json"
+CLASSIFIER_SCHEMA = "aon-timer-source-definition-classification-v2"
 SOURCE_REVISION = "9f20940d494a223cc950a5b98f748fb28109d458"
 TRACE_SCHEMA_ID = "aon_timer_uvm_source_trace_v2"
 
@@ -43,10 +47,10 @@ SOURCE_SCOPES = {
 
 ARRAY_FIELDS = {
     "timer_cfg_cg": {
-        "prescale": "prescale_cp",
-        "bark_thold": "bark_thold_cp",
-        "bite_thold": "bite_thold_cp",
-        "wkup_thold": "wkup_thold_cp",
+        "prescale": ("prescale_cp", "prescale"),
+        "bark_thold": ("bark_thold_cp", "bark"),
+        "bite_thold": ("bite_thold_cp", "bite"),
+        "wkup_thold": ("wkup_thold_cp", "wkup"),
     }
 }
 
@@ -75,9 +79,27 @@ INTERRUPT_FIELDS = {
 }
 
 INTERRUPT_CROSSES = {
-    "intr_cg": "cross_cp_intr_cp_intr_en_cp_intr_state",
-    "intr_test_cg": "cross_cp_intr_cp_intr_test_cp_intr_en_cp_intr_state",
-    "intr_pins_cg": "cp_intr_pins_all_values",
+    "intr_cg": {
+        "schema_cross": "cross_cp_intr_cp_intr_en_cp_intr_state",
+        "catalog_item": "intr_cg_cc",
+    },
+    "intr_test_cg": {
+        "schema_cross": "cross_cp_intr_cp_intr_test_cp_intr_en_cp_intr_state",
+        "catalog_item": "intr_test_cg_cc",
+    },
+    "intr_pins_cg": {
+        "schema_cross": "cp_intr_pins_all_values",
+        "catalog_item": "cp_intr_pins_all_values",
+    },
+}
+
+CROSS_FIELD_ALIASES = {
+    "cp_intr": "intr",
+    "cp_intr_test": "intr_test",
+    "cp_intr_en": "intr_en",
+    "cp_intr_state": "intr_state",
+    "cp_intr_pin": "intr_pin",
+    "cp_intr_pin_value": "intr_pin_value",
 }
 
 
@@ -114,6 +136,115 @@ def load_catalog(path: Path = CATALOG_PATH) -> tuple[dict[str, Any], str]:
     return catalog, catalog_hash
 
 
+def load_array_reference(
+    catalog: dict[str, Any],
+    *,
+    range_catalog_path: Path = ARRAY_RANGE_PATH,
+    canonical_catalog_path: Path = CANONICAL_CATALOG_PATH,
+    canonical_ids_path: Path = CANONICAL_IDS_PATH,
+    coverage_schema_path: Path = SCHEMA_PATH,
+    partition_audit_path: Path = ARRAY_PARTITION_AUDIT_PATH,
+) -> tuple[dict[tuple[str, str, str, int], dict[str, Any]], dict[str, Any]]:
+    """Load checked source-declared array partitions and their legacy references.
+
+    The returned references can classify the source-declared array definition
+    and cross-reference the frozen legacy identity. They do not establish
+    native Verilator/UVM coverage equivalence.
+    """
+    range_path = Path(range_catalog_path)
+    range_raw = range_path.read_bytes()
+    range_catalog = json.loads(range_raw.decode("utf-8"))
+    range_hash = hashlib.sha256(range_raw).hexdigest()
+    sidecar_path = range_path.with_suffix(range_path.suffix + ".sha256")
+    sidecar_parts = sidecar_path.read_text(encoding="ascii").split()
+    if len(sidecar_parts) != 2 or sidecar_parts[0] != range_hash or sidecar_parts[1] != range_path.name:
+        raise ValueError("array range catalog SHA-256 sidecar mismatch")
+
+    coverage_schema = json.loads(Path(coverage_schema_path).read_text(encoding="utf-8"))
+    reference = coverage_schema.get("bin_definition_reference", {})
+    if reference.get("array_bin_range_catalog_sha256") != range_hash:
+        raise ValueError("coverage schema does not reference this array range catalog hash")
+
+    canonical_catalog = json.loads(Path(canonical_catalog_path).read_text(encoding="utf-8"))
+    canonical_ids = Path(canonical_ids_path).read_text(encoding="utf-8").splitlines()
+    ids_hash = hashlib.sha256(Path(canonical_ids_path).read_bytes()).hexdigest()
+    if ids_hash != canonical_catalog.get("canonical_bin_ids_sha256"):
+        raise ValueError("canonical identity list does not match its catalog hash")
+    if len(canonical_ids) != canonical_catalog.get("canonical_bin_count") or len(set(canonical_ids)) != len(canonical_ids):
+        raise ValueError("canonical identity list count or uniqueness check failed")
+
+    try:
+        from stage08_preflight import validate_array_range_catalog
+    except ModuleNotFoundError:
+        from tools.stage08_preflight import validate_array_range_catalog
+    unresolved, native_equivalence = validate_array_range_catalog(
+        catalog, canonical_ids, range_catalog, coverage_schema
+    )
+    if unresolved != 0 or native_equivalence:
+        raise ValueError("array reference partition failed its expected validation status")
+
+    audit_path = Path(partition_audit_path)
+    partition_audit = json.loads(audit_path.read_text(encoding="utf-8"))
+    canonical_range_json = json.dumps(
+        range_catalog, ensure_ascii=False, separators=(",", ":")
+    ).encode("utf-8")
+    canonical_range_hash = hashlib.sha256(canonical_range_json).hexdigest()
+    if (
+        partition_audit.get("schema") != "aon-timer-array-bin-partition-audit-v1"
+        or partition_audit.get("status") != "SOURCE_PARTITION_AND_PYTHON_CLASSIFIER_VERIFIED"
+        or partition_audit.get("source_revision") != SOURCE_REVISION
+        or partition_audit.get("array_range_catalog_sha256") != canonical_range_hash
+        or partition_audit.get("python_classifier_partition_verified") is not True
+        or partition_audit.get("native_verilator_systemverilog_coverage_verified") is not False
+    ):
+        raise ValueError("array source-partition audit is missing, stale, or inconsistent")
+    if set(partition_audit.get("arrays", {})) != set(range_catalog.get("arrays", {})):
+        raise ValueError("array source-partition audit does not cover every reference array")
+    for array_name, records in range_catalog["arrays"].items():
+        details = partition_audit["arrays"][array_name]
+        if (
+            details.get("partition_matches_reference") is not True
+            or details.get("endpoint_probe_count") != details.get("endpoint_probes_passed")
+            or details.get("source_bin_count") != len(records)
+        ):
+            raise ValueError(f"{array_name}: source partition endpoint audit failed")
+
+    definitions_by_index: dict[tuple[str, str, str, int], dict[str, Any]] = {}
+    for definition in catalog.get("definitions", []):
+        array_definition = definition.get("array_bin")
+        if not isinstance(array_definition, dict):
+            continue
+        match = re.fullmatch(r"([a-z]+)\[(\d+)\]", definition.get("bin_name", ""))
+        if not match:
+            raise ValueError("catalog contains an unsupported array-bin label")
+        array_name, label_index = match.groups()
+        index = array_definition.get("index")
+        if not isinstance(index, int) or index != int(label_index):
+            raise ValueError("catalog array-bin index disagrees with its name")
+        key = (definition["scope"], definition["item"], array_name, index)
+        if key in definitions_by_index:
+            raise ValueError(f"duplicate array source definition: {key}")
+        definitions_by_index[key] = definition
+
+    records_by_index: dict[tuple[str, int], dict[str, Any]] = {}
+    for array_name, records in range_catalog["arrays"].items():
+        for record in records:
+            key = (array_name, record["ordinal"])
+            if key in records_by_index:
+                raise ValueError(f"duplicate VCS reference array interval: {key}")
+            records_by_index[key] = record
+
+    cross_reference = {
+        "catalog_sha256": range_hash,
+        "canonical_identity_catalog_sha256": canonical_catalog.get("canonical_bin_ids_sha256"),
+        "partition_audit_file_sha256": sha256_file(audit_path),
+        "partition_audit_range_json_sha256": canonical_range_hash,
+        "source_and_python_partition_verified": True,
+        "native_verilator_uvm_equivalence_verified": False,
+    }
+    return definitions_by_index, {"records_by_index": records_by_index, "evidence": cross_reference}
+
+
 def _parse_membership(value: str) -> tuple[str, str, str] | None:
     """Parse CoverageTrace's ``group.coverpoint.bin`` membership label."""
     if not isinstance(value, str):
@@ -147,8 +278,20 @@ def _definition_id(entry: dict[str, Any]) -> str:
 class SourceDefinitionClassifier:
     """Map one raw source sample to source definition IDs where justified."""
 
-    def __init__(self, catalog: dict[str, Any]):
+    def __init__(
+        self,
+        catalog: dict[str, Any],
+        *,
+        array_definitions: dict[tuple[str, str, str, int], dict[str, Any]] | None = None,
+        array_reference: dict[str, Any] | None = None,
+    ):
         self.catalog = catalog
+        if array_definitions is None or array_reference is None:
+            loaded_definitions, loaded_reference = load_array_reference(catalog)
+            array_definitions = array_definitions or loaded_definitions
+            array_reference = array_reference or loaded_reference
+        self.array_definitions = array_definitions
+        self.array_reference = array_reference
         self._by_key: dict[tuple[str, str, str, str], dict[str, Any]] = {}
         self._by_scope_item: dict[tuple[str, str, str], list[dict[str, Any]]] = {}
         for definition in catalog["definitions"]:
@@ -209,6 +352,80 @@ class SourceDefinitionClassifier:
         if not candidates:
             return [], "NO_UNIQUE_VALUE_RANGE_CROSS_MATCH"
         return [], "AMBIGUOUS_VALUE_RANGE_CROSS_MATCH"
+
+    def _classify_interrupt_cross(
+        self, group: str, observation: dict[str, int], sample: dict[str, Any]
+    ) -> tuple[list[dict[str, Any]], str | None]:
+        cross_info = INTERRUPT_CROSSES[group]
+        scope = SOURCE_SCOPES[group]
+        if (group == "intr_test_cg" and observation.get("intr_test") == 1
+                and observation.get("intr_state") == 0):
+            return [], "ILLEGAL_INTERRUPT_CROSS_EXCLUDED"
+
+        expected_fields = set(INTERRUPT_FIELDS[group].values())
+        if set(observation) != expected_fields:
+            return [], "INTERRUPT_CROSS_OBSERVATION_FIELDS_MISMATCH"
+        sample_fields = sample.get("fields")
+        if (not isinstance(sample_fields, dict)
+                or any(type(sample_fields.get(field)) is not int
+                       or sample_fields.get(field) != value
+                       for field, value in observation.items())):
+            return [], "INTERRUPT_CROSS_SAMPLE_FIELD_MISMATCH"
+
+        transition = sample.get("observed_transition")
+        valid_transition = (
+            isinstance(transition, list) and len(transition) == 2
+            and all(type(value) is int and value in (0, 1) for value in transition)
+            and transition[0] != transition[1]
+            and transition[1] == observation.get("intr_pin_value")
+        )
+        candidates = []
+        for definition in self._by_scope_item.get(
+            (scope, "cross", cross_info["catalog_item"]), []
+        ):
+            labels = definition.get("bin_name", "")
+            members = {}
+            for member in labels.split(" x "):
+                name, separator, label = member.partition("=")
+                if not separator or name not in CROSS_FIELD_ALIASES:
+                    members = {}
+                    break
+                field = CROSS_FIELD_ALIASES[name]
+                if field in members:
+                    members = {}
+                    break
+                members[field] = label
+            if not members or set(members) != expected_fields:
+                continue
+            matches = True
+            for field, value in observation.items():
+                label = members[field]
+                if field == "intr":
+                    expected = re.fullmatch(r"all_values\[(\d+)\]", label)
+                    matches = bool(expected) and int(expected.group(1)) == value
+                elif field == "intr_pin":
+                    expected = re.fullmatch(r"all_pins\[(\d+)\]", label)
+                    matches = bool(expected) and int(expected.group(1)) == value
+                elif field == "intr_pin_value":
+                    value_match = re.fullmatch(r"values\[0x([01])\]", label)
+                    transition_match = re.fullmatch(r"transitions\[0x([01])=>0x([01])\]", label)
+                    value_matches = bool(value_match and int(value_match.group(1), 16) == value)
+                    transition_matches = bool(
+                        valid_transition and transition_match
+                        and [int(transition_match.group(1), 16),
+                             int(transition_match.group(2), 16)] == transition
+                    )
+                    matches = value_matches or transition_matches
+                else:
+                    value_match = re.fullmatch(r"auto\[(\d+)\]", label)
+                    matches = bool(value_match) and int(value_match.group(1)) == value
+                if not matches:
+                    break
+            if matches:
+                candidates.append(definition)
+        if not candidates:
+            return [], "NO_INTERRUPT_CROSS_LABEL_MATCH"
+        return candidates, None
 
     def _exact_memberships(
         self, sample: dict[str, Any], source_scope: str
@@ -303,12 +520,26 @@ class SourceDefinitionClassifier:
                 elif item == "cp_intr_pin":
                     bin_name = f"all_pins[{value}]"
                 elif item == "cp_intr_pin_value":
-                    bin_name = f"values[0x{value:x}]"
+                    bin_names = [f"values[0x{value:x}]"]
                     transition = sample.get("observed_transition")
                     if (isinstance(transition, list) and len(transition) == 2
-                            and transition[0] in (0, 1) and transition[1] in (0, 1)
-                            and transition[0] != transition[1]):
-                        bin_name = f"transitions[0x{transition[0]:x}=>0x{transition[1]:x}]"
+                            and all(type(part) is int and part in (0, 1) for part in transition)
+                            and transition[0] != transition[1] and transition[1] == value):
+                        bin_names.append(
+                            f"transitions[0x{transition[0]:x}=>0x{transition[1]:x}]"
+                        )
+                    for candidate_name in bin_names:
+                        definition = self._lookup_named(source_scope, item, candidate_name)
+                        if definition is None:
+                            unresolved.append({"kind": "variable", "item": item,
+                                               "bin_name": candidate_name,
+                                               "reason": "SOURCE_DEFINITION_NOT_FOUND"})
+                        else:
+                            matches.append({"definition_id": _definition_id(definition),
+                                            "match_kind": "SOURCE_DEFINITION_EXACT_MATCH",
+                                            "item": item, "bin_name": candidate_name,
+                                            "value": value})
+                    continue
                 if bin_name is None:
                     candidates = self._lookup_range(source_scope, item, value)
                     if len(candidates) == 1:
@@ -363,21 +594,48 @@ class SourceDefinitionClassifier:
         result["unresolved"].extend(unresolved)
         result["unresolved"].extend(more_unresolved)
 
-        for field, item in ARRAY_FIELDS.get(group, {}).items():
+        for field, (item, array_name) in ARRAY_FIELDS.get(group, {}).items():
             value = sample_fields.get(field)
-            if not isinstance(value, int):
+            if type(value) is not int:
+                result["array_partition_unresolved"].append({
+                    "item": item, "field": field,
+                    "reason": "ARRAY_VALUE_FIELD_MISSING_OR_INVALID",
+                })
                 continue
-            definitions = [
-                definition for definition in self._by_scope_item.get((source_scope, "variable", item), [])
-                if isinstance(definition.get("array_bin"), dict)
-                and definition["array_bin"].get("declared_value_range", [1, 0])[0]
-                <= value <= definition["array_bin"].get("declared_value_range", [1, 0])[1]
+            intervals = [
+                record for (reference_array, _), record
+                in self.array_reference.get("records_by_index", {}).items()
+                if reference_array == array_name
+                and record["value_range"][0] <= value <= record["value_range"][1]
             ]
-            if definitions:
+            if len(intervals) == 1:
+                record = intervals[0]
+                key = (source_scope, item, array_name, record["ordinal"])
+                definition = self.array_definitions.get(key)
+                if definition is not None:
+                    result["variable_matches"].append({
+                        "definition_id": _definition_id(definition),
+                        "match_kind": "SOURCE_DEFINITION_ARRAY_REFERENCE_MATCH",
+                        "item": item, "bin_name": definition["bin_name"],
+                        "value": value, "array_name": array_name,
+                        "ordinal": record["ordinal"],
+                        "reference_interval": record["source_interval_label"],
+                        "reference_value_range": record["value_range"],
+                        "legacy_identity_reference": record["canonical_identity"],
+                        "legacy_identity_credit_granted": False,
+                    })
+                    continue
                 result["array_partition_unresolved"].append({
                     "item": item, "field": field, "value": value,
-                    "reason": "ARRAY_PARTITION_UNRESOLVED",
-                    "candidate_definition_count": len(definitions),
+                    "reason": "ARRAY_SOURCE_DEFINITION_NOT_FOUND",
+                    "ordinal": record["ordinal"],
+                })
+            else:
+                result["array_partition_unresolved"].append({
+                    "item": item, "field": field, "value": value,
+                    "reason": ("ARRAY_REFERENCE_RANGE_NOT_FOUND" if not intervals
+                               else "ARRAY_REFERENCE_RANGE_AMBIGUOUS"),
+                    "candidate_interval_count": len(intervals),
                 })
 
         observations = sample.get("same_sample_cross_observations", {})
@@ -404,17 +662,42 @@ class SourceDefinitionClassifier:
                         result["unresolved"].append({"kind": "cross", "item": item,
                                                        "reason": reason or "CROSS_UNRESOLVED"})
                 elif group in {"intr_cg", "intr_test_cg", "intr_pins_cg"}:
-                    result["unresolved"].append({
-                        "kind": "cross", "item": item,
-                        "reason": "INTERRUPT_CROSS_SCHEMA_UNRESOLVED",
-                    })
+                    if not isinstance(observation, dict) or any(
+                        type(value) is not int for value in observation.values()
+                    ):
+                        result["unresolved"].append({
+                            "kind": "cross", "item": item,
+                            "reason": "MALFORMED_INTERRUPT_CROSS_OBSERVATION",
+                        })
+                        continue
+                    expected_item = INTERRUPT_CROSSES[group]["schema_cross"]
+                    if item != expected_item:
+                        result["unresolved"].append({
+                            "kind": "cross", "item": item,
+                            "reason": "SOURCE_CROSS_NOT_MAPPED",
+                        })
+                        continue
+                    matches, reason = self._classify_interrupt_cross(group, observation, sample)
+                    if matches:
+                        for definition in matches:
+                            result["cross_matches"].append({
+                                "definition_id": _definition_id(definition),
+                                "match_kind": "SOURCE_DEFINITION_CROSS_LABEL_MATCH",
+                                "item": item, "bin_name": definition["bin_name"],
+                                "observation": dict(observation),
+                            })
+                    else:
+                        result["unresolved"].append({
+                            "kind": "cross", "item": item,
+                            "reason": reason or "INTERRUPT_CROSS_UNRESOLVED",
+                        })
                 else:
                     result["unresolved"].append({"kind": "cross", "item": item,
                                                    "reason": "SOURCE_CROSS_NOT_MAPPED"})
 
         expected_crosses = COUNT_GROUPS.get(group, {}).get("crosses", set())
         if group in INTERRUPT_CROSSES:
-            expected_crosses = {INTERRUPT_CROSSES[group]}
+            expected_crosses = {INTERRUPT_CROSSES[group]["schema_cross"]}
         for item in expected_crosses:
             if item not in observations:
                 result["unresolved"].append({
@@ -468,14 +751,24 @@ class SourceDefinitionClassifier:
                 "unique_definition_match_count": len(set(variable_ids) | set(cross_ids)),
                 "exact_named_or_singleton_match_count": len(exact_ids),
                 "value_range_match_count": len(range_ids),
+                "array_reference_match_occurrence_count": sum(
+                    item["match_kind"] == "SOURCE_DEFINITION_ARRAY_REFERENCE_MATCH"
+                    for row in classifications for item in row["variable_matches"]
+                ),
                 "array_partition_unresolved_sample_count": sum(
                     bool(row["array_partition_unresolved"]) for row in classifications
                 ),
+                "array_partition_unresolved_observation_count": sum(
+                    len(row["array_partition_unresolved"]) for row in classifications
+                ),
                 "interrupt_cross_unresolved_sample_count": sum(
-                    any(item.get("reason") == "INTERRUPT_CROSS_SCHEMA_UNRESOLVED"
+                    any(item.get("kind") == "cross"
+                        and row["covergroup"] in INTERRUPT_CROSSES
                         for item in row["unresolved"])
                     for row in classifications
                 ),
+                "array_reference_evidence": self.array_reference.get("evidence", {}),
+                "native_verilator_uvm_equivalence_verified": False,
                 "legacy_identity_credit_granted": 0,
                 "full_coverage_rate_percent": None,
             },
@@ -520,6 +813,8 @@ def classify_passing_trace_tree(
     total_samples = 0
     array_unresolved_samples = 0
     array_unresolved_observations = 0
+    array_unresolved_reasons: Counter[str] = Counter()
+    interrupt_cross_unresolved_samples = 0
     for trace_path in trace_paths:
         attempt_path = trace_path.parent.parent / "attempt.json"
         if not attempt_path.is_file():
@@ -561,7 +856,12 @@ def classify_passing_trace_tree(
         ).encode("utf-8")
         per_file_matches: Counter[tuple[str, str]] = Counter()
         per_file_reasons: Counter[str] = Counter()
+        per_file_array_reasons: Counter[str] = Counter()
         for row in result["samples"]:
+            if (row["covergroup"] in INTERRUPT_CROSSES and any(
+                item.get("kind") == "cross" for item in row["unresolved"]
+            )):
+                interrupt_cross_unresolved_samples += 1
             for item in row["variable_matches"]:
                 key = (item["definition_id"], item["match_kind"], row["covergroup"])
                 definition_occurrences[key] += 1
@@ -579,6 +879,10 @@ def classify_passing_trace_tree(
             if row["array_partition_unresolved"]:
                 array_unresolved_samples += 1
                 array_unresolved_observations += len(row["array_partition_unresolved"])
+                for item in row["array_partition_unresolved"]:
+                    reason = item.get("reason", "UNSPECIFIED")
+                    array_unresolved_reasons[reason] += 1
+                    per_file_array_reasons[reason] += 1
 
         traces.append({
             "path": trace_path.relative_to(trace_root).as_posix(),
@@ -592,15 +896,18 @@ def classify_passing_trace_tree(
             "unique_definition_match_count": result["summary"]["unique_definition_match_count"],
             "variable_definition_match_occurrences": sum(
                 count for (definition_id, match_kind), count in per_file_matches.items()
-                if match_kind != "SOURCE_DEFINITION_CROSS_MEMBER_MATCH"
+                if not match_kind.startswith("SOURCE_DEFINITION_CROSS_")
             ),
             "cross_definition_match_occurrences": sum(
                 count for (definition_id, match_kind), count in per_file_matches.items()
-                if match_kind == "SOURCE_DEFINITION_CROSS_MEMBER_MATCH"
+                if match_kind.startswith("SOURCE_DEFINITION_CROSS_")
             ),
             "array_partition_unresolved_sample_count": result["summary"][
                 "array_partition_unresolved_sample_count"
             ],
+            "array_partition_unresolved_reason_counts": dict(
+                sorted(per_file_array_reasons.items())
+            ),
             "unresolved_reason_counts": dict(sorted(per_file_reasons.items())),
         })
         total_samples += len(samples)
@@ -616,7 +923,7 @@ def classify_passing_trace_tree(
         if "||cross||" in definition_id
     }
     return {
-        "schema": "aon-timer-source-definition-classification-corpus-v1",
+        "schema": "aon-timer-source-definition-classification-corpus-v2",
         "status": "SOURCE_DEFINITION_MAPPING_PARTIAL",
         "source_revision": SOURCE_REVISION,
         "definition_catalog_sha256": catalog_hash,
@@ -631,11 +938,19 @@ def classify_passing_trace_tree(
             "match_occurrence_counts": dict(sorted(match_kind_occurrences.items())),
             "array_partition_unresolved_sample_count": array_unresolved_samples,
             "array_partition_unresolved_observation_count": array_unresolved_observations,
-            "interrupt_cross_unresolved_sample_count": unresolved_reasons.get(
-                "INTERRUPT_CROSS_SCHEMA_UNRESOLVED", 0
+            "array_partition_unresolved_reason_counts": dict(
+                sorted(array_unresolved_reasons.items())
             ),
-            "unresolved_observation_count": sum(unresolved_reasons.values()),
+            "interrupt_cross_unresolved_sample_count": interrupt_cross_unresolved_samples,
+            "array_reference_match_occurrence_count": match_kind_occurrences.get(
+                "SOURCE_DEFINITION_ARRAY_REFERENCE_MATCH", 0
+            ),
+            "unresolved_observation_count": (
+                sum(unresolved_reasons.values()) + array_unresolved_observations
+            ),
             "legacy_identity_credit_granted": 0,
+            "native_verilator_uvm_equivalence_verified": False,
+            "array_reference_evidence": classifier.array_reference.get("evidence", {}),
             "full_coverage_rate_percent": None,
         },
         "traces": traces,
