@@ -1,0 +1,116 @@
+{
+  "schema": "aon-timer-uvm-vcs-timing-evidence-provenance-v2",
+  "source_revision": "9f20940d494a223cc950a5b98f748fb28109d458",
+  "vcs": {
+    "compiler": "P-2019.06-SP1_Full64",
+    "runtime": "P-2019.06-SP1_Full64",
+    "simv_sha256": "7e833b7f10ab3144e8fb75bf34637c7a720f790c8488ede19280182514750e73",
+    "simv_path_redacted": true,
+    "build_source_revision_verified": false,
+    "current_scoreboard_sha256": "cc92b1dce6ba10997c4bc606db0bb4d7a1fc1c345302385fc787fd81a8557804",
+    "pinned_scoreboard_sha256": "b6534a47a116206144cdb332fcff9a58e49ef64eea965d9ddd8497f0b4d26d65",
+    "source_inspection_note": "Current build-tree source differs from pinned baseline; complete sources originally compiled into simv are not attested."
+  },
+  "logs": [
+    {
+      "log_name": "vcs_bark.log",
+      "remote_log_reference": "vcs_bark.log",
+      "remote_path_redacted": true,
+      "sha256": "b8442b30c27d828efc3357f177322ef856d103b62367dee528381c715702e462",
+      "event_excerpt": "event-excerpts/vcs_bark.log",
+      "event_excerpt_sha256": "0bf71c23198b41d565e14581938d3e79ef3b91aef6e8d24e4ac4ba89bbb4e93f",
+      "event_count": 3,
+      "uvm_error_count": 0,
+      "uvm_fatal_count": 0,
+      "test_passed_checks": true,
+      "primary_group": "watchdog_timer_bark_thold_hit_cg",
+      "testcase": "aon_timer_jump_vseq",
+      "seed": 1,
+      "process_exit_code": null,
+      "simulation_plusargs": [
+        "+UVM_TESTNAME=aon_timer_base_test",
+        "+UVM_TEST_SEQ=aon_timer_jump_vseq",
+        "+ntb_random_seed=1",
+        "+UVM_VERBOSITY=UVM_HIGH",
+        "+aon_steer_field=2",
+        "+aon_steer_value=3"
+      ]
+    },
+    {
+      "log_name": "vcs_bite.log",
+      "remote_log_reference": "vcs_bite.log",
+      "remote_path_redacted": true,
+      "sha256": "8ce730983b42a372753b71003efef98838ab5d9b08110e7456c56c25ffdae340",
+      "event_excerpt": "event-excerpts/vcs_bite.log",
+      "event_excerpt_sha256": "b04cd2642dd8bc0e1721d5dbd5383387f746b2c39def6b3f85e2bbbddc58c8c9",
+      "event_count": 3,
+      "uvm_error_count": 0,
+      "uvm_fatal_count": 0,
+      "test_passed_checks": true,
+      "primary_group": "watchdog_timer_bite_thold_hit_cg",
+      "testcase": "aon_timer_jump_vseq",
+      "seed": 1,
+      "process_exit_code": null,
+      "simulation_plusargs": [
+        "+UVM_TESTNAME=aon_timer_base_test",
+        "+UVM_TEST_SEQ=aon_timer_jump_vseq",
+        "+ntb_random_seed=1",
+        "+UVM_VERBOSITY=UVM_HIGH",
+        "+aon_steer_field=3",
+        "+aon_steer_value=3"
+      ]
+    },
+    {
+      "log_name": "vcs_jump.log",
+      "remote_log_reference": "vcs_jump.log",
+      "remote_path_redacted": true,
+      "sha256": "da9cba8961b5b2242e3f6f0260133ac3c2188cdd183b0e797a3695fac92a3839",
+      "event_excerpt": "event-excerpts/vcs_jump.log",
+      "event_excerpt_sha256": "25913e8d3f8bf503e07a66e8378bca06586aa5d1125a2da513e0a7caa3e60260",
+      "event_count": 6,
+      "uvm_error_count": 0,
+      "uvm_fatal_count": 0,
+      "test_passed_checks": true,
+      "primary_group": "wake_up_timer_thold_hit_cg",
+      "testcase": "aon_timer_jump_vseq",
+      "seed": 1,
+      "process_exit_code": null,
+      "simulation_plusargs": [
+        "+UVM_TESTNAME=aon_timer_base_test",
+        "+UVM_TEST_SEQ=aon_timer_jump_vseq",
+        "+ntb_random_seed=1",
+        "+UVM_VERBOSITY=UVM_HIGH"
+      ]
+    },
+    {
+      "log_name": "vcs_smoke.log",
+      "remote_log_reference": "vcs_smoke.log",
+      "remote_path_redacted": true,
+      "sha256": "85501fb2fcca57d59b685c163b5ca570d530904600db6e2ffd2dc94b7252fe91",
+      "event_excerpt": "event-excerpts/vcs_smoke.log",
+      "event_excerpt_sha256": "473b7f8d6da19723d1db5918fb814807a3386290fffd36212ace32eeecce4edd",
+      "event_count": 9,
+      "uvm_error_count": 0,
+      "uvm_fatal_count": 0,
+      "test_passed_checks": true,
+      "primary_group": "wake_up_timer_thold_hit_cg",
+      "testcase": "aon_timer_smoke_vseq",
+      "seed": 1,
+      "process_exit_code": null,
+      "simulation_plusargs": [
+        "+UVM_TESTNAME=aon_timer_base_test",
+        "+UVM_TEST_SEQ=aon_timer_smoke_vseq",
+        "+ntb_random_seed=1",
+        "+UVM_VERBOSITY=UVM_HIGH"
+      ]
+    }
+  ],
+  "rules": {
+    "coverage_credit_granted": 0,
+    "unknowns_are_misses": false,
+    "full_simulation_started": false,
+    "complete_testcase_waveform_equivalence": false
+  },
+  "reused_raw_evidence": "2026-11-16-v1 event excerpts; no additional simulation",
+  "observation_scope": "SCOREBOARD_CONTROL_MESSAGES_ONLY"
+}

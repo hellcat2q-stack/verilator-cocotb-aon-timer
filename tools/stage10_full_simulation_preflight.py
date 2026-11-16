@@ -63,9 +63,13 @@ DEFAULT_ARRAY_VCS_BOUNDARY_AUDIT = (
     ROOT / "evidence" / "stage10_vcs_array_boundary"
     / "2026-11-16-v1" / "audit.json"
 )
+DEFAULT_UVM_TIMING_SHAPE_AUDIT = (
+    ROOT / "evidence" / "stage10_uvm_vcs_timing"
+    / "2026-11-16-v2" / "audit.json"
+)
 DEFAULT_OUTPUT = (
     ROOT / "evidence" / "stage10_full_simulation_preflight"
-    / "2026-11-16-v3" / "preflight.json"
+    / "2026-11-16-v4" / "preflight.json"
 )
 
 
@@ -98,6 +102,7 @@ def build_preflight(
     sample_site_audit_path: Path = DEFAULT_SAMPLE_SITE_AUDIT,
     legacy_vector_header_audit_path: Path = DEFAULT_LEGACY_VECTOR_HEADER_AUDIT,
     array_vcs_boundary_audit_path: Path = DEFAULT_ARRAY_VCS_BOUNDARY_AUDIT,
+    uvm_timing_shape_audit_path: Path = DEFAULT_UVM_TIMING_SHAPE_AUDIT,
 ) -> dict[str, Any]:
     catalog, catalog_hash = load_catalog(CATALOG_PATH)
     array_definitions, array_reference = load_array_reference(catalog)
@@ -110,6 +115,24 @@ def build_preflight(
     classification = read_json(classification_path)
     identity_bridge = read_json(identity_bridge_path)
     sample_site_audit = read_json(sample_site_audit_path)
+    timing_shape = read_json(uvm_timing_shape_audit_path)
+    timing_shape_hash = sha256_file(uvm_timing_shape_audit_path)
+    timing_sidecar = Path(str(uvm_timing_shape_audit_path) + ".sha256").read_text(encoding="ascii").split()
+    if timing_sidecar != [timing_shape_hash, Path(uvm_timing_shape_audit_path).name]:
+        raise ValueError("UVM timing shape audit SHA-256 sidecar mismatch")
+    try:
+        from tools.audit_uvm_vcs_timing import audit_evidence as replay_timing_shape
+    except ModuleNotFoundError:
+        from audit_uvm_vcs_timing import audit_evidence as replay_timing_shape
+    if timing_shape != replay_timing_shape(Path(uvm_timing_shape_audit_path).parent):
+        raise ValueError("UVM timing shape audit does not replay from diagnostic evidence")
+    timing_shape_verified = (
+        timing_shape.get("status") == "PASS"
+        and timing_shape.get("count_event_shape_comparison_complete") is True
+        and timing_shape.get("independent_uvm_vcs_timing_comparison_complete") is False
+        and timing_shape.get("covergroup_sample_invocations_observed") is False
+        and timing_shape.get("coverage_credit_granted") == 0
+    )
     legacy_headers = read_json(legacy_vector_header_audit_path)
     array_boundary = read_json(array_vcs_boundary_audit_path)
     boundary_hash = sha256_file(array_vcs_boundary_audit_path)
@@ -292,7 +315,7 @@ def build_preflight(
         )
     if not timing_parity_complete:
         blockers.append(
-            "Count-event sampling cadence lacks complete testcase/sample-level UVM/VCS timing parity; "
+            "Count-event sampling cadence lacks source-locked testcase/sample-level UVM/VCS timing parity; "
             "any compact shape evidence remains diagnostic only."
         )
     if not replay.get("status") == "PASS" or replay.get("attempts_replayed") != 288:
@@ -350,6 +373,7 @@ def build_preflight(
         "count_event_cadence_model_is_present": (
             sample_site_audit.get("count_event_timing", {}).get("cadence_model_present") is True
         ),
+        "uvm_control_event_shape_diagnostic_is_replayed": timing_shape_verified,
         "stage06_exact_matrix_is_available": stage06_exact,
         "legacy_identity_bridge_is_complete": mapping == canonical_count,
         "sample_site_mapping_is_complete": sample_site_complete,
@@ -365,7 +389,7 @@ def build_preflight(
         "full_coverage_rate_is_reportable": False,
     }
     return {
-        "schema": "aon-timer-stage10-full-simulation-preflight-v1",
+        "schema": "aon-timer-stage10-full-simulation-preflight-v2",
         "status": "BLOCKED_BEFORE_FULL_SIMULATION",
         "source_revision": catalog.get("source_revision"),
         "full_simulation_started": False,
@@ -419,6 +443,14 @@ def build_preflight(
             "shared_scope_mapping_complete": shared_scope_mapping_complete,
             "count_event_cadence_model_present": sample_site_audit.get("count_event_timing", {}).get("cadence_model_present"),
             "sample_sites_complete": sample_site_complete,
+            "uvm_control_event_shape_diagnostic_complete": timing_shape_verified,
+            "uvm_control_event_run_count": len(timing_shape.get("runs", [])),
+            "uvm_control_message_count": sum(row["event_count"] for row in timing_shape["runs"]),
+            "uvm_covergroup_sample_invocations_observed": False,
+            "uvm_build_source_revision_verified": timing_shape.get("build_source_revision_verified"),
+            "uvm_build_tree_scoreboard_matches_pinned": timing_shape.get(
+                "current_build_tree_scoreboard_matches_pinned"
+            ),
             "native_verilator_uvm_equivalence_verified": False,
         },
         "blockers": blockers,
@@ -477,6 +509,11 @@ def build_preflight(
                 "sha256": boundary_hash,
                 "scope": "Official timer_cfg_cg array bin boundaries; excludes RTL/UVM sample timing.",
             },
+            "uvm_timing_shape_diagnostic": {
+                "path": _relative(uvm_timing_shape_audit_path),
+                "sha256": timing_shape_hash,
+                "scope": "Count/expiry producer control messages only; cannot satisfy the sampling parity gate.",
+            },
             "trace_root": _relative(trace_root),
         },
     }
@@ -493,6 +530,7 @@ def main() -> int:
     parser.add_argument("--sample-site-audit", type=Path, default=DEFAULT_SAMPLE_SITE_AUDIT)
     parser.add_argument("--legacy-vector-header-audit", type=Path, default=DEFAULT_LEGACY_VECTOR_HEADER_AUDIT)
     parser.add_argument("--array-vcs-boundary-audit", type=Path, default=DEFAULT_ARRAY_VCS_BOUNDARY_AUDIT)
+    parser.add_argument("--uvm-timing-shape-audit", type=Path, default=DEFAULT_UVM_TIMING_SHAPE_AUDIT)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument("--require-ready", action="store_true",
                         help="Return exit code 2 when the full-simulation start gate is blocked.")
@@ -508,6 +546,7 @@ def main() -> int:
             sample_site_audit_path=args.sample_site_audit,
             legacy_vector_header_audit_path=args.legacy_vector_header_audit,
             array_vcs_boundary_audit_path=args.array_vcs_boundary_audit,
+            uvm_timing_shape_audit_path=args.uvm_timing_shape_audit,
         )
     except (OSError, UnicodeError, ValueError, KeyError, json.JSONDecodeError) as exc:
         parser.error(str(exc))

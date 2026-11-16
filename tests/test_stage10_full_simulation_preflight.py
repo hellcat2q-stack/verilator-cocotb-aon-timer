@@ -9,6 +9,7 @@ from pathlib import Path
 from tools.stage10_full_simulation_preflight import (
     DEFAULT_CLASSIFICATION,
     DEFAULT_LEGACY_VECTOR_HEADER_AUDIT,
+    DEFAULT_UVM_TIMING_SHAPE_AUDIT,
     build_preflight,
 )
 
@@ -34,6 +35,12 @@ class Stage10FullSimulationPreflightTests(unittest.TestCase):
         self.assertTrue(report["checks"]["aon_capture_protocol_is_complete"])
         self.assertFalse(report["checks"]["shared_scope_mapping_is_complete"])
         self.assertTrue(report["checks"]["count_event_cadence_model_is_present"])
+        self.assertTrue(report["checks"]["uvm_control_event_shape_diagnostic_is_replayed"])
+        self.assertFalse(report["checks"]["independent_uvm_vcs_timing_comparison_complete"])
+        self.assertEqual(report["summary"]["uvm_control_message_count"], 21)
+        self.assertFalse(report["summary"]["uvm_build_source_revision_verified"])
+        self.assertFalse(report["summary"]["uvm_build_tree_scoreboard_matches_pinned"])
+        self.assertEqual(report["summary"]["uvm_control_event_run_count"], 4)
         self.assertTrue(report["checks"]["legacy_vector_header_audit_is_current_and_diagnostic_only"])
         self.assertGreater(len(report["blockers"]), 0)
 
@@ -74,6 +81,22 @@ class Stage10FullSimulationPreflightTests(unittest.TestCase):
             report = json.loads(output.read_text(encoding="utf-8"))
             self.assertEqual(report["full_simulation_start_gate"], "BLOCKED")
             self.assertFalse(report["full_simulation_started"])
+
+    def test_shape_evidence_cannot_be_promoted_with_a_rehashed_report(self):
+        import hashlib
+
+        with tempfile.TemporaryDirectory() as directory:
+            copied = Path(directory) / "timing"
+            shutil.copytree(DEFAULT_UVM_TIMING_SHAPE_AUDIT.parent, copied)
+            path = copied / "audit.json"
+            report = json.loads(path.read_text(encoding="utf-8"))
+            report["independent_uvm_vcs_timing_comparison_complete"] = True
+            path.write_text(json.dumps(report), encoding="utf-8")
+            Path(str(path) + ".sha256").write_text(
+                f"{hashlib.sha256(path.read_bytes()).hexdigest()}  audit.json\n", encoding="ascii"
+            )
+            with self.assertRaisesRegex(ValueError, "does not replay from diagnostic"):
+                build_preflight(uvm_timing_shape_audit_path=path)
 
 
 if __name__ == "__main__":

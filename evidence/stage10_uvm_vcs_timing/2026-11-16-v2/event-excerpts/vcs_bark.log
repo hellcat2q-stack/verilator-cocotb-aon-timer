@@ -1,0 +1,3 @@
+UVM_INFO @ 421707766 ps: (aon_timer_scoreboard.sv:368) uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] WDOG Bark Timer count:          1
+UVM_INFO @ 421707766 ps: (aon_timer_scoreboard.sv:371) uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] WDOG Bark Timer expired check for interrupts
+UVM_INFO @ 421707766 ps: (aon_timer_scoreboard.sv:437) uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] WDOG Bite Timer count:          1

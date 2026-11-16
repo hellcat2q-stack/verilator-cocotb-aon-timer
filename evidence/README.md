@@ -1,5 +1,7 @@
 # 证据目录
 
+当前 UVM/VCS 局部诊断使用 [timing v2](stage10_uvm_vcs_timing/2026-11-16-v2/README.md)，v1 因完整时序标志过强已标为 superseded。v2 实际重放 Python scheduler，并明确只观察控制事件，未验证实际 covergroup 调用；现成 simv 所在源码树的 scoreboard 也不匹配 pinned 文件。full gate 采用 [preflight v4](stage10_full_simulation_preflight/2026-11-16-v4/preflight.json)，局部诊断不解除完整时序要求。
+
 保存可公开复核的小型摘要：版本、命令、退出码、seed、test 状态、vectors、schema 与 hashes。不要提交 VCS VDB、simv、许可证、token、私有服务器路径或大型完整日志。历史 VCS 数据仅作定义参考。
 
 `stage02_smoke_summary.json` 记录固定源码上的一次 Verilator/Cocotb smoke、seed、PASS 状态和未提交完整日志的 SHA-256。
@@ -51,4 +53,4 @@ python3 tools/stage10_full_simulation_preflight.py
 
 `stage10_final_review/2026-11-14-v1/review.json` 是 Stage 09 结果口径的独立审查记录，包含复核状态、输入 hashes、canonical/URG 计数区分和 coverage 限制。它明确记录 full coverage rate 为不可报告；175/4,507（3.8828%）只表示已确认正向 identity 占 canonical 目录比例。
 
-`stage10_uvm_vcs_timing/2026-11-16-v1/` 保存四个短 VCS/UVM_HIGH 运行的 21 条过滤 count/expiry 事件、完整远程日志 SHA-256 和 VCS `simv` SHA-256。wakeup smoke/jump、watchdog bark、watchdog bite 的主事件组均通过 cadence shape 审计；bark/bite 中的伴随 watchdog count 保留为 incidental diagnostic event。证据只建立局部 count-event timing shape，不导入 VCS/URG hit counts，不授予 coverage credit，也不证明 testcase-by-testcase waveform、shared/non-AON 或完整 UVM/VCS 采样等价。报告、来源登记和 sidecar：[audit.json](stage10_uvm_vcs_timing/2026-11-16-v1/audit.json)、[provenance.json](stage10_uvm_vcs_timing/2026-11-16-v1/provenance.json)、[audit sidecar](stage10_uvm_vcs_timing/2026-11-16-v1/audit.json.sha256)。
+`stage10_uvm_vcs_timing/2026-11-16-v2/` 复用四个短 VCS/UVM_HIGH 运行的 21 条过滤 count/expiry 事件、完整远程日志 SHA-256 和 VCS `simv` SHA-256。wakeup smoke/jump、watchdog bark、watchdog bite 的主事件组均通过 cadence shape 审计；bark/bite 中的伴随 watchdog count 保留为 incidental diagnostic event。证据只建立局部 count-event timing shape，不导入 VCS/URG hit counts，不授予 coverage credit，也不证明 testcase-by-testcase waveform、shared/non-AON 或完整 UVM/VCS 采样等价。报告、来源登记和 sidecar：[audit.json](stage10_uvm_vcs_timing/2026-11-16-v2/audit.json)、[provenance.json](stage10_uvm_vcs_timing/2026-11-16-v2/provenance.json)、[audit sidecar](stage10_uvm_vcs_timing/2026-11-16-v2/audit.json.sha256)。

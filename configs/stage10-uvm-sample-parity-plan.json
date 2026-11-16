@@ -1,0 +1,35 @@
+{
+  "schema": "aon-timer-uvm-sample-parity-plan-v1",
+  "status": "NOT_STARTED",
+  "source_revision": "9f20940d494a223cc950a5b98f748fb28109d458",
+  "full_simulation_started": false,
+  "coverage_credit_granted": 0,
+  "current_diagnostic_evidence": "evidence/stage10_uvm_vcs_timing/2026-11-16-v2/audit.json",
+  "source_policy": {
+    "use_new_isolated_source_and_build": true,
+    "preserve_existing_server_checkout_and_results": true,
+    "record_clean_revision_source_hashes_and_every_instrumentation_patch": true,
+    "do_not_reuse_prebuilt_simv_as_pinned_source_attestation": true,
+    "do_not_apply_reference_scoreboard_fixes_without_separate_variant_and_review": true
+  },
+  "capture_requirements": [
+    "Record each actual covergroup .sample() invocation inside its sampling branch, including simulation time, sequence index and all arguments.",
+    "Record AON clock edges and enable/update/reset/sleep events, so startup delay and same-edge ordering can be measured.",
+    "Use identical explicit stimuli and recorded clock/reset settings in the UVM and Cocotb short runs; do not equate random seed numbers across frameworks.",
+    "Distinguish control-event messages from actual sample calls; explicitly compare same-time count/expiry behavior.",
+    "Compare sample tuples, ordering and timing with a documented clock-domain alignment; preserve mismatches and unknowns.",
+    "Retain source/build/tool hashes, testcase, seed, exact parameters, process exit status and zero-error/fatal summaries for both runs."
+  ],
+  "execution_constraints": {
+    "start_full_simulation": false,
+    "change_existing_budgets_or_frozen_parameters": false,
+    "import_historical_vcs_hit_counts": false,
+    "treat_unknown_as_miss": false,
+    "promote_compact_shape_diagnostic_to_full_parity": false
+  },
+  "remaining_scope": [
+    "Timer startup/count/expiry, updates, restart, prescale, sleep/pause and reset semantics.",
+    "Interrupt fields, pin transitions and shared/non-AON sample sites.",
+    "Legacy exact identity mapping, exact Stage 06 vectors and paper Stage 07 scheduler."
+  ]
+}

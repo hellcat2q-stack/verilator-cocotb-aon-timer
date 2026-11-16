@@ -1,0 +1,6 @@
+UVM_INFO @ 421707766 ps: (aon_timer_scoreboard.sv:289) uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] WKUP Timer count:          1
+UVM_INFO @ 426707766 ps: (aon_timer_scoreboard.sv:289) uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] WKUP Timer count:          2
+UVM_INFO @ 431707766 ps: (aon_timer_scoreboard.sv:289) uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] WKUP Timer count:          3
+UVM_INFO @ 436707766 ps: (aon_timer_scoreboard.sv:289) uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] WKUP Timer count:          4
+UVM_INFO @ 441707766 ps: (aon_timer_scoreboard.sv:289) uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] WKUP Timer count:          5
+UVM_INFO @ 441707766 ps: (aon_timer_scoreboard.sv:292) uvm_test_top.env.scoreboard [uvm_test_top.env.scoreboard] WKUP Timer expired check for interrupts

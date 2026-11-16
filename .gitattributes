@@ -4,3 +4,5 @@
 *.xml text eol=lf
 *.csv text eol=lf
 evidence/stage10_uvm_vcs_timing/**/*.log text eol=lf
+tools/audit_uvm_vcs_timing.py text eol=lf
+tools/coverage_model.py text eol=lf

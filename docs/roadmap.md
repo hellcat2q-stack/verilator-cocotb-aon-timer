@@ -1,5 +1,7 @@
 # 路线图与阶段门
 
+当前下一项是[独立 pinned build 的逐采样对照](../configs/stage10-uvm-sample-parity-plan.json)：记录实际 `.sample()` 调用及实参，使用相同显式刺激比较 UVM 与 Cocotb。现有四次短运行仅验证控制事件形状；现成 simv 对应源码树的 scoreboard 与固定 revision 不同，不构成固定版本的采样等价证据。最新 [v4 full preflight](../evidence/stage10_full_simulation_preflight/2026-11-16-v4/preflight.json) 已纳入 v2 诊断重放，5 项 blocker 仍在。
+
 | 阶段 | 交付 | 阶段门 |
 | --- | --- | --- |
 | 01 | 源码与环境锁定 | revision、coverage reference、工具版本可追溯 |

@@ -28,7 +28,7 @@ audit_canonical_identity_candidates.py --output <new-report.json> 按冻结的 c
 ## 2026-11-16 新增：source-definition v2 与 full 仿真前门禁
 
 - `classify_source_definitions.py` 将固定的 160 个 VCS 参考数组分区映射到单条 trace sample，解析完整 interrupt-cross bin label，并将 interrupt pin value/transition bins 分开分类。数组和 cross 结果只属于 source-definition/reference match，不增加旧 canonical coverage credit；illegal `intr_test=1 && intr_state=0` cross 会排除。
-- `stage10_full_simulation_preflight.py` 校验 catalog、数组来源/Python 边界审计、Stage 09 replay audit、source-classification hashes、identity bridge、Stage 06 exact matrix 和 sample-site readiness，写出只读的 preflight JSON。工具不会启动仿真。当前结果在 `evidence/stage10_full_simulation_preflight/2026-11-16-v3/preflight.json`，full 仿真门禁为 blocked；若已有局部 timing shape 证据，blocker 仍要求完整 testcase/sample-level parity。
+- `stage10_full_simulation_preflight.py` 校验 catalog、数组来源/Python 边界审计、Stage 09 replay audit、source-classification hashes、identity bridge、Stage 06 exact matrix 和 sample-site readiness，写出只读的 preflight JSON。工具不会启动仿真。当前结果在 `evidence/stage10_full_simulation_preflight/2026-11-16-v4/preflight.json`，full 仿真门禁为 blocked；若已有局部 timing shape 证据，blocker 仍要求完整 testcase/sample-level parity。
 - 重放：`python3 tools/classify_source_definitions.py --trace-root evidence/stage09_comparison/2026-11-14-v1 --expected-trace-count 288 --output evidence/stage10_source_definition_classification/2026-11-16-v2/classification.json`，然后运行 `python3 tools/stage10_full_simulation_preflight.py`。分类报告和预检报告均生成 SHA-256 sidecar。
 
 ## 2026-11-16 新增：历史 vector header 与 native VCS 数组边界审计
@@ -51,25 +51,19 @@ audit_canonical_identity_candidates.py --output <new-report.json> 按冻结的 c
 
 ## 2026-11-16 新增：UVM/VCS count-event timing shape 对照
 
-- `audit_uvm_vcs_timing.py` 只解析 UVM_HIGH scoreboard 的 `count`/`expiry` 行，检查计数顺序、5 ns 等间隔和最后一个 count 与 expiry 是否同边沿，并与 `TimerSampleScheduler` 的事件形状对照。`--expected-group LOG_NAME=GROUP` 允许保留 bark/bite 运行中的伴随 watchdog 事件，同时只按该运行的主事件组判定；`--source-hashes` 可把 compact event excerpt 与完整远程日志 SHA-256 分开登记。
-- 当前证据包含四个短 VCS/UVM 运行、21 条过滤事件，覆盖 wakeup smoke/jump、watchdog bark 和 watchdog bite 三个主 group。它不导入 VCS/URG hit counts，不读取 VDB，不创建 canonical coverage credit，也不解除 full gate。
-- 重放命令：
+- `audit_uvm_vcs_timing.py` v2 实际调用 `TimerSampleScheduler.tick()`，以 UVM_HIGH 的 count 数为假定 countdown 长度，从首个 count 对齐比较控制事件顺序。wakeup 相邻 count 间隔为 5 μs；bark/bite 各只有一个主 count，不能测量间隔。伴随事件不用于补足三个主 group 的验证。
+- 四个短运行保留 21 条事件。工具核验来源 JSON、原日志 hash、事件摘要 hash、工具和模型 hash，拒绝重复 expiry、事件倒序、不等间隔和被修改的摘要。`count_event_shape_comparison_complete` 可以为 true；完整 `independent_uvm_vcs_timing_comparison_complete` 固定为 false。工具不读取 VDB 或历史 hit counts，不授予 coverage credit。
+- 这些消息记录事件触发处，没有记录 covergroup 实际调用或实参。当前 build tree 的 scoreboard 还与 pinned revision 不同，simv 完整 build 来源未重建，因此只作诊断。四周期 startup 延迟、实际采样调用次数、逐样本取值和完整 waveform parity 均未验证。
 
-  ```bash
-  python3 tools/audit_uvm_vcs_timing.py \
-    --log evidence/stage10_uvm_vcs_timing/2026-11-16-v1/event-excerpts/vcs_smoke.log \
-    --log evidence/stage10_uvm_vcs_timing/2026-11-16-v1/event-excerpts/vcs_jump.log \
-    --log evidence/stage10_uvm_vcs_timing/2026-11-16-v1/event-excerpts/vcs_bark.log \
-    --log evidence/stage10_uvm_vcs_timing/2026-11-16-v1/event-excerpts/vcs_bite.log \
-    --expected-group vcs_smoke.log=wake_up_timer_thold_hit_cg \
-    --expected-group vcs_jump.log=wake_up_timer_thold_hit_cg \
-    --expected-group vcs_bark.log=watchdog_timer_bark_thold_hit_cg \
-    --expected-group vcs_bite.log=watchdog_timer_bite_thold_hit_cg \
-    --source-hashes evidence/stage10_uvm_vcs_timing/2026-11-16-v1/source-hashes.json \
-    --output build/stage10-uvm-vcs-timing-audit.json
-  ```
+重放命令：
 
-  该对照只代表 cadence shape；完整 testcase、采样值、interrupt pin、shared/non-AON covergroups 和 waveform parity 仍需独立证据。
+```bash
+python3 tools/audit_uvm_vcs_timing.py \
+  --evidence-dir evidence/stage10_uvm_vcs_timing/2026-11-16-v2 \
+  --output build/stage10-uvm-control-shape-replay.json
+```
+
+证据说明见 [v2 README](../evidence/stage10_uvm_vcs_timing/2026-11-16-v2/README.md)。下一轮应在独立 pinned build 的实际 `.sample()` 分支记录全部实参，与相同显式刺激下的 Cocotb 短运行逐条比较；具体要求见 [逐采样对照计划](../configs/stage10-uvm-sample-parity-plan.json)。full gate 保持 BLOCKED。
 
 ## 原有阶段工具
 
@@ -93,6 +87,6 @@ audit_canonical_identity_candidates.py --output <new-report.json> 按冻结的 c
 
 `tools/audit_array_bin_observations.py --output <audit.json>` 校验 Stage 05 raw trace hashes 与样本元数据，再将 `timer_cfg_cg` 原始数值按 VCS 参考区间分类。它只导出正向观察 audit，不生成 coverage vector，不对未观察 bins 推断 miss，也不宣称 Verilator coverage parity。
 
-count-event trace v2 为固定 wrapper 增加只读 counter 观察口；`TimerSampleScheduler` 模拟 scoreboard 的 4 个 AON startup clocks、countdown 更新与 expiry sampling，runner 复核每条 count group 的 event shape 和 RTL counter 值。连续 expiry 后还会重入 startup 等待。该模型尚未与独立 VCS/UVM trace 比对，因此其时序属于实现验证状态，不代表 coverage parity；Stage 06 继续只转换 source-confirmed explicit named bins。
+count-event trace v2 为固定 wrapper 增加只读 counter 观察口；`TimerSampleScheduler` 模拟 scoreboard 的 4 个 AON startup clocks、countdown 更新与 expiry sampling，runner 复核每条 count group 的 event shape 和 RTL counter 值。连续 expiry 后还会重入 startup 等待。该模型尚未完成与独立 VCS/UVM 实际采样调用及实参的比对，因此其时序属于实现验证状态，不代表 coverage parity；Stage 06 继续只转换 source-confirmed explicit named bins。
 
 阶段 04 runner 通过 `tools/cocotb_coverage_adapter.py` 在可观测的 TL CSR write/read、AON pin 变化及三个计数器 covergroup 上追加 raw trace JSON。计数器事件按 pinned scoreboard 的 4 周期启动延迟、倒计时长度和到期额外采样建模，计数值由仿真顶层只读输出观察；尚未与 UVM/VCS 仿真逐事件比对，所以不宣称时序等价。文件由 testcase `finally` 路径保存并在 run manifest 中记录哈希。trace schema v2 与旧版 v1 并存，阶段 05 runner 复核每个 trace 的 hash、样本总数、covergroup 分布和元数据。`tools/raw_trace_to_vectors.py` 只把 source-confirmed named explicit-bin hits 转成 `PARTIAL_VALIDATED` sparse vectors，不推断 miss；auto-bin/cross partition、条件 reset 适用性和共享 228 identities 仍未解决。
